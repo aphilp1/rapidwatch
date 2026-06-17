@@ -1,0 +1,4 @@
+*.bak
+test.txt
+__pycache__/
+*.pyc
