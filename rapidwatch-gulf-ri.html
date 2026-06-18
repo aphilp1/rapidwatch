@@ -1683,6 +1683,20 @@ const argoLayer=L.layerGroup();
     ];
   }
 
+  /* Land mask — returns false if lat/lon is over Florida, Yucatan, Cuba or out of bounds */
+  function isWater(lat,lon){
+    if(lat<20||lat>31||lon<-97||lon>-80) return false;
+    // Florida west coast: boundary line from (25.5°N,-81.5°W) to (30.5°N,-85°W)
+    if(lat>25.5&&lat<30.5&&lon>(-81.5-(lat-25.5)*0.65)) return false;
+    // Florida panhandle (above 30°N east of ~87°W)
+    if(lat>=30.5&&lon>-87.5) return false;
+    // Yucatan Peninsula (~18.5–21.5°N, ~87–90.5°W)
+    if(lat>18.5&&lat<21.5&&lon>-90.5&&lon<-87.0) return false;
+    // Cuba western end (~20–23.3°N, east of ~85.5°W)
+    if(lat>20.0&&lat<23.3&&lon>-85.5) return false;
+    return true;
+  }
+
   const GulfCurrentLayer=L.Layer.extend({
     onAdd(map){
       this._map=map;
@@ -1706,7 +1720,7 @@ const argoLayer=L.layerGroup();
     _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
     _onMoveStart(){this._stop();this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
     _onReset(){this._resize();this._start();},
-    _rnd(){return{lat:20+Math.random()*11,lon:-97+Math.random()*17,age:Math.floor(Math.random()*90),life:70+Math.random()*90};},
+    _rnd(){let lat,lon,n=0;do{lat=20+Math.random()*11;lon=-97+Math.random()*17;n++;}while(!isWater(lat,lon)&&n<30);return{lat,lon,age:Math.floor(Math.random()*90),life:70+Math.random()*90};},
     _spawn(n){this._pts=Array.from({length:n},()=>this._rnd());},
     _start(){if(!this._running){this._running=true;this._raf=requestAnimationFrame(()=>this._tick());}},
     _stop(){this._running=false;if(this._raf){cancelAnimationFrame(this._raf);this._raf=null;}},
@@ -1719,7 +1733,7 @@ const argoLayer=L.layerGroup();
       ctx.globalCompositeOperation='source-over';
       const dt=0.007;
       this._pts.forEach(p=>{
-        if(p.age>=p.life||p.lat<19.5||p.lat>31.5||p.lon<-97.5||p.lon>-79.5){Object.assign(p,this._rnd());return;}
+        if(p.age>=p.life||!isWater(p.lat,p.lon)){Object.assign(p,this._rnd());return;}
         const [u,v]=uv(p.lat,p.lon);
         const spd=Math.sqrt(u*u+v*v);
         if(spd<0.04){p.age++;return;}
@@ -1741,19 +1755,19 @@ const argoLayer=L.layerGroup();
 const gulfCurrentLayer=new window._GulfCurrentLayer();
 
 const registry=[
- {key:'Loop Current & OHC corridor',lyr:heatLayer,on:true,heat:true},
- {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:true,heat:true},
- {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:true,heat:true},
- {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:true,heat:true},
- {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:true,heat:true},
- {key:'NDBC buoys',lyr:buoyLayer,on:true,heat:false},
- {key:'Underwater glider line',lyr:gliderLayer,on:true,heat:false},
+ {key:'Loop Current & OHC corridor',lyr:heatLayer,on:false,heat:true},
+ {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:false,heat:true},
+ {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
+ {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
+ {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:false,heat:true},
+ {key:'NDBC buoys',lyr:buoyLayer,on:false,heat:false},
+ {key:'Underwater glider line',lyr:gliderLayer,on:false,heat:false},
  {key:'Saildrone deployment zone',lyr:sdLayer,on:false,heat:false},
- {key:'Hurricane Hunter bases',lyr:baseLayer,on:true,heat:false},
- {key:'Argo profiling floats',lyr:argoLayer,on:true,heat:false},
- {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:true,heat:true},
- {key:'Graticule',lyr:grat,on:true,heat:false},
- {key:'Reference cities',lyr:cityLayer,on:true,heat:false}
+ {key:'Hurricane Hunter bases',lyr:baseLayer,on:false,heat:false},
+ {key:'Argo profiling floats',lyr:argoLayer,on:false,heat:false},
+ {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
+ {key:'Graticule',lyr:grat,on:false,heat:false},
+ {key:'Reference cities',lyr:cityLayer,on:false,heat:false}
 ];
 const host=document.getElementById('layers');
 registry.forEach(r=>{
