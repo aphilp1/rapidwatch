@@ -1534,22 +1534,44 @@ const pop=(kind,cls,name,coord,desc,tags)=>`<div class="pop ${cls}"><div class="
 const fmt=(la,lo)=>Math.abs(la).toFixed(2)+'°'+(la>=0?'N':'S')+' '+Math.abs(lo).toFixed(2)+'°W';
 
 /* HEAT / RI */
+const loopPts=[[21.0,-86.7],[22.6,-85.6],[24.3,-85.1],[26.0,-85.0],[27.0,-85.6],[26.6,-84.2],[25.2,-83.2],[24.0,-82.2],[23.4,-81.4]];
 const corridor=L.polygon([[21.2,-86.9],[24.0,-86.2],[26.8,-86.3],[27.2,-84.6],[24.6,-82.6],[22.6,-83.4],[21.0,-85.6]],
   {color:'#ff8a3d',weight:1,fillColor:'#ff8a3d',fillOpacity:.07,dashArray:'3,5'})
   .bindPopup(pop('Ocean heat reservoir','','Loop Current OHC corridor','Eastern–central Gulf',
-   'Where the Loop Current and shed eddies concentrate deep (80–150 m) warm water — highest ocean heat content and strongest RI risk.',['high OHC','deep warm layer']));
-const loop=L.polyline([[21.0,-86.7],[22.6,-85.6],[24.3,-85.1],[26.0,-85.0],[27.0,-85.6],[26.6,-84.2],[25.2,-83.2],[24.0,-82.2],[23.4,-81.4]],
-  {color:'#ff8a3d',weight:3,opacity:.85})
+   'The Loop Current and its shed rings concentrate deep warm water to 80–150 m here. OHC regularly exceeds 80 kJ/cm² — the threshold most strongly linked to RI. <b>Katrina and Rita (2005)</b> both reached Cat 5 over this corridor, three weeks apart on nearly identical tracks.',['high OHC','deep warm layer','RI trigger']));
+const loop=L.polyline(loopPts,{color:'#ff8a3d',weight:3,opacity:.85})
   .bindPopup(pop('Major current','','Loop Current','Yucatán Channel → Florida Straits',
-   'Warm water enters via the Yucatán Channel, loops north, and exits through the Florida Straits as the Gulf Stream. Sheds warm-core eddies every 6–11 months.',['warm inflow','eddy source']));
+   'Warm Caribbean water enters via the Yucatán Channel (~21°N), arcs north and east through the central Gulf, then exits through the Florida Straits to become the Gulf Stream. Core speed: 1–2 m/s. Arrows show flow direction.<br><br>The LC sheds warm-core eddies (rings) every 6–11 months when its northern limb extends far north and pinches off, releasing a closed pool of warm deep water that drifts westward.',['warm inflow','eddy source','1–2 m/s']));
+/* Loop Current directional arrows — pure Leaflet SVG, no plugin needed */
+function _lcBrg(p1,p2){
+  const r=Math.PI/180,la1=p1[0]*r,la2=p2[0]*r,dl=(p2[1]-p1[1])*r;
+  return(Math.atan2(Math.sin(dl)*Math.cos(la2),Math.cos(la1)*Math.sin(la2)-Math.sin(la1)*Math.cos(la2)*Math.cos(dl))*180/Math.PI+360)%360;
+}
+const loopArrows=L.layerGroup();
+loopPts.forEach((p,i)=>{
+  if(i===0) return;
+  const p0=loopPts[i-1];
+  const b=_lcBrg(p0,p);
+  L.marker([(p0[0]+p[0])/2,(p0[1]+p[1])/2],{icon:L.divIcon({
+    className:'',
+    html:`<svg width="14" height="14" viewBox="-7 -7 14 14" style="transform:rotate(${b}deg);overflow:visible;display:block"><polygon points="0,-6 4.5,4 0,1.5 -4.5,4" fill="#ff8a3d" stroke="#050b12" stroke-width="0.5" opacity="0.95"/></svg>`,
+    iconSize:[14,14],iconAnchor:[7,7]
+  })}).addTo(loopArrows);
+});
 const eddy=L.circle([25.0,-90.6],{radius:130000,color:'#ffb27a',weight:2,dashArray:'4,6',fillColor:'#ff8a3d',fillOpacity:.05})
-  .bindPopup(pop('Detached feature','','Warm-core eddy (representative)','~25.0°N 90.6°W',
-   'A shed Loop Current ring — a deep warm pool drifting toward Texas/Mexico. Storms crossing a ring can intensify explosively (Katrina & Rita, 2005).',['deep warm pool','RI accelerant']));
-/* Gulf-wide OHC reference polygon - Loop Current + warm eddy corridor Sept-Oct peak season */
+  .bindPopup(pop('Warm-core eddy (ring)','','Loop Current warm-core ring','~25.0°N 90.6°W · representative position',
+   'A closed ring shed by the Loop Current when its northern limb pinches off. Typical size: 200–400 km across, warm water extending 600–800 m deep. OHC inside a ring: <b>100–130 kJ/cm²</b> — 2–3× the background Gulf average.<br><br>Rings drift westward at ~3–5 cm/s toward Texas/Mexico, persisting 6–18 months. They are invisible at the surface (SSTs look similar) but hold enormous heat at depth where satellites cannot see it.<br><br><b>Katrina (Aug 28–29 2005)</b>: intensified Cat 3 → Cat 5 in ~18 hours crossing a warm-core ring in this area — one of the fastest RI events on record. <b>Rita (Sep 22)</b> reached 155 kt over a similar ring just 3 weeks later on nearly the same path.',['deep warm pool','RI accelerant','OHC 100–130 kJ/cm²','6–18 month lifespan']));
+/* Accurately-placed 2005 Cat 5 peak zone — Katrina & Rita only */
+const riHotZone2005=L.polygon([[24.0,-89.5],[25.2,-89.0],[27.0,-88.2],[27.5,-86.5],[26.2,-85.0],[24.2,-85.5],[23.2,-87.5],[24.0,-89.5]],
+  {color:'#ff5d6c',weight:1.5,fillColor:'#ff5d6c',fillOpacity:.07,dashArray:'4,5'})
+  .bindPopup(pop('2005 Cat 5 peak zone','','Katrina & Rita · peak intensification zone','24–27°N · 86–90°W',
+   '<b>Both Katrina and Rita hit Cat 5 over this specific area, on nearly identical tracks three weeks apart.</b><br><br>• Katrina: <b>150 kt</b> · Aug 28 1800Z · 26.3°N 88.6°W<br>• Rita: <b>155 kt</b> · Sep 22 0300Z · 24.7°N 87.3°W<br><br>Conditions that made this zone lethal: SST 30–31°C, D26 > 50 m, OHC > 100 kJ/cm² from warm-core rings, negligible wind shear. Rita passed almost the exact same location Katrina had crossed — the warm eddies had not yet recovered, but the background Loop Current kept SSTs elevated enough for sustained Cat 5.<br><br><i>Note: Milton 2024 peaked in the western Gulf (21.8°N, 90.9°W). Helene 2024 peaked in the eastern Gulf near Florida (28.7°N, 84.3°W). No single zone contains all four peaks.</i>',['Katrina 150 kt','Rita 155 kt','warm-core ring','D26 > 50 m']));
+/* Gulf-wide OHC warm pool — peak season reference */
 const ohcGulf=L.polygon([[20.0,-97.0],[20.0,-81.0],[25.0,-80.0],[27.5,-83.0],[27.0,-88.0],[24.0,-90.5],[22.0,-94.0],[20.5,-97.0]],
   {color:'#ff8a3d',weight:1,fillColor:'#ff8a3d',fillOpacity:.05,dashArray:'6,6'})
-  .bindPopup(pop('Gulf OHC warm pool','','Sept-Oct peak-season warm pool','20-27N Gulf of Mexico','Representative area of elevated Ocean Heat Content (OHC > 50 kJ/cm2) during peak RI season. Source: NOAA AOML Gulf OHC climatology. RI hot zones are shown on each storm track as a solid amber line.',['OHC','Loop Current','warm pool']));
-const heatLayer=L.layerGroup([ohcGulf,corridor,loop,eddy]);
+  .bindPopup(pop('Gulf OHC warm pool','','Sept–Oct peak-season warm pool','20–27.5°N Gulf of Mexico',
+   'Elevated ocean heat content (OHC > 50 kJ/cm²) across the deep Gulf during peak RI season. All four storms on this map peaked over deep warm Gulf water — but in different sub-zones:<br><br>• <b>Katrina & Rita (2005)</b>: central Gulf over Loop Current warm-core rings (pink polygon)<br>• <b>Milton (2024)</b>: western deep Gulf / Bay of Campeche · 21.8°N 90.9°W · 155 kt<br>• <b>Helene (2024)</b>: eastern Gulf approaching Florida shelf · 28.7°N 84.3°W · 120 kt<br><br>Amber track segments show where each storm was intensifying at +30 kt/24 h. The common thread is deep warm water — not a single geographic zone.<br><br>Source: NOAA AOML Gulf OHC climatology.',['OHC > 50 kJ/cm²','Sept–Oct peak','4 storms · 4 zones']));
+const heatLayer=L.layerGroup([ohcGulf,riHotZone2005,corridor,loop,loopArrows,eddy]);
 
 /* HURRICANE BEST TRACKS (real data: HURDAT2 2005 pair + NHC TCR 2024 pair) */
 const STORMS = [{"name":"Katrina","year":2005,"peak":150,"peakcat":"Cat 5","color":"#ff7a3d","pts":[{"lat":23.1,"lon":-75.1,"w":30,"mb":null,"cat":"TD","t":"Aug 23 1800Z","ri":false,"land":false},{"lat":23.4,"lon":-75.7,"w":30,"mb":null,"cat":"TD","t":"Aug 24 0000Z","ri":false,"land":false},{"lat":23.8,"lon":-76.2,"w":30,"mb":null,"cat":"TD","t":"Aug 24 0600Z","ri":false,"land":false},{"lat":24.5,"lon":-76.5,"w":35,"mb":null,"cat":"TS","t":"Aug 24 1200Z","ri":false,"land":false},{"lat":25.4,"lon":-76.9,"w":40,"mb":null,"cat":"TS","t":"Aug 24 1800Z","ri":false,"land":false},{"lat":26.0,"lon":-77.7,"w":45,"mb":null,"cat":"TS","t":"Aug 25 0000Z","ri":false,"land":false},{"lat":26.1,"lon":-78.4,"w":50,"mb":null,"cat":"TS","t":"Aug 25 0600Z","ri":false,"land":false},{"lat":26.2,"lon":-79.0,"w":55,"mb":null,"cat":"TS","t":"Aug 25 1200Z","ri":false,"land":false},{"lat":26.2,"lon":-79.6,"w":60,"mb":null,"cat":"TS","t":"Aug 25 1800Z","ri":false,"land":false},{"lat":26.0,"lon":-80.1,"w":70,"mb":null,"cat":"Cat 1","t":"Aug 25 2230Z","ri":false,"land":true},{"lat":25.9,"lon":-80.3,"w":70,"mb":null,"cat":"Cat 1","t":"Aug 26 0000Z","ri":false,"land":false},{"lat":25.4,"lon":-81.3,"w":65,"mb":null,"cat":"Cat 1","t":"Aug 26 0600Z","ri":true,"land":false},{"lat":25.1,"lon":-82.0,"w":75,"mb":null,"cat":"Cat 1","t":"Aug 26 1200Z","ri":true,"land":false},{"lat":24.9,"lon":-82.6,"w":85,"mb":null,"cat":"Cat 2","t":"Aug 26 1800Z","ri":true,"land":false},{"lat":24.6,"lon":-83.3,"w":90,"mb":null,"cat":"Cat 2","t":"Aug 27 0000Z","ri":true,"land":false},{"lat":24.4,"lon":-84.0,"w":95,"mb":null,"cat":"Cat 2","t":"Aug 27 0600Z","ri":true,"land":false},{"lat":24.4,"lon":-84.7,"w":100,"mb":null,"cat":"Cat 3","t":"Aug 27 1200Z","ri":true,"land":false},{"lat":24.5,"lon":-85.3,"w":100,"mb":null,"cat":"Cat 3","t":"Aug 27 1800Z","ri":true,"land":false},{"lat":24.8,"lon":-85.9,"w":100,"mb":null,"cat":"Cat 3","t":"Aug 28 0000Z","ri":true,"land":false},{"lat":25.2,"lon":-86.7,"w":125,"mb":null,"cat":"Cat 4","t":"Aug 28 0600Z","ri":true,"land":false},{"lat":25.7,"lon":-87.7,"w":145,"mb":null,"cat":"Cat 5","t":"Aug 28 1200Z","ri":true,"land":false},{"lat":26.3,"lon":-88.6,"w":150,"mb":null,"cat":"Cat 5","t":"Aug 28 1800Z","ri":true,"land":false},{"lat":27.2,"lon":-89.2,"w":140,"mb":null,"cat":"Cat 5","t":"Aug 29 0000Z","ri":false,"land":false},{"lat":28.2,"lon":-89.6,"w":125,"mb":null,"cat":"Cat 4","t":"Aug 29 0600Z","ri":false,"land":false},{"lat":29.3,"lon":-89.6,"w":110,"mb":null,"cat":"Cat 3","t":"Aug 29 1110Z","ri":false,"land":true},{"lat":29.5,"lon":-89.6,"w":110,"mb":null,"cat":"Cat 3","t":"Aug 29 1200Z","ri":false,"land":false},{"lat":30.2,"lon":-89.6,"w":105,"mb":null,"cat":"Cat 3","t":"Aug 29 1445Z","ri":false,"land":true},{"lat":31.1,"lon":-89.6,"w":80,"mb":null,"cat":"Cat 1","t":"Aug 29 1800Z","ri":false,"land":false},{"lat":32.6,"lon":-89.1,"w":50,"mb":null,"cat":"TS","t":"Aug 30 0000Z","ri":false,"land":false},{"lat":34.1,"lon":-88.6,"w":40,"mb":null,"cat":"TS","t":"Aug 30 0600Z","ri":false,"land":false},{"lat":35.6,"lon":-88.0,"w":30,"mb":null,"cat":"TD","t":"Aug 30 1200Z","ri":false,"land":false},{"lat":37.0,"lon":-87.0,"w":30,"mb":null,"cat":"TD","t":"Aug 30 1800Z","ri":false,"land":false},{"lat":38.6,"lon":-85.3,"w":30,"mb":null,"cat":"TD","t":"Aug 31 0000Z","ri":false,"land":false},{"lat":40.1,"lon":-82.9,"w":25,"mb":null,"cat":"TD","t":"Aug 31 0600Z","ri":false,"land":false}]},{"name":"Rita","year":2005,"peak":155,"peakcat":"Cat 5","color":"#ffb13d","pts":[{"lat":21.3,"lon":-69.9,"w":25,"mb":null,"cat":"TD","t":"Sep 18 0000Z","ri":false,"land":false},{"lat":21.6,"lon":-70.7,"w":25,"mb":null,"cat":"TD","t":"Sep 18 0600Z","ri":false,"land":false},{"lat":21.9,"lon":-71.5,"w":30,"mb":null,"cat":"TD","t":"Sep 18 1200Z","ri":false,"land":false},{"lat":22.2,"lon":-72.3,"w":35,"mb":null,"cat":"TS","t":"Sep 18 1800Z","ri":false,"land":false},{"lat":22.4,"lon":-73.0,"w":45,"mb":null,"cat":"TS","t":"Sep 19 0000Z","ri":false,"land":false},{"lat":22.6,"lon":-73.8,"w":50,"mb":null,"cat":"TS","t":"Sep 19 0600Z","ri":false,"land":false},{"lat":22.8,"lon":-74.7,"w":55,"mb":null,"cat":"TS","t":"Sep 19 1200Z","ri":false,"land":false},{"lat":23.1,"lon":-75.9,"w":60,"mb":null,"cat":"TS","t":"Sep 19 1800Z","ri":false,"land":false},{"lat":23.3,"lon":-77.2,"w":60,"mb":null,"cat":"TS","t":"Sep 20 0000Z","ri":true,"land":false},{"lat":23.5,"lon":-78.8,"w":60,"mb":null,"cat":"TS","t":"Sep 20 0600Z","ri":true,"land":false},{"lat":23.7,"lon":-80.3,"w":70,"mb":null,"cat":"Cat 1","t":"Sep 20 1200Z","ri":true,"land":false},{"lat":23.9,"lon":-81.6,"w":85,"mb":null,"cat":"Cat 2","t":"Sep 20 1800Z","ri":true,"land":false},{"lat":24.1,"lon":-82.7,"w":95,"mb":null,"cat":"Cat 2","t":"Sep 21 0000Z","ri":true,"land":false},{"lat":24.2,"lon":-84.0,"w":110,"mb":null,"cat":"Cat 3","t":"Sep 21 0600Z","ri":true,"land":false},{"lat":24.2,"lon":-85.2,"w":120,"mb":null,"cat":"Cat 4","t":"Sep 21 1200Z","ri":true,"land":false},{"lat":24.3,"lon":-86.2,"w":145,"mb":null,"cat":"Cat 5","t":"Sep 21 1800Z","ri":true,"land":false},{"lat":24.5,"lon":-86.9,"w":150,"mb":null,"cat":"Cat 5","t":"Sep 22 0000Z","ri":true,"land":false},{"lat":24.7,"lon":-87.3,"w":155,"mb":null,"cat":"Cat 5","t":"Sep 22 0300Z","ri":true,"land":false},{"lat":24.8,"lon":-87.6,"w":155,"mb":null,"cat":"Cat 5","t":"Sep 22 0600Z","ri":true,"land":false},{"lat":25.2,"lon":-88.3,"w":140,"mb":null,"cat":"Cat 5","t":"Sep 22 1200Z","ri":false,"land":false},{"lat":25.6,"lon":-89.1,"w":125,"mb":null,"cat":"Cat 4","t":"Sep 22 1800Z","ri":false,"land":false},{"lat":26.0,"lon":-89.9,"w":120,"mb":null,"cat":"Cat 4","t":"Sep 23 0000Z","ri":false,"land":false},{"lat":26.5,"lon":-90.7,"w":115,"mb":null,"cat":"Cat 4","t":"Sep 23 0600Z","ri":false,"land":false},{"lat":27.1,"lon":-91.5,"w":115,"mb":null,"cat":"Cat 4","t":"Sep 23 1200Z","ri":false,"land":false},{"lat":27.8,"lon":-92.3,"w":110,"mb":null,"cat":"Cat 3","t":"Sep 23 1800Z","ri":false,"land":false},{"lat":28.6,"lon":-93.0,"w":105,"mb":null,"cat":"Cat 3","t":"Sep 24 0000Z","ri":false,"land":false},{"lat":29.4,"lon":-93.6,"w":100,"mb":null,"cat":"Cat 3","t":"Sep 24 0600Z","ri":false,"land":false},{"lat":29.7,"lon":-93.7,"w":100,"mb":null,"cat":"Cat 3","t":"Sep 24 0740Z","ri":false,"land":true},{"lat":30.5,"lon":-94.1,"w":65,"mb":null,"cat":"Cat 1","t":"Sep 24 1200Z","ri":false,"land":false},{"lat":31.6,"lon":-94.1,"w":45,"mb":null,"cat":"TS","t":"Sep 24 1800Z","ri":false,"land":false},{"lat":32.7,"lon":-94.0,"w":35,"mb":null,"cat":"TS","t":"Sep 25 0000Z","ri":false,"land":false},{"lat":33.7,"lon":-93.6,"w":30,"mb":null,"cat":"TD","t":"Sep 25 0600Z","ri":false,"land":false},{"lat":34.7,"lon":-92.5,"w":25,"mb":null,"cat":"TD","t":"Sep 25 1200Z","ri":false,"land":false},{"lat":35.8,"lon":-91.4,"w":25,"mb":null,"cat":"TD","t":"Sep 25 1800Z","ri":false,"land":false},{"lat":37.0,"lon":-90.1,"w":20,"mb":null,"cat":"TD","t":"Sep 26 0000Z","ri":false,"land":false},{"lat":39.5,"lon":-88.0,"w":20,"mb":null,"cat":"TD","t":"Sep 26 0600Z","ri":false,"land":false}]},{"name":"Helene","year":2024,"peak":120,"peakcat":"Cat 4","color":"#46cfd6","pts":[{"lat":17.2,"lon":-81.7,"w":30,"mb":1004,"cat":"TD","t":"Sep 23 1200Z","ri":false,"land":false},{"lat":17.8,"lon":-81.9,"w":35,"mb":1004,"cat":"TS","t":"Sep 23 1800Z","ri":false,"land":false},{"lat":18.2,"lon":-82.2,"w":35,"mb":1002,"cat":"TS","t":"Sep 24 0000Z","ri":false,"land":false},{"lat":18.6,"lon":-82.8,"w":35,"mb":1001,"cat":"TS","t":"Sep 24 0600Z","ri":false,"land":false},{"lat":19.2,"lon":-83.7,"w":40,"mb":999,"cat":"TS","t":"Sep 24 1200Z","ri":false,"land":false},{"lat":19.4,"lon":-84.6,"w":45,"mb":997,"cat":"TS","t":"Sep 24 1800Z","ri":false,"land":false},{"lat":19.7,"lon":-85.2,"w":50,"mb":990,"cat":"TS","t":"Sep 25 0000Z","ri":false,"land":false},{"lat":20.3,"lon":-85.9,"w":55,"mb":985,"cat":"TS","t":"Sep 25 0600Z","ri":false,"land":false},{"lat":21.1,"lon":-86.2,"w":65,"mb":979,"cat":"Cat 1","t":"Sep 25 1200Z","ri":false,"land":false},{"lat":22.0,"lon":-86.5,"w":70,"mb":978,"cat":"Cat 1","t":"Sep 25 1800Z","ri":true,"land":false},{"lat":22.8,"lon":-86.7,"w":70,"mb":973,"cat":"Cat 1","t":"Sep 26 0000Z","ri":true,"land":false},{"lat":23.6,"lon":-86.5,"w":75,"mb":970,"cat":"Cat 1","t":"Sep 26 0600Z","ri":true,"land":false},{"lat":24.7,"lon":-85.8,"w":85,"mb":963,"cat":"Cat 2","t":"Sep 26 1200Z","ri":true,"land":false},{"lat":26.6,"lon":-85.0,"w":105,"mb":958,"cat":"Cat 3","t":"Sep 26 1800Z","ri":true,"land":false},{"lat":28.7,"lon":-84.3,"w":120,"mb":941,"cat":"Cat 4","t":"Sep 27 0000Z","ri":true,"land":false},{"lat":30.0,"lon":-83.7,"w":120,"mb":939,"cat":"Cat 4","t":"Sep 27 0310Z","ri":true,"land":true},{"lat":30.8,"lon":-83.5,"w":95,"mb":947,"cat":"Cat 2","t":"Sep 27 0500Z","ri":false,"land":false},{"lat":31.3,"lon":-83.3,"w":80,"mb":957,"cat":"Cat 1","t":"Sep 27 0600Z","ri":false,"land":false},{"lat":32.9,"lon":-83.1,"w":60,"mb":967,"cat":"TS","t":"Sep 27 0900Z","ri":false,"land":false},{"lat":34.4,"lon":-83.2,"w":45,"mb":973,"cat":"TS","t":"Sep 27 1200Z","ri":false,"land":false},{"lat":36.8,"lon":-84.9,"w":40,"mb":983,"cat":"TS","t":"Sep 27 1800Z","ri":false,"land":false}]},{"name":"Milton","year":2024,"peak":155,"peakcat":"Cat 5","color":"#e85ad6","pts":[{"lat":21.0,"lon":-94.6,"w":30,"mb":1009,"cat":"TD","t":"Oct 04 1800Z","ri":false,"land":false},{"lat":20.8,"lon":-95.2,"w":30,"mb":1008,"cat":"TD","t":"Oct 05 0000Z","ri":false,"land":false},{"lat":21.4,"lon":-95.4,"w":30,"mb":1008,"cat":"TD","t":"Oct 05 0600Z","ri":false,"land":false},{"lat":22.0,"lon":-95.5,"w":30,"mb":1008,"cat":"TD","t":"Oct 05 1200Z","ri":false,"land":false},{"lat":22.5,"lon":-95.5,"w":35,"mb":1006,"cat":"TS","t":"Oct 05 1800Z","ri":true,"land":false},{"lat":22.7,"lon":-95.5,"w":35,"mb":1004,"cat":"TS","t":"Oct 06 0000Z","ri":true,"land":false},{"lat":22.6,"lon":-95.2,"w":45,"mb":999,"cat":"TS","t":"Oct 06 0600Z","ri":true,"land":false},{"lat":22.5,"lon":-94.8,"w":55,"mb":991,"cat":"TS","t":"Oct 06 1200Z","ri":true,"land":false},{"lat":22.5,"lon":-94.1,"w":70,"mb":986,"cat":"Cat 1","t":"Oct 06 1800Z","ri":true,"land":false},{"lat":22.5,"lon":-93.4,"w":75,"mb":981,"cat":"Cat 1","t":"Oct 07 0000Z","ri":true,"land":false},{"lat":22.1,"lon":-92.9,"w":90,"mb":972,"cat":"Cat 2","t":"Oct 07 0600Z","ri":true,"land":false},{"lat":21.8,"lon":-92.2,"w":120,"mb":943,"cat":"Cat 4","t":"Oct 07 1200Z","ri":true,"land":false},{"lat":21.7,"lon":-91.3,"w":150,"mb":908,"cat":"Cat 5","t":"Oct 07 1800Z","ri":true,"land":false},{"lat":21.8,"lon":-90.9,"w":155,"mb":895,"cat":"Cat 5","t":"Oct 07 2000Z","ri":true,"land":false},{"lat":21.8,"lon":-90.4,"w":145,"mb":902,"cat":"Cat 5","t":"Oct 08 0000Z","ri":false,"land":false},{"lat":21.9,"lon":-89.5,"w":125,"mb":925,"cat":"Cat 4","t":"Oct 08 0600Z","ri":false,"land":false},{"lat":22.5,"lon":-88.8,"w":125,"mb":929,"cat":"Cat 4","t":"Oct 08 1200Z","ri":false,"land":false},{"lat":22.5,"lon":-88.0,"w":140,"mb":916,"cat":"Cat 5","t":"Oct 08 1800Z","ri":false,"land":false},{"lat":22.8,"lon":-87.2,"w":145,"mb":902,"cat":"Cat 5","t":"Oct 08 2205Z","ri":false,"land":false},{"lat":23.0,"lon":-86.9,"w":140,"mb":908,"cat":"Cat 5","t":"Oct 09 0000Z","ri":false,"land":false},{"lat":23.3,"lon":-86.6,"w":135,"mb":916,"cat":"Cat 4","t":"Oct 09 0205Z","ri":false,"land":false},{"lat":23.8,"lon":-85.9,"w":140,"mb":909,"cat":"Cat 5","t":"Oct 09 0600Z","ri":false,"land":false},{"lat":24.3,"lon":-85.4,"w":140,"mb":907,"cat":"Cat 5","t":"Oct 09 0825Z","ri":false,"land":false},{"lat":25.0,"lon":-84.8,"w":135,"mb":919,"cat":"Cat 4","t":"Oct 09 1200Z","ri":false,"land":false},{"lat":26.3,"lon":-84.0,"w":115,"mb":945,"cat":"Cat 4","t":"Oct 09 1800Z","ri":false,"land":false},{"lat":27.3,"lon":-82.7,"w":105,"mb":956,"cat":"Cat 3","t":"Oct 10 0000Z","ri":false,"land":false},{"lat":27.4,"lon":-82.6,"w":100,"mb":958,"cat":"Cat 3","t":"Oct 10 0030Z","ri":false,"land":true},{"lat":28.1,"lon":-81.3,"w":70,"mb":975,"cat":"Cat 1","t":"Oct 10 0600Z","ri":false,"land":false}]}];
@@ -1609,6 +1631,78 @@ cities.forEach(([n,la,lo])=>{
   L.marker([la,lo],{icon:L.divIcon({className:'',html:'<div style="color:#7d93a3;font:400 10px IBM Plex Mono;white-space:nowrap;text-shadow:0 0 5px #050b12">▪ '+n+'</div>',iconSize:[0,0]})}).addTo(cityLayer);
 });
 
+/* ARGO PROFILING FLOATS (Argovis API — AOML/UCSD) */
+const argoLayer=L.layerGroup();
+(async function loadArgoFloats(){
+  const poly=encodeURIComponent(JSON.stringify([[-97,20],[-81,20],[-81,31],[-97,31],[-97,20]]));
+  const end=new Date().toISOString().slice(0,10);
+  const start=new Date(Date.now()-45*864e5).toISOString().slice(0,10);
+  const argoPopup=(id,la,lo,dt)=>pop('Argo profiling float','aq','Float '+id,
+    fmt(la,lo)+(dt?' · '+dt:''),
+    'Autonomous profiling float — dives to 2000 m every ~10 days measuring temperature and salinity. The key RI metric it provides is <b>D26</b> (depth of the 26°C isotherm): if D26 > 50 m, a hurricane cannot upwell cold water fast enough to cut off surface heat flux, enabling RI.<br><br>Argo provides the only real-time sub-surface OHC data in the Gulf. NOAA/AOML deploys targeted seasonal floats; ~8–12 are active in the Gulf at any time. Data flows to NHC within hours of surfacing.',
+    ['T/S profile','D26','sub-surface OHC','RI predictor']);
+  try{
+    const r=await fetch(`https://argovis-api.colorado.edu/argo?polygon=${poly}&startDate=${start}&endDate=${end}`);
+    if(!r.ok) throw new Error(r.status);
+    const d=await r.json();
+    const profiles=Array.isArray(d)?d:(d.data||[]);
+    profiles.slice(0,60).forEach(p=>{
+      const coords=p.geolocation?.coordinates||p.location;
+      if(!coords||coords.length<2) return;
+      const [lo,la]=coords;
+      L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85})
+        .bindPopup(argoPopup(p._id||p.platform_number||'?',la,lo,(p.timestamp||p.date||'').slice(0,10)))
+        .addTo(argoLayer);
+    });
+  }catch(e){
+    /* Fallback: representative AOML Gulf seasonal deployment positions */
+    [[25.2,-87.3],[23.8,-90.1],[26.5,-84.2],[22.3,-92.5],[27.8,-85.8],[24.6,-88.1],[21.5,-89.4],[26.0,-91.2]]
+      .forEach(([la,lo])=>L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.45})
+        .bindPopup(argoPopup('(representative)',la,lo,null)).addTo(argoLayer));
+  }
+})();
+
+/* GULF SURFACE CURRENTS — Loop Current climatology (representative, Sept–Oct peak season) */
+const gulfCurrentLayer=L.layerGroup();
+(function buildGulfCurrents(){
+  if(typeof L.velocityLayer!=='function') return;
+  const nx=18,ny=12,lo1=-97,la1=31;
+  const u=new Array(nx*ny).fill(0), v=new Array(nx*ny).fill(0);
+  const add=(lat,lon,uu,vv)=>{
+    const r=la1-lat,c=lon-lo1;
+    if(r<0||r>=ny||c<0||c>=nx) return;
+    u[r*nx+c]+=uu; v[r*nx+c]+=vv;
+  };
+  /* Yucatán Channel inflow */
+  [[21,-87,0.1,0.9],[21,-86,0.0,0.7],[21,-88,0.1,0.6]].forEach(a=>add(...a));
+  /* Loop Current northward limb */
+  [[22,-87,0.2,0.8],[22,-86,0.3,0.6],[23,-87,0.3,0.7],[23,-86,0.4,0.5],
+   [24,-87,0.3,0.6],[24,-86,0.5,0.4],[25,-87,0.3,0.4],[25,-86,0.5,0.3],
+   [26,-86,0.5,0.3],[26,-85,0.6,0.2],[27,-86,0.5,0.1],[27,-85,0.7,0.1]].forEach(a=>add(...a));
+  /* Eastern turn */
+  [[27,-84,0.6,-0.1],[27,-83,0.5,-0.2],[26,-84,0.5,-0.3],[26,-83,0.4,-0.4]].forEach(a=>add(...a));
+  /* Florida Straits outflow */
+  [[25,-83,0.3,-0.5],[25,-82,0.2,-0.6],[24,-82,0.1,-0.6],
+   [24,-81,0.8,-0.2],[25,-81,0.7,-0.3],[25,-80,0.9,0.0],[26,-81,0.4,-0.1]].forEach(a=>add(...a));
+  /* Warm-core eddy anticyclone (~25°N 90°W) — clockwise */
+  [[26,-91,0.2,-0.1],[26,-90,0.0,-0.2],[26,-89,-0.2,-0.1],
+   [25,-91,0.3,0.0],[25,-89,-0.3,0.0],
+   [24,-91,0.2,0.1],[24,-90,0.0,0.2],[24,-89,-0.2,0.1]].forEach(a=>add(...a));
+  /* Background westward drift in western Gulf */
+  for(let lat=20;lat<=27;lat++) for(let lon=-97;lon<=-92;lon++) add(lat,lon,-0.08,0.0);
+  /* Caribbean inflow south of Yucatán */
+  [[20,-87,-0.1,0.4],[20,-86,-0.1,0.5],[20,-85,-0.1,0.4]].forEach(a=>add(...a));
+
+  const hdr=(num,name)=>({parameterUnit:'m/s',parameterNumber:num,dx:1,dy:1,
+    parameterNumberName:name,la1:31,la2:20,lo1:-97,lo2:-80,nx,ny});
+  L.velocityLayer({
+    displayValues:false,
+    data:[{header:hdr(2,'Eastward current'),data:u},{header:hdr(3,'Northward current'),data:v}],
+    maxVelocity:1.2,velocityScale:0.018,
+    colorScale:['#0d3a4a','#1a6a7a','#46cfd6','#90ecf4']
+  }).addTo(gulfCurrentLayer);
+})();
+
 const registry=[
  {key:'Loop Current & OHC corridor',lyr:heatLayer,on:true,heat:true},
  {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:true,heat:true},
@@ -1619,6 +1713,8 @@ const registry=[
  {key:'Underwater glider line',lyr:gliderLayer,on:true,heat:false},
  {key:'Saildrone deployment zone',lyr:sdLayer,on:false,heat:false},
  {key:'Hurricane Hunter bases',lyr:baseLayer,on:true,heat:false},
+ {key:'Argo profiling floats',lyr:argoLayer,on:true,heat:false},
+ {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Graticule',lyr:grat,on:true,heat:false},
  {key:'Reference cities',lyr:cityLayer,on:true,heat:false}
 ];
