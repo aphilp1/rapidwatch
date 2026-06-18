@@ -1109,7 +1109,7 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
     <div class="hero-stats">
       <div class="stat reveal"><div class="n">30<span class="u">kt / 24 h</span></div><div class="l">NHC rapid-intensification threshold</div></div>
       <div class="stat reveal"><div class="n">+85<span class="u">kt / 26 h</span></div><div class="l">Milton 2024 — record Gulf RI from ATCF data</div></div>
-      <div class="stat reveal"><div class="n">21–27<span class="u">°N</span></div><div class="l">Gulf RI hot zone — all 4 storms peaked here</div></div>
+      <div class="stat reveal"><div class="n">21–29<span class="u">°N</span></div><div class="l">Gulf RI hot zone — all 4 storms peaked here</div></div>
       <div class="stat reveal"><div class="n">15–42<span class="u">hrs</span></div><div class="l">RI episode duration across our 4-storm library</div></div>
     </div>
   </div>
@@ -1632,6 +1632,19 @@ cities.forEach(([n,la,lo])=>{
   L.marker([la,lo],{icon:L.divIcon({className:'',html:'<div style="color:#7d93a3;font:400 10px IBM Plex Mono;white-space:nowrap;text-shadow:0 0 5px #050b12">▪ '+n+'</div>',iconSize:[0,0]})}).addTo(cityLayer);
 });
 
+/* GULF RI HOT ZONE — 21–29°N latitude band (all 4 storms peaked here) */
+const riZoneLayer=L.layerGroup([
+  L.polygon([[21,-97],[21,-80],[29,-80],[29,-97]],
+    {color:'#ff5d6c',weight:0,fillColor:'#ff5d6c',fillOpacity:.04}),
+  L.polyline([[29,-97],[29,-80]],{color:'#ff5d6c',weight:1.2,opacity:.55,dashArray:'10,7'}),
+  L.polyline([[21,-97],[21,-80]],{color:'#ff5d6c',weight:1.2,opacity:.55,dashArray:'10,7'}),
+  L.marker([29,-91],{icon:L.divIcon({className:'',html:'<span style="color:#ff5d6c;font:700 9.5px \'IBM Plex Mono\';white-space:nowrap;letter-spacing:.1em;text-shadow:0 0 8px #050b12,0 0 8px #050b12">— 29°N</span>',iconSize:[0,0]})}),
+  L.marker([21,-91],{icon:L.divIcon({className:'',html:'<span style="color:#ff5d6c;font:700 9.5px \'IBM Plex Mono\';white-space:nowrap;letter-spacing:.1em;text-shadow:0 0 8px #050b12,0 0 8px #050b12">— 21°N</span>',iconSize:[0,0]})}),
+  L.marker([25,-92],{icon:L.divIcon({className:'',html:'<div style="color:#ff5d6c;font:700 11px \'IBM Plex Mono\';white-space:nowrap;letter-spacing:.08em;text-shadow:0 0 10px #050b12,0 0 10px #050b12;text-align:center">GULF RI HOT ZONE<br><span style="font-weight:400;font-size:9.5px">all 4 storms peaked · 21–29°N</span></div>',iconSize:[0,0]})})
+    .bindPopup(pop('RI hot zone','','Gulf RI hot zone · 21–29°N','Gulf of Mexico',
+      'The latitude band where all four storms on this map reached peak intensity:<br><br>• <b>Katrina (2005)</b> — 150 kt at 26.3°N<br>• <b>Rita (2005)</b> — 155 kt at 24.7°N<br>• <b>Milton (2024)</b> — 155 kt at 21.8°N<br>• <b>Helene (2024)</b> — 120 kt at 28.7°N<br><br>The common factor: deep warm water (OHC > 50 kJ/cm², D26 > 50 m) across the Gulf\'s open basin. The Loop Current and its shed eddies maintain this warm layer through peak season (Sep–Oct).',['all 4 storms','OHC','21–29°N']))
+]);
+
 /* ARGO PROFILING FLOATS (Argovis API — AOML/UCSD) */
 const argoLayer=L.layerGroup();
 (async function loadArgoFloats(){
@@ -1776,6 +1789,7 @@ const registry=[
  {key:'Loop Current OHC corridor',lyr:corridorLayer,on:false,heat:true},
  {key:'Gulf peak-season warm pool',lyr:ohcGulfLayer,on:false,heat:true},
  {key:'Katrina & Rita 2005 — Cat 5 zone',lyr:riHotZoneLayer,on:false,heat:true},
+ {key:'Gulf RI hot zone (21–29°N · all 4 storms)',lyr:riZoneLayer,on:false,heat:true},
  {key:'Warm-core eddy (representative)',lyr:eddyLayer,on:false,heat:true},
  {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:false,heat:true},
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
