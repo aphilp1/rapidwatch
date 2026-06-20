@@ -979,32 +979,51 @@ const buoys=[['42001',25.90,-89.67,'Mid Gulf'],['42002',25.79,-93.67,'West Gulf'
  ['42036',28.50,-84.52,'West Tampa'],['42039',28.79,-86.01,'Pensacola'],['42040',29.21,-88.21,'Mobile South'],
  ['42019',27.91,-95.35,'Freeport TX'],['42020',26.97,-96.69,'Corpus Christi'],['42055',22.12,-94.05,'Bay of Campeche']];
 const buoyLayer=L.layerGroup();
+const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function _fmtUTC(ts){const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';}
+async function _ndbcObs(id){
+  /* Primary: NWS observations API — CORS-enabled JSON */
+  try{
+    const r=await fetch('https://api.weather.gov/stations/'+id+'/observations/latest',
+      {headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}});
+    if(!r.ok) throw 0;
+    const p=(await r.json()).properties;
+    return{
+      wtmp:p.seaSurfaceTemperature?.value,
+      atmp:p.temperature?.value,
+      wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,
+      wdir:p.windDirection?.value,
+      pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,
+      t:p.timestamp?_fmtUTC(p.timestamp):'--'
+    };
+  }catch(e){}
+  /* Fallback: NDBC realtime2 via allorigins CORS proxy */
+  const r2=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://www.ndbc.noaa.gov/data/realtime2/'+id+'.txt'));
+  if(!r2.ok) throw new Error('ndbc-fail');
+  const obs=(await r2.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];
+  if(obs.length<15) throw new Error('parse');
+  const v=x=>x==='MM'?null:+x;
+  return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),
+    t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};
+}
 buoys.forEach(([id,la,lo,loc])=>{
   const mk=L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#0d1c29',fillOpacity:.9})
    .bindPopup(pop('NDBC moored buoy','aq','Station '+id,fmt(la,lo)+' · '+loc,
      'Fixed-point continuous wind, pressure, wave, and SST — the calibration reference for mobile assets.',['surface met','waves','SST']))
    .addTo(buoyLayer);
-  fetch(`https://www.ndbc.noaa.gov/data/realtime2/${id}.txt`)
-    .then(r=>r.ok?r.text():Promise.reject())
-    .then(txt=>{
-      const obs=txt.trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];
-      if(obs.length<15) return;
-      const v=x=>x==='MM'?null:+x;
-      const wtmp=v(obs[14]),wspd=v(obs[6]),wdir=v(obs[5]),pres=v(obs[12]),atmp=v(obs[13]);
-      const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      const t=_mo[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC';
-      if(wtmp!=null) mk.setStyle({fillColor:wtmp>=29?'#ff8a3d':wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
-      const lines=[
-        wtmp!=null?`SST: <b>${wtmp.toFixed(1)}°C</b>`:'SST: --',
-        atmp!=null?`Air temp: <b>${atmp.toFixed(1)}°C</b>`:'Air: --',
-        wspd!=null?`Wind: <b>${wspd} m/s</b> from ${wdir!=null?wdir+'°':'?'}`:'Wind: --',
-        pres!=null?`Pressure: <b>${pres} hPa</b>`:'Pres: --',
-        `<span style="opacity:.6;font-size:.9em">Obs: ${t}</span>`
-      ].join('<br>');
-      const tags=['live obs','SST','wind'];
-      if(wtmp!=null&&wtmp>=29) tags.push('RI-favorable SST');
-      mk.bindPopup(pop('NDBC moored buoy — live','aq','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
-    }).catch(()=>{});
+  _ndbcObs(id).then(o=>{
+    if(o.wtmp!=null) mk.setStyle({fillColor:o.wtmp>=29?'#ff8a3d':o.wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
+    const lines=[
+      o.wtmp!=null?'SST: <b>'+o.wtmp.toFixed(1)+'°C</b>':'SST: --',
+      o.atmp!=null?'Air temp: <b>'+o.atmp.toFixed(1)+'°C</b>':'Air: --',
+      o.wspd!=null?'Wind: <b>'+o.wspd+' m/s</b> from '+(o.wdir!=null?o.wdir+'°':'?'):'Wind: --',
+      o.pres!=null?'Pressure: <b>'+o.pres+' hPa</b>':'Pres: --',
+      '<span style="opacity:.6;font-size:.9em">Obs: '+o.t+'</span>'
+    ].join('<br>');
+    const tags=['live obs','SST','wind'];
+    if(o.wtmp!=null&&o.wtmp>=29) tags.push('RI-favorable SST');
+    mk.bindPopup(pop('NDBC moored buoy — live','aq','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
+  }).catch(()=>{});
 });
 const gliderLine=[[27.2,-88.4],[26.2,-87.0],[25.2,-85.6],[24.2,-84.2]];
 const gliderLayer=L.layerGroup([L.polyline(gliderLine,{color:'#46cfd6',weight:1.5,opacity:.5,dashArray:'2,7'})]);
