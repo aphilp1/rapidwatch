@@ -714,7 +714,8 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
   position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.94),rgba(6,14,22,.9));
   border:1px solid var(--line);border-radius:12px;backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5);
 }
-#legend{bottom:20px;left:14px;width:256px;padding:15px 16px 14px}
+#legend{bottom:20px;left:14px;width:256px;padding:15px 16px 14px;max-height:calc(100% - 60px);display:flex;flex-direction:column}
+#layers{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
 #legend h3{font-family:"Space Grotesk";font-weight:600;font-size:12px;letter-spacing:.04em;margin:0 0 11px;color:var(--ink);display:flex;align-items:center;gap:8px}
 #legend h3 .sq{width:8px;height:8px;border-radius:2px;background:var(--amber)}
 .layer{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer;user-select:none}
@@ -905,6 +906,52 @@ STORMS.forEach(s=>{
         `${p.w} kt — ${p.cat}${p.mb?` · ${p.mb} mb`:''}${p.ri?' · rapidly intensifying (+30 kt/24 h)':''}${p.land?' · landfall':''}`,
         p.ri?['RI']:null)).addTo(lyr);
   });
+});
+
+/* RI FACTOR CONVERGENCE MARKERS — peak intensity location for each storm */
+const CONV=[
+  {name:'Katrina',year:2005,lat:26.3,lon:-88.6,kt:150,cat:'Cat 5',color:'#ff7a3d',
+   date:'Aug 28 1800Z',d26:125,sst:30.0,shear:6,
+   note:'Crossed a Loop Current warm-core ring at maximum depth — the benchmark Gulf RI event.',
+   change:'75 → 150 kt (+75 kt / 18 h)'},
+  {name:'Rita',year:2005,lat:24.7,lon:-87.3,kt:155,cat:'Cat 5',color:'#ffb13d',
+   date:'Sep 22 0300Z',d26:90,sst:29.5,shear:8,
+   note:'Same path as Katrina three weeks later — eddy partially recovered, LC corridor still lethal.',
+   change:'60 → 155 kt (+95 kt / 42 h)'},
+  {name:'Helene',year:2024,lat:28.7,lon:-84.3,kt:120,cat:'Cat 4',color:'#46cfd6',
+   date:'Sep 27 0000Z',d26:55,sst:30.2,shear:10,
+   note:'Shallow D26 offset by 20+ kt forward speed — outran its own cold wake into landfall.',
+   change:'70 → 120 kt (+50 kt / 15 h)'},
+  {name:'Milton',year:2024,lat:21.8,lon:-90.9,kt:155,cat:'Cat 5',color:'#e85ad6',
+   date:'Oct 07 2000Z',d26:135,sst:30.8,shear:6,
+   note:'Record-tier Gulf RI. Bay of Campeche: deepest warm water, hottest SST, near-zero shear — all three factors at maximum.',
+   change:'35 → 155 kt (+120 kt / 26 h)'},
+];
+const convLayer=L.layerGroup();
+CONV.forEach(c=>{
+  const d26bar=Math.round(Math.min(100,c.d26/200*100));
+  const sstbar=Math.round(Math.min(100,(c.sst-26)/6*100));
+  const shearbar=Math.round(Math.min(100,(25-c.shear)/25*100));
+  const row=(lbl,col,pct,val)=>
+    `<span style="display:flex;align-items:center;gap:7px;margin-bottom:5px">`
+    +`<span style="font:400 9px IBM Plex Mono,monospace;color:${col};width:40px">${lbl}</span>`
+    +`<span style="display:inline-block;flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:2px">`
+    +`<span style="display:block;width:${pct}%;height:100%;background:${col};border-radius:2px"></span></span>`
+    +`<span style="font:400 10px IBM Plex Mono,monospace;width:44px;text-align:right">${val}</span></span>`;
+  const body=`<b style="color:${c.color}">${c.name} ${c.year}</b> · ${c.cat} · ${c.kt} kt<br>`
+    +`<span style="font:400 10px IBM Plex Mono,monospace;color:#7a9ab0">${c.date} · ${c.lat}°N ${Math.abs(c.lon).toFixed(1)}°W</span><br><br>`
+    +`<span style="display:block;margin:2px 0 10px">`
+    +row('D26','#ff8a3d',d26bar,c.d26+' m')
+    +row('SST','#ff5d6c',sstbar,c.sst+'°C')
+    +row('SHEAR','#46cfd6',shearbar,'~'+c.shear+' kt')
+    +`</span>`
+    +`<b style="color:#e9eef3">${c.change}</b><br>`
+    +`<span style="font-size:12px;color:#7a9ab0">${c.note}</span>`;
+  L.marker([c.lat,c.lon],{icon:L.divIcon({className:'',
+    html:`<div style="width:14px;height:14px;transform:rotate(45deg);background:${c.color};border:2px solid #050b12;box-shadow:0 0 10px ${c.color},0 0 20px ${c.color}55;border-radius:2px"></div>`,
+    iconSize:[14,14],iconAnchor:[7,7]})})
+  .bindPopup(pop('RI factor convergence · peak intensity','',`${c.name} ${c.year} — ${c.cat} peak`,`${c.lat}°N ${Math.abs(c.lon).toFixed(1)}°W · ${c.date}`,body,['D26','SST','shear','RI peak']))
+  .addTo(convLayer);
 });
 
 /* OBSERVING ASSETS */
@@ -1169,6 +1216,210 @@ const gulfCurrentLayer=new window._GulfCurrentLayer();
 })();
 const warmDepthLayer=new window._WarmDepthLayer();
 
+/* SEA SURFACE TEMPERATURE — analytical peak-season Gulf SST */
+(function(){
+  const SSTLayer=L.Layer.extend({
+    onAdd(map){
+      this._map=map;
+      const el=document.createElement('canvas');
+      el.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:603';
+      map.getContainer().appendChild(el);
+      this._cv=el; this._ctx=el.getContext('2d');
+      this._resize(); this._draw();
+      map.on('moveend zoomend resize',this._onUpdate,this);
+      map.on('movestart',this._onClear,this);
+    },
+    onRemove(map){map.getContainer().removeChild(this._cv);map.off('moveend zoomend resize',this._onUpdate,this);map.off('movestart',this._onClear,this);},
+    _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
+    _onClear(){this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
+    _onUpdate(){this._resize();this._draw();},
+    _draw(){
+      const ctx=this._ctx,map=this._map;
+      ctx.clearRect(0,0,this._cv.width,this._cv.height);
+      /* [lat, lon, SST °C, radius km] — NOAA Coral Reef Watch peak-season climatology */
+      const SRC=[
+        [20.0,-93.5,30.5,320], // Bay of Campeche — hottest zone
+        [23.5,-91.0,30.1,280], // South-central Gulf
+        [26.0,-89.5,29.5,310], // Central Gulf / LC vicinity
+        [25.5,-85.5,29.0,210], // LC axis / eastern Gulf
+        [22.5,-87.5,29.8,180], // Yucatan Channel approaches
+        [27.5,-88.0,28.6,240], // Northern Gulf open water
+        [28.8,-85.5,28.2,180], // NE Gulf / Florida approaches
+        [24.0,-83.5,28.7,150], // Florida Straits
+        [29.5,-93.5,27.8,200], // Northern Gulf coastal shelf
+        [21.5,-97.0,29.0,180], // Western Gulf / Veracruz coast
+      ];
+      ctx.save();
+      ctx.globalCompositeOperation='screen';
+      SRC.forEach(([la,lo,sst,rkm])=>{
+        const pt=map.latLngToContainerPoint([la,lo]);
+        const r=Math.abs(map.latLngToContainerPoint([la+rkm/111,lo]).y-pt.y);
+        if(r<3) return;
+        const norm=Math.max(0,Math.min(1,(sst-26)/5)); // 26→0, 31→1
+        const hue=215-norm*205;  // 215=blue(cool) → 10=red(hot)
+        const sat=80+norm*15;
+        const lit=38+norm*22;
+        const a=0.38+norm*0.38;
+        const g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,r);
+        g.addColorStop(0,   `hsla(${hue.toFixed(0)},${sat.toFixed(0)}%,${lit.toFixed(0)}%,${a.toFixed(3)})`);
+        g.addColorStop(0.4, `hsla(${hue.toFixed(0)},${sat.toFixed(0)}%,${lit.toFixed(0)}%,${(a*.45).toFixed(3)})`);
+        g.addColorStop(1,   `hsla(${hue.toFixed(0)},${sat.toFixed(0)}%,${lit.toFixed(0)}%,0)`);
+        ctx.fillStyle=g; ctx.beginPath();ctx.arc(pt.x,pt.y,r,0,Math.PI*2);ctx.fill();
+      });
+      ctx.globalCompositeOperation='source-over';
+      ctx.font='bold 8px "IBM Plex Mono",monospace'; ctx.textAlign='center';
+      [[20.0,-93.5,'SST 30.5°C'],[26.0,-89.5,'SST 29.5°C'],[27.5,-88.0,'SST 28.6°C']]
+        .forEach(([la,lo,lbl])=>{
+          const pt=map.latLngToContainerPoint([la,lo]);
+          if(pt.x<10||pt.y<10||pt.x>this._cv.width-10||pt.y>this._cv.height-10) return;
+          ctx.fillStyle='rgba(255,190,110,0.80)';
+          ctx.fillText(lbl,pt.x,pt.y-5);
+        });
+      ctx.restore();
+    }
+  });
+  window._SSTLayer=SSTLayer;
+})();
+const sstLayer=new window._SSTLayer();
+
+/* WIND SHEAR OVERLAY — climatological peak-season vertical wind shear */
+(function(){
+  const ShearLayer=L.Layer.extend({
+    onAdd(map){
+      this._map=map;
+      const el=document.createElement('canvas');
+      el.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:607';
+      map.getContainer().appendChild(el);
+      this._cv=el; this._ctx=el.getContext('2d');
+      this._resize(); this._draw();
+      map.on('moveend zoomend resize',this._onUpdate,this);
+      map.on('movestart',this._onClear,this);
+    },
+    onRemove(map){map.getContainer().removeChild(this._cv);map.off('moveend zoomend resize',this._onUpdate,this);map.off('movestart',this._onClear,this);},
+    _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
+    _onClear(){this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
+    _onUpdate(){this._resize();this._draw();},
+    _draw(){
+      const ctx=this._ctx,map=this._map;
+      ctx.clearRect(0,0,this._cv.width,this._cv.height);
+      /* [lat, lon, shear kt, radius km] — 200–850 hPa climatological Sep–Oct */
+      const SRC=[
+        [20.5,-91.0, 5,300], // Deep tropics / Yucatan — very low shear
+        [23.0,-93.5, 7,280], // Bay of Campeche — low shear
+        [25.5,-89.5, 9,320], // Central Gulf — low to moderate
+        [25.0,-85.0, 8,210], // Eastern Gulf / LC — low
+        [27.5,-87.5,16,260], // Northern Gulf — moderate
+        [29.5,-89.5,24,220], // Northern Gulf coastal — moderate-high
+        [28.0,-96.5,22,200], // NW Gulf / Texas coast — moderate-high
+        [21.0,-87.0, 6,180], // Caribbean approaches — low
+      ];
+      ctx.save();
+      ctx.globalCompositeOperation='screen';
+      SRC.forEach(([la,lo,shear,rkm])=>{
+        const pt=map.latLngToContainerPoint([la,lo]);
+        const r=Math.abs(map.latLngToContainerPoint([la+rkm/111,lo]).y-pt.y);
+        if(r<3) return;
+        // shear kt → hue: 5kt=125(green/favorable) → 25kt=5(red/unfavorable)
+        const norm=Math.max(0,Math.min(1,(shear-4)/22));
+        const hue=Math.round(125-norm*120);
+        const sat=85+norm*10;
+        const lit=38+norm*18;
+        const a=0.35+norm*0.32;
+        const g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,r);
+        g.addColorStop(0,   `hsla(${hue},${sat}%,${lit}%,${a.toFixed(3)})`);
+        g.addColorStop(0.42,`hsla(${hue},${sat}%,${lit}%,${(a*.45).toFixed(3)})`);
+        g.addColorStop(1,   `hsla(${hue},${sat}%,${lit}%,0)`);
+        ctx.fillStyle=g; ctx.beginPath();ctx.arc(pt.x,pt.y,r,0,Math.PI*2);ctx.fill();
+      });
+      ctx.globalCompositeOperation='source-over';
+      ctx.font='bold 8px "IBM Plex Mono",monospace'; ctx.textAlign='center';
+      [[20.5,-91.0,'~5 kt shear'],[25.5,-89.5,'~9 kt'],[29.5,-89.5,'~24 kt shear']]
+        .forEach(([la,lo,lbl])=>{
+          const pt=map.latLngToContainerPoint([la,lo]);
+          if(pt.x<10||pt.y<10||pt.x>this._cv.width-10||pt.y>this._cv.height-10) return;
+          ctx.fillStyle='rgba(160,230,160,0.78)';
+          ctx.fillText(lbl,pt.x,pt.y-5);
+        });
+      ctx.restore();
+    }
+  });
+  window._ShearLayer=ShearLayer;
+})();
+const shearLayer=new window._ShearLayer();
+
+/* RI PROBABILITY ZONE — combines D26 depth + wind shear for RI likelihood */
+(function(){
+  const RIProbLayer=L.Layer.extend({
+    onAdd(map){
+      this._map=map;
+      const el=document.createElement('canvas');
+      el.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:613';
+      map.getContainer().appendChild(el);
+      this._cv=el; this._ctx=el.getContext('2d');
+      this._resize(); this._draw();
+      map.on('moveend zoomend resize',this._onUpdate,this);
+      map.on('movestart',this._onClear,this);
+    },
+    onRemove(map){map.getContainer().removeChild(this._cv);map.off('moveend zoomend resize',this._onUpdate,this);map.off('movestart',this._onClear,this);},
+    _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
+    _onClear(){this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
+    _onUpdate(){this._resize();this._draw();},
+    _draw(){
+      const ctx=this._ctx,map=this._map;
+      ctx.clearRect(0,0,this._cv.width,this._cv.height);
+      /* [lat, lon, D26 m, shear kt, label, radius km]
+         RI score = D26 factor × shear factor
+         D26: <50m→0, 50m→0.4, 80m→0.65, 120m→0.85, 160m+→1.0
+         Shear: >25kt→0, 20kt→0.2, 15kt→0.5, 10kt→0.75, 5kt→1.0  */
+      const SRC=[
+        [25.0,-90.6,135, 9,'High — Loop eddy core',200],
+        [23.5,-93.5, 82,7,'High — Secondary eddy',155],
+        [26.0,-85.5, 95, 8,'High — LC eastern axis',185],
+        [24.5,-86.0,115, 8,'High — LC corridor',180],
+        [21.5,-91.0, 65, 6,'Moderate-High — Campeche',250],
+        [23.0,-86.5, 90, 7,'High — LC inflow zone',160],
+        [27.5,-88.0, 55,16,'Moderate — N Gulf',220],
+        [28.5,-85.5, 38,18,'Low-Moderate — NE Gulf shelf',170],
+        [29.5,-90.5, 25,24,'Low — N coastal',190],
+      ];
+      const d26Score=d=>{if(d>=160)return 1;if(d>=120)return 0.85;if(d>=80)return 0.65+((d-80)/40)*0.20;if(d>=50)return 0.40+((d-50)/30)*0.25;return Math.max(0,d/50*0.4);};
+      const shearScore=s=>{if(s<=5)return 1;if(s<=10)return 1-(s-5)/5*0.25;if(s<=15)return 0.75-(s-10)/5*0.25;if(s<=20)return 0.50-(s-15)/5*0.30;if(s<=25)return 0.20-(s-20)/5*0.20;return 0;};
+      ctx.save();
+      ctx.globalCompositeOperation='screen';
+      SRC.forEach(([la,lo,d26,shear,lbl,rkm])=>{
+        const score=d26Score(d26)*shearScore(shear);
+        if(score<0.05) return;
+        const pt=map.latLngToContainerPoint([la,lo]);
+        const r=Math.abs(map.latLngToContainerPoint([la+rkm/111,lo]).y-pt.y);
+        if(r<3) return;
+        // score 1→green(120°), 0.5→amber(42°), 0→red(0°)
+        const hue=Math.round(score*120);
+        const sat=88+score*8;
+        const lit=38+score*18;
+        const a=0.28+score*0.44;
+        const g=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,r);
+        g.addColorStop(0,   `hsla(${hue},${sat}%,${lit}%,${a.toFixed(3)})`);
+        g.addColorStop(0.40,`hsla(${hue},${sat}%,${lit}%,${(a*.45).toFixed(3)})`);
+        g.addColorStop(1,   `hsla(${hue},${sat}%,${lit}%,0)`);
+        ctx.fillStyle=g; ctx.beginPath();ctx.arc(pt.x,pt.y,r,0,Math.PI*2);ctx.fill();
+      });
+      ctx.globalCompositeOperation='source-over';
+      ctx.font='bold 8px "IBM Plex Mono",monospace'; ctx.textAlign='center';
+      [[25.0,-90.6,'RI ZONE'],[26.0,-85.5,'RI ZONE'],[29.5,-90.5,'LOW RI']]
+        .forEach(([la,lo,lbl])=>{
+          const pt=map.latLngToContainerPoint([la,lo]);
+          if(pt.x<10||pt.y<10||pt.x>this._cv.width-10||pt.y>this._cv.height-10) return;
+          const isHigh=lbl==='RI ZONE';
+          ctx.fillStyle=isHigh?'rgba(80,220,120,0.85)':'rgba(220,80,80,0.75)';
+          ctx.fillText(lbl,pt.x,pt.y-5);
+        });
+      ctx.restore();
+    }
+  });
+  window._RIProbLayer=RIProbLayer;
+})();
+const riProbLayer=new window._RIProbLayer();
+
 const registry=[
  {key:'Loop Current + flow arrows',lyr:loopLayer,on:false,heat:true},
  {key:'Loop Current OHC corridor',lyr:corridorLayer,on:false,heat:true},
@@ -1176,6 +1427,7 @@ const registry=[
  {key:'Katrina & Rita 2005 — Cat 5 zone',lyr:riHotZoneLayer,on:false,heat:true},
  {key:'Gulf RI hot zone (21–29°N · all 4 storms)',lyr:riZoneLayer,on:false,heat:true},
  {key:'Warm-core eddies (2 rings)',lyr:eddyLayer,on:false,heat:true},
+ {key:'RI convergence · peak intensity (4 storms)',lyr:convLayer,on:false,heat:true},
  {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:false,heat:true},
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
  {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
@@ -1185,6 +1437,9 @@ const registry=[
  {key:'Saildrone deployment zone',lyr:sdLayer,on:false,heat:false},
  {key:'Hurricane Hunter bases',lyr:baseLayer,on:false,heat:false},
  {key:'Argo profiling floats',lyr:argoLayer,on:false,heat:false},
+ {key:'Sea surface temperature (SST)',lyr:sstLayer,on:false,heat:true},
+ {key:'Wind shear (200–850 hPa climatology)',lyr:shearLayer,on:false,heat:true},
+ {key:'RI probability zones (D26 + shear)',lyr:riProbLayer,on:false,heat:true},
  {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Warm water depth (D26 glow)',lyr:warmDepthLayer,on:false,heat:true},
  {key:'Graticule',lyr:grat,on:false,heat:false},

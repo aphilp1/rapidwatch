@@ -8,7 +8,8 @@ import sys, pathlib
 DIR = pathlib.Path(r'C:\Users\aphil\Documents\RapidWatch')
 RI  = DIR / 'rapidwatch-gulf-ri-source.html'   # standalone RI source — never overwritten
 MAP = DIR / 'rapidwatch-gulf-map.html'
-OUT = DIR / 'rapidwatch.html'
+OUT   = DIR / 'rapidwatch.html'
+OUTRI = DIR / 'rapidwatch-gulf-ri.html'
 
 def between(text, open_tag, close_tag, start=0):
     s = text.index(open_tag, start) + len(open_tag)
@@ -216,7 +217,9 @@ html = f"""<!DOCTYPE html>
 </html>"""
 
 OUT.write_text(html, encoding='utf-8')
+OUTRI.write_text(html, encoding='utf-8')
 print('Written ->', OUT)
+print('Written ->', OUTRI)
 
 # ── verify ────────────────────────────────────────────────────────────────────
 v = OUT.read_text(encoding='utf-8')
