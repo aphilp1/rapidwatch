@@ -991,7 +991,8 @@ buoys.forEach(([id,la,lo,loc])=>{
       if(obs.length<15) return;
       const v=x=>x==='MM'?null:+x;
       const wtmp=v(obs[14]),wspd=v(obs[6]),wdir=v(obs[5]),pres=v(obs[12]),atmp=v(obs[13]);
-      const t=obs[2]+' '+obs[3]+':'+obs[4]+'Z';
+      const _mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const t=_mo[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC';
       if(wtmp!=null) mk.setStyle({fillColor:wtmp>=29?'#ff8a3d':wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
       const lines=[
         wtmp!=null?`SST: <b>${wtmp.toFixed(1)}°C</b>`:'SST: --',
