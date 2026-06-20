@@ -2120,11 +2120,20 @@ const nhcLayer=L.layerGroup();
   }
 
   function isWater(lat,lon){
-    if(lat<20||lat>31||lon<-97||lon>-80) return false;
-    if(lat>25.5&&lat<30.5&&lon>(-81.5-(lat-25.5)*0.65)) return false;
-    if(lat>=30.5&&lon>-87.5) return false;
-    if(lat>18.5&&lat<21.5&&lon>-90.5&&lon<-87.0) return false;
-    if(lat>20.0&&lat<23.3&&lon>-85.5) return false;
+    if(lat<18.5||lat>30.4||lon<-97.5||lon>-80.0) return false;
+    // Florida peninsula (west coast runs roughly SW→NE)
+    if(lon>(-83.8+(lat-24)*0.55)&&lat>23.5&&lat<30) return false;
+    // Florida panhandle
+    if(lat>29.8&&lon>-87.5) return false;
+    if(lat>30.0&&lon>-89.0) return false;
+    // Louisiana/Mississippi coast notch
+    if(lat>29.3&&lon>-89.5&&lon<-88.5) return false;
+    // Yucatan Peninsula
+    if(lat>18.5&&lat<21.8&&lon>-90.5&&lon<-86.5) return false;
+    // Cuba
+    if(lat>19.8&&lat<23.5&&lon>-85.0) return false;
+    // Mexico east coast / Campeche shelf land
+    if(lat>19.0&&lat<21.5&&lon<-92.5) return false;
     return true;
   }
 
@@ -2169,7 +2178,9 @@ const nhcLayer=L.layerGroup();
         const spd=Math.sqrt(u*u+v*v);
         if(spd<0.02){p.age+=2;return;}
         const pt1=map.latLngToContainerPoint([p.lat,p.lon]);
-        p.lat+=v*dt; p.lon+=u*dt/Math.cos(p.lat*Math.PI/180); p.age++;
+        const nlat=p.lat+v*dt,nlon=p.lon+u*dt/Math.cos(p.lat*Math.PI/180);
+        if(!isWater(nlat,nlon)){Object.assign(p,this._rnd());return;}
+        p.lat=nlat; p.lon=nlon; p.age++;
         const pt2=map.latLngToContainerPoint([p.lat,p.lon]);
         /* Speed → dark amber (slow) to bright cream (fast) — earth.nullschool palette */
         const norm=Math.min(1,spd/1.1);
