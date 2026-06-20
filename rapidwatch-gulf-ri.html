@@ -1911,7 +1911,7 @@ const buoyLayer=L.layerGroup();
 const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function _fmtUTC(ts){const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';}
 function _ndbcObs(id){
-  /* Race NWS JSON vs NDBC-via-proxy — whichever resolves first wins */
+  /* Run both sources in parallel, merge best fields — NWS fast but lacks SST; NDBC has SST */
   const nws=fetch('https://api.weather.gov/stations/'+id+'/observations/latest',
     {headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}})
     .then(async r=>{
@@ -1926,7 +1926,7 @@ function _ndbcObs(id){
         pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,
         t:_fmtUTC(p.timestamp)
       };
-    });
+    }).catch(()=>null);
   const ndbc=fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://www.ndbc.noaa.gov/data/realtime2/'+id+'.txt'))
     .then(async r=>{
       if(!r.ok) throw 0;
@@ -1935,8 +1935,20 @@ function _ndbcObs(id){
       const v=x=>x==='MM'?null:+x;
       return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),
         t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};
-    });
-  return Promise.any([nws,ndbc]);
+    }).catch(()=>null);
+  return Promise.all([nws,ndbc]).then(([a,b])=>{
+    if(!a&&!b) throw new Error('both failed');
+    /* Merge: fill nulls from the other source; prefer NWS timestamp */
+    const f=(x,y)=>x!=null?x:y;
+    return{
+      wtmp:f(a?.wtmp,b?.wtmp),
+      atmp:f(a?.atmp,b?.atmp),
+      wspd:f(a?.wspd,b?.wspd),
+      wdir:f(a?.wdir,b?.wdir),
+      pres:f(a?.pres,b?.pres),
+      t:a?.t||b?.t||'--'
+    };
+  });
 }
 buoys.forEach(([id,la,lo,loc])=>{
   const mk=L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#0d1c29',fillOpacity:.9})
