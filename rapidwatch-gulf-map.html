@@ -1242,11 +1242,12 @@ const nhcLayer=L.layerGroup();
     _tick(){
       if(!this._running) return;
       const ctx=this._ctx,map=this._map,cv=this._cv;
-      /* Slow fade keeps trails — destination-in preserves land transparency */
+      /* Fade trails — destination-in reduces alpha everywhere, land stays transparent */
       ctx.globalCompositeOperation='destination-in';
-      ctx.fillStyle='rgba(0,0,0,0.94)';
+      ctx.fillStyle='rgba(0,0,0,0.93)';
       ctx.fillRect(0,0,cv.width,cv.height);
-      ctx.globalCompositeOperation='source-over';
+      /* Additive lighter blending — particles only ADD light, never darken background */
+      ctx.globalCompositeOperation='lighter';
       const dt=0.013;
       this._pts.forEach(p=>{
         if(p.age>=p.life||!isWater(p.lat,p.lon)){Object.assign(p,this._rnd());return;}
@@ -1258,13 +1259,13 @@ const nhcLayer=L.layerGroup();
         if(!isWater(nlat,nlon)){Object.assign(p,this._rnd());return;}
         p.lat=nlat; p.lon=nlon; p.age++;
         const pt2=map.latLngToContainerPoint([p.lat,p.lon]);
-        /* Speed → dark amber (slow) to bright cream (fast) — earth.nullschool palette */
         const norm=Math.min(1,spd/1.1);
-        ctx.globalAlpha=(0.55+norm*0.42)*(1-p.age/p.life*0.25);
-        ctx.strokeStyle=`hsl(${42-norm*12},${60+norm*28}%,${28+norm*57}%)`;
+        ctx.globalAlpha=(0.22+norm*0.28)*(1-p.age/p.life*0.3);
+        ctx.strokeStyle=`hsl(${42-norm*12},${60+norm*28}%,${40+norm*50}%)`;
         ctx.lineWidth=0.45+norm*0.85;
         ctx.beginPath();ctx.moveTo(pt1.x,pt1.y);ctx.lineTo(pt2.x,pt2.y);ctx.stroke();
       });
+      ctx.globalCompositeOperation='source-over';
       ctx.globalAlpha=1;
       this._raf=requestAnimationFrame(()=>this._tick());
     }
