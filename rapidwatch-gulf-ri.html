@@ -1905,30 +1905,33 @@ const buoys=[['42001',25.90,-89.67,'Mid Gulf'],['42002',25.79,-93.67,'West Gulf'
 const buoyLayer=L.layerGroup();
 const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function _fmtUTC(ts){const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';}
-async function _ndbcObs(id){
-  /* Primary: NWS observations API — CORS-enabled JSON */
-  try{
-    const r=await fetch('https://api.weather.gov/stations/'+id+'/observations/latest',
-      {headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}});
-    if(!r.ok) throw 0;
-    const p=(await r.json()).properties;
-    return{
-      wtmp:p.seaSurfaceTemperature?.value,
-      atmp:p.temperature?.value,
-      wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,
-      wdir:p.windDirection?.value,
-      pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,
-      t:p.timestamp?_fmtUTC(p.timestamp):'--'
-    };
-  }catch(e){}
-  /* Fallback: NDBC realtime2 via allorigins CORS proxy */
-  const r2=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://www.ndbc.noaa.gov/data/realtime2/'+id+'.txt'));
-  if(!r2.ok) throw new Error('ndbc-fail');
-  const obs=(await r2.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];
-  if(obs.length<15) throw new Error('parse');
-  const v=x=>x==='MM'?null:+x;
-  return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),
-    t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};
+function _ndbcObs(id){
+  /* Race NWS JSON vs NDBC-via-proxy — whichever resolves first wins */
+  const nws=fetch('https://api.weather.gov/stations/'+id+'/observations/latest',
+    {headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}})
+    .then(async r=>{
+      if(!r.ok) throw 0;
+      const p=(await r.json()).properties;
+      if(!p.timestamp) throw 0;
+      return{
+        wtmp:p.seaSurfaceTemperature?.value,
+        atmp:p.temperature?.value,
+        wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,
+        wdir:p.windDirection?.value,
+        pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,
+        t:_fmtUTC(p.timestamp)
+      };
+    });
+  const ndbc=fetch('https://api.allorigins.win/raw?url='+encodeURIComponent('https://www.ndbc.noaa.gov/data/realtime2/'+id+'.txt'))
+    .then(async r=>{
+      if(!r.ok) throw 0;
+      const obs=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];
+      if(obs.length<15) throw 0;
+      const v=x=>x==='MM'?null:+x;
+      return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),
+        t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};
+    });
+  return Promise.any([nws,ndbc]);
 }
 buoys.forEach(([id,la,lo,loc])=>{
   const mk=L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#0d1c29',fillOpacity:.9})
