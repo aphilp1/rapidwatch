@@ -1899,9 +1899,14 @@ CONV.forEach(c=>{
 });
 
 /* OBSERVING ASSETS — NDBC buoys with live real-time observations */
-const buoys=[['42001',25.90,-89.67,'Mid Gulf'],['42002',25.79,-93.67,'West Gulf'],['42003',25.93,-85.62,'East Gulf / Loop Current'],
- ['42036',28.50,-84.52,'West Tampa'],['42039',28.79,-86.01,'Pensacola'],['42040',29.21,-88.21,'Mobile South'],
- ['42019',27.91,-95.35,'Freeport TX'],['42020',26.97,-96.69,'Corpus Christi'],['42055',22.12,-94.05,'Bay of Campeche']];
+const buoys=[
+ ['42001',25.90,-89.67,'Mid Gulf'],
+ ['42002',25.79,-93.67,'West Gulf'],
+ ['42036',28.50,-84.52,'West Tampa'],
+ ['42039',28.79,-86.01,'Pensacola'],
+ ['42040',29.21,-88.21,'Mobile South'],
+ ['42055',22.12,-94.05,'Bay of Campeche'],
+];
 const buoyLayer=L.layerGroup();
 const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function _fmtUTC(ts){const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';}
