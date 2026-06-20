@@ -2136,7 +2136,7 @@ const nhcLayer=L.layerGroup();
       map.getContainer().appendChild(el);
       this._cv=el; this._ctx=el.getContext('2d');
       this._running=false; this._raf=null;
-      this._resize(); this._spawn(500);
+      this._resize(); this._spawn(4000);
       map.on('resize moveend zoomend',this._onReset,this);
       map.on('movestart',this._onMoveStart,this);
       this._start();
@@ -2150,30 +2150,32 @@ const nhcLayer=L.layerGroup();
     _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
     _onMoveStart(){this._stop();this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
     _onReset(){this._resize();this._start();},
-    _rnd(){let la,lo,n=0;do{la=20+Math.random()*11;lo=-97+Math.random()*17;n++;}while(!isWater(la,lo)&&n<30);return{lat:la,lon:lo,age:Math.floor(Math.random()*90),life:70+Math.random()*90};},
+    _rnd(){let la,lo,n=0;do{la=20+Math.random()*11;lo=-97+Math.random()*17;n++;}while(!isWater(la,lo)&&n<30);return{lat:la,lon:lo,age:Math.floor(Math.random()*40),life:30+Math.random()*50};},
     _spawn(n){this._pts=Array.from({length:n},()=>this._rnd());},
     _start(){if(!this._running){this._running=true;this._raf=requestAnimationFrame(()=>this._tick());}},
     _stop(){this._running=false;if(this._raf){cancelAnimationFrame(this._raf);this._raf=null;}},
     _tick(){
       if(!this._running) return;
       const ctx=this._ctx,map=this._map,cv=this._cv;
+      /* Slow fade keeps trails — destination-in preserves land transparency */
       ctx.globalCompositeOperation='destination-in';
-      ctx.fillStyle='rgba(0,0,0,0.90)';
+      ctx.fillStyle='rgba(0,0,0,0.94)';
       ctx.fillRect(0,0,cv.width,cv.height);
       ctx.globalCompositeOperation='source-over';
-      const dt=0.007;
+      const dt=0.013;
       this._pts.forEach(p=>{
         if(p.age>=p.life||!isWater(p.lat,p.lon)){Object.assign(p,this._rnd());return;}
         const [u,v]=uv(p.lat,p.lon);
         const spd=Math.sqrt(u*u+v*v);
-        if(spd<0.03){p.age++;return;}
+        if(spd<0.02){p.age+=2;return;}
         const pt1=map.latLngToContainerPoint([p.lat,p.lon]);
         p.lat+=v*dt; p.lon+=u*dt/Math.cos(p.lat*Math.PI/180); p.age++;
         const pt2=map.latLngToContainerPoint([p.lat,p.lon]);
-        const alpha=Math.min(0.92,spd*1.4)*(1-p.age/p.life);
-        ctx.globalAlpha=alpha;
-        ctx.strokeStyle=`hsl(${190+spd*10},${62+spd*22}%,${38+spd*32}%)`;
-        ctx.lineWidth=0.9+spd*1.8;
+        /* Speed → dark amber (slow) to bright cream (fast) — earth.nullschool palette */
+        const norm=Math.min(1,spd/1.1);
+        ctx.globalAlpha=(0.55+norm*0.42)*(1-p.age/p.life*0.25);
+        ctx.strokeStyle=`hsl(${42-norm*12},${60+norm*28}%,${28+norm*57}%)`;
+        ctx.lineWidth=0.45+norm*0.85;
         ctx.beginPath();ctx.moveTo(pt1.x,pt1.y);ctx.lineTo(pt2.x,pt2.y);ctx.stroke();
       });
       ctx.globalAlpha=1;
