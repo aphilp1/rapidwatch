@@ -718,12 +718,12 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 #layers{overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
 #legend h3{font-family:"Space Grotesk";font-weight:600;font-size:12px;letter-spacing:.04em;margin:0 0 11px;color:var(--ink);display:flex;align-items:center;gap:8px}
 #legend h3 .sq{width:8px;height:8px;border-radius:2px;background:var(--amber)}
-.layer{display:flex;align-items:center;gap:10px;padding:5px 0;cursor:pointer;user-select:none}
-.layer input{appearance:none;width:15px;height:15px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;position:relative;flex:none;transition:all .15s}
+.layer{display:flex;align-items:center;gap:7px;padding:3px 0;cursor:pointer;user-select:none}
+.layer input{appearance:none;width:13px;height:13px;border:1.5px solid var(--line-2);border-radius:3px;cursor:pointer;position:relative;flex:none;transition:all .15s}
 .layer input:checked{background:var(--aqua);border-color:var(--aqua)}
 .layer input.heat:checked{background:var(--amber);border-color:var(--amber)}
-.layer input:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid var(--abyss);border-width:0 2px 2px 0;transform:rotate(45deg)}
-.layer .lbl{font-size:12px;color:var(--slate);flex:1}
+.layer input:checked::after{content:"";position:absolute;left:3px;top:1px;width:4px;height:7px;border:solid var(--abyss);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.layer .lbl{font-size:11px;line-height:1.3;color:var(--slate);flex:1}
 .layer:hover .lbl{color:var(--ink)}
 .legkey{margin-top:11px;padding-top:11px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .legkey div{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono";font-size:10px;color:var(--mute)}
@@ -1221,7 +1221,7 @@ const nhcLayer=L.layerGroup();
       map.getContainer().appendChild(el);
       this._cv=el; this._ctx=el.getContext('2d');
       this._running=false; this._raf=null;
-      this._resize(); this._spawn(4000);
+      this._resize(); this._spawn(8000);
       map.on('resize moveend zoomend',this._onReset,this);
       map.on('movestart',this._onMoveStart,this);
       this._start();
@@ -1235,19 +1235,34 @@ const nhcLayer=L.layerGroup();
     _resize(){const s=this._map.getSize();this._cv.width=s.x;this._cv.height=s.y;},
     _onMoveStart(){this._stop();this._ctx.clearRect(0,0,this._cv.width,this._cv.height);},
     _onReset(){this._resize();this._start();},
-    _rnd(){let la,lo,n=0;do{la=20+Math.random()*11;lo=-97+Math.random()*17;n++;}while(!isWater(la,lo)&&n<30);return{lat:la,lon:lo,age:Math.floor(Math.random()*40),life:30+Math.random()*50};},
+    _rnd(){let la,lo,n=0;do{la=20+Math.random()*11;lo=-97+Math.random()*17;n++;}while(!isWater(la,lo)&&n<30);return{lat:la,lon:lo,age:Math.floor(Math.random()*80),life:60+Math.random()*80};},
     _spawn(n){this._pts=Array.from({length:n},()=>this._rnd());},
     _start(){if(!this._running){this._running=true;this._raf=requestAnimationFrame(()=>this._tick());}},
     _stop(){this._running=false;if(this._raf){cancelAnimationFrame(this._raf);this._raf=null;}},
+    _gulfPath(ctx,map){
+      /* Simplified Gulf of Mexico water polygon for canvas clipping */
+      const pts=[
+        [30.4,-97.5],[29.3,-94.8],[28.2,-96.5],[26.0,-97.2],[23.5,-97.8],
+        [21.0,-97.3],[19.8,-96.5],[18.5,-94.0],[18.5,-91.0],[18.5,-90.0],
+        [19.8,-90.0],[21.5,-87.0],[23.0,-84.5],[23.1,-81.8],[25.0,-80.0],
+        [26.8,-82.0],[28.5,-82.8],[29.7,-84.5],[30.4,-87.5],[30.3,-89.3],[30.4,-97.5]
+      ];
+      ctx.beginPath();
+      pts.forEach(([la,lo],i)=>{const p=map.latLngToContainerPoint([la,lo]);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);});
+      ctx.closePath();
+    },
     _tick(){
       if(!this._running) return;
       const ctx=this._ctx,map=this._map,cv=this._cv;
-      /* Slow fade keeps trails — destination-in preserves land transparency */
-      ctx.globalCompositeOperation='destination-in';
-      ctx.fillStyle='rgba(0,0,0,0.94)';
-      ctx.fillRect(0,0,cv.width,cv.height);
+      ctx.save();
+      this._gulfPath(ctx,map);
+      ctx.clip();
+      /* Slowly paint warm amber over entire clipped region — fades old trails into background */
       ctx.globalCompositeOperation='source-over';
-      const dt=0.013;
+      ctx.fillStyle='rgba(58,28,4,0.055)';
+      ctx.fillRect(0,0,cv.width,cv.height);
+      /* Draw cream/wheat streamlines on top of warm background */
+      const dt=0.016;
       this._pts.forEach(p=>{
         if(p.age>=p.life||!isWater(p.lat,p.lon)){Object.assign(p,this._rnd());return;}
         const [u,v]=uv(p.lat,p.lon);
@@ -1258,13 +1273,14 @@ const nhcLayer=L.layerGroup();
         if(!isWater(nlat,nlon)){Object.assign(p,this._rnd());return;}
         p.lat=nlat; p.lon=nlon; p.age++;
         const pt2=map.latLngToContainerPoint([p.lat,p.lon]);
-        /* Speed → dark amber (slow) to bright cream (fast) — earth.nullschool palette */
-        const norm=Math.min(1,spd/1.1);
-        ctx.globalAlpha=(0.55+norm*0.42)*(1-p.age/p.life*0.25);
-        ctx.strokeStyle=`hsl(${42-norm*12},${60+norm*28}%,${28+norm*57}%)`;
-        ctx.lineWidth=0.45+norm*0.85;
+        const norm=Math.min(1,spd/1.0);
+        /* Cream/wheat on amber: light tan (slow) → bright cream/white (fast) */
+        ctx.globalAlpha=0.55+norm*0.42;
+        ctx.strokeStyle=`hsl(${50-norm*12},${42-norm*22}%,${65+norm*30}%)`;
+        ctx.lineWidth=0.5+norm*1.1;
         ctx.beginPath();ctx.moveTo(pt1.x,pt1.y);ctx.lineTo(pt2.x,pt2.y);ctx.stroke();
       });
+      ctx.restore();
       ctx.globalAlpha=1;
       this._raf=requestAnimationFrame(()=>this._tick());
     }
