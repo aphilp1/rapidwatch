@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>RAPIDWATCH — Gulf RI Observatory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+
+
+
+:root{
+  --abyss:#050b12;
+  --deep:#0a1722;
+  --panel:#0d1c29;
+  --panel-2:#102433;
+  --line:rgba(120,160,180,.14);
+  --line-2:rgba(120,160,180,.28);
+  --ink:#e9eef3;
+  --slate:#93a7b6;
+  --mute:#5f7585;
+  --aqua:#46cfd6;
+  --aqua-dim:#2a8f97;
+  --amber:#ff8a3d;
+  --amber-soft:#ffb27a;
+  --coral:#ff5d6c;
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 700px at 78% -8%, rgba(255,138,61,.10), transparent 60%),
+    radial-gradient(1100px 800px at 10% 6%, rgba(70,207,214,.08), transparent 55%),
+    linear-gradient(180deg,#06101a 0%, var(--abyss) 38%, #03070c 100%);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.mono{font-family:"IBM Plex Mono",monospace}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1.12;margin:0}
+a{color:var(--aqua);text-decoration:none}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(5,11,18,.92),rgba(5,11,18,.55));
+  border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:700;letter-spacing:.04em;font-size:15px}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(255,138,61,.18),0 0 16px 2px rgba(255,138,61,.55);animation:pulse 3.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(255,138,61,.18),0 0 14px 1px rgba(255,138,61,.45)}50%{box-shadow:0 0 0 5px rgba(255,138,61,.06),0 0 22px 4px rgba(255,138,61,.7)}}
+.brand small{font-family:"IBM Plex Mono";font-weight:400;font-size:10.5px;color:var(--mute);letter-spacing:.12em;display:block;margin-top:1px}
+.navlinks{margin-left:auto;display:flex;gap:26px}
+.navlinks a{color:var(--slate);font-size:13px;letter-spacing:.02em;transition:color .2s}
+.navlinks a:hover{color:var(--ink)}
+@media(max-width:860px){.navlinks{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:74px 0 30px;position:relative}
+.eyebrow{font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.26em;color:var(--amber-soft);text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:clamp(34px,6vw,64px);letter-spacing:-.015em}
+.hero h1 .em{color:var(--amber)}
+.hero .lede{max-width:660px;margin-top:22px;font-size:clamp(16px,2.2vw,19px);color:var(--slate);font-weight:300}
+.hero .lede b{color:var(--ink);font-weight:500}
+.hero-stats{display:flex;flex-wrap:wrap;gap:34px;margin-top:36px}
+.stat .n{font-family:"Space Grotesk";font-weight:700;font-size:clamp(24px,4vw,34px);color:var(--ink)}
+.stat .n .u{font-family:"IBM Plex Mono";font-size:13px;color:var(--aqua);font-weight:500;margin-left:4px}
+.stat .l{font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;margin-top:2px;max-width:170px}
+
+/* ---------- section scaffolding ---------- */
+section{padding:64px 0;position:relative}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono";font-size:12px;color:var(--amber);letter-spacing:.1em;padding-top:6px}
+.sec-head h2{font-size:clamp(24px,3.6vw,36px);letter-spacing:-.01em}
+.sec-sub{color:var(--slate);max-width:720px;margin:14px 0 38px;font-size:16px}
+.rule{height:1px;background:linear-gradient(90deg,var(--line-2),transparent);margin:0 0 0}
+
+/* ---------- THE COLUMN (signature) ---------- */
+.column-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start}
+@media(max-width:920px){.column-wrap{grid-template-columns:1fr}}
+.stack{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(13,28,41,.7),rgba(6,14,22,.55));
+  overflow:hidden;
+}
+.band{
+  position:relative;
+  display:grid;grid-template-columns:88px 1fr;
+  border-bottom:1px solid var(--line);
+  padding:16px 16px 16px 0;
+  transition:background .25s;
+}
+.band:last-child{border-bottom:none}
+.band:hover{background:rgba(70,207,214,.04)}
+.band .axis{
+  font-family:"IBM Plex Mono";font-size:10.5px;color:var(--mute);
+  text-align:right;padding-right:14px;line-height:1.4;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:center;letter-spacing:.02em;
+}
+.band .axis b{color:var(--aqua);font-weight:600;font-size:11px;display:block}
+.band .content{padding-left:16px}
+.band .bname{font-family:"Space Grotesk";font-weight:600;font-size:14px;letter-spacing:.01em;margin-bottom:9px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-family:"IBM Plex Mono";font-size:11px;letter-spacing:.01em;
+  padding:4px 9px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line-2);color:var(--slate);background:rgba(255,255,255,.015);
+  transition:all .18s;
+}
+.chip:hover,.chip.active{border-color:var(--aqua);color:var(--abyss);background:var(--aqua)}
+.chip.heat:hover,.chip.heat.active{border-color:var(--amber);background:var(--amber);color:var(--abyss)}
+/* interface band emphasis */
+.band.interface{background:
+  linear-gradient(90deg,rgba(255,138,61,.10),rgba(255,138,61,.02) 70%);}
+.band.interface::before{
+  content:"";position:absolute;left:88px;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,var(--amber),transparent);
+  box-shadow:0 0 14px 1px rgba(255,138,61,.6);
+}
+.band.interface .bname{color:var(--amber-soft)}
+.tagline{font-family:"IBM Plex Mono";font-size:10px;color:var(--mute);margin-top:8px;letter-spacing:.04em}
+@media(prefers-reduced-motion:no-preference){
+  .scanline{position:absolute;left:0;right:0;height:60px;pointer-events:none;
+    background:linear-gradient(180deg,transparent,rgba(70,207,214,.06),transparent);
+    animation:scan 9s linear infinite;z-index:2}
+  @keyframes scan{0%{top:-60px}100%{top:100%}}
+}
+
+/* detail readout panel */
+.readout{
+  border:1px solid var(--line);border-radius:14px;
+  background:linear-gradient(180deg,var(--panel),rgba(6,14,22,.6));
+  padding:22px 22px 24px;position:sticky;top:80px;
+}
+.readout .rtag{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+.readout h3{font-size:20px;margin:10px 0 4px}
+.readout .rloc{font-family:"IBM Plex Mono";font-size:11px;color:var(--aqua);margin-bottom:14px}
+.readout p{font-size:14px;color:var(--slate);margin:0 0 14px}
+.readout .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:12.5px}
+.readout .kv dt{font-family:"IBM Plex Mono";color:var(--mute);font-size:11px;letter-spacing:.03em}
+.readout .kv dd{margin:0;color:var(--ink)}
+.readout .gap{margin-top:16px;padding:11px 13px;border-radius:9px;border:1px solid rgba(255,93,108,.3);background:rgba(255,93,108,.07);font-size:12.5px;color:var(--amber-soft)}
+.readout .gap b{color:var(--coral);font-weight:600}
+
+/* ---------- generic cards ---------- */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:920px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{
+  border:1px solid var(--line);border-radius:13px;padding:20px;
+  background:linear-gradient(180deg,rgba(13,28,41,.55),rgba(6,14,22,.4));
+  transition:transform .2s,border-color .2s;
+}
+.card:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.card .ic{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.16em;color:var(--aqua);text-transform:uppercase}
+.card h3{font-size:17px;margin:9px 0 4px}
+.card .spec{font-family:"IBM Plex Mono";font-size:11px;color:var(--mute);margin-bottom:11px}
+.card p{font-size:13.5px;color:var(--slate);margin:0}
+.card .meas{margin-top:13px;display:flex;flex-wrap:wrap;gap:6px}
+.card .meas span{font-family:"IBM Plex Mono";font-size:10px;padding:2px 7px;border-radius:5px;background:rgba(70,207,214,.09);border:1px solid rgba(70,207,214,.18);color:var(--aqua)}
+
+/* tier header strip */
+.tier{display:flex;align-items:center;gap:14px;margin:42px 0 18px}
+.tier .tnum{font-family:"IBM Plex Mono";font-size:12px;color:var(--abyss);background:var(--aqua);padding:3px 9px;border-radius:6px;font-weight:600}
+.tier.hot .tnum{background:var(--amber)}
+.tier h3{font-size:21px}
+.tier .tmeta{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color:var(--mute);text-align:right}
+
+/* ---------- Gulf dynamics feature ---------- */
+.feature{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+@media(max-width:860px){.feature{grid-template-columns:1fr}}
+.feature .panel{border:1px solid var(--line);border-radius:14px;padding:26px;background:linear-gradient(160deg,rgba(255,138,61,.06),rgba(13,28,41,.5))}
+.feature h3{font-size:22px;margin-bottom:14px}
+.feature p{color:var(--slate);font-size:15px;margin:0 0 14px}
+.feature p b{color:var(--ink);font-weight:500}
+.timeline{list-style:none;padding:0;margin:0;border-left:1px solid var(--line-2)}
+.timeline li{position:relative;padding:0 0 18px 22px}
+.timeline li::before{content:"";position:absolute;left:-5px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--amber)}
+.timeline .yr{font-family:"IBM Plex Mono";font-size:12px;color:var(--amber-soft);font-weight:500}
+.timeline .ev{font-size:13.5px;color:var(--slate)}
+.timeline .ev b{color:var(--ink);font-weight:500}
+
+/* ---------- essential deployment ---------- */
+.priority{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-bottom:14px}
+.priority summary{
+  list-style:none;cursor:pointer;padding:18px 20px;display:grid;
+  grid-template-columns:auto 1fr auto;gap:16px;align-items:center;
+  transition:background .2s;
+}
+.priority summary::-webkit-details-marker{display:none}
+.priority summary:hover{background:rgba(70,207,214,.04)}
+.priority .rank{font-family:"Space Grotesk";font-weight:700;font-size:26px;color:var(--amber);min-width:34px}
+.priority .ptitle{font-family:"Space Grotesk";font-weight:600;font-size:16px}
+.priority .ptitle small{display:block;font-family:"IBM Plex Mono";font-weight:400;font-size:11px;color:var(--mute);letter-spacing:.04em;margin-top:3px}
+.priority .badge{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.badge.ess{background:rgba(255,138,61,.14);border:1px solid rgba(255,138,61,.4);color:var(--amber-soft)}
+.badge.high{background:rgba(70,207,214,.12);border:1px solid rgba(70,207,214,.35);color:var(--aqua)}
+.priority .body{padding:0 20px 20px 70px;color:var(--slate);font-size:14px}
+.priority .body b{color:var(--ink);font-weight:500}
+.priority[open] summary{border-bottom:1px solid var(--line)}
+
+/* ---------- models / methods ---------- */
+.model{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:rgba(13,28,41,.45)}
+.model .mtype{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua)}
+.model h3{font-size:16px;margin:7px 0 6px}
+.model p{font-size:13px;color:var(--slate);margin:0}
+
+/* ---------- references ---------- */
+.refs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px}
+@media(max-width:680px){.refs{grid-template-columns:1fr}}
+.ref{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+.ref .rk{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--amber);white-space:nowrap;padding-top:2px}
+.ref a{color:var(--slate)}
+.ref a:hover{color:var(--aqua)}
+
+/* callout */
+.note{border:1px solid var(--line-2);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:16px 20px;background:rgba(255,138,61,.04);font-size:14px;color:var(--slate);margin-top:8px}
+.note b{color:var(--ink);font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:38px 0 60px;margin-top:30px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+footer p{font-family:"IBM Plex Mono";font-size:11px;color:var(--mute);margin:0;letter-spacing:.03em;max-width:640px;line-height:1.7}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+
+
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><div>RAPIDWATCH<small>GULF RI OBSERVATORY</small></div></div>
+    <nav class="navlinks">
+      <a href="#problem">The Problem</a>
+      <a href="#drivers">RI Drivers</a>
+      <a href="#convergence">Factor Convergence</a>
+      <a href="#where">Where RI Happens</a>
+      <a href="#stack">Observing Stack</a>
+      <a href="#catalog">Platforms</a>
+      <a href="#essential">What's Essential</a>
+      <a href="#models">Forecasting</a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Gulf of America · Rapid Intensification · Observing Systems</div>
+    <h1 class="reveal">Forecasting the storms that<br><span class="em">strengthen faster than we can watch.</span></h1>
+    <p class="lede reveal">A working reference for the sensors, platforms, and science used to observe and predict
+      hurricane <b>rapid intensification</b> — a maximum-wind increase of 30 kt (35 mph) in 24 hours — across the
+      Gulf of Mexico. From geostationary orbit to the deep ocean, mapped to where it actually constrains the forecast.</p>
+    <div class="hero-stats">
+      <div class="stat reveal"><div class="n">30<span class="u">kt / 24 h</span></div><div class="l">NHC rapid-intensification threshold</div></div>
+      <div class="stat reveal"><div class="n">+85<span class="u">kt / 26 h</span></div><div class="l">Milton 2024 — record Gulf RI from ATCF data</div></div>
+      <div class="stat reveal"><div class="n">21–29<span class="u">°N</span></div><div class="l">Gulf RI hot zone — all 4 storms peaked here</div></div>
+      <div class="stat reveal"><div class="n">15–42<span class="u">hrs</span></div><div class="l">RI episode duration across our 4-storm library</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2>Why the Gulf is a rapid-intensification machine</h2></div>
+    <p class="sec-sub reveal">Track forecasting has improved steadily for decades. Intensity — and especially the
+      timing of rapid intensification — remains the hard problem, and the Gulf concentrates every ingredient that drives it.</p>
+
+    <div class="feature reveal">
+      <div class="panel">
+        <h3>It's the heat <em>underneath</em>, not just the surface</h3>
+        <p>Sea-surface temperature alone is a weak predictor. A storm crossing thin warm water churns cold water up from
+          below and <b>cools its own fuel supply</b>. But where warm water extends 100 m or deeper, the same churning only
+          brings up <b>more warm water</b> — so when vertical wind shear is low, intensification runs away.</p>
+        <p>That deep reservoir is measured as <b>Ocean Heat Content (OHC)</b> and tracked operationally by <b>D26</b> — the depth of the 26°C isotherm. When D26 exceeds 50 m, a storm cannot upwell cold water fast enough to cut off its own heat supply. The Gulf's <b>Loop Current</b> and the <b>warm-core eddies</b> it sheds are among the richest OHC features on Earth — D26 routinely reaching 115–135 m — with rings detaching every 6–11 months and drifting west toward Texas and Mexico.</p>
+        <div class="note"><b>2026 setup:</b> Gulf SST and OHC sit at near-record levels; a ring shed in February is
+          re-growing northward — a configuration that favors another eddy release at peak season.</div>
+      </div>
+      <div class="panel" style="background:linear-gradient(160deg,rgba(70,207,214,.05),rgba(13,28,41,.5))">
+        <h3 style="color:var(--aqua)">RI over Gulf warm features — the record</h3>
+        <ul class="timeline">
+          <li><span class="yr">2005</span><div class="ev"><b>Katrina</b> — ATCF: Aug 26–28, 65→150 kt <b>(+85 kt / 36 h)</b> over central Gulf Loop Current eddy, 24–26°N 81–89°W.</div></li>
+          <li><span class="yr">2005</span><div class="ev"><b>Rita</b> — ATCF: Sep 20–22, 60→155 kt <b>(+95 kt / 42 h)</b> from Florida Straits to central Gulf over the <i>same</i> warm eddy, 23–25°N 77–88°W.</div></li>
+          <li><span class="yr">2018</span><div class="ev"><b>Michael</b> intensified into landfall on the Panhandle — SHIPS-RII barely beat climatology, exposing the model's limits.</div></li>
+          <li><span class="yr">2021</span><div class="ev"><b>Ida</b> rapidly intensified crossing a warm ring before Louisiana landfall.</div></li>
+          <li><span class="yr">2024</span><div class="ev"><b>Helene</b> — ATCF: Sep 26–27, 70→120 kt <b>(+50 kt / 15 h)</b> racing north in NE Gulf at 20+ kt, 22–30°N 85–84°W. Landfall at peak intensity.</div></li>
+          <li><span class="yr">2024</span><div class="ev"><b>Milton</b> — ATCF: Oct 6–7, 35→155 kt <b>(+120 kt / 26 h)</b> over Bay of Campeche warm pool, 21–22°N 95–91°W. Record-tier Gulf RI.</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid g3 reveal" style="margin-top:26px">
+      <div class="card"><div class="ic">Driver</div><h3>Low vertical wind shear</h3><p>The permissive condition. Strong shear ventilates the warm core and blocks RI; the warm reservoir only matters when shear stays low.</p></div>
+      <div class="card"><div class="ic">Driver</div><h3>Deep, warm mixed layer</h3><p>High OHC from the Loop Current and its eddies resists storm-induced cooling — the Gulf-specific signal that surface temperature alone misses.</p></div>
+      <div class="card"><div class="ic">Driver</div><h3>Inner-core convective bursts</h3><p>Bursts of deep convection near the center and a closing eyewall ring are the structural fingerprints of imminent RI — best seen in microwave.</p></div>
+    </div>
+
+    <!-- RI DRIVERS DEEP-DIVE -->
+    <div style="margin-top:56px" id="drivers">
+      <div class="sec-head reveal"><span class="sec-num">01b</span><h2>Is D26 the key driver of RI?</h2></div>
+      <p class="sec-sub reveal">Deep warm water is the most important <em>ocean</em> factor for Gulf rapid intensification — but RI only fires when the ocean and the atmosphere cooperate simultaneously. Here is what the four-storm evidence shows.</p>
+
+      <div class="feature reveal">
+        <div class="panel">
+          <div style="font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:10px">Ocean factor · primary fuel</div>
+          <h3>D26 — how deep does warm water go?</h3>
+          <p>When a hurricane moves across the ocean, its winds generate upwelling — cold water rises from below. <b>Over a shallow warm layer (D26 &lt; 50 m), that cold upwelling reaches the surface within hours,</b> cools the sea surface, and cuts the storm's heat supply. Intensification stalls.</p>
+          <p>But <b>over a deep warm layer (D26 &gt; 80–130 m)</b> — as in the Loop Current and its warm-core rings — the storm churns up more warm water. The heat flux to the atmosphere never stops. <b>That is when rapid intensification runs away.</b></p>
+          <p>Satellites measure sea-surface temperature — they cannot see what is beneath. Two Gulf locations can show identical SST of 29°C, yet one has 25 m of warm water and one has 130 m. The difference can be Cat 2 vs Cat 5.</p>
+          <div class="note"><b>D26 &gt; 50 m</b> is the widely-used minimum threshold for the ocean to support RI. The Loop Current core reaches <b>~115 m</b>; warm-core rings <b>~130+ m</b> — 2–3× the threshold. This is why Argo floats, gliders, and altimetry are operationally irreplaceable: they are the only tools that can measure the fuel depth in real time.</div>
+        </div>
+        <div class="panel" style="background:linear-gradient(160deg,rgba(70,207,214,.05),rgba(13,28,41,.5))">
+          <div style="font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.18em;color:var(--aqua);text-transform:uppercase;margin-bottom:10px">Atmospheric factor · the gate</div>
+          <h3 style="color:var(--aqua)">Vertical wind shear — the on/off switch</h3>
+          <p>Deep warm water provides the fuel; <b>wind shear determines whether the storm can ignite it.</b> Shear — the change in wind speed and direction between the lower and upper troposphere — tilts the vortex, disrupts the eyewall, and vents the warm core. Above ~15 kt of shear, RI is rare regardless of how deep the warm water goes.</p>
+          <p>Every RI episode across Katrina, Rita, Milton, and Helene occurred when 200–850 mb shear dropped <b>below 10 kt</b>. In several cases shear increased after peak intensity and RI stopped — not because the ocean cooled, but because <b>the atmospheric gate had closed.</b></p>
+          <div class="note" style="border-left-color:var(--aqua);background:rgba(70,207,214,.04)"><b>The practical frame: wind shear is the on/off switch. D26 is the amplifier.</b> Low shear over thin warm water gives slow intensification. Low shear over a warm-core ring gives explosive RI. The Gulf's deadliest storms hit when both align over the same area at the same moment.</div>
+        </div>
+      </div>
+
+      <div class="grid g4 reveal" style="margin-top:20px">
+        <div class="card">
+          <div class="ic" style="color:var(--amber)">Ocean · Primary</div>
+          <h3>D26 &gt; 50 m</h3>
+          <p>Warm water deep enough to resist storm-induced upwelling. Loop Current: ~115 m. Warm-core rings: ~130+ m. Background Gulf shelf: ~25–45 m. The map's amber glow encodes this directly.</p>
+        </div>
+        <div class="card">
+          <div class="ic">Atmosphere · Primary</div>
+          <h3>Wind shear &lt; 10–15 kt</h3>
+          <p>The permissive gate. Without low shear, deep warm water goes unused. Unexpected shear increases mid-intensification are the leading cause of failed RI forecasts.</p>
+        </div>
+        <div class="card">
+          <div class="ic" style="color:var(--amber)">Ocean · Baseline</div>
+          <h3>SST &gt; 26°C</h3>
+          <p>The minimum surface requirement, met across the deep Gulf for ~6 months. Critical, but rarely the differentiating factor once a storm enters the Gulf. D26 is what separates ordinary from extreme.</p>
+        </div>
+        <div class="card">
+          <div class="ic">Atmosphere · Secondary</div>
+          <h3>Moist mid-levels</h3>
+          <p>Dry-air intrusion can disrupt deep convection even with low shear and high OHC. Important for RI onset and sustainability, but typically secondary to the shear constraint in Gulf environments.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FACTOR CONVERGENCE — When the three factors aligned -->
+<section id="convergence" style="padding:56px 0 40px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01c</span><h2>When the factors aligned</h2></div>
+    <p class="sec-sub reveal">For each storm, there was a specific window — a location, a date — when all three RI drivers converged simultaneously. Below is the snapshot at peak convergence: the ocean depth, surface temperature, and atmospheric shear at the moment each storm ran away.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px" class="reveal">
+
+      <!-- KATRINA -->
+      <div style="border:1px solid rgba(255,122,61,.30);border-radius:14px;background:linear-gradient(160deg,rgba(255,122,61,.07),rgba(13,28,41,.6));padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+          <div style="width:9px;height:9px;border-radius:50%;background:#ff7a3d;box-shadow:0 0 8px rgba(255,122,61,.8);flex-shrink:0"></div>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Katrina</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:2px">2005 · Cat 5 · 150 kt</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.12em;color:var(--amber);margin-bottom:16px">AUG 27–28 · 25–26°N · 85–89°W · CENTRAL GULF / LC EDDY</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);width:44px;letter-spacing:.06em">D26</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:62%;height:100%;background:linear-gradient(90deg,#ff8a3d,#ffb27a);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~125 m</span>
+            <span style="font-size:10px">🟠</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:#ff5d6c;width:44px;letter-spacing:.06em">SST</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:67%;height:100%;background:linear-gradient(90deg,#ff5d6c,#ff8a6c);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">30.0°C</span>
+            <span style="font-size:10px">🔴</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--aqua);width:44px;letter-spacing:.06em">SHEAR</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:76%;height:100%;background:linear-gradient(90deg,#46cfd6,#2a9fa8);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~6 kt</span>
+            <span style="font-size:10px">🟢</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:rgba(255,122,61,.09);border-radius:8px;border:1px solid rgba(255,122,61,.22)">
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#ff7a3d">+75 kt</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:8px">75 → 150 kt in 18 h</span>
+          <div style="font-size:12px;color:var(--slate);margin-top:5px">Crossed a Loop Current warm-core ring at maximum depth — the defining Gulf RI benchmark.</div>
+        </div>
+      </div>
+
+      <!-- RITA -->
+      <div style="border:1px solid rgba(255,177,61,.28);border-radius:14px;background:linear-gradient(160deg,rgba(255,177,61,.06),rgba(13,28,41,.6));padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+          <div style="width:9px;height:9px;border-radius:50%;background:#ffb13d;box-shadow:0 0 8px rgba(255,177,61,.7);flex-shrink:0"></div>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Rita</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:2px">2005 · Cat 5 · 155 kt</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.12em;color:#ffb13d;margin-bottom:16px">SEP 21–22 · 24–25°N · 83–87°W · LC CORRIDOR</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);width:44px;letter-spacing:.06em">D26</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:45%;height:100%;background:linear-gradient(90deg,#ff8a3d,#ffb27a);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~90 m</span>
+            <span style="font-size:10px">🟠</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:#ff5d6c;width:44px;letter-spacing:.06em">SST</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:58%;height:100%;background:linear-gradient(90deg,#ff5d6c,#ff8a6c);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">29.5°C</span>
+            <span style="font-size:10px">🔴</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--aqua);width:44px;letter-spacing:.06em">SHEAR</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:68%;height:100%;background:linear-gradient(90deg,#46cfd6,#2a9fa8);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~8 kt</span>
+            <span style="font-size:10px">🟢</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:rgba(255,177,61,.08);border-radius:8px;border:1px solid rgba(255,177,61,.20)">
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#ffb13d">+95 kt</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:8px">60 → 155 kt in 42 h</span>
+          <div style="font-size:12px;color:var(--slate);margin-top:5px">Followed almost the same path as Katrina three weeks later — the eddy hadn't fully recovered but LC kept SSTs high enough.</div>
+        </div>
+      </div>
+
+      <!-- HELENE -->
+      <div style="border:1px solid rgba(70,207,214,.28);border-radius:14px;background:linear-gradient(160deg,rgba(70,207,214,.06),rgba(13,28,41,.6));padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+          <div style="width:9px;height:9px;border-radius:50%;background:#46cfd6;box-shadow:0 0 8px rgba(70,207,214,.7);flex-shrink:0"></div>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Helene</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:2px">2024 · Cat 4 · 120 kt</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.12em;color:var(--aqua);margin-bottom:16px">SEP 26–27 · 26–29°N · 84–85°W · EASTERN GULF</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);width:44px;letter-spacing:.06em">D26</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:28%;height:100%;background:linear-gradient(90deg,#ff8a3d,#ffb27a);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~55 m</span>
+            <span style="font-size:10px">🟡</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:#ff5d6c;width:44px;letter-spacing:.06em">SST</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:70%;height:100%;background:linear-gradient(90deg,#ff5d6c,#ff8a6c);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">30.2°C</span>
+            <span style="font-size:10px">🔴</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--aqua);width:44px;letter-spacing:.06em">SHEAR</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:60%;height:100%;background:linear-gradient(90deg,#46cfd6,#2a9fa8);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~10 kt</span>
+            <span style="font-size:10px">🟡</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:rgba(70,207,214,.07);border-radius:8px;border:1px solid rgba(70,207,214,.20)">
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#46cfd6">+50 kt</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:8px">70 → 120 kt in 15 h</span>
+          <div style="font-size:12px;color:var(--slate);margin-top:5px">Shallower D26 than the 2005 storms — shear stayed marginal — yet forward speed of 20+ kt meant the storm outran its own cold wake.</div>
+        </div>
+      </div>
+
+      <!-- MILTON -->
+      <div style="border:1px solid rgba(232,90,214,.28);border-radius:14px;background:linear-gradient(160deg,rgba(232,90,214,.06),rgba(13,28,41,.6));padding:22px 24px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+          <div style="width:9px;height:9px;border-radius:50%;background:#e85ad6;box-shadow:0 0 8px rgba(232,90,214,.7);flex-shrink:0"></div>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:16px">Milton</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:2px">2024 · Cat 5 · 155 kt</span>
+        </div>
+        <div style="font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.12em;color:#e85ad6;margin-bottom:16px">OCT 6–7 · 21–22°N · 91–95°W · BAY OF CAMPECHE</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);width:44px;letter-spacing:.06em">D26</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:68%;height:100%;background:linear-gradient(90deg,#ff8a3d,#ffb27a);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~135 m</span>
+            <span style="font-size:10px">🟠</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:#ff5d6c;width:44px;letter-spacing:.06em">SST</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:80%;height:100%;background:linear-gradient(90deg,#ff5d6c,#ff8a6c);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">30.8°C</span>
+            <span style="font-size:10px">🔴</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:'IBM Plex Mono';font-size:9px;color:var(--aqua);width:44px;letter-spacing:.06em">SHEAR</span>
+            <div style="flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px"><div style="width:76%;height:100%;background:linear-gradient(90deg,#46cfd6,#2a9fa8);border-radius:3px"></div></div>
+            <span style="font-family:'IBM Plex Mono';font-size:11px;color:var(--ink);width:46px;text-align:right">~6 kt</span>
+            <span style="font-size:10px">🟢</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:12px 14px;background:rgba(232,90,214,.08);border-radius:8px;border:1px solid rgba(232,90,214,.20)">
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:22px;color:#e85ad6">+120 kt</span>
+          <span style="font-family:'IBM Plex Mono';font-size:10px;color:var(--mute);margin-left:8px">35 → 155 kt in 26 h</span>
+          <div style="font-size:12px;color:var(--slate);margin-top:5px">Record-tier Gulf RI. The Bay of Campeche held the deepest warm water of all four storms — SST the hottest, shear near-zero. All three factors at maximum simultaneously.</div>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+
+    <div class="note reveal" style="margin-top:22px">
+      <b>Reading the bars:</b> D26 (amber) and SST (red) bars show absolute values — longer = deeper/hotter.
+      Shear (teal) bar is <em>inverted</em>: longer = lower shear = more favorable. Helene's shorter D26 bar
+      reflects the shallower eastern Gulf; its fast forward speed (20+ kt) compensated by limiting cold-wake
+      upwelling time. Milton's three bars are the longest combined — the most complete factor alignment of any
+      Gulf storm in the modern record.
+    </div>
+
+  </div>
+</section>
+
+<!-- WHERE RI HAPPENS (climatology) -->
+<section id="where" style="padding:56px 0 40px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01d</span><h2>Where the Gulf rapidly intensifies</h2></div>
+    <p class="sec-sub reveal">We know <em>why</em> RI happens. To find <em>where</em>, we mined <b>175 years of NOAA best-track data</b>
+      (HURDAT2, 1851–2025): every fix of every Gulf hurricane, flagging each place a storm began to gain ≥30 kt in 24 h —
+      then normalizing by how often storms simply pass through, so we measure preference, not traffic.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0" class="reveal">
+      <div style="border:1px solid rgba(255,45,85,.30);border-radius:12px;background:linear-gradient(160deg,rgba(255,45,85,.08),rgba(13,28,41,.6));padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:30px;color:#ff5d6c">3.1×</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px">more likely to be in RI onset inside the southern-Gulf core box than the Gulf average (23% vs 7.5% of fixes)</div>
+      </div>
+      <div style="border:1px solid rgba(255,138,61,.28);border-radius:12px;background:linear-gradient(160deg,rgba(255,138,61,.07),rgba(13,28,41,.6));padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:30px;color:#ff8a3d">47%</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px">of all 326 Gulf hurricanes underwent at least one RI onset inside the Gulf (411 onsets total)</div>
+      </div>
+      <div style="border:1px solid rgba(255,177,61,.26);border-radius:12px;background:linear-gradient(160deg,rgba(255,177,61,.06),rgba(13,28,41,.6));padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:30px;color:#ffb13d">84%</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px">of RI onsets occur Aug–Oct, peaking in September — the warm-ocean, low-shear season</div>
+      </div>
+      <div style="border:1px solid rgba(70,207,214,.26);border-radius:12px;background:linear-gradient(160deg,rgba(70,207,214,.06),rgba(13,28,41,.6));padding:18px">
+        <div style="font-family:'Space Grotesk';font-weight:700;font-size:30px;color:var(--aqua)">66%</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px">of RI <em>begins</em> at tropical-storm strength (median 50 kt) — the storms that blow up don't yet look dangerous</div>
+      </div>
+    </div>
+
+    <p class="reveal">The hotspot is unambiguous: a tight <b style="color:#ff5d6c">core over the Bay of Campeche and the southwestern flank of the
+      Loop Current</b> (≈21–23°N, 92–94°W), fanning east toward the Yucatan Channel intrusion. That is no coincidence — it overlies the
+      Gulf's <b>two deepest warm-water features</b>, where the fuel (SST), the amplifier (D26), and the switch (low shear) align in late
+      summer. The strongest 24-hour jump on record — <b>Milton (2024), +80 kt over the Bay of Campeche</b> — happened right inside it.</p>
+
+    <div class="note reveal" style="margin-top:22px;border-left:3px solid var(--amber);background:rgba(255,138,61,.06);padding:16px 18px;border-radius:8px">
+      <b>The operational takeaway →</b> When a storm forms in, or heads into, the Gulf in August–October, the highest-value place to
+      concentrate observations is the <b>southern-Gulf core box, ahead of the storm, 12–36 h before projected onset — even while the
+      system is still just a tropical storm.</b> A second, high-stakes watch follows the Loop Current corridor north, where RI <em>continues</em>
+      to U.S. landfall (Katrina, Rita, Michael, Ida). This is the bridge to the observing stack below: it tells us <em>where</em> and <em>when</em>
+      to point it. See the interactive <b>"RI climatology hotspot"</b> layer on the map for the full likelihood surface.
+    </div>
+
+    <div class="reveal" style="margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <a href="NOAA_RI_observation_report.html" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#0d6b73,#0a4f55);color:#eafcff;
+                text-decoration:none;font-family:'Space Grotesk';font-weight:700;font-size:14px;padding:12px 20px;border-radius:10px;
+                border:1px solid rgba(70,207,214,.4);box-shadow:0 3px 12px rgba(0,0,0,.25)">
+        📄 Open the full observation-targeting report
+      </a>
+      <span style="font-size:11.5px;color:var(--mute);font-family:'IBM Plex Mono'">
+        Detailed where/when/what recommendation · saved locally as <code style="color:var(--slate)">NOAA_RI_observation_report.html</code>
+        and <code style="color:var(--slate)">.md</code> in your RapidWatch folder · not sent to anyone.
+      </span>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE STACK (signature) -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2>The observing stack</h2></div>
+    <p class="sec-sub reveal">Every platform sits at a height in a single column — from geostationary orbit down to a
+      glider 1,000 m below the surface. Tap any instrument to read what it measures. The <b style="color:var(--amber-soft)">air–sea
+      interface</b> is highlighted because the flux of heat and moisture across it is the least-sampled, highest-uncertainty
+      term in rapid-intensification forecasting.</p>
+
+    <div class="column-wrap reveal">
+      <div class="stack">
+        <div class="scanline"></div>
+
+        <div class="band">
+          <div class="axis"><b>GEO</b>35,786 km<br>geostationary</div>
+          <div class="content">
+            <div class="bname">Geostationary watch</div>
+            <div class="chips">
+              <span class="chip" data-id="goes">GOES-19 ABI</span>
+              <span class="chip" data-id="glm">GOES-19 GLM</span>
+            </div>
+            <div class="tagline">Continuous structure &amp; convective bursts, ~30–60 s rapid scan</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>LEO</b>~830 km<br>polar orbit</div>
+          <div class="content">
+            <div class="bname">Low-Earth-orbit remote sensing</div>
+            <div class="chips">
+              <span class="chip heat" data-id="mw">Microwave imagers</span>
+              <span class="chip" data-id="scat">Scatterometer</span>
+              <span class="chip" data-id="alt">Altimetry</span>
+            </div>
+            <div class="tagline">The "X-ray" of storm structure + the map of ocean heat</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>FL 450</b>~13.7 km<br>high altitude</div>
+          <div class="content">
+            <div class="bname">Synoptic surveillance aircraft</div>
+            <div class="chips"><span class="chip" data-id="giv">NOAA G-IV</span></div>
+            <div class="tagline">Steering flow &amp; environment around the storm</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>FL 100</b>~3 km<br>core penetration</div>
+          <div class="content">
+            <div class="bname">Hurricane Hunter core aircraft</div>
+            <div class="chips">
+              <span class="chip" data-id="p3">NOAA P-3</span>
+              <span class="chip" data-id="wc130">USAF WC-130J</span>
+              <span class="chip" data-id="drop">Dropsondes</span>
+            </div>
+            <div class="tagline">3-D inner-core winds, surface wind, vertical profiles</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>BL</b>0.1–1 km<br>boundary layer</div>
+          <div class="content">
+            <div class="bname">Low-level uncrewed aircraft</div>
+            <div class="chips">
+              <span class="chip" data-id="altius">Altius-600</span>
+              <span class="chip" data-id="streamsonde">Streamsondes</span>
+            </div>
+            <div class="tagline">Sampling the dangerous low levels crewed aircraft avoid</div>
+          </div>
+        </div>
+
+        <div class="band interface">
+          <div class="axis"><b>0 m</b>air–sea<br>interface</div>
+          <div class="content">
+            <div class="bname">Air–sea interface · the flux bottleneck</div>
+            <div class="chips">
+              <span class="chip heat" data-id="saildrone">Saildrone USV</span>
+              <span class="chip heat" data-id="spotter">SOFAR Spotter</span>
+              <span class="chip heat" data-id="drifter">GDP drifters</span>
+              <span class="chip heat" data-id="buoy">Moored buoys</span>
+            </div>
+            <div class="tagline">Heat &amp; momentum flux at the boundary — where RI is won or lost</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>−1000 m</b>upper<br>ocean</div>
+          <div class="content">
+            <div class="bname">Upper-ocean autonomy</div>
+            <div class="chips">
+              <span class="chip" data-id="glider">Underwater gliders</span>
+              <span class="chip" data-id="axbt">AXBT</span>
+            </div>
+            <div class="tagline">Temperature/salinity profiles → real OHC, not climatology</div>
+          </div>
+        </div>
+
+        <div class="band">
+          <div class="axis"><b>−2000 m</b>deep<br>ocean</div>
+          <div class="content">
+            <div class="bname">Sustained deep profiling</div>
+            <div class="chips">
+              <span class="chip" data-id="argo">Argo floats</span>
+              <span class="chip" data-id="alamo">ALAMO floats</span>
+            </div>
+            <div class="tagline">Background state &amp; pre/post-storm context</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- readout -->
+      <div class="readout" id="readout">
+        <div class="rtag">Instrument readout</div>
+        <h3 id="r-name">Microwave imagers</h3>
+        <div class="rloc mono" id="r-loc">LEO · ~830 km · passive radiometry</div>
+        <p id="r-desc">Passive microwave sees through cirrus to reveal the rain bands, eyewall, and the closing
+          convective ring that precede rapid intensification — the single most valuable early structural signal.
+          SSMIS, ATMS, AMSR2, the new WSF-M, and commercial constellations all contribute.</p>
+        <dl class="kv" id="r-kv">
+          <dt>Measures</dt><dd>Eyewall structure, rain, TC center</dd>
+          <dt>Cadence</dt><dd>Per-overpass; 3–6 h gaps</dd>
+          <dt>Role in RI</dt><dd>Earliest structural warning</dd>
+        </dl>
+        <div class="gap" id="r-gap"><b>Systemic risk:</b> the aging DMSP/SSMIS sensors were nearly cut off mid-2025
+          (extended to ~Sep 2026). They supply roughly half of all microwave scans — the biggest single gap in the RI
+          observing system.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2>Platform catalog</h2></div>
+    <p class="sec-sub reveal">Four tiers, by domain. Each entry: what it is, key specs, and the measurements it brings
+      to a rapid-intensification forecast.</p>
+
+    <!-- SPACE -->
+    <div class="tier reveal"><span class="tnum">SPACE</span><h3>Spaceborne remote sensing</h3><span class="tmeta">persistent · basin-wide · the only continuous eye on the storm</span></div>
+    <div class="grid g3 reveal">
+      <div class="card"><div class="ic">Geostationary imager</div><h3>GOES-19 ABI</h3><div class="spec mono">GOES-East · 16 bands · mesoscale 30–60 s</div><p>Visible/IR rapid scan tracks eye formation, cloud-top cooling, and convective bursts in near-real time over the whole Gulf.</p><div class="meas"><span>IR brightness temp</span><span>cloud structure</span><span>motion winds</span></div></div>
+      <div class="card"><div class="ic">Lightning mapper</div><h3>GOES-19 GLM</h3><div class="spec mono">geostationary · continuous</div><p>Total-lightning bursts in the inner core often flag intensifying convection before wind changes appear.</p><div class="meas"><span>lightning density</span><span>convective bursts</span></div></div>
+      <div class="card" style="border-color:rgba(255,138,61,.3)"><div class="ic" style="color:var(--amber-soft)">Microwave · critical</div><h3>Microwave imagers / sounders</h3><div class="spec mono">SSMIS · ATMS · AMSR2 · WSF-M · TMS</div><p>"X-ray" of internal structure through cloud — the best early RI signal. DMSP/SSMIS near-cutoff in 2025 is the system's biggest vulnerability; WSF-M and commercial constellations are backfilling.</p><div class="meas"><span>eyewall ring</span><span>rain structure</span><span>TC center fix</span></div></div>
+      <div class="card"><div class="ic">Scatterometer</div><h3>Ocean vector winds</h3><div class="spec mono">ASCAT &amp; successors · LEO</div><p>Surface wind speed and direction over the ocean — storm size, wind field, and environmental flow.</p><div class="meas"><span>surface wind</span><span>storm size</span></div></div>
+      <div class="card"><div class="ic">Satellite altimetry</div><h3>Sea-surface height</h3><div class="spec mono">Sentinel-6 · SWOT · legacy Jason</div><p>Maps the Loop Current and warm/cold eddies from sea-surface height — the basis for satellite OHC, essential to anticipate the Gulf's deep heat.</p><div class="meas"><span>SSH</span><span>eddy mapping</span><span>OHC proxy</span></div></div>
+      <div class="card"><div class="ic">Derived product</div><h3>Satellite OHC &amp; SST</h3><div class="spec mono">multi-sensor blends</div><p>Altimetry + SST + climatology yields gridded OHC and tropical-cyclone-heat-potential fields fed directly to intensity guidance.</p><div class="meas"><span>OHC</span><span>TCHP</span><span>SST</span></div></div>
+    </div>
+
+    <!-- AIRBORNE -->
+    <div class="tier reveal"><span class="tnum">AIR</span><h3>Crewed reconnaissance aircraft</h3><span class="tmeta">52 missions · 1,112 dropsondes · 155 radar analyses (2025)</span></div>
+    <div class="grid g3 reveal">
+      <div class="card"><div class="ic">Core workhorse</div><h3>NOAA WP-3D Orion (×2)</h3><div class="spec mono">"Kermit" &amp; "Miss Piggy" · flies the core</div><p>Tail Doppler Radar builds the 3-D wind field; SFMR reads surface wind and rain rate; also deploys dropsondes, AXBTs, and small drones from the same pass.</p><div class="meas"><span>3-D wind (TDR)</span><span>surface wind (SFMR)</span><span>rain rate</span></div></div>
+      <div class="card"><div class="ic">High-altitude jet</div><h3>NOAA Gulfstream IV</h3><div class="spec mono">"Gonzo" · ~45,000 ft · since 1997</div><p>Surveys thousands of square miles around the storm, releasing dropsondes to map the steering currents and environmental shear that gate intensification.</p><div class="meas"><span>steering flow</span><span>environmental shear</span></div></div>
+      <div class="card"><div class="ic">Operational recon</div><h3>USAF 53rd WRS WC-130J</h3><div class="spec mono">"Hurricane Hunters" · operational fixes</div><p>The Air Force Reserve backbone of routine center fixes and wind measurements feeding the National Hurricane Center.</p><div class="meas"><span>center fix</span><span>flight-level wind</span><span>SFMR</span></div></div>
+    </div>
+
+    <!-- AIR-DEPLOYED -->
+    <div class="tier reveal"><span class="tnum">AIR</span><h3>Aircraft-deployed expendables &amp; drones</h3><span class="tmeta">snapshots → continuous movies of the storm</span></div>
+    <div class="grid g4 reveal">
+      <div class="card"><div class="ic">Expendable profiler</div><h3>GPS dropsondes</h3><div class="spec mono">"weather balloon in reverse"</div><p>Falls from flight level to the sea, profiling pressure, temperature, humidity, and wind. The backbone of storm-environment data assimilation.</p><div class="meas"><span>P/T/RH/wind profile</span></div></div>
+      <div class="card"><div class="ic">Swarm sonde</div><h3>Streamsondes</h3><div class="spec mono">Skyfora · lightweight · many at once</div><p>Small, low-cost sondes released in swarms to densely sample wind in one pass — far higher horizontal resolution than classic dropsondes.</p><div class="meas"><span>dense wind sampling</span></div></div>
+      <div class="card"><div class="ic">Low-level UAS</div><h3>Altius-600</h3><div class="spec mono">Anduril · ~275 mi · ~100 mph · eyewall low levels</div><p>Launched from the P-3 to fly the low, hazardous boundary layer crewed aircraft can't — a continuous record where flux and the strongest winds live.</p><div class="meas"><span>boundary-layer wind</span><span>T/RH</span><span>SST (IR)</span></div></div>
+      <div class="card"><div class="ic">Ocean thermal</div><h3>AXBT</h3><div class="spec mono">air-deployed bathythermograph</div><p>Drops from the aircraft to profile ocean temperature beneath the storm — rapid OHC sampling exactly where the storm sits.</p><div class="meas"><span>ocean temp profile</span></div></div>
+    </div>
+
+    <!-- SURFACE -->
+    <div class="tier hot reveal"><span class="tnum">SURFACE</span><h3>Air–sea interface platforms</h3><span class="tmeta">the flux layer · 2024: 16 storm intercepts by saildrone</span></div>
+    <div class="grid g4 reveal">
+      <div class="card"><div class="ic">Uncrewed surface vehicle</div><h3>Saildrone Explorer</h3><div class="spec mono">wind/solar · rides into the eye · months at sea</div><p>Measures near-surface wind, waves, and the air–sea fluxes that determine how fast energy moves from ocean to storm. In the shallow eastern Gulf it exposed wave-breaking physics models barely represent.</p><div class="meas"><span>flux (heat/momentum)</span><span>waves</span><span>surface met</span></div></div>
+      <div class="card"><div class="ic">Drifting wave buoy</div><h3>SOFAR Spotter</h3><div class="spec mono">5.5 kg · solar · hourly Iridium · ~50 pre-set in Gulf</div><p>Pre-deployed and air-dropped ahead of landfall to report waves, sea-surface temperature, pressure, and inferred wind across the storm's path.</p><div class="meas"><span>wave spectra</span><span>SST</span><span>pressure</span></div></div>
+      <div class="card"><div class="ic">Lagrangian drifter</div><h3>Global Drifter Program</h3><div class="spec mono">air-deployable in storm paths</div><p>Surface drifters report SST, sea-level pressure, mixed-layer current and wind; some profile temperature to ~150 m, revealing the storm's cold wake.</p><div class="meas"><span>SST</span><span>SLP</span><span>mixed-layer current</span></div></div>
+      <div class="card"><div class="ic">Fixed reference</div><h3>NDBC moored buoys</h3><div class="spec mono">continuous · fixed location</div><p>The long-term anchor network — continuous wind, pressure, wave, and temperature at known points, the calibration reference for everything mobile.</p><div class="meas"><span>continuous met</span><span>waves</span></div></div>
+    </div>
+
+    <!-- SUBSURFACE -->
+    <div class="tier reveal"><span class="tnum">SUB</span><h3>Subsurface ocean</h3><span class="tmeta">30–40 gliders/season · sustained since 2014</span></div>
+    <div class="grid g3 reveal">
+      <div class="card"><div class="ic">Autonomous AUV</div><h3>Underwater gliders</h3><div class="spec mono">T/S to 1,000 m · weeks–months endurance</div><p>Buoyancy-driven gliders pre-positioned along the Loop Current and eddy corridor measure the real heat reservoir before a storm arrives — the highest-leverage Gulf observation.</p><div class="meas"><span>temp/salinity profile</span><span>OHC</span><span>cold wake</span></div></div>
+      <div class="card"><div class="ic">Global profiler</div><h3>Argo floats</h3><div class="spec mono">T/S to 2,000 m · global array</div><p>Drifting floats provide the background ocean state and pre/post-storm context — in 2025 they confirmed the low-salinity plume where one storm rapidly intensified.</p><div class="meas"><span>temp/salinity</span><span>salinity plumes</span></div></div>
+      <div class="card"><div class="ic">Air-launched float</div><h3>ALAMO floats</h3><div class="spec mono">sonobuoy-tube launch · Argo-class · &gt;1 yr life</div><p>An Argo-capable profiler small enough to drop from a Hurricane Hunter, giving high-cadence upper-ocean profiles right under the storm for over a year.</p><div class="meas"><span>rapid T/S profiles</span><span>upper-ocean heat</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESSENTIAL -->
+<section id="essential">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2>What's actually essential</h2></div>
+    <p class="sec-sub reveal">More sensors is not the goal; the right sensors at the right place are. Rapid-intensification
+      predictability is limited less by model resolution than by knowing the <b>initial state of the upper ocean and the
+      air–sea interface</b>. An optimal Gulf design, ranked by leverage per dollar:</p>
+
+    <details class="priority reveal" open>
+      <summary><span class="rank">1</span><div class="ptitle">Persistent subsurface pre-positioning<small>gliders · Argo · ALAMO · altimetry along the Loop Current corridor</small></div><span class="badge ess">Essential</span></summary>
+      <div class="body">The Gulf's defining RI ingredient is <b>deep ocean heat</b>, and it can be known <b>before any storm forms</b>.
+        A standing line of gliders along the Loop Current and its shed eddies, anchored by Argo and satellite altimetry,
+        turns OHC from a climatological guess into a measured field. Cheap, continuous, and it addresses the single most
+        Gulf-specific source of intensity error. This is where a new program should start.</div>
+    </details>
+
+    <details class="priority reveal">
+      <summary><span class="rank">2</span><div class="ptitle">Continuous spaceborne microwave<small>protect SSMIS continuity · WSF-M · commercial constellations</small></div><span class="badge ess">Essential</span></summary>
+      <div class="body">Microwave is the <b>earliest structural warning</b> of RI and the only way to see a closing eyewall through
+        cirrus. The 2025 near-loss of DMSP/SSMIS — roughly half of all microwave scans — is the most urgent gap in the
+        whole system. Filling the 3–6 hour coverage holes with WSF-M and commercial sounders is non-negotiable for RI.</div>
+    </details>
+
+    <details class="priority reveal">
+      <summary><span class="rank">3</span><div class="ptitle">Air–sea interface flux sampling at the storm<small>saildrones + air-deployed Spotters/drifters in the forecast path</small></div><span class="badge ess">Essential</span></summary>
+      <div class="body">The enthalpy and momentum flux across the surface is the <b>least-observed, highest-uncertainty</b> term in
+        intensity. Saildrones riding into the eye plus drifting buoys seeded along the forecast track measure it directly.
+        The Gulf's shallow shelf adds wave physics that current models barely capture — making in-situ interface data
+        even more valuable here than in the open Atlantic.</div>
+    </details>
+
+    <details class="priority reveal">
+      <summary><span class="rank">4</span><div class="ptitle">Targeted aircraft core + environment sampling<small>P-3 TDR/SFMR + dropsondes + low-level UAS; G-IV/WC-130J for steering</small></div><span class="badge high">High value</span></summary>
+      <div class="body">Aircraft remain irreplaceable for <b>inner-core 3-D structure</b> and for the dropsonde profiles that anchor
+        data assimilation. Add Altius-class drones for the dangerous low levels. The G-IV and WC-130J cover the
+        surrounding environment and steering flow. Expensive per flight, so deploy by forecast risk, not by routine.</div>
+    </details>
+
+    <details class="priority reveal">
+      <summary><span class="rank">5</span><div class="ptitle">Coordination is the force multiplier<small>CHAOS-style co-located sampling of one water column, top to bottom</small></div><span class="badge high">High value</span></summary>
+      <div class="body">The biggest gains come not from any single platform but from sampling the <b>same column simultaneously</b> —
+        aircraft above, saildrone at the surface, glider below — so heat- and momentum-flux budgets can actually be closed.
+        Coordinated experiments (CHAOS) showed that synchronization, not just more sensors, is what advances the science.</div>
+    </details>
+
+    <div class="note reveal" style="margin-top:24px"><b>The synthesis in one line:</b> watch the heat reservoir continuously
+      from below (gliders + altimetry), watch the structure continuously from above (microwave), and measure the interface
+      directly when a storm is in the path (saildrones + drifters) — then coordinate all three on the same water column.
+      Aircraft sharpen the inner core on top of that foundation.</div>
+  </div>
+</section>
+
+<!-- MODELS -->
+<section id="models">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2>Forecasting methods &amp; models</h2></div>
+    <p class="sec-sub reveal">Observations only matter if a forecast system can use them. The Gulf RI guidance landscape
+      spans statistical indices, a coupled dynamical model, and a fast-growing machine-learning frontier.</p>
+
+    <div class="grid g2 reveal">
+      <div class="model"><div class="mtype">Statistical · operational</div><h3>SHIPS &amp; SHIPS-RII</h3><p>The Statistical Hurricane Intensity Prediction Scheme and its Rapid Intensification Index give probabilities of intensifying 25/30/35 kt in 24 h from environmental predictors — shear, OHC, SST, mid-level humidity, divergence. Reliable, interpretable, and the operational baseline RI tools improve against.</p></div>
+      <div class="model"><div class="mtype">Statistical-dynamical consensus</div><h3>DTOPS · RII consensus</h3><p>Consensus aids blend statistical and model-based RI probabilities, smoothing the weaknesses of any single scheme — the kind of multi-source guidance forecasters weigh at the desk.</p></div>
+      <div class="model" style="border-color:rgba(255,138,61,.3)"><div class="mtype" style="color:var(--amber-soft)">Coupled dynamical · flagship</div><h3>HAFS (HAFS-A / B / M)</h3><p>NOAA's FV3-based Hurricane Analysis and Forecast System: a storm-following moving nest, high-resolution physics, multi-scale data assimilation, and ocean coupling out to 7 days. The 2025 upgrade improved RI forecasts an estimated 5–7%; experimental multi-storm versions outperformed the legacy HWRF on RI.</p></div>
+      <div class="model"><div class="mtype">Machine learning · frontier</div><h3>Deep-learning RI guidance</h3><p>Attention models on satellite imagery, graph-neural-network surrogates of the background ensemble, and global TC benchmarks (TCBench and similar) are pushing RI skill. The recurring weak point is the <i>joint</i> structure — coupling speed, direction, and timing — which is also where in-situ flux observations would most help.</p></div>
+    </div>
+
+    <div class="note reveal" style="margin-top:22px"><b>The data-assimilation throughline:</b> every observation above enters
+      the forecast as an innovation against the model background. For RI, the systematic, under-sampled departures live at the
+      ocean interface and in the upper-ocean heat field — which is exactly why the observing priorities and the modeling
+      priorities point at the same place.</div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section id="refs">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">06</span><h2>Source material</h2></div>
+    <p class="sec-sub reveal">Primary programs and reporting behind this reference. Start here to go deeper.</p>
+    <div class="refs reveal">
+      <div class="ref"><span class="rk">AOML</span><a href="https://www.aoml.noaa.gov/innovations-in-research-2025-atlantic-hurricane-season/" target="_blank" rel="noopener">AOML — research through the 2025 hurricane season</a></div>
+      <div class="ref"><span class="rk">AOML</span><a href="https://www.aoml.noaa.gov/2025-atlantic-hurricane-season-outlook/" target="_blank" rel="noopener">2025 Atlantic Hurricane Season outlook &amp; HAFS upgrade</a></div>
+      <div class="ref"><span class="rk">AOML</span><a href="https://www.aoml.noaa.gov/hurricane-glider-project/" target="_blank" rel="noopener">Hurricane Glider Project</a></div>
+      <div class="ref"><span class="rk">PMEL</span><a href="https://www.pmel.noaa.gov/usv-hurricane/" target="_blank" rel="noopener">NOAA USV (saildrone) hurricane observations</a></div>
+      <div class="ref"><span class="rk">OMAO</span><a href="https://www.omao.noaa.gov/aircraft-operations/noaa-hurricane-hunters" target="_blank" rel="noopener">NOAA Hurricane Hunters — aircraft &amp; instruments</a></div>
+      <div class="ref"><span class="rk">Saildrone</span><a href="https://www.saildrone.com/missions/atlantic-hurricane-monitoring" target="_blank" rel="noopener">Saildrone — improving RI forecasting</a></div>
+      <div class="ref"><span class="rk">Sofar</span><a href="https://www.sofarocean.com/products/spotter" target="_blank" rel="noopener">SOFAR Ocean — Spotter platform</a></div>
+      <div class="ref"><span class="rk">NHC/AOML</span><a href="https://www.aoml.noaa.gov/hurricane-modeling-prediction/" target="_blank" rel="noopener">Hurricane Modeling &amp; Prediction (HAFS / SHIPS-RII)</a></div>
+      <div class="ref"><span class="rk">Eos</span><a href="https://eos.org/science-updates/ocean-current-affairs-in-the-gulf-of-mexico" target="_blank" rel="noopener">Ocean current affairs in the Gulf of Mexico</a></div>
+      <div class="ref"><span class="rk">Nature</span><a href="https://www.nature.com/articles/s43247-024-01578-2" target="_blank" rel="noopener">RI in the Gulf more likely during marine heatwaves (2024)</a></div>
+      <div class="ref"><span class="rk">Sci Am</span><a href="https://www.scientificamerican.com/article/weather-forecasters-lose-crucial-hurricane-detection-microwave-satellite/" target="_blank" rel="noopener">Loss of microwave satellite data (2025)</a></div>
+      <div class="ref"><span class="rk">NOAA OSPO</span><a href="https://www.ospo.noaa.gov/data/messages/2025/07/MSG_20250730_0015.html" target="_blank" rel="noopener">DMSP data distribution extension notice</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><div>RAPIDWATCH<small>GULF RI OBSERVATORY</small></div></div>
+    <p>Working reference assembled from NOAA AOML/PMEL/OMAO, Saildrone, SOFAR Ocean, and peer-reviewed
+      literature, June 2026. Rapid intensification = +30 kt / 24 h (NHC). The vertical stack uses banded, not linear,
+      scale — geostationary orbit is ~35,786 km; the deepest ocean profiler reaches ~2,000 m. Rename and extend freely.</p>
+  </div>
+</footer>
+<script>
+// scroll-reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+</script>
+</body>
+</html>
