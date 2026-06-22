@@ -1,0 +1,203 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RapidWatch — Gulf RI Observation Targeting Report</title>
+<style>
+:root{--ink:#16222e;--mute:#5b6b78;--line:#e2e8ee;--amber:#c9700f;--red:#c0392b;--accent:#0d6b73;--bg:#fbfcfd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.62 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.doc{max-width:860px;margin:0 auto;padding:56px 40px 96px}
+h1{font-size:30px;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:22px;margin:42px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16.5px;margin:26px 0 6px;color:var(--accent)}
+h1+h3{color:var(--mute);font-weight:600;border:0;margin-top:0}
+p,li{color:#26323d}
+a{color:var(--accent)}
+strong{color:var(--ink)}
+em{color:var(--mute)}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+th{background:#eef3f6;font-weight:700}
+tr:nth-child(even) td{background:#f6f9fb}
+code{background:#eef3f6;border-radius:4px;padding:1px 5px;font:13.5px ui-monospace,SFMono-Regular,Menlo,monospace}
+blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:var(--mute)}
+.banner{background:linear-gradient(135deg,#0d2436,#123a44);color:#eaf3f5;border-radius:14px;
+  padding:22px 26px;margin:0 0 28px}
+.banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
+.banner h1{color:#fff;margin-top:8px}
+.print{position:fixed;top:16px;right:16px;background:var(--accent);color:#fff;border:0;border-radius:8px;
+  padding:9px 16px;font:600 13px sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+@media print{.print{display:none}body{background:#fff}.doc{padding:0}h2{break-before:auto}}
+</style></head><body>
+<button class="print" onclick="window.print()">Save / Print as PDF</button>
+<div class="doc">
+<div class="banner"><div class="k">RapidWatch · independent analysis · not for distribution</div></div>
+<h1 id="where-gulf-hurricanes-rapidly-intensify-and-where-we-must-watch">Where Gulf Hurricanes Rapidly Intensify — and Where We Must Watch</h1>
+<h3 id="a-climatological-targeting-recommendation-for-rapid-intensification-ri-observations-in-the-gulf-of-mexico">A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico</h3>
+<p><strong>Prepared by:</strong> RapidWatch (independent analysis)
+<strong>Date:</strong> 21 June 2026
+<strong>For consideration by:</strong> NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); NOAA Office of Marine &amp; Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS glider program. <em>cc: Joint Hurricane Testbed.</em>
+<strong>Data:</strong> NOAA HURDAT2 Atlantic best-track database, 1851–2025 (02-27-2026 release).</p>
+<hr />
+<h2 id="1-executive-summary">1. Executive summary</h2>
+<p>Rapid intensification (RI) — a wind increase of <strong>≥30 kt in 24 h</strong> — remains the single hardest hurricane-forecast problem, and the Gulf of Mexico is where it most often turns a routine system into a coastal catastrophe with little warning (Camille 1969, Katrina/Rita 2005, Michael 2018, Ida 2021, Milton 2024).</p>
+<p>We are confident about <strong>why</strong> RI happens — warm sea-surface temperature (the fuel), deep warm water / high ocean heat content as measured by the depth of the 26 °C isotherm, "D26" (the amplifier), and low vertical wind shear (the on/off switch). This memo addresses the operational question of <strong>where and when</strong> to put scarce observing assets to catch it.</p>
+<p>Using 175 years of NOAA best-track data, we built an <strong>observed RI climatology</strong> for the Gulf. The findings are sharp and actionable:</p>
+<ul>
+<li><strong>A storm is 3.1× more likely to be undergoing RI onset inside a small "core box" in the southern Gulf (≈20.9–22.9 °N, 91.6–93.9 °W — the Bay of Campeche / southwestern flank of the Loop Current) than the Gulf average</strong> (23.1% vs 7.5% of fixes).</li>
+<li><strong>RI begins while storms are still weak:</strong> the median intensity at RI onset is <strong>50 kt</strong>, and <strong>66% of RI onsets occur at tropical-storm strength or below.</strong> The storms that blow up are not the ones that already look dangerous.</li>
+<li><strong>Timing is tightly seasonal:</strong> <strong>September is the peak month and 84% of all RI onsets occur August–October.</strong></li>
+<li>The hotspot is <strong>co-located with the Gulf's two deepest warm-water features</strong> — the Loop Current intrusion through the Yucatan Channel and the Bay of Campeche warm pool — exactly as the physical mechanism predicts.</li>
+</ul>
+<p><strong>Recommendation:</strong> When a system forms in, or is forecast to enter, the Gulf (including the NW Caribbean approach through the Yucatan Channel), pre-position <strong>ocean-heat-content and inner-core observations over the southern-Gulf RI core box <em>ahead of the storm</em>, 12–36 h before projected onset, even when the system is only a tropical storm.</strong> A second, high-stakes watch applies to the <strong>Loop Current corridor and north-central shelf</strong>, where RI <em>continues</em> to U.S. landfall. Section 6 specifies the protocol; Section 7 specifies the platforms.</p>
+<hr />
+<h2 id="2-the-problem-and-why-it-matters">2. The problem and why it matters</h2>
+<p>Track forecasts have improved dramatically over three decades; <strong>intensity</strong> forecasts, and RI in particular, have lagged. The limiting factors are well established in the literature and in NOAA's own forecast-improvement plans:</p>
+<ol>
+<li><strong>Ocean initialization.</strong> Coupled models (HAFS with its HYCOM/MOM6 ocean component) are highly sensitive to the pre-storm ocean heat field. Where D26 is deep, the storm's own cold wake is suppressed and intensification continues unchecked; where it is shallow, mixing shuts the storm down. Yet the subsurface ocean is sparsely observed precisely where it matters most.</li>
+<li><strong>Inner-core observations of <em>developing</em> systems.</strong> Reconnaissance is, understandably, tasked toward storms that already threaten land and already look strong. RI, however, <strong>begins in weak systems</strong> (Section 5.3). The pre-RI inner core is therefore systematically under-sampled.</li>
+</ol>
+<p>The Gulf concentrates both problems: it is small, semi-enclosed, ringed by dense population, and threaded by the deepest warm water in the basin. A targeting strategy here offers an unusually high return on a fixed observing budget.</p>
+<hr />
+<h2 id="3-data-and-method">3. Data and method</h2>
+<ul>
+<li><strong>Source:</strong> HURDAT2 (1851–2025), 2,004 Atlantic systems, 6-hourly best-track fixes.</li>
+<li><strong>Population:</strong> the <strong>326 hurricanes</strong> that both reached hurricane status and entered a Gulf-of-Mexico polygon (Caribbean/Atlantic-only systems excluded by a hand-drawn coastline mask).</li>
+<li><strong>RI onset detection:</strong> at every fix, we look ~24 h ahead (21–27 h window, nearest fix) and flag an <strong>onset</strong> where wind rises ≥30 kt. The onset is geolocated at the <strong>start</strong> fix — the place and time at which you would want eyes on the ocean <em>before</em> the explosion.</li>
+<li><strong>Exposure normalization:</strong> the Gulf domain (18–31 °N, 80–98 °W) is gridded at 0.25°. For each cell we count both RI onsets and <strong>all</strong> hurricane fixes passing through, so we measure <strong>propensity</strong> (onsets ÷ traffic), not merely where storms happen to travel.</li>
+<li><strong>Likelihood surface:</strong> a Gaussian kernel-density estimate (bandwidth 0.75°) of onset points, normalized 0–1, yields a smooth RI-likelihood field and the tiered "watch" / "core" boxes.</li>
+<li><strong>Lift:</strong> the conditional probability <em>P(RI onset | a hurricane fix is here)</em> inside each box versus the domain average.</li>
+</ul>
+<p><strong>Limitations (stated plainly).</strong> This is a <strong>climatology — a historical prior, not a dynamical forecast.</strong> Best-track winds carry uncertainty that is larger before the aircraft-reconnaissance era (pre-1944) and before satellites (pre-1966); observing density has grown over time, which can inflate apparent activity in recent decades and along historical shipping lanes. The ≥30 kt/24 h threshold is one common RI definition; results are qualitatively stable under ±5 kt. The onset-location signal also reflects an <strong>intensity-ceiling effect</strong> — weak systems entering from the south have the most "room" to gain 30 kt — which is itself operationally useful (it tells us to watch the southern entry). None of these caveats move the hotspot off the deep-warm-water features.</p>
+<hr />
+<h2 id="4-headline-numbers">4. Headline numbers</h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gulf hurricanes analyzed (1851–2025)</td>
+<td><strong>326</strong></td>
+</tr>
+<tr>
+<td>…that underwent ≥1 RI onset inside the Gulf</td>
+<td><strong>152 (47%)</strong></td>
+</tr>
+<tr>
+<td>Total RI-onset intervals detected</td>
+<td><strong>411</strong></td>
+</tr>
+<tr>
+<td>Domain-average P(RI onset | fix)</td>
+<td><strong>7.5%</strong></td>
+</tr>
+<tr>
+<td><strong>Core box</strong> P(RI onset | fix) — 20.9–22.9 °N, 91.6–93.9 °W</td>
+<td><strong>23.1% → 3.1× lift</strong></td>
+</tr>
+<tr>
+<td><strong>Watch box</strong> P(RI onset | fix) — 20.1–23.4 °N, 84.4–95.1 °W</td>
+<td><strong>14.6% → 1.95× lift</strong></td>
+</tr>
+<tr>
+<td>Peak-density cell</td>
+<td><strong>21.6 °N, 92.9 °W</strong></td>
+</tr>
+<tr>
+<td>Onset-weighted centroid</td>
+<td><strong>22.7 °N, 88.6 °W</strong></td>
+</tr>
+<tr>
+<td>Peak month / Aug–Oct share</td>
+<td><strong>September / 84%</strong></td>
+</tr>
+<tr>
+<td>Median intensity at RI onset</td>
+<td><strong>50 kt</strong></td>
+</tr>
+<tr>
+<td>RI onsets beginning at ≤ tropical-storm strength</td>
+<td><strong>66%</strong></td>
+</tr>
+<tr>
+<td>RI onsets beginning at ≤ Cat 1</td>
+<td><strong>87%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-findings">5. Findings</h2>
+<h3 id="51-where-ri-begins-the-southern-gulf-core">5.1 Where RI begins — the southern-Gulf core</h3>
+<p>The RI-onset density peaks over the <strong>southern Gulf</strong>, with the tightest core over the <strong>Bay of Campeche and the southwestern flank of the Loop Current (≈20.9–22.9 °N, 91.6–93.9 °W)</strong> and a broader elevated zone fanning east toward the <strong>Yucatan Channel / Loop Current intrusion (centroid 22.7 °N, 88.6 °W).</strong> Inside the core box, <strong>nearly one in four</strong> hurricane fixes is an RI onset — <strong>3.1× the basin average.</strong> This is a genuine preference, not a traffic artifact: it survives normalization by total storm fixes.</p>
+<h3 id="52-when-september-and-the-warm-ocean-season">5.2 When — September, and the warm-ocean season</h3>
+<p>RI onset is strongly seasonal: <strong>September is the modal month, and August–October account for 84%</strong> of all onsets. This is when SST is at its annual peak, the Loop Current and its shed warm-core eddies carry the deepest D26, and basin-wide shear is climatologically lowest — the three RI ingredients in simultaneous alignment.</p>
+<h3 id="53-at-what-intensity-weak-systems-not-strong-ones">5.3 At what intensity — weak systems, not strong ones</h3>
+<p>The operational sting: <strong>RI begins early.</strong> Median intensity at onset is <strong>50 kt</strong> (a moderate tropical storm); <strong>66% of onsets occur at ≤ tropical-storm strength</strong> and <strong>87% at ≤ Cat 1.</strong> By the time a storm "looks" dangerous, the RI window we most needed to observe has often already opened. Targeting must therefore include <strong>developing</strong> systems, contrary to threat-prioritized tasking.</p>
+<h3 id="54-why-the-hotspot-sits-on-the-deep-warm-water">5.4 Why — the hotspot sits on the deep warm water</h3>
+<p>The geography is not a coincidence. The core and elevated zones overlie the Gulf's two deepest-warm-water features:
+- the <strong>Loop Current</strong>, which transports deep, hot Caribbean water through the <strong>Yucatan Channel</strong> and sheds <strong>warm-core eddies</strong> westward; and
+- the <strong>Bay of Campeche</strong> warm pool over the Campeche Bank.</p>
+<p>These are precisely the regions of high D26 / ocean heat content — the "amplifier." In the warm season the "fuel" (SST) and the "switch" (low shear) are also satisfied, so all three ingredients co-occur over the core box. The record bears this out: the strongest 24-h jumps in the database — <strong>Milton 2024 (+80 kt over the Bay of Campeche), the 1932 Cuba/Texas hurricane, Anita 1977, and the Katrina/Rita 2005 pair over the Loop Current corridor</strong> — all occurred over these features.</p>
+<h3 id="55-two-distinct-operational-zones">5.5 Two distinct operational zones</h3>
+<p>RI onset and RI <em>impact</em> are not in the same place:
+- <strong>Zone A — Southern-Gulf onset zone (core box, Section 5.1).</strong> Where RI most often <em>begins</em>, in weak systems entering from the Caribbean or forming in the Bay of Campeche. <strong>Best place to catch RI early.</strong>
+- <strong>Zone B — Loop Current corridor &amp; north-central shelf (≈24–29 °N, 86–94 °W).</strong> Where RI most often <em>continues to U.S. landfall</em> (Katrina, Rita, Michael, Ida). <strong>Highest-stakes for warning.</strong> A storm that RI'd in Zone A and tracks north re-intensifies over the warm corridor and shelf.</p>
+<p>A complete strategy samples <strong>both</strong>: the ocean ahead in Zone A to catch onset, and the warm corridor ahead of a northbound storm in Zone B to forecast landfall intensity.</p>
+<hr />
+<h2 id="6-recommendation-the-gulf-ri-watch-protocol">6. Recommendation: the Gulf RI Watch protocol</h2>
+<p><strong>Trigger.</strong> Activate when any of the following holds:
+- a tropical cyclone (any intensity, including invests with high genesis odds) forms in the Gulf or Bay of Campeche; or
+- a system in the NW Caribbean is forecast to transit the Yucatan Channel into the Gulf within 72 h; or
+- a Gulf system is forecast to track over the Loop Current corridor / toward the north-central shelf.</p>
+<p><strong>Where.</strong>
+- <strong>Primary (Zone A):</strong> the core box <strong>20.9–22.9 °N, 91.6–93.9 °W</strong>, expanded to the elevated watch box <strong>20.1–23.4 °N, 84.4–95.1 °W</strong> to include the Yucatan Channel intrusion.
+- <strong>Secondary (Zone B):</strong> the Loop Current corridor and north-central shelf along the storm's forecast track.</p>
+<p><strong>When / lead time.</strong> Concentrate observations <strong>12–36 h ahead of projected RI onset</strong> and <strong>ahead of the storm's track</strong> — i.e., sample the ocean and environment the storm is <em>about to enter</em>, not the wake it leaves behind. In the warm season (Aug–Oct), treat any qualifying system as RI-capable by default.</p>
+<p><strong>What to prioritize first</strong> if assets are limited: (1) <strong>pre-storm/ahead-of-storm ocean heat content (D26)</strong> over the core box; (2) <strong>inner-core structure of the developing system</strong> even at TS strength; (3) <strong>environmental shear</strong> sampling around the system.</p>
+<hr />
+<h2 id="7-observations-needed-by-platform-and-gap">7. Observations needed — by platform and gap</h2>
+<p>The recommendation is deliberately mapped to existing and emerging NOAA/partner assets. The two persistent gaps are <strong>subsurface ocean heat ahead of the storm</strong> and <strong>inner-core sampling of weak systems</strong>; the platforms below are ordered to close them.</p>
+<h3 id="71-ocean-heat-content-d26-close-the-biggest-gap">7.1 Ocean heat content / D26 (close the biggest gap)</h3>
+<ul>
+<li><strong>Airborne ocean profilers from the recon aircraft:</strong> <strong>AXBT</strong> (temperature) and <strong>AXCTD</strong> (temperature + salinity) expendables dropped from the NOAA WP-3D and USAF C-130 on the <em>outbound</em> legs, seeded <strong>across the core box ahead of the storm.</strong> This is the most direct way to initialize the coupled model's ocean over the hotspot.</li>
+<li><strong>Air-deployed profiling floats — ALAMO/APEX</strong> launched from the P-3 to give repeat T/S profiles through the RI window.</li>
+<li><strong>Underwater gliders (U.S. IOOS "hurricane glider" network):</strong> pre-position a southern-Gulf / Loop Current picket line (Yucatan Channel to the Campeche Bank) for the full Aug–Oct season; gliders uniquely measure the <em>evolving</em> subsurface during the event.</li>
+<li><strong>Satellite altimetry for OHC/D26 fields:</strong> sustain and densify <strong>Sentinel-6 Michael Freilich, Jason-continuity, and SWOT</strong> wide-swath altimetry; OHC derived from sea-surface-height anomaly is the operational backbone for mapping the Loop Current and warm-core eddies. Constellation gaps directly degrade RI guidance.</li>
+<li><strong>Argo / regional floats:</strong> enhanced seasonal deployment in the Gulf to anchor the altimetry-to-D26 conversion.</li>
+</ul>
+<h3 id="72-inner-core-of-developing-systems-sample-weak-storms-early">7.2 Inner core of developing systems (sample weak storms early)</h3>
+<ul>
+<li><strong>NOAA WP-3D Orion</strong> with <strong>Tail Doppler Radar</strong> (3-D wind/structure) and <strong>GPS dropwindsondes</strong> — task <strong>earlier in the life cycle</strong>, at TS strength, for systems over the core box, not only for land-threatening hurricanes.</li>
+<li><strong>Small uncrewed aircraft launched in-storm</strong> (Altius-600, Coyote) to sample the boundary-layer inflow that fuels RI — the layer crewed aircraft cannot safely reach.</li>
+<li><strong>Saildrone uncrewed surface vehicles</strong> stationed in the southern-Gulf / Loop Current region for air–sea flux at the surface during the warm season (building on NOAA's 2021–present hurricane Saildrone missions).</li>
+</ul>
+<h3 id="73-environment-and-continuity">7.3 Environment and continuity</h3>
+<ul>
+<li><strong>NOAA G-IV synoptic-surveillance</strong> dropsondes around the system to constrain <strong>shear</strong> and steering.</li>
+<li><strong>Microwave sounders/imagers</strong> (ATMS, AMSR2, GMI, SSMIS) for inner-core structure through cloud — protect against the looming microwave-constellation gap, which is acute for RI detection between fixes.</li>
+<li><strong>GOES-R rapid-scan / mesoscale sectors</strong> (and future GeoXO) parked on the core box in season.</li>
+<li><strong>Scatterometer (ASCAT) and SAR (Sentinel-1 / RADARSAT)</strong> for high-resolution surface wind in and around the developing core.</li>
+<li><strong>Moored buoys:</strong> maintain/return key southern- and central-Gulf NDBC stations for ground-truth SST, wind, and pressure.</li>
+</ul>
+<hr />
+<h2 id="8-expected-benefit">8. Expected benefit</h2>
+<p>Targeting these observations on the data-identified hotspot, at the right season and lead time, should:
+- <strong>improve the ocean initialization</strong> of HAFS and other coupled models exactly where their RI errors are largest;
+- <strong>extend RI lead time</strong> by catching onset in weak systems that current tasking tends to miss;
+- <strong>raise the value per flight hour and per glider-day</strong> by concentrating finite assets on the 3.1×-lift core rather than spreading them uniformly; and
+- provide a <strong>seasonal pre-positioning calendar</strong> (Aug–Oct, peaking September) and a <strong>geographic priority map</strong> that can be built directly into AOC flight planning and IOOS glider deployment.</p>
+<hr />
+<h2 id="9-caveats">9. Caveats</h2>
+<p>The findings are a historical <strong>prior</strong>, to be combined with — not substituted for — real-time SST/D26 analysis, shear diagnosis, and model guidance. Best-track and observing-density biases (Section 3) argue for treating the <em>shape</em> of the hotspot as robust and its exact decade-to-decade magnitude as approximate. The onset-location signal partly reflects where weak storms first meet deep warm water; the highest-impact RI to landfall occurs downstream in Zone B, which the protocol explicitly covers.</p>
+<hr />
+<h2 id="10-one-line-summary">10. One-line summary</h2>
+<p><strong>When a storm forms in or heads into the Gulf in August–October, put ocean-heat and inner-core observations over the southern-Gulf core box (≈21–23 °N, 92–94 °W) and the Loop Current corridor <em>ahead of the storm</em> — that is where, when, and why hurricanes rapidly intensify, and where better data will most improve the forecast.</strong></p>
+<hr />
+<p><em>Analysis and figures reproducible from <code>ri_climatology.py</code> and <code>build_gulf_hurricanes.py</code> (NOAA HURDAT2 1851–2025). Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," and "RI climatology hotspot."</em></p>
+</div></body></html>

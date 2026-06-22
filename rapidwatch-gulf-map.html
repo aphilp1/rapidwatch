@@ -774,10 +774,10 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
   <div class="panel" id="about">
     <span class="collapse" id="cToggle">–</span>
     <div class="ak">Geospatial canvas</div>
-    <h3>The Gulf as a layer stack</h3>
-    <p>An accurate geographic base for RapidWatch. The <b>Loop Current</b> and the warm eddies it sheds carry the deep ocean heat that fuels rapid intensification — every other layer hangs off that.</p>
-    <p>Toggle layers at left; click any fix for time, wind, pressure, and category. <b>Hurricane tracks are real best-track data</b> — the 2005 Katrina/Rita pair from HURDAT2 and the 2024 Helene/Milton pair from NHC reports — with the rapid-intensification stretch (+30 kt/24 h) ringed in amber.</p>
-    <div class="note">Coastline: Natural Earth 50m, clipped. Tracks: NOAA HURDAT2 (2005) &amp; NHC Tropical Cyclone Reports (2024). Ocean features (Loop Current, eddy, glider line) remain schematic scaffolding; buoy positions are representative.</div>
+    <h3>The Gulf as a layered stack</h3>
+    <p>A geographically accurate base map for RapidWatch. The <b>Loop Current</b> and the warm-core eddies it sheds transport the deep ocean heat that drives rapid intensification; every other layer is referenced against it.</p>
+    <p>Toggle layers in the left panel, and click any track fix to read its time, wind speed, pressure, and Saffir–Simpson category. The storm tracks are <b>official best-track data</b> — the 2005 Katrina–Rita pair from HURDAT2 and the 2024 Helene–Milton pair from NHC Tropical Cyclone Reports — with each rapid-intensification segment (≥30 kt in 24 h) ringed in amber.</p>
+    <div class="note">Coastline: Natural Earth 50 m, clipped. Tracks: NOAA HURDAT2 (2005), NHC Tropical Cyclone Reports (2024). Ocean features (Loop Current, eddy, glider line) are schematic scaffolding; buoy positions are representative.</div>
   </div>
 </div>
 <script>
@@ -1139,6 +1139,103 @@ const nhcLayer=L.layerGroup();
             'Intensity: <b>'+(feat.properties?.MAXWIND||'?')+' kt</b> · Valid: '+(feat.properties?.VALIDTIME||'?'),['NHC live','5-day track']))
       }).addTo(nhcLayer);
     }
+  }catch(e){}
+})();
+
+/* HISTORICAL GULF HURRICANES — all 326 HURDAT2 storms that reached hurricane status and entered the Gulf, 1851–2025 */
+const histTracksLayer=L.layerGroup();
+(async function loadHistTracks(){
+  try{
+    const r=await fetch('data/gulf_hurricanes.geojson');
+    if(!r.ok) throw new Error('hist-unavailable');
+    const gj=await r.json();
+    const catColor=c=>c>=5?'#ff3860':c>=4?'#ff5d6c':c>=3?'#ff8a3d':c>=2?'#ffc24d':c>=1?'#ffe08a':'#9fb3c0';
+    const catName=c=>c>=1?('Cat '+c):'tropical storm';
+    const fdate=s=>s?String(s).slice(0,4)+'-'+String(s).slice(4,6)+'-'+String(s).slice(6,8):'?';
+    gj.features.forEach(f=>{
+      const p=f.properties, c5=p.peak_category>=5;
+      const ll=f.geometry.coordinates.map(xy=>[xy[1],xy[0]]);
+      L.polyline(ll,{color:catColor(p.peak_category),weight:c5?1.8:1,opacity:c5?.85:.4,lineCap:'round',lineJoin:'round'})
+        .bindPopup(pop('Historical Gulf hurricane','',p.name+' ('+p.year+')','entered Gulf '+fdate(p.gulf_entry_date),
+          'Lifetime peak: <b>'+p.peak_wind_kt+' kt · '+catName(p.peak_category)+'</b>'
+          +(p.min_pressure_mb?' · '+p.min_pressure_mb+' mb':'')
+          +'<br>Peak while in Gulf: <b>'+(p.gulf_peak_wind_kt||'?')+' kt · '+catName(p.gulf_peak_category)+'</b>',
+          ['HURDAT2','best track',p.id]))
+        .addTo(histTracksLayer);
+    });
+  }catch(e){}
+})();
+
+/* INTENSIFICATION TO PEAK — for every historical storm, the strengthening run-up that culminates at its lifetime max wind (red = rapid intensification ≥30 kt/24h, amber = gradual) */
+const intensLayer=L.layerGroup();
+(async function loadIntensification(){
+  try{
+    const r=await fetch('data/gulf_intensification.geojson');
+    if(!r.ok) throw new Error('intens-unavailable');
+    const gj=await r.json();
+    const catName=c=>c>=1?('Cat '+c):'tropical storm';
+    gj.features.forEach(f=>{
+      const p=f.properties, ri=p.rapid;
+      const col=ri?'#ff3860':'#ffb24d';
+      const ll=f.geometry.coordinates.map(xy=>[xy[1],xy[0]]);
+      const desc='Strengthened from <b>'+p.start_wind_kt+' kt</b> to <b>'+p.peak_wind_kt+' kt ('+catName(p.peak_category)+')</b>'
+        +' over '+p.hours+' h.<br>Fastest 24 h gain: <b>'+p.max_24h_kt+' kt</b> &rarr; '
+        +(ri?'<b style="color:#ff7a8c">RAPID intensification</b>':'gradual intensification');
+      const line=L.polyline(ll,{color:col,weight:ri?2.6:1.7,opacity:ri?.82:.5,lineCap:'round',lineJoin:'round'})
+        .bindPopup(pop('Run-up to maximum intensity','',p.name+' ('+p.year+')','peak '+Math.abs(p.peak_lat).toFixed(1)+'°N '+Math.abs(p.peak_lon).toFixed(1)+'°W',
+          desc,['HURDAT2',ri?'rapid intensification':'gradual','+'+p.delta_kt+' kt']));
+      line.addTo(intensLayer);
+      // dot marking where maximum intensity was reached
+      L.circleMarker([p.peak_lat,p.peak_lon],{radius:p.peak_category>=4?3.6:2.4,color:col,weight:1,fillColor:col,fillOpacity:.9})
+        .addTo(intensLayer);
+    });
+  }catch(e){}
+})();
+
+/* RI CLIMATOLOGY HOTSPOT — observed rapid-intensification likelihood surface (HURDAT2 1851–2025), with core/watch boxes from ri_climatology.py */
+const riClimLayer=L.layerGroup();
+(async function loadRIClim(){
+  try{
+    const r=await fetch('data/ri_climatology.json');
+    if(!r.ok) throw new Error('riclim-unavailable');
+    const d=await r.json(), st=d.stats, H=0.125;
+    // heat surface: red ramp by normalized KDE
+    const ramp=k=>{ const a=Math.min(.62,.10+.55*k);
+      const col=k>=.75?'#ff2d55':k>=.5?'#ff5d3d':k>=.3?'#ff8a3d':'#ffc24d';
+      return {color:col,a}; };
+    d.cells.filter(c=>c.kde>=.12).forEach(c=>{
+      const r2=ramp(c.kde);
+      L.rectangle([[c.lat-H,c.lon-H],[c.lat+H,c.lon+H]],
+        {stroke:false,fillColor:r2.color,fillOpacity:r2.a}).addTo(riClimLayer);
+    });
+    // watch box (elevated, KDE>=60%) — amber dashed
+    const wb=st.watch_box;
+    L.rectangle([[wb.lat0,wb.lon0],[wb.lat1,wb.lon1]],
+      {color:'#ffc24d',weight:1.4,opacity:.8,dashArray:'8,6',fill:false})
+      .bindPopup(pop('RI watch box','','Elevated RI-onset zone (KDE ≥ 60%)',
+        wb.lat0+'–'+wb.lat1+'°N · '+Math.abs(wb.lon0)+'–'+Math.abs(wb.lon1)+'°W',
+        'P(RI onset | storm fix here) = <b>'+(st.lift.watch_rate*100).toFixed(0)+'%</b> · '
+        +'<b>'+st.lift.watch_lift+'×</b> the Gulf average ('+(st.lift.domain_rate*100).toFixed(0)+'%).',
+        ['HURDAT2','climatology'])).addTo(riClimLayer);
+    // core box (KDE>=80%) — bright red solid
+    const cb=st.core_box;
+    L.rectangle([[cb.lat0,cb.lon0],[cb.lat1,cb.lon1]],
+      {color:'#ff2d55',weight:2,opacity:.95,fill:false})
+      .bindPopup(pop('RI CORE box','','Where RI most often begins (KDE ≥ 80%)',
+        cb.lat0+'–'+cb.lat1+'°N · '+Math.abs(cb.lon0)+'–'+Math.abs(cb.lon1)+'°W',
+        'P(RI onset | storm fix here) = <b>'+(st.lift.core_rate*100).toFixed(0)+'%</b> · '
+        +'<b>'+st.lift.core_lift+'×</b> the Gulf average. Median onset intensity '
+        +st.onset_intensity.median_kt+' kt — <b>'+st.onset_intensity.pct_begin_at_or_below_TS
+        +'%</b> of RI begins at tropical-storm strength. Peak month: September ('
+        +st.season.pct_aug_oct+'% Aug–Oct).',
+        ['Bay of Campeche','Loop Current','3.1× lift'])).addTo(riClimLayer);
+    // hotspot centroid marker
+    const ce=st.centroid;
+    L.circleMarker([ce.lat,ce.lon],{radius:5,color:'#fff',weight:1.5,fillColor:'#ff2d55',fillOpacity:.95})
+      .bindPopup(pop('RI hotspot center','','Onset-weighted centroid',
+        ce.lat+'°N '+Math.abs(ce.lon)+'°W',
+        '175-year mean location of RI onset across '+st.ri_onsets+' onsets in '
+        +st.ri_storms+' Gulf hurricanes.',['HURDAT2 1851–2025'])).addTo(riClimLayer);
   }catch(e){}
 })();
 
@@ -1598,6 +1695,8 @@ const registry=[
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
  {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
  {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:false,heat:true},
+ {key:'Historical Gulf hurricanes (326 · 1851–2025 · HURDAT2)',lyr:histTracksLayer,on:false,heat:false},
+ {key:'Intensification to peak (run-up · red = rapid)',lyr:intensLayer,on:false,heat:false},
  {key:'NHC active storm cone (live)',lyr:nhcLayer,on:false,heat:false},
  {key:'NDBC buoys (live obs)',lyr:buoyLayer,on:false,heat:false},
  {key:'Underwater glider line',lyr:gliderLayer,on:false,heat:false},
@@ -1607,6 +1706,7 @@ const registry=[
  {key:'Sea surface temperature (SST)',lyr:sstLayer,on:false,heat:true},
  {key:'Wind shear (200–850 hPa climatology)',lyr:shearLayer,on:false,heat:true},
  {key:'RI probability zones (D26 + shear)',lyr:riProbLayer,on:false,heat:true},
+ {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:false,heat:true},
  {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Warm water depth (D26 glow)',lyr:warmDepthLayer,on:false,heat:true},
  {key:'Graticule',lyr:grat,on:false,heat:false},
