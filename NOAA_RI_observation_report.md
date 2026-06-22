@@ -2,7 +2,7 @@
 
 ### A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico
 
-**Prepared by:** RapidWatch (independent analysis)
+**Prepared by:** Alex Philp, Ph.D. · RapidWatch (independent analysis)
 **Date:** 21 June 2026
 **For consideration by:** NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); NOAA Office of Marine & Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS glider program. *cc: Joint Hurricane Testbed.*
 **Primary data:** NOAA HURDAT2 Atlantic best-track database, 1851–2025 (02-27-2026 release) [10].
