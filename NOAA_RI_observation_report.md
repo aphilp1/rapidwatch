@@ -212,8 +212,11 @@ The findings are a historical **prior**, to be combined with — not substituted
 
 ---
 
-## 10. One-line summary
-**When a storm forms in or heads into the Gulf in August–October, put ocean-heat and inner-core observations over the southern-Gulf core box (≈21–23 °N, 92–94 °W) and the Loop Current corridor *ahead of the storm* — that is where, when, and why hurricanes rapidly intensify, and where better data will most improve the forecast.**
+## 10. Conclusion
+
+Rapid intensification in the Gulf of Mexico is spatially and seasonally concentrated and begins disproportionately in weak systems. Over the period 1851–2025, RI onset is approximately three times more likely within a southern-Gulf core region (≈ 21–23 °N, 92–94 °W) than the basin average, occurs predominantly in August–October, and most frequently begins at or below tropical-storm intensity. A direct test against reconstructed ocean-heat fields confirms that intensification favors deep warm water in individual cases, but shows that at the population level the depth of the 26 °C isotherm adds little predictive skill beyond location and season — because those variables already encode the regional ocean-heat climatology.
+
+The resulting observational priority is specific and testable. When a tropical cyclone forms within, or is forecast to enter, the Gulf during the warm season, observing assets — airborne and uncrewed upper-ocean-heat profiling, together with inner-core sampling of developing systems — should be concentrated over the southern-Gulf onset core and, for northward-tracking systems, the Loop Current corridor, positioned ahead of the storm at 12–36 h lead. The principal value of these observations lies in improving the initialization of coupled forecast models rather than in providing a stand-alone climatological warning signal.
 
 ---
 
