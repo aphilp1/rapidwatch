@@ -135,6 +135,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 
 /* hide duplicate brand in map's own header */
 #panel-map header .brand{display:none}
+
+/* Analysis panel: full-bleed iframe of the RI paper (its own light theme, isolated) */
+#panel-analysis{overflow:hidden;background:#fbfcfd}
+#panel-analysis iframe{display:block;width:100%;height:100%;border:0}
 """
 
 # ── tab switcher JS ───────────────────────────────────────────────────────────
@@ -191,6 +195,7 @@ html = f"""<!DOCTYPE html>
   <div class="tabs">
     <button class="tab active" data-panel="panel-ri">RI Observatory</button>
     <button class="tab" data-panel="panel-map">Gulf Map</button>
+    <button class="tab" data-panel="panel-analysis">Analysis</button>
   </div>
 </div>
 
@@ -200,6 +205,10 @@ html = f"""<!DOCTYPE html>
 
 <div id="panel-map" class="tab-panel">
 {map_body}
+</div>
+
+<div id="panel-analysis" class="tab-panel">
+  <iframe src="NOAA_RI_observation_report.html" title="RapidWatch — Hurricane RI Analysis"></iframe>
 </div>
 
 <script>
@@ -227,6 +236,7 @@ checks = [
     ('tab bar present',              'id="tabbar"' in v),
     ('RI panel present',             'id="panel-ri"' in v),
     ('Map panel present',            'id="panel-map"' in v),
+    ('Analysis panel present',       'id="panel-analysis"' in v and 'NOAA_RI_observation_report.html' in v),
     ('Leaflet L.map call present',   'L.map(' in v),
     ('stormLayers in map JS',        'stormLayers' in v),
     ('#app fixed rule removed',      '#app{position:fixed' not in v),
