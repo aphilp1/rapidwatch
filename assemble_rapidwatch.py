@@ -66,7 +66,7 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
   position:fixed;top:0;left:0;right:0;z-index:10000;height:50px;
   display:flex;align-items:center;gap:16px;padding:0 18px;
   background:rgba(5,11,18,.96);border-bottom:1px solid rgba(120,160,180,.18);
-  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
 }
 #tabbar .brand{display:flex;align-items:center;gap:10px;
   font-family:"Space Grotesk";font-weight:700;letter-spacing:.04em;font-size:14px;
@@ -112,7 +112,7 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
    that leaks into the RI feature section's .panel grid cells and breaks layout.
    reset to normal document flow inside the RI panel. */
 #panel-ri .panel{position:relative !important;z-index:auto !important;
-  backdrop-filter:none !important;box-shadow:none !important}
+  -webkit-backdrop-filter:none !important;backdrop-filter:none !important;box-shadow:none !important}
 
 /* scroll-reveal uses IntersectionObserver against the document viewport,
    which doesn't fire inside a fixed overflow container — force all
