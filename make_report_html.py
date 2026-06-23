@@ -58,7 +58,7 @@ img + em{display:block;text-align:center;color:var(--mute);font-size:13px;line-h
 
 PAGE = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RapidWatch — Gulf RI Observation Targeting Report</title>
+<title>Understanding Hurricane Rapid Intensification Dynamics — RapidWatch</title>
 <style>{CSS}</style></head><body>
 <button class="print" onclick="window.print()">Save / Print as PDF</button>
 <div class="doc">

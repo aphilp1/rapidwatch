@@ -1,4 +1,4 @@
-# Where Gulf Hurricanes Rapidly Intensify — and Where We Must Watch
+# Understanding Hurricane Rapid Intensification Dynamics
 
 #### A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico
 
