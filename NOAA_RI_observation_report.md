@@ -1,11 +1,17 @@
 # Where Gulf Hurricanes Rapidly Intensify — and Where We Must Watch
 
-### A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico
+#### A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico
 
-**Prepared by:** Alex Philp, Ph.D. · RapidWatch (independent analysis)
-**Date:** 21 June 2026
-**For consideration by:** NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); NOAA Office of Marine & Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS glider program. *cc: Joint Hurricane Testbed.*
-**Primary data:** NOAA HURDAT2 Atlantic best-track database, 1851–2025 (02-27-2026 release) [10]. **Ocean data:** HYCOM GOFS 3.1 reanalysis [11][12] and Copernicus Marine GLORYS reanalysis/analysis (depth of the 26 °C isotherm, D26).
+*Technical memorandum · RapidWatch independent analysis · not for distribution*
+
+| | |
+|---|---|
+| **Author** | Alex Philp, Ph.D. — RapidWatch |
+| **Date** | 21 June 2026 *(revised 22 June 2026)* |
+| **Prepared for** | NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); Office of Marine & Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS Underwater Glider Program |
+| **Copy** | Joint Hurricane Testbed |
+| **Best-track data** | NOAA HURDAT2 Atlantic database, 1851–2025 (release 2026-02-27) [10] |
+| **Ocean data** | HYCOM GOFS 3.1 reanalysis [21]; Copernicus Marine GLORYS reanalysis & analysis [22] — depth of the 26 °C isotherm (D26) |
 
 ---
 
@@ -113,7 +119,7 @@ These results are not an outlier of one method. Yaukey (2014) found that the **h
 ---
 
 ### 5.7 A direct test with measured ocean heat (D26)
-Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch ocean pipeline we now test it directly, reconstructing the measured depth of the 26 °C isotherm (D26) — from HYCOM GOFS 3.1 reanalysis (≤2015) and Copernicus Marine GLORYS (2016–2025) — and co-locating it with the best track.
+Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch ocean pipeline we now test it directly, reconstructing the measured depth of the 26 °C isotherm (D26) — from HYCOM GOFS 3.1 reanalysis (≤2015) [21] and Copernicus Marine GLORYS (2016–2025) [22] — and co-locating it with the best track.
 
 **Case studies (four marquee storms).** Sampling real D26 at each storm's RI onset, three of four rapidly intensified over distinctly deep warm water: **Katrina 82 m, Rita 67 m, Helene 104 m — 1.2–1.7× the contemporaneous Gulf-median D26.** The exception is instructive: **Milton (2024)**, the most explosive case (+80 kt/24 h), began its RI over the Bay of Campeche where D26 was only ~52 m (below the Gulf median) — its fuel was record SST and near-zero shear, not the deepest ocean heat. Deep warm water *amplifies* RI but is not its sole trigger.
 
@@ -186,33 +192,98 @@ The findings are a historical **prior**, to be combined with — not substituted
 
 ---
 
-## References
+## Endnotes — annotated bibliography
 
-All references below were verified against publisher pages, DOIs, or official NOAA/NHC sources.
+The bracketed numerals **[n]** throughout the text are endnote markers referring to the numbered entries below. Each entry gives the full citation followed by a short annotation describing the source and its specific role in this memorandum. All entries were verified against publisher pages, DOIs, or official NOAA/NHC sources (June 2026).
 
 1. Kaplan, J., and M. DeMaria, 2003: Large-scale characteristics of rapidly intensifying tropical cyclones in the North Atlantic basin. *Weather and Forecasting*, **18**(6), 1093–1108. doi:10.1175/1520-0434(2003)018<1093:LCORIT>2.0.CO;2
+
+    *Annotation.* Source of the operational RI definition used throughout (≥30 kt in 24 h — the ~95th percentile of 24-h over-water intensity change) and of the finding that RI tends to begin while storms are relatively weak. Anchors the threshold (Abstract; §1; §3) and the weak-onset result (§5.3).
+
 2. Kaplan, J., M. DeMaria, and J. A. Knaff, 2010: A revised tropical cyclone Rapid Intensification Index for the Atlantic and eastern North Pacific basins. *Weather and Forecasting*, **25**(1), 220–241. doi:10.1175/2009WAF2222280.1
+
+    *Annotation.* Describes the SHIPS-based Rapid Intensification Index, operational at NHC since 2008, and its environmental/climatological predictors. Cited as the operational benchmark and predictor set (§2; §5.3).
+
 3. DeMaria, M., C. R. Sampson, J. A. Knaff, and K. D. Musgrave, 2014: Is tropical cyclone intensity guidance improving? *Bulletin of the American Meteorological Society*, **95**(3), 387–398. doi:10.1175/BAMS-D-12-00240.1
+
+    *Annotation.* Quantifies the slow historical improvement of intensity guidance relative to track forecasts. Supports the framing that RI remains the hardest part of the forecast (§1; §2).
 4. Shay, L. K., G. J. Goni, and P. G. Black, 2000: Effects of a warm oceanic feature on Hurricane Opal. *Monthly Weather Review*, **128**(5), 1366–1383. doi:10.1175/1520-0493(2000)128<1366:EOAWOF>2.0.CO;2
+
+    *Annotation.* The seminal case study (Hurricane Opal, 1995) demonstrating that a deep warm ocean feature in the Gulf sustains intensification by limiting the storm-induced cold wake. Core reference for the ocean-heat "amplifier" mechanism (§2; §5.4; §5.7) and for altimetry-derived OHC mapping (§7.1).
+
 5. Scharroo, R., W. H. F. Smith, and J. L. Lillibridge, 2005: Satellite altimetry and the intensification of Hurricane Katrina. *Eos, Transactions American Geophysical Union*, **86**(40), 366–367. doi:10.1029/2005EO400004
+
+    *Annotation.* Attributes Hurricane Katrina's intensification to the Loop Current's dynamic topography (from altimetry) rather than sea-surface temperature alone. Supports the Loop Current attribution (§5.4; §5.5).
+
 6. Jaimes, B., and L. K. Shay, 2009: Mixed layer cooling in mesoscale oceanic eddies during Hurricanes Katrina and Rita. *Monthly Weather Review*, **137**(12), 4188–4207. doi:10.1175/2009MWR2849.1
+
+    *Annotation.* Quantifies how Gulf warm-core eddies suppress storm-induced sea-surface cooling during Katrina and Rita. Mechanistic support for D26 as the amplifier (§5.4; §5.7).
+
 7. DeMaria, M., 1996: The effect of vertical shear on tropical cyclone intensity change. *Journal of the Atmospheric Sciences*, **53**(14), 2076–2088. doi:10.1175/1520-0469(1996)053<2076:TEOVSO>2.0.CO;2
+
+    *Annotation.* Establishes that vertical wind shear inhibits intensification — the "on/off switch" in the three-ingredient framing. Cited for the shear factor (§1; §5.2; §7.3).
+
 8. Palmén, E., 1948: On the formation and structure of tropical hurricanes. *Geophysica*, **3**, 26–38.
+
+    *Annotation.* Original identification of the ~26 °C sea-surface-temperature threshold for tropical cyclone formation. Cited for the SST "fuel" requirement (§1; §5.4).
+
 9. Gray, W. M., 1968: Global view of the origin of tropical disturbances and storms. *Monthly Weather Review*, **96**(10), 669–700. doi:10.1175/1520-0493(1968)096<0669:GVOTOO>2.0.CO;2
+
+    *Annotation.* Classic synthesis of tropical-cyclone genesis conditions, including the ocean-thermal requirement. Cited with [8] for the SST threshold (§1; §5.4).
+
 10. Landsea, C. W., and J. L. Franklin, 2013: Atlantic hurricane database uncertainty and presentation of a new database format. *Monthly Weather Review*, **141**(10), 3576–3592. doi:10.1175/MWR-D-12-00254.1
+
+    *Annotation.* Defines the HURDAT2 best-track format used as the primary data and characterizes its wind/position uncertainty — larger before the aircraft (pre-1944) and satellite (pre-1966) eras. Basis for the data description and limitations (§3; §9).
+
 11. Gramer, L. J., J. Steffen, M. Aristizabal Vargas, and H.-S. Kim, 2024: The impact of coupling a dynamic ocean in the Hurricane Analysis and Forecast System. *Frontiers in Earth Science*, **12**, 1418016. doi:10.3389/feart.2024.1418016
+
+    *Annotation.* Shows that adding a dynamic ocean to NOAA's operational HAFS measurably changes intensity forecasts. Supports the conclusion that real-time ocean data matter most for model initialization (§2; §5.7; §7.1; §8).
 12. Kim, H.-S., and Coauthors, 2024: Ocean component of the first operational version of Hurricane Analysis and Forecast System: Evaluation of HYbrid Coordinate Ocean Model and hurricane feedback forecasts. *Frontiers in Earth Science*, **12**, 1399409. doi:10.3389/feart.2024.1399409
+
+    *Annotation.* Documents the HYCOM ocean component of the first operational HAFS. Companion to [11] for the coupled-model initialization argument (§2; §7.1; §8).
+
 13. Domingues, R., and Coauthors, 2019: Ocean observations in support of studies and forecasts of tropical and extratropical cyclones. *Frontiers in Marine Science*, **6**, 446. doi:10.3389/fmars.2019.00446
+
+    *Annotation.* Reviews ocean observing — including the IOOS underwater-glider network — in support of tropical-cyclone forecasts. Basis for the hurricane-glider recommendation (§7.1).
+
 14. Zhang, D., and Coauthors, 2023: Observing extreme ocean and weather events using innovative Saildrone uncrewed surface vehicles. *Oceanography*, **36**(2–3), 70–77. doi:10.5670/oceanog.2023.214
+
+    *Annotation.* Documents NOAA/Saildrone uncrewed surface-vehicle missions, including SD-1045 inside Hurricane Sam (2021), measuring air–sea fluxes. Basis for the Saildrone recommendation (§7.2).
+
 15. Sanabia, E. R., B. S. Barrett, P. G. Black, S. Chen, and J. A. Cummings, 2013: Real-time upper-ocean temperature observations from aircraft during operational hurricane reconnaissance missions: AXBT Demonstration Project year one results. *Weather and Forecasting*, **28**(6), 1404–1422. doi:10.1175/WAF-D-12-00107.1
+
+    *Annotation.* Demonstrates real-time airborne (AXBT) upper-ocean temperature profiling during operational reconnaissance. Basis for the AXBT/AXCTD recommendation (§7.1).
+
 16. Rogers, R., and Coauthors, 2006: The Intensity Forecasting Experiment: A NOAA multiyear field program for improving tropical cyclone intensity forecasts. *Bulletin of the American Meteorological Society*, **87**(11), 1523–1537. doi:10.1175/BAMS-87-11-1523
+
+    *Annotation.* Describes NOAA's Intensity Forecasting Experiment (IFEX), establishing the value of inner-core and targeted aircraft observations for intensity forecasting. Basis for the inner-core recommendation (§2; §7.2).
+
 17. National Hurricane Center (A. B. Hagen, R. Berg, and R. J. Pasch), 2025: *Hurricane Milton (AL142024) Tropical Cyclone Report*. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf
+
+    *Annotation.* Official post-storm report documenting Hurricane Milton's extreme rapid intensification after forming in the Bay of Campeche. Source for the Milton case (§5.4; §5.7). *Author byline and issuance date should be confirmed from the report cover page before formal use.*
+
 18. Beven, J. L., II, R. Berg, and A. Hagen, 2019: *Hurricane Michael (AL142018) Tropical Cyclone Report*. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142018_Michael.pdf
+
+    *Annotation.* Official report; Michael was reanalyzed to Category 5 at U.S. landfall. Source for the Michael case in the high-impact "continuation" zone (§5.5).
+
 19. Benedetto, K. M., and A. E. Mercer, 2020: Climatology and spatiotemporal analysis of North Atlantic rapidly intensifying hurricanes (1851–2017). *Atmosphere*, **11**(3), 291. doi:10.3390/atmos11030291
+
+    *Annotation.* Independent spatiotemporal climatology of North Atlantic rapid intensification from the same HURDAT record, identifying the Gulf/western-Caribbean as a preferred RI region. Corroborates the hotspot finding (§5.6).
+
 20. Yaukey, P. H., 2014: Intensification and rapid intensification of North Atlantic tropical cyclones: the role of geography, time of year, age since genesis, and storm characteristics. *International Journal of Climatology*, **34**(4), 1038–1049. doi:10.1002/joc.3744
 
-*Citations verified June 2026. The microwave-coverage-gap point (Section 7.3) is flagged as lacking a verified peer-reviewed source and should be supported with current NOAA/NESDIS documentation prior to any formal submission.*
+    *Annotation.* Finds the highest mean intensification rates in the North Atlantic occur in the Gulf of Mexico and Caribbean Sea. Independent corroboration of the southern-Gulf hotspot (§5.6).
+
+21. Chassignet, E. P., H. E. Hurlburt, O. M. Smedstad, G. R. Halliwell, P. J. Hogan, A. J. Wallcraft, R. Baraille, and R. Bleck, 2007: The HYCOM (HYbrid Coordinate Ocean Model) data assimilative system. *Journal of Marine Systems*, **65**(1–4), 60–83. (https://www.hycom.org/attachments/191_Chassignet_et_al_07.pdf)
+
+    *Annotation.* The model underlying the U.S. Navy/NRL HYCOM GOFS 3.1 reanalysis used here to reconstruct D26 for the 2005 storms (Katrina, Rita). Data accessed via tds.hycom.org (GLBv0.08 / expt 53.X). Used in §5.7 and the ocean pipeline.
+
+22. Lellouche, J.-M., and Coauthors, 2021: The Copernicus Global 1/12° oceanic and sea ice GLORYS12 reanalysis. *Frontiers in Earth Science*, **9**, 698876. doi:10.3389/feart.2021.698876
+
+    *Annotation.* The Copernicus Marine GLORYS12 reanalysis (product GLOBAL_MULTIYEAR_PHY_001_030) used to reconstruct D26 for storms through 2021 and the 76-storm population test; the companion Global Ocean Physics Analysis and Forecast product (GLOBAL_ANALYSISFORECAST_PHY_001_024) supplies 2022–2025. Used in §5.7 and the ocean pipeline.
+
+*All citations verified June 2026. Two items carry explicit caveats: the microwave-constellation coverage gap (§7.3) lacks a single peer-reviewed source and should be documented with current NOAA/NESDIS material before formal submission; and the author byline/date of the Milton Tropical Cyclone Report [17] should be confirmed from its cover page.*
 
 ---
 
-*Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1, and Copernicus Marine GLORYS. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
+*Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1 [21], and Copernicus Marine GLORYS [22]. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
