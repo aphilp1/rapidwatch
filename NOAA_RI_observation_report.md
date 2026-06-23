@@ -93,11 +93,20 @@ The Gulf concentrates both problems: it is small, semi-enclosed, ringed by dense
 ### 5.1 Where RI begins — the southern-Gulf core
 The RI-onset density peaks over the **southern Gulf**, with the tightest core over the **Bay of Campeche and the southwestern flank of the Loop Current (≈20.9–22.9 °N, 91.6–93.9 °W)** and a broader elevated zone fanning east toward the **Yucatan Channel / Loop Current intrusion (centroid 22.7 °N, 88.6 °W).** Inside the core box, **nearly one in four** hurricane fixes is an RI onset — **3.1× the basin average.** This is a genuine preference, not a traffic artifact: it survives normalization by total storm fixes.
 
+![RI-onset likelihood map](figures/fig1_hotspot_map.png)
+*__Figure 1.__ Observed rapid-intensification onset likelihood across the Gulf, 1851–2025, normalized by storm traffic so that the field reflects propensity rather than where storms merely travel. The densest onset region is the Bay of Campeche and the southwestern Loop Current; the solid box marks the 3.1×-lift core, the dashed box the broader elevated zone (1.95×). The star is the onset-weighted centroid.*
+
 ### 5.2 When — September, and the warm-ocean season
 RI onset is strongly seasonal: **September is the modal month, and August–October account for 84%** of all onsets. This is when SST is at its annual peak, the Loop Current and its shed warm-core eddies carry the deepest D26 [4][5], and basin-wide shear is climatologically lowest [7] — the three RI ingredients in simultaneous alignment.
 
+![RI onsets by month](figures/fig2_seasonality.png)
+*__Figure 2.__ Rapid-intensification onsets by calendar month. August–October (highlighted) account for 84% of all onsets, peaking sharply in September.*
+
 ### 5.3 At what intensity — weak systems, not strong ones
 The operational sting: **RI begins early.** Median intensity at onset is **50 kt** (a moderate tropical storm); **66% of onsets occur at ≤ tropical-storm strength** and **87% at ≤ Cat 1.** By the time a storm "looks" dangerous, the RI window we most needed to observe has often already opened. Targeting must therefore include **developing** systems — a point reinforced by the operational RI-index literature, which identifies current intensity and persistence among the leading climatological predictors [1][2].
+
+![Intensity when RI begins](figures/fig3_onset_intensity.png)
+*__Figure 3.__ Storm intensity at the moment rapid intensification begins. Most onsets occur while a storm is still at tropical-storm strength (≤ 63 kt), well before it appears threatening — the systems that ultimately blow up are not the ones that already look dangerous.*
 
 ### 5.4 Why — the hotspot sits on the deep warm water
 The geography is not a coincidence. The core and elevated zones overlie the Gulf's two deepest-warm-water features:
@@ -123,7 +132,13 @@ Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch
 
 **Case studies (four marquee storms).** Sampling real D26 at each storm's RI onset, three of four rapidly intensified over distinctly deep warm water: **Katrina 82 m, Rita 67 m, Helene 104 m — 1.2–1.7× the contemporaneous Gulf-median D26.** The exception is instructive: **Milton (2024)**, the most explosive case (+80 kt/24 h), began its RI over the Bay of Campeche where D26 was only ~52 m (below the Gulf median) — its fuel was record SST and near-zero shear, not the deepest ocean heat. Deep warm water *amplifies* RI but is not its sole trigger.
 
+![Four-storm D26 co-location](figures/fig5_storm_d26.png)
+*__Figure 5.__ Measured D26 along each storm's RI run-up versus the Gulf-median D26 that day. Three of four storms intensified over distinctly deep warm water (1.2–1.7× the median); Milton (2024) is the instructive exception — its record rapid intensification occurred over below-median D26 in the Bay of Campeche, driven by record SST and near-zero shear.*
+
 **Population test (76 Gulf hurricanes, 1994–2025; 698 fixes, 89 RI onsets).** Across the full ocean-reanalysis-era sample, D26 only weakly separates RI-onset fixes from non-RI fixes (**median 46 vs 44 m; Mann–Whitney p ≈ 0.07; AUC of D26 alone = 0.55**). RI rate rises monotonically but modestly across D26 terciles (10.0% → 13.6% → 14.7%). Critically, in a cross-validated logistic model **D26 adds essentially no skill beyond latitude, longitude, season, and current intensity** (AUC 0.693 → 0.689).
+
+![Scaled D26-vs-RI test](figures/fig4_scaled_d26.png)
+*__Figure 4.__ Population test across 76 Gulf hurricanes (1994–2025; 698 fixes, 89 RI onsets). (A) Measured ocean heat at RI-onset fixes barely exceeds that at non-RI fixes (medians 46 vs 44 m; area under the ROC curve = 0.55, where 0.5 is no skill). (B) RI rate rises only modestly across D26 terciles and adds no skill beyond location, season, and current intensity. Interpretation: location and season already encode the ocean-heat climatology (Section 5.7).*
 
 **Interpretation.** This is *not* evidence that ocean heat is unimportant — it is evidence that, over the Gulf in the warm season, **location and season already encode the ocean-heat climatology**: knowing a storm is in the deep-warm southern Gulf in September conveys nearly the same information a D26 field would. Two consequences follow, both of which *reinforce* this memo's recommendation:
 1. **Climatological targeting by geography and season (Sections 5.1–5.2) is the correct basis for pre-positioning** — it already captures the ocean-heat signal without requiring a real-time D26 analysis.

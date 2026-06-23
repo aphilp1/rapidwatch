@@ -4,7 +4,7 @@ self-contained HTML document (no external assets) for local download / save-as-P
 
   python make_report_html.py
 """
-import pathlib, markdown
+import pathlib, base64, re, markdown
 
 DIR = pathlib.Path(__file__).parent
 MD  = DIR / 'NOAA_RI_observation_report.md'
@@ -12,6 +12,15 @@ OUT = DIR / 'NOAA_RI_observation_report.html'
 
 html_body = markdown.markdown(MD.read_text(encoding='utf-8'),
                               extensions=['tables', 'toc', 'sane_lists', 'attr_list'])
+
+# inline local figure PNGs as base64 so the HTML is fully self-contained / portable
+def _inline(m):
+    p = DIR / m.group(1)
+    if p.exists():
+        b64 = base64.b64encode(p.read_bytes()).decode()
+        return f'src="data:image/png;base64,{b64}"'
+    return m.group(0)
+html_body = re.sub(r'src="([^"]+\.png)"', _inline, html_body)
 
 CSS = """
 :root{--ink:#16222e;--mute:#5b6b78;--line:#e2e8ee;--amber:#c9700f;--red:#c0392b;--accent:#0d6b73;--bg:#fbfcfd}
@@ -35,6 +44,9 @@ th{background:#eef3f6;font-weight:700}
 tr:nth-child(even) td{background:#f6f9fb}
 code{background:#eef3f6;border-radius:4px;padding:1px 5px;font:13.5px ui-monospace,SFMono-Regular,Menlo,monospace}
 blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:var(--mute)}
+img{display:block;max-width:100%;margin:24px auto 4px;border:1px solid var(--line);border-radius:8px;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+img + em{display:block;text-align:center;color:var(--mute);font-size:13px;line-height:1.5;max-width:830px;margin:0 auto 24px}
+@media print{img{break-inside:avoid}}
 .banner{background:linear-gradient(135deg,#0d2436,#123a44);color:#eaf3f5;border-radius:14px;
   padding:22px 26px;margin:0 0 28px}
 .banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
