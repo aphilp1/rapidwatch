@@ -142,7 +142,7 @@ Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch
 ![Four-storm D26 co-location](figures/fig5_storm_d26.png)
 *__Figure 5.__ Measured D26 along each storm's RI run-up versus the Gulf-median D26 that day. Three of four storms intensified over distinctly deep warm water (1.2–1.7× the median); Milton (2024) is the instructive exception — its record rapid intensification occurred over below-median D26 in the Bay of Campeche, driven by record SST and near-zero shear.*
 
-**Population test (76 Gulf hurricanes, 1994–2025; 698 fixes, 89 RI onsets).** Across the full ocean-reanalysis-era sample, D26 only weakly separates RI-onset fixes from non-RI fixes (**median 46 vs 44 m; Mann–Whitney p ≈ 0.07; AUC of D26 alone = 0.55**). RI rate rises monotonically but modestly across D26 terciles (10.0% → 13.6% → 14.7%). Critically, in a cross-validated logistic model **D26 adds essentially no skill beyond latitude, longitude, season, and current intensity** (AUC 0.693 → 0.689).
+**Population test (76 Gulf hurricanes, 1994–2025; 698 fixes, 89 RI onsets).** Across the full ocean-reanalysis-era sample, D26 only weakly separates RI-onset fixes from non-RI fixes (**median 46 vs 44 m; Mann–Whitney p ≈ 0.07; AUC of D26 alone = 0.55**). RI rate rises monotonically but modestly across D26 terciles (10.0% → 13.6% → 14.7%). Critically, in a cross-validated logistic model **D26 adds essentially no skill beyond latitude, longitude, season, and current intensity** (AUC 0.693 → 0.689).[^1]
 
 ![Scaled D26-vs-RI test](figures/fig4_scaled_d26.png)
 *__Figure 6.__ Population test across 76 Gulf hurricanes (1994–2025; 698 fixes, 89 RI onsets). (A) Measured ocean heat at RI-onset fixes barely exceeds that at non-RI fixes (medians 46 vs 44 m; area under the ROC curve = 0.55, where 0.5 is no skill). (B) RI rate rises only modestly across D26 terciles and adds no skill beyond location, season, and current intensity. Interpretation: location and season already encode the ocean-heat climatology (Section 5.7).*
@@ -150,8 +150,6 @@ Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch
 **Interpretation.** This is *not* evidence that ocean heat is unimportant — it is evidence that, over the Gulf in the warm season, **location and season already encode the ocean-heat climatology**: knowing a storm is in the deep-warm southern Gulf in September conveys nearly the same information a D26 field would. Two consequences follow, both of which *reinforce* this memo's recommendation:
 1. **Climatological targeting by geography and season (Sections 5.1–5.2) is the correct basis for pre-positioning** — it already captures the ocean-heat signal without requiring a real-time D26 analysis.
 2. **The operational value of real-time ocean-heat observations lies in the dynamical forecast model, not in standalone climatological prediction.** Coupled models (HAFS [11][12]) need accurate D26 to represent the cold-wake feedback and the case-specific conjunction of deep heat with low shear — e.g., Katrina's warm-ring crossing [4] — precisely the anomalies a climatology cannot supply.
-
-**Caveat.** This test uses one ocean snapshot per storm sampled at the storm centre, so the storm's own cold wake and best-track position error add noise that biases the measured association low. A time-matched, **pre-storm (ahead-of-track) D26 sample** is the natural refinement — and is enabled by the same pipeline.
 
 ## 6. Recommendation: the Gulf RI Watch protocol
 
@@ -207,14 +205,9 @@ Targeting these observations on the data-identified hotspot, at the right season
 
 ---
 
-## 9. Caveats
-The findings are a historical **prior**, to be combined with — not substituted for — real-time SST/D26 analysis, shear diagnosis, and model guidance. Best-track and observing-density biases (Section 3) [10] argue for treating the *shape* of the hotspot as robust and its exact decade-to-decade magnitude as approximate. The onset-location signal partly reflects where weak storms first meet deep warm water; the highest-impact RI to landfall occurs downstream in Zone B, which the protocol explicitly covers.
+## 9. Conclusion
 
----
-
-## 10. Conclusion
-
-Rapid intensification in the Gulf of Mexico is spatially and seasonally concentrated and begins disproportionately in weak systems. Over the period 1851–2025, RI onset is approximately three times more likely within a southern-Gulf core region (≈ 21–23 °N, 92–94 °W) than the basin average, occurs predominantly in August–October, and most frequently begins at or below tropical-storm intensity. A direct test against reconstructed ocean-heat fields confirms that intensification favors deep warm water in individual cases, but shows that at the population level the depth of the 26 °C isotherm adds little predictive skill beyond location and season — because those variables already encode the regional ocean-heat climatology.
+Rapid intensification in the Gulf of Mexico is spatially and seasonally concentrated and begins disproportionately in weak systems. Over the period 1851–2025, RI onset is approximately three times more likely within a southern-Gulf core region (≈ 21–23 °N, 92–94 °W) than the basin average, occurs predominantly in August–October, and most frequently begins at or below tropical-storm intensity. A direct test against reconstructed ocean-heat fields confirms that intensification favors deep warm water in individual cases, but shows that at the population level the depth of the 26 °C isotherm adds little predictive skill beyond location and season — because those variables already encode the regional ocean-heat climatology.[^2]
 
 The resulting observational priority is specific and testable. When a tropical cyclone forms within, or is forecast to enter, the Gulf during the warm season, observing assets — airborne and uncrewed upper-ocean-heat profiling, together with inner-core sampling of developing systems — should be concentrated over the southern-Gulf onset core and, for northward-tracking systems, the Loop Current corridor, positioned ahead of the storm at 12–36 h lead. The principal value of these observations lies in improving the initialization of coupled forecast models rather than in providing a stand-alone climatological warning signal.
 
@@ -261,7 +254,7 @@ The bracketed numerals **[n]** throughout the text are endnote markers referring
 
 10. Landsea, C. W., and J. L. Franklin, 2013: Atlantic hurricane database uncertainty and presentation of a new database format. *Monthly Weather Review*, **141**(10), 3576–3592. doi:10.1175/MWR-D-12-00254.1
 
-    *Annotation.* Defines the HURDAT2 best-track format used as the primary data and characterizes its wind/position uncertainty — larger before the aircraft (pre-1944) and satellite (pre-1966) eras. Basis for the data description and limitations (§3; §9).
+    *Annotation.* Defines the HURDAT2 best-track format used as the primary data and characterizes its wind/position uncertainty — larger before the aircraft (pre-1944) and satellite (pre-1966) eras. Basis for the data description and limitations (§3; footnotes 1–2).
 
 11. Gramer, L. J., J. Steffen, M. Aristizabal Vargas, and H.-S. Kim, 2024: The impact of coupling a dynamic ocean in the Hurricane Analysis and Forecast System. *Frontiers in Earth Science*, **12**, 1418016. doi:10.3389/feart.2024.1418016
 
@@ -319,3 +312,7 @@ The bracketed numerals **[n]** throughout the text are endnote markers referring
 ---
 
 *Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1 [21], and Copernicus Marine GLORYS [22]. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
+
+[^1]: This test uses one ocean snapshot per storm sampled at the storm centre, so the storm's own cold wake and best-track position error add noise that biases the measured association low. A time-matched, pre-storm (ahead-of-track) D26 sample is the natural refinement, and is enabled by the same pipeline.
+
+[^2]: These findings are a climatological prior, to be combined with — not substituted for — real-time SST/D26 analysis, shear diagnosis, and model guidance. Best-track and observing-density biases (§3) argue for treating the *shape* of the hotspot as robust and its decade-to-decade magnitude as approximate. The onset-location signal partly reflects where weak storms first encounter deep warm water; the highest-impact RI to landfall occurs downstream in Zone B, which the protocol explicitly covers.

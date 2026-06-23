@@ -11,7 +11,7 @@ MD  = DIR / 'NOAA_RI_observation_report.md'
 OUT = DIR / 'NOAA_RI_observation_report.html'
 
 html_body = markdown.markdown(MD.read_text(encoding='utf-8'),
-                              extensions=['tables', 'toc', 'sane_lists', 'attr_list'])
+                              extensions=['tables', 'toc', 'sane_lists', 'attr_list', 'footnotes'])
 
 # inline local figure PNGs as base64 so the HTML is fully self-contained / portable
 def _inline(m):
@@ -47,6 +47,10 @@ blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:va
 img{display:block;max-width:100%;margin:24px auto 4px;border:1px solid var(--line);border-radius:8px;box-shadow:0 1px 5px rgba(0,0,0,.07)}
 img + em{display:block;text-align:center;color:var(--mute);font-size:13px;line-height:1.5;max-width:830px;margin:0 auto 24px}
 @media print{img{break-inside:avoid}}
+sup.footnote-ref{font-weight:600;color:var(--accent)}
+.footnote{font-size:13.5px;color:var(--mute);margin-top:34px;border-top:1px solid var(--line);padding-top:10px}
+.footnote ol{padding-left:22px} .footnote li{margin:7px 0}
+.footnote li p{margin:0;color:var(--mute)}
 .banner{background:linear-gradient(135deg,#0d2436,#123a44);color:#eaf3f5;border-radius:14px;
   padding:22px 26px;margin:0 0 28px}
 .banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
