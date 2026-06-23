@@ -136,9 +136,11 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 /* hide duplicate brand in map's own header */
 #panel-map header .brand{display:none}
 
-/* Analysis panel: full-bleed iframe of the RI paper (its own light theme, isolated) */
-#panel-analysis{overflow:hidden;background:#fbfcfd}
-#panel-analysis iframe{display:block;width:100%;height:100%;border:0}
+/* Analysis panel: full-bleed iframe of the RI paper (its own light theme, isolated).
+   Explicit height (viewport - 50px tabbar) so the iframe fills & scrolls reliably;
+   container overflow:auto + -webkit-overflow-scrolling fixes iframe scroll on iOS Safari. */
+#panel-analysis{overflow:auto;-webkit-overflow-scrolling:touch;background:#fbfcfd}
+#panel-analysis iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
 """
 
 # ── tab switcher JS ───────────────────────────────────────────────────────────
