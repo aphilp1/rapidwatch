@@ -166,7 +166,7 @@ The recommendation is deliberately mapped to existing and emerging NOAA/partner 
 
 ### 7.3 Environment and continuity
 - **NOAA G-IV synoptic-surveillance** dropsondes around the system to constrain **shear** and steering [7].
-- **Passive-microwave sounders/imagers** (ATMS, AMSR2, GMI, SSMIS) for inner-core structure through cloud. *Note: a single canonical peer-reviewed citation for the looming microwave-constellation coverage gap was not available at the time of writing; this is, however, a widely recognized operational concern within NOAA/NESDIS and the TC-analysis community and should be documented with current agency sources before formal submission.*
+- **Passive-microwave sounders/imagers** (ATMS, AMSR2, GMI, SSMIS) for inner-core structure through cloud — the channel that reveals eyewall and rainband organization beneath the cirrus canopy, often the first sign of imminent RI between aircraft fixes. This capability faces a documented near-term reduction: the Defense Meteorological Satellite Program (DMSP/SSMIS) is being discontinued, with data distribution to NOAA ending no later than 31 July 2025 [23], ahead of full replacement by the Weather System Follow-on – Microwave (WSF-M). Protecting and back-filling passive-microwave coverage over the Gulf is therefore a priority for RI monitoring.
 - **GOES-R rapid-scan / mesoscale sectors** (and future GeoXO) parked on the core box in season.
 - **Scatterometer (ASCAT) and SAR (Sentinel-1 / RADARSAT)** for high-resolution surface wind in and around the developing core.
 - **Moored buoys:** maintain/return key southern- and central-Gulf NDBC stations for ground-truth SST, wind, and pressure.
@@ -258,9 +258,9 @@ The bracketed numerals **[n]** throughout the text are endnote markers referring
 
     *Annotation.* Describes NOAA's Intensity Forecasting Experiment (IFEX), establishing the value of inner-core and targeted aircraft observations for intensity forecasting. Basis for the inner-core recommendation (§2; §7.2).
 
-17. National Hurricane Center (A. B. Hagen, R. Berg, and R. J. Pasch), 2025: *Hurricane Milton (AL142024) Tropical Cyclone Report*. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf
+17. Beven, J. L., II, L. Alaka, and C. Fritz, 2025: *Hurricane Milton (AL142024) Tropical Cyclone Report*, 5–10 October 2024. NOAA/National Hurricane Center, Miami, FL, issued 31 March 2025. https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf
 
-    *Annotation.* Official post-storm report documenting Hurricane Milton's extreme rapid intensification after forming in the Bay of Campeche. Source for the Milton case (§5.4; §5.7). *Author byline and issuance date should be confirmed from the report cover page before formal use.*
+    *Annotation.* Official post-storm report; documents Hurricane Milton's extreme rapid intensification to Category 5 (minimum central pressure below 900 mb) after forming in the Bay of Campeche. Source for the Milton case (§5.4; §5.7). Byline and 31 March 2025 issuance date confirmed from the report cover page.
 
 18. Beven, J. L., II, R. Berg, and A. Hagen, 2019: *Hurricane Michael (AL142018) Tropical Cyclone Report*. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142018_Michael.pdf
 
@@ -282,7 +282,11 @@ The bracketed numerals **[n]** throughout the text are endnote markers referring
 
     *Annotation.* The Copernicus Marine GLORYS12 reanalysis (product GLOBAL_MULTIYEAR_PHY_001_030) used to reconstruct D26 for storms through 2021 and the 76-storm population test; the companion Global Ocean Physics Analysis and Forecast product (GLOBAL_ANALYSISFORECAST_PHY_001_024) supplies 2022–2025. Used in §5.7 and the ocean pipeline.
 
-*All citations verified June 2026. Two items carry explicit caveats: the microwave-constellation coverage gap (§7.3) lacks a single peer-reviewed source and should be documented with current NOAA/NESDIS material before formal submission; and the author byline/date of the Milton Tropical Cyclone Report [17] should be confirmed from its cover page.*
+23. NOAA Office of Satellite and Product Operations (OSPO), 2025: *Discontinuation of Defense Meteorological Satellite Program (DMSP) data processing and distribution*. NOAA/NESDIS/OSPO operational message, 1 July 2025. https://www.ospo.noaa.gov/data/messages/2025/07/MSG_20250701_1815.html
+
+    *Annotation.* Agency notice documenting termination of DMSP/SSMIS passive-microwave data distribution to NOAA (no later than 31 July 2025), ahead of replacement by WSF-M. Basis for the passive-microwave coverage-gap concern (§7.3).
+
+*All citations verified June 2026. Both items previously flagged as open are now resolved: the Milton Tropical Cyclone Report byline [17] was confirmed from the report cover page (Beven, Alaka, and Fritz; issued 31 March 2025), and the passive-microwave coverage-gap concern (§7.3) is now supported by the NOAA/OSPO DMSP discontinuation notice [23].*
 
 ---
 

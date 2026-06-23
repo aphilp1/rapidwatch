@@ -228,7 +228,7 @@ blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:va
 <h3 id="73-environment-and-continuity">7.3 Environment and continuity</h3>
 <ul>
 <li><strong>NOAA G-IV synoptic-surveillance</strong> dropsondes around the system to constrain <strong>shear</strong> and steering [7].</li>
-<li><strong>Passive-microwave sounders/imagers</strong> (ATMS, AMSR2, GMI, SSMIS) for inner-core structure through cloud. <em>Note: a single canonical peer-reviewed citation for the looming microwave-constellation coverage gap was not available at the time of writing; this is, however, a widely recognized operational concern within NOAA/NESDIS and the TC-analysis community and should be documented with current agency sources before formal submission.</em></li>
+<li><strong>Passive-microwave sounders/imagers</strong> (ATMS, AMSR2, GMI, SSMIS) for inner-core structure through cloud — the channel that reveals eyewall and rainband organization beneath the cirrus canopy, often the first sign of imminent RI between aircraft fixes. This capability faces a documented near-term reduction: the Defense Meteorological Satellite Program (DMSP/SSMIS) is being discontinued, with data distribution to NOAA ending no later than 31 July 2025 [23], ahead of full replacement by the Weather System Follow-on – Microwave (WSF-M). Protecting and back-filling passive-microwave coverage over the Gulf is therefore a priority for RI monitoring.</li>
 <li><strong>GOES-R rapid-scan / mesoscale sectors</strong> (and future GeoXO) parked on the core box in season.</li>
 <li><strong>Scatterometer (ASCAT) and SAR (Sentinel-1 / RADARSAT)</strong> for high-resolution surface wind in and around the developing core.</li>
 <li><strong>Moored buoys:</strong> maintain/return key southern- and central-Gulf NDBC stations for ground-truth SST, wind, and pressure.</li>
@@ -311,8 +311,8 @@ blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:va
 <p><em>Annotation.</em> Describes NOAA's Intensity Forecasting Experiment (IFEX), establishing the value of inner-core and targeted aircraft observations for intensity forecasting. Basis for the inner-core recommendation (§2; §7.2).</p>
 </li>
 <li>
-<p>National Hurricane Center (A. B. Hagen, R. Berg, and R. J. Pasch), 2025: <em>Hurricane Milton (AL142024) Tropical Cyclone Report</em>. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf</p>
-<p><em>Annotation.</em> Official post-storm report documenting Hurricane Milton's extreme rapid intensification after forming in the Bay of Campeche. Source for the Milton case (§5.4; §5.7). <em>Author byline and issuance date should be confirmed from the report cover page before formal use.</em></p>
+<p>Beven, J. L., II, L. Alaka, and C. Fritz, 2025: <em>Hurricane Milton (AL142024) Tropical Cyclone Report</em>, 5–10 October 2024. NOAA/National Hurricane Center, Miami, FL, issued 31 March 2025. https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf</p>
+<p><em>Annotation.</em> Official post-storm report; documents Hurricane Milton's extreme rapid intensification to Category 5 (minimum central pressure below 900 mb) after forming in the Bay of Campeche. Source for the Milton case (§5.4; §5.7). Byline and 31 March 2025 issuance date confirmed from the report cover page.</p>
 </li>
 <li>
 <p>Beven, J. L., II, R. Berg, and A. Hagen, 2019: <em>Hurricane Michael (AL142018) Tropical Cyclone Report</em>. NOAA/National Hurricane Center, Miami, FL. https://www.nhc.noaa.gov/data/tcr/AL142018_Michael.pdf</p>
@@ -334,8 +334,12 @@ blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:va
 <p>Lellouche, J.-M., and Coauthors, 2021: The Copernicus Global 1/12° oceanic and sea ice GLORYS12 reanalysis. <em>Frontiers in Earth Science</em>, <strong>9</strong>, 698876. doi:10.3389/feart.2021.698876</p>
 <p><em>Annotation.</em> The Copernicus Marine GLORYS12 reanalysis (product GLOBAL_MULTIYEAR_PHY_001_030) used to reconstruct D26 for storms through 2021 and the 76-storm population test; the companion Global Ocean Physics Analysis and Forecast product (GLOBAL_ANALYSISFORECAST_PHY_001_024) supplies 2022–2025. Used in §5.7 and the ocean pipeline.</p>
 </li>
+<li>
+<p>NOAA Office of Satellite and Product Operations (OSPO), 2025: <em>Discontinuation of Defense Meteorological Satellite Program (DMSP) data processing and distribution</em>. NOAA/NESDIS/OSPO operational message, 1 July 2025. https://www.ospo.noaa.gov/data/messages/2025/07/MSG_20250701_1815.html</p>
+<p><em>Annotation.</em> Agency notice documenting termination of DMSP/SSMIS passive-microwave data distribution to NOAA (no later than 31 July 2025), ahead of replacement by WSF-M. Basis for the passive-microwave coverage-gap concern (§7.3).</p>
+</li>
 </ol>
-<p><em>All citations verified June 2026. Two items carry explicit caveats: the microwave-constellation coverage gap (§7.3) lacks a single peer-reviewed source and should be documented with current NOAA/NESDIS material before formal submission; and the author byline/date of the Milton Tropical Cyclone Report [17] should be confirmed from its cover page.</em></p>
+<p><em>All citations verified June 2026. Both items previously flagged as open are now resolved: the Milton Tropical Cyclone Report byline [17] was confirmed from the report cover page (Beven, Alaka, and Fritz; issued 31 March 2025), and the passive-microwave coverage-gap concern (§7.3) is now supported by the NOAA/OSPO DMSP discontinuation notice [23].</em></p>
 <hr />
 <p><em>Analysis and figures reproducible from <code>build_gulf_hurricanes.py</code>, <code>ri_climatology.py</code>, and the ocean-heat pipeline (<code>build_ohc_hycom.py</code>, <code>build_ohc_copernicus.py</code>, <code>analyze_d26_ri.py</code>, <code>scaled_d26_ri.py</code>) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1 [21], and Copernicus Marine GLORYS [22]. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.</em></p>
 </div></body></html>
