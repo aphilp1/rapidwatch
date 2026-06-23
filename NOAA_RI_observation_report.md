@@ -9,6 +9,18 @@
 
 ---
 
+## Abstract
+
+Rapid intensification — a large, fast increase in a hurricane's wind speed over a single day — is the most difficult part of hurricane forecasting and among the most dangerous situations for coastal communities, because it can turn a modest storm into a major one with little warning. The Gulf of Mexico is where this occurs most frequently in the United States.
+
+Using the complete NOAA best-track record of Atlantic hurricanes from 1851 to 2025, this analysis maps where and when rapid intensification occurs in the Gulf. Three results stand out. First, it is geographically concentrated: a storm is roughly three times more likely to begin rapidly intensifying in a specific zone of the southern Gulf — the Bay of Campeche and the Loop Current region — than in the Gulf on average. Second, it is strongly seasonal, with most cases in September and the large majority between August and October. Third, it typically begins while a storm is still weak, before it appears threatening.
+
+The analysis also used reconstructed ocean-temperature data to test directly whether the depth of warm water beneath a storm predicts rapid intensification. In individual major storms, intensification did occur over unusually deep warm water, consistent with established physics. Across 76 storms, however, the depth of warm water added little predictive information beyond a storm's location and the time of year — because location and season already indicate where the deep warm water lies.
+
+Together these results support a specific operational conclusion. Observations intended to improve rapid-intensification forecasts should be concentrated in the southern Gulf during late summer, positioned ahead of approaching or developing storms — including weak ones. The principal value of real-time ocean-heat measurements is in initializing the coupled computer models that forecast an individual storm, rather than in serving as a stand-alone climatological warning signal.
+
+---
+
 ## 1. Executive summary
 
 Rapid intensification (RI) — conventionally defined as a maximum-sustained-wind increase of **≥30 kt in 24 h**, the ~95th percentile of 24-h over-water intensity change [1] — remains the single hardest hurricane-forecast problem [3], and the Gulf of Mexico is where it most often turns a routine system into a coastal catastrophe with little warning (Camille 1969; Katrina/Rita 2005 [5][6]; Michael 2018 [18]; Ida 2021; Milton 2024 [17]).
