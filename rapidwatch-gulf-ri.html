@@ -976,6 +976,10 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .legkey{margin-top:11px;padding-top:11px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .legkey div{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono";font-size:10px;color:var(--mute)}
 .legkey .mk{width:11px;height:11px;border-radius:50%;flex:none}
+.season .months{display:flex;gap:2px;margin:4px 0}
+.season .months span{flex:1;text-align:center;font:600 9px/16px 'IBM Plex Mono',monospace;color:var(--slate);background:rgba(255,255,255,.04);border-radius:2px}
+.season .months .hi{background:rgba(255,138,61,.22);color:var(--amber)}
+.season .months .pk{background:var(--amber);color:#15100a;font-weight:700}
 #about{top:14px;right:14px;width:272px;padding:15px 17px}
 #about .ak{font-family:"IBM Plex Mono";font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
 #about h3{font-family:"Space Grotesk";font-weight:600;font-size:14px;margin:7px 0 7px}
@@ -1744,6 +1748,14 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
         <span><span class="mk" style="width:9px;height:9px;background:#e85ad6;display:inline-block;margin-right:4px;vertical-align:middle"></span>5</span>
         <span><span style="display:inline-block;width:9px;height:9px;border:1.4px solid #ff8a3d;border-radius:50%;margin-right:4px;vertical-align:middle"></span>RI</span>
       </div>
+    </div>
+    <div class="legkey season">
+      <div style="color:var(--slate);font-size:9.5px;letter-spacing:.1em">RI-ONSET SEASON · 84% AUG–OCT</div>
+      <div class="months">
+        <span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+        <span>J</span><span class="hi">A</span><span class="pk">S</span><span class="hi">O</span><span>N</span><span>D</span>
+      </div>
+      <div style="color:var(--slate);font-size:9px;letter-spacing:.08em">peak September</div>
     </div>
   </div>
   <div class="panel" id="about">
@@ -2702,7 +2714,37 @@ map.on('click',e=>{
     .openOn(map);
 });
 
+/* GULF RI WATCH PROTOCOL — onset core/watch boxes + Zone B corridor (coords/figures from NOAA_RI_observation_report) */
+const riWatchLayer = L.layerGroup();
+// Core box — 20.9–22.9°N, 91.6–93.9°W
+L.rectangle([[20.9,-93.9],[22.9,-91.6]],
+  {color:'#ff8a3d',weight:2,fillOpacity:.18})
+  .bindPopup("RI-onset core box — P(RI onset | fix) 23.1%, 3.1× basin lift. "
+    +"Official best-track climatology 1851–2025 (n=326 Gulf hurricanes, "
+    +"411 onset intervals).").addTo(riWatchLayer);
+// Watch box — 20.1–23.4°N, 84.4–95.1°W
+L.rectangle([[20.1,-95.1],[23.4,-84.4]],
+  {color:'#ff8a3d',weight:1.5,fillOpacity:.07,dashArray:'5,4'})
+  .bindPopup("RI-onset watch box — 14.6% (1.95× lift). Includes the Yucatán "
+    +"Channel / Loop Current intrusion.").addTo(riWatchLayer);
+// Peak-density cell — 21.6°N, 92.9°W
+L.circleMarker([21.6,-92.9],{radius:5,color:'#ff8a3d',weight:2,fillColor:'#ff8a3d',fillOpacity:.9})
+  .bindPopup("Peak RI-onset density cell").addTo(riWatchLayer);
+// Onset-weighted centroid — 22.7°N, 88.6°W
+L.circleMarker([22.7,-88.6],{radius:6,color:'#ff8a3d',weight:2,fillColor:'#fff',fillOpacity:.95})
+  .bindPopup("Onset-weighted centroid").addTo(riWatchLayer);
+
+const zoneBLayer = L.layerGroup();
+// Zone B corridor — 24–29°N, 86–94°W
+L.rectangle([[24,-94],[29,-86]],
+  {color:'#ffb27a',weight:1.5,fillOpacity:.05,dashArray:'2,5'})
+  .bindPopup("Zone B — Loop Current corridor & north-central shelf. Where RI "
+    +"continues to U.S. landfall (Katrina, Rita, Michael, Ida). Highest-stakes "
+    +"for warning.").addTo(zoneBLayer);
+
 const registry=[
+ {key:'RI Watch zone (onset)',lyr:riWatchLayer,on:true,heat:true},
+ {key:'Loop Current corridor (Zone B)',lyr:zoneBLayer,on:false,heat:true},
  {key:'Loop Current + flow arrows',lyr:loopLayer,on:false,heat:true},
  {key:'Loop Current OHC corridor',lyr:corridorLayer,on:false,heat:true},
  {key:'Gulf peak-season warm pool',lyr:ohcGulfLayer,on:false,heat:true},
