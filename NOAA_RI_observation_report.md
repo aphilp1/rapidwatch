@@ -27,6 +27,10 @@ Together these results support a specific operational conclusion. Observations i
 
 ---
 
+> **Rapid intensification (RI) — definition.** A tropical cyclone is said to *rapidly intensify* when its maximum sustained wind increases by **at least 30 knots (≈ 35 mph) within 24 hours** — the ~95th percentile of all 24-hour over-water intensity changes in the North Atlantic [1]. This ≥ 30 kt / 24 h threshold, the operational standard, is used throughout this memorandum.
+
+---
+
 ## 1. Executive summary
 
 Rapid intensification (RI) — conventionally defined as a maximum-sustained-wind increase of **≥30 kt in 24 h**, the ~95th percentile of 24-h over-water intensity change [1] — remains the single hardest hurricane-forecast problem [3], and the Gulf of Mexico is where it most often turns a routine system into a coastal catastrophe with little warning (Camille 1969; Katrina/Rita 2005 [5][6]; Michael 2018 [18]; Ida 2021; Milton 2024 [17]).
@@ -132,13 +136,16 @@ Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch
 
 **Case studies (four marquee storms).** Sampling real D26 at each storm's RI onset, three of four rapidly intensified over distinctly deep warm water: **Katrina 82 m, Rita 67 m, Helene 104 m — 1.2–1.7× the contemporaneous Gulf-median D26.** The exception is instructive: **Milton (2024)**, the most explosive case (+80 kt/24 h), began its RI over the Bay of Campeche where D26 was only ~52 m (below the Gulf median) — its fuel was record SST and near-zero shear, not the deepest ocean heat. Deep warm water *amplifies* RI but is not its sole trigger.
 
+![Measured D26 beneath the four storms](figures/fig6_storm_d26_maps.png)
+*__Figure 4.__ Measured ocean heat (depth of the 26 °C isotherm, D26) beneath each of the four storms at its rapid-intensification time, with the storm track (black), the strengthening run-up to peak intensity (blue), and the peak (★). Darker red marks deeper warm water. Katrina, Rita, and Helene intensified over the deep warm Loop Current region of the central and eastern Gulf; Milton intensified over the Bay of Campeche.*
+
 ![Four-storm D26 co-location](figures/fig5_storm_d26.png)
 *__Figure 5.__ Measured D26 along each storm's RI run-up versus the Gulf-median D26 that day. Three of four storms intensified over distinctly deep warm water (1.2–1.7× the median); Milton (2024) is the instructive exception — its record rapid intensification occurred over below-median D26 in the Bay of Campeche, driven by record SST and near-zero shear.*
 
 **Population test (76 Gulf hurricanes, 1994–2025; 698 fixes, 89 RI onsets).** Across the full ocean-reanalysis-era sample, D26 only weakly separates RI-onset fixes from non-RI fixes (**median 46 vs 44 m; Mann–Whitney p ≈ 0.07; AUC of D26 alone = 0.55**). RI rate rises monotonically but modestly across D26 terciles (10.0% → 13.6% → 14.7%). Critically, in a cross-validated logistic model **D26 adds essentially no skill beyond latitude, longitude, season, and current intensity** (AUC 0.693 → 0.689).
 
 ![Scaled D26-vs-RI test](figures/fig4_scaled_d26.png)
-*__Figure 4.__ Population test across 76 Gulf hurricanes (1994–2025; 698 fixes, 89 RI onsets). (A) Measured ocean heat at RI-onset fixes barely exceeds that at non-RI fixes (medians 46 vs 44 m; area under the ROC curve = 0.55, where 0.5 is no skill). (B) RI rate rises only modestly across D26 terciles and adds no skill beyond location, season, and current intensity. Interpretation: location and season already encode the ocean-heat climatology (Section 5.7).*
+*__Figure 6.__ Population test across 76 Gulf hurricanes (1994–2025; 698 fixes, 89 RI onsets). (A) Measured ocean heat at RI-onset fixes barely exceeds that at non-RI fixes (medians 46 vs 44 m; area under the ROC curve = 0.55, where 0.5 is no skill). (B) RI rate rises only modestly across D26 terciles and adds no skill beyond location, season, and current intensity. Interpretation: location and season already encode the ocean-heat climatology (Section 5.7).*
 
 **Interpretation.** This is *not* evidence that ocean heat is unimportant — it is evidence that, over the Gulf in the warm season, **location and season already encode the ocean-heat climatology**: knowing a storm is in the deep-warm southern Gulf in September conveys nearly the same information a D26 field would. Two consequences follow, both of which *reinforce* this memo's recommendation:
 1. **Climatological targeting by geography and season (Sections 5.1–5.2) is the correct basis for pre-positioning** — it already captures the ocean-heat signal without requiring a real-time D26 analysis.
@@ -156,6 +163,9 @@ Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch
 **Where.**
 - **Primary (Zone A):** the core box **20.9–22.9 °N, 91.6–93.9 °W**, expanded to the elevated watch box **20.1–23.4 °N, 84.4–95.1 °W** to include the Yucatan Channel intrusion.
 - **Secondary (Zone B):** the Loop Current corridor and north-central shelf along the storm's forecast track.
+
+![Two operational watch zones](figures/fig7_zones.png)
+*__Figure 7.__ The two operational watch zones. Zone A (red) — the southern-Gulf onset core, where RI most often begins in weak systems entering from the south; sample the ocean ahead of the storm here. Zone B (amber) — the Loop Current corridor and north-central shelf, where RI continues to U.S. landfall (Katrina, Rita, Michael, Ida). A complete strategy samples both.*
 
 **When / lead time.** Concentrate observations **12–36 h ahead of projected RI onset** and **ahead of the storm's track** — i.e., sample the ocean and environment the storm is *about to enter*, not the wake it leaves behind. In the warm season (Aug–Oct), treat any qualifying system as RI-capable by default.
 

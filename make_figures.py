@@ -144,6 +144,67 @@ def fig5():
     ax.set_axisbelow(True); ax.grid(axis='x', alpha=0)
     fig.savefig(FIG / 'fig5_storm_d26.png'); plt.close(fig)
 
+# ── Fig 6: measured D26 beneath each storm, with track ────────────────────────
+def _load_d26(fn):
+    d = json.loads((DIR / 'data' / 'ohc' / f'{fn}_d26.json').read_text())
+    lats = np.array(d['lats']); lons = np.array(d['lons'])
+    grid = np.array([[np.nan if v is None else v for v in row] for row in d['d26']])
+    return lats, lons, grid, d.get('time_utc', '')
+
+def fig6():
+    cells = [('Katrina', 'AL122005', 'katrina'), ('Rita', 'AL182005', 'rita'),
+             ('Helene', 'AL092024', 'helene'), ('Milton', 'AL142024', 'milton')]
+    storms = {s['id']: s for s in g.parse_hurdat(g.SRC)}
+    fig, axs = plt.subplots(2, 2, figsize=(11, 9.2))
+    pm = None
+    for ax, (nm, sid, fn) in zip(axs.flat, cells):
+        lats, lons, grid, tval = _load_d26(fn)
+        pm = ax.pcolormesh(lons, lats, grid, cmap='YlOrRd', shading='nearest', vmin=0, vmax=180)
+        poly = np.array(g.GULF_POLY + [g.GULF_POLY[0]])
+        ax.plot(poly[:, 0], poly[:, 1], color='#33444f', lw=1, alpha=.6)
+        tr = storms[sid]['track']
+        ax.plot([p['lon'] for p in tr], [p['lat'] for p in tr], color='#16222e', lw=1.2, alpha=.85)
+        ramp = g.intensification_to_peak(tr)
+        if ramp:
+            rc = np.array(ramp['coords'])
+            ax.plot(rc[:, 0], rc[:, 1], color='#103a6e', lw=3.2, solid_capstyle='round')
+            ax.plot(ramp['peak_lon'], ramp['peak_lat'], '*', ms=13, mfc='#fff', mec='#103a6e', mew=1.3)
+        ax.set_xlim(-98, -80); ax.set_ylim(18, 31); ax.set_aspect(1.15)
+        ax.set_title(f"{nm} — {tval[:10]}", fontsize=11)
+        ax.set_xticks(range(-96, -79, 4)); ax.set_xticklabels([str(abs(x)) for x in range(-96, -79, 4)])
+        ax.tick_params(labelsize=8); ax.grid(alpha=.15)
+    fig.suptitle('Measured ocean heat (D26) beneath each storm, with its rapid-intensification run-up (blue) and peak (★)',
+                 fontsize=12.5, fontweight='bold', y=.995)
+    cb = fig.colorbar(pm, ax=axs, shrink=.62, pad=.02)
+    cb.set_label('D26 — depth of the 26 °C isotherm (m);  deeper = more ocean heat')
+    fig.savefig(FIG / 'fig6_storm_d26_maps.png'); plt.close(fig)
+
+# ── Fig 7: two operational watch zones ────────────────────────────────────────
+def fig7():
+    st = CLIM['stats']; cb, wb = st['core_box'], st['watch_box']
+    fig, ax = plt.subplots(figsize=(8.4, 5.9))
+    poly = np.array(g.GULF_POLY + [g.GULF_POLY[0]])
+    ax.fill(poly[:, 0], poly[:, 1], color='#eef3f6', zorder=0)
+    ax.plot(poly[:, 0], poly[:, 1], color='#33444f', lw=1.2)
+    # Zone B — Loop Current corridor / landfall continuation
+    ax.add_patch(Rectangle((-94, 24), 8, 5, fc=AMBER, ec=AMBER, alpha=.16, lw=1.6))
+    ax.add_patch(Rectangle((-94, 24), 8, 5, fill=False, ec=AMBER, lw=1.6))
+    # Zone A — onset core + watch
+    ax.add_patch(Rectangle((wb['lon0'], wb['lat0']), wb['lon1']-wb['lon0'], wb['lat1']-wb['lat0'],
+                 fill=False, ec=RED, ls='--', lw=1.5))
+    ax.add_patch(Rectangle((cb['lon0'], cb['lat0']), cb['lon1']-cb['lon0'], cb['lat1']-cb['lat0'],
+                 fc=RED, ec=RED, alpha=.22, lw=2.2))
+    ax.annotate('ZONE A — onset\nsouthern Gulf core\n(sample ocean ahead,\neven of weak storms)',
+                (-92.7, 21.7), fontsize=9, color='#7a1f17', ha='center', va='center', fontweight='bold')
+    ax.annotate('ZONE B — continuation\nLoop Current corridor &\nN-central shelf (RI to landfall)',
+                (-89.5, 26.6), fontsize=9, color='#7a5a18', ha='center', va='center', fontweight='bold')
+    ax.annotate('Yucatan\nChannel', (-85.7, 21.6), fontsize=8, color='#33444f', ha='center')
+    ax.set_xlim(-98, -80); ax.set_ylim(18, 31); ax.set_aspect(1.15)
+    ax.set_xticks(range(-96, -79, 4)); ax.set_xticklabels([str(abs(x)) for x in range(-96, -79, 4)])
+    ax.set_xlabel('Longitude (°W)'); ax.set_ylabel('Latitude (°N)')
+    ax.set_title('Two operational watch zones for Gulf RI observations')
+    fig.savefig(FIG / 'fig7_zones.png'); plt.close(fig)
+
 if __name__ == '__main__':
-    fig1(); fig2(); fig3(); fig4(); fig5()
+    fig1(); fig2(); fig3(); fig4(); fig5(); fig6(); fig7()
     print("Wrote figures:", *[p.name for p in sorted(FIG.glob('*.png'))])
