@@ -213,9 +213,9 @@ The resulting observational priority is specific and testable. When a tropical c
 
 ---
 
-## Endnotes — annotated bibliography
+## Annotated Bibliography
 
-The bracketed numerals **[n]** throughout the text are endnote markers referring to the numbered entries below. Each entry gives the full citation followed by a short annotation describing the source and its specific role in this memorandum. All entries were verified against publisher pages, DOIs, or official NOAA/NHC sources (June 2026).
+The bracketed numerals **[n]** throughout the text refer to the numbered entries below; superscript numerals (¹ ²) refer to the footnotes. Each entry gives the full citation followed by a short annotation describing the source and its specific role in this memorandum. All entries were verified against publisher pages, DOIs, or official NOAA/NHC sources (June 2026).
 
 1. Kaplan, J., and M. DeMaria, 2003: Large-scale characteristics of rapidly intensifying tropical cyclones in the North Atlantic basin. *Weather and Forecasting*, **18**(6), 1093–1108. doi:10.1175/1520-0434(2003)018<1093:LCORIT>2.0.CO;2
 
