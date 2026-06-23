@@ -2220,6 +2220,45 @@ const riClimLayer=L.layerGroup();
   }catch(e){}
 })();
 
+/* REAL D26 (HYCOM) — measured depth of the 26°C isotherm for the 2005 storms, computed from HYCOM GOFS 3.1 reanalysis 3-D ocean temperature; rendered as a georeferenced raster */
+function makeRealD26Layer(file){
+  const grp=L.layerGroup();
+  (async function(){
+    try{
+      const r=await fetch(file); if(!r.ok) throw new Error('d26-unavailable');
+      const d=await r.json();
+      const lats=d.lats, lons=d.lons, g=d.d26, ny=lats.length, nx=lons.length;
+      const asc=lats[0]<lats[ny-1];
+      const cvs=document.createElement('canvas'); cvs.width=nx; cvs.height=ny;
+      const ctx=cvs.getContext('2d'); const img=ctx.createImageData(nx,ny);
+      const col=v=>{                       // D26 metres -> rgba (shallow=teal, deep warm=red)
+        if(v==null) return [0,0,0,0];
+        const t=Math.max(0,Math.min(1,v/180));
+        let R,G,B;
+        if(t<0.5){const u=t/0.5; R=20+u*40; G=120+u*130; B=200-u*30;}
+        else{const u=(t-0.5)/0.5; R=60+u*195; G=250-u*170; B=170-u*150;}
+        return [R|0,G|0,B|0,165];
+      };
+      for(let row=0; row<ny; row++){
+        const dr=asc?(ny-1-row):row;       // image row 0 = north
+        for(let cx=0; cx<nx; cx++){
+          const c=col(g[dr][cx]); const p=(row*nx+cx)*4;
+          img.data[p]=c[0]; img.data[p+1]=c[1]; img.data[p+2]=c[2]; img.data[p+3]=c[3];
+        }
+      }
+      ctx.putImageData(img,0,0);
+      const bounds=[[Math.min(lats[0],lats[ny-1]),Math.min(lons[0],lons[nx-1])],
+                    [Math.max(lats[0],lats[ny-1]),Math.max(lons[0],lons[nx-1])]];
+      L.imageOverlay(cvs.toDataURL(),bounds,{opacity:.72,interactive:false}).addTo(grp);
+    }catch(e){}
+  })();
+  return grp;
+}
+const d26KatrinaLayer=makeRealD26Layer('data/ohc/katrina_d26.json');
+const d26RitaLayer=makeRealD26Layer('data/ohc/rita_d26.json');
+const d26HeleneLayer=makeRealD26Layer('data/ohc/helene_d26.json');
+const d26MiltonLayer=makeRealD26Layer('data/ohc/milton_d26.json');
+
 /* GULF SURFACE CURRENTS — improved particle animation with analytical eddy velocity */
 (function(){
   const NX=18,NY=12,LO1=-97,LA1=31;
@@ -2690,6 +2729,10 @@ const registry=[
  {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:false,heat:true},
  {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Warm water depth (D26 glow)',lyr:warmDepthLayer,on:false,heat:true},
+ {key:'Real D26 — Katrina 27 Aug 2005 (HYCOM)',lyr:d26KatrinaLayer,on:false,heat:true},
+ {key:'Real D26 — Rita 20 Sep 2005 (HYCOM)',lyr:d26RitaLayer,on:false,heat:true},
+ {key:'Real D26 — Helene 25 Sep 2024 (Copernicus)',lyr:d26HeleneLayer,on:false,heat:true},
+ {key:'Real D26 — Milton 6 Oct 2024 (Copernicus)',lyr:d26MiltonLayer,on:false,heat:true},
  {key:'Graticule',lyr:grat,on:false,heat:false},
  {key:'Reference cities',lyr:cityLayer,on:false,heat:false}
 ];
