@@ -5,7 +5,7 @@
 **Prepared by:** Alex Philp, Ph.D. · RapidWatch (independent analysis)
 **Date:** 21 June 2026
 **For consideration by:** NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); NOAA Office of Marine & Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS glider program. *cc: Joint Hurricane Testbed.*
-**Primary data:** NOAA HURDAT2 Atlantic best-track database, 1851–2025 (02-27-2026 release) [10].
+**Primary data:** NOAA HURDAT2 Atlantic best-track database, 1851–2025 (02-27-2026 release) [10]. **Ocean data:** HYCOM GOFS 3.1 reanalysis [11][12] and Copernicus Marine GLORYS reanalysis/analysis (depth of the 26 °C isotherm, D26).
 
 ---
 
@@ -21,6 +21,7 @@ Using 175 years of NOAA best-track data [10], we built an **observed RI climatol
 - **RI begins while storms are still weak:** the median intensity at RI onset is **50 kt**, and **66% of RI onsets occur at tropical-storm strength or below.** The storms that blow up are not the ones that already look dangerous — consistent with the climatological RI predictors used operationally [1][2].
 - **Timing is tightly seasonal:** **September is the peak month and 84% of all RI onsets occur August–October.**
 - The hotspot is **co-located with the Gulf's two deepest warm-water features** — the Loop Current intrusion through the Yucatan Channel and the Bay of Campeche warm pool — exactly as the ocean-heat-content mechanism predicts [4][5][6].
+- **A direct test with measured ocean heat (Section 5.7) confirms the mechanism case-by-case but shows that D26 adds no *climatological* skill beyond location and season** — because geography and season already encode it. This validates pre-positioning by location/season and locates the value of real-time ocean observations in dynamical-model initialization, not in standalone climatological prediction.
 
 **Recommendation:** When a system forms in, or is forecast to enter, the Gulf (including the NW Caribbean approach through the Yucatan Channel), pre-position **upper-ocean-heat-content and inner-core observations over the southern-Gulf RI core box *ahead of the storm*, 12–36 h before projected onset, even when the system is only a tropical storm.** A second, high-stakes watch applies to the **Loop Current corridor and north-central shelf**, where RI *continues* to U.S. landfall. Section 6 specifies the protocol; Section 7 specifies the platforms.
 
@@ -98,6 +99,19 @@ A complete strategy samples **both**: the ocean ahead in Zone A to catch onset, 
 These results are not an outlier of one method. Yaukey (2014) found that the **highest mean tropical-cyclone intensification rates in the North Atlantic occur in the Gulf of Mexico and Caribbean Sea** [20], and Benedetto & Mercer (2020) produced a spatiotemporal climatology of North Atlantic RI from the same HURDAT record and likewise identified the Gulf/western-Caribbean as a preferred RI region [19]. Our contribution is to (a) restrict to Gulf-entering hurricanes, (b) normalize by storm traffic to isolate *propensity*, and (c) translate the result into an explicit, coordinate-bounded observing-target box with a quantified lift.
 
 ---
+
+### 5.7 A direct test with measured ocean heat (D26)
+Sections 5.1–5.4 infer the ocean-heat link from geography. With the RapidWatch ocean pipeline we now test it directly, reconstructing the measured depth of the 26 °C isotherm (D26) — from HYCOM GOFS 3.1 reanalysis (≤2015) and Copernicus Marine GLORYS (2016–2025) — and co-locating it with the best track.
+
+**Case studies (four marquee storms).** Sampling real D26 at each storm's RI onset, three of four rapidly intensified over distinctly deep warm water: **Katrina 82 m, Rita 67 m, Helene 104 m — 1.2–1.7× the contemporaneous Gulf-median D26.** The exception is instructive: **Milton (2024)**, the most explosive case (+80 kt/24 h), began its RI over the Bay of Campeche where D26 was only ~52 m (below the Gulf median) — its fuel was record SST and near-zero shear, not the deepest ocean heat. Deep warm water *amplifies* RI but is not its sole trigger.
+
+**Population test (76 Gulf hurricanes, 1994–2025; 698 fixes, 89 RI onsets).** Across the full ocean-reanalysis-era sample, D26 only weakly separates RI-onset fixes from non-RI fixes (**median 46 vs 44 m; Mann–Whitney p ≈ 0.07; AUC of D26 alone = 0.55**). RI rate rises monotonically but modestly across D26 terciles (10.0% → 13.6% → 14.7%). Critically, in a cross-validated logistic model **D26 adds essentially no skill beyond latitude, longitude, season, and current intensity** (AUC 0.693 → 0.689).
+
+**Interpretation.** This is *not* evidence that ocean heat is unimportant — it is evidence that, over the Gulf in the warm season, **location and season already encode the ocean-heat climatology**: knowing a storm is in the deep-warm southern Gulf in September conveys nearly the same information a D26 field would. Two consequences follow, both of which *reinforce* this memo's recommendation:
+1. **Climatological targeting by geography and season (Sections 5.1–5.2) is the correct basis for pre-positioning** — it already captures the ocean-heat signal without requiring a real-time D26 analysis.
+2. **The operational value of real-time ocean-heat observations lies in the dynamical forecast model, not in standalone climatological prediction.** Coupled models (HAFS [11][12]) need accurate D26 to represent the cold-wake feedback and the case-specific conjunction of deep heat with low shear — e.g., Katrina's warm-ring crossing [4] — precisely the anomalies a climatology cannot supply.
+
+**Caveat.** This test uses one ocean snapshot per storm sampled at the storm centre, so the storm's own cold wake and best-track position error add noise that biases the measured association low. A time-matched, **pre-storm (ahead-of-track) D26 sample** is the natural refinement — and is enabled by the same pipeline.
 
 ## 6. Recommendation: the Gulf RI Watch protocol
 
@@ -189,4 +203,4 @@ All references below were verified against publisher pages, DOIs, or official NO
 
 ---
 
-*Analysis and figures reproducible from `ri_climatology.py` and `build_gulf_hurricanes.py` (NOAA HURDAT2 1851–2025 [10]). Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," and "RI climatology hotspot."*
+*Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1, and Copernicus Marine GLORYS. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
