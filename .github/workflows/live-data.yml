@@ -32,7 +32,8 @@ jobs:
         run: |
           git config user.name  "rapidwatch-bot"
           git config user.email "aphilp1@users.noreply.github.com"
-          git add data/ndbc data/nhc data/nhc_currentstorms.json
+          git add data/ndbc data/nhc_currentstorms.json
+          if [ -d data/nhc ]; then git add data/nhc; fi   # only exists when storms are active
           if git diff --cached --quiet; then
             echo "No data changes this run."
           else
