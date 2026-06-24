@@ -1290,6 +1290,38 @@ const d26RitaLayer=makeRealD26Layer('data/ohc/rita_d26.json');
 const d26HeleneLayer=makeRealD26Layer('data/ohc/helene_d26.json');
 const d26MiltonLayer=makeRealD26Layer('data/ohc/milton_d26.json');
 
+/* MILTON 2024 — live GOES-16 Band-13 IR rapid-intensification animation (georeferenced video overlay) */
+function makeMiltonRILayer(){
+  const grp=L.layerGroup();
+  const bounds=[[16.5,-98.0],[28.5,-80.0]];                       // [[S,W],[N,E]] = render extent
+  const vid=L.videoOverlay(['data/overlays/milton_ir.webm','data/overlays/milton_ir.mp4'],bounds,
+    {opacity:0.95,autoplay:true,loop:true,muted:true,playsInline:true,keepAspectRatio:false,interactive:false});
+  grp.addLayer(vid);
+  vid.on('add',()=>{const v=vid.getElement(); if(v){v.muted=true; v.play&&v.play().catch(()=>{});}});
+  const catCol=kt=> kt>=137?'#FF3B5C': kt>=113?'#ff6b3d': kt>=96?'#FFB24D': kt>=83?'#ffe05a': kt>=64?'#fff2a8': kt>=34?'#3CDDC9':'#7FE3FF';
+  (async function(){
+    try{
+      const r=await fetch('data/storms.geojson'); if(!r.ok) return;
+      const g=await r.json();
+      const pts=g.features
+        .filter(f=>String(f.properties.name).toUpperCase()==='MILTON' && f.geometry.type==='Point')
+        .map(f=>({lon:f.geometry.coordinates[0],lat:f.geometry.coordinates[1],
+                  kt:f.properties.wind_kt,ri:!!f.properties.rapid_intensifying,t:f.properties.time_utc}))
+        .sort((a,b)=>a.t<b.t?-1:1);
+      if(pts.length>1)
+        L.polyline(pts.map(p=>[p.lat,p.lon]),{color:'#ffffff',weight:2,opacity:0.85}).addTo(grp);
+      pts.forEach(p=>{
+        L.circleMarker([p.lat,p.lon],{radius:3.6,color:p.ri?'#FF3B5C':'#ffffff',
+          weight:p.ri?1.6:0.8,fillColor:catCol(p.kt),fillOpacity:0.95})
+         .bindPopup(`<b>Milton</b> · ${p.t}<br>${p.kt} kt${p.ri?' · <span style="color:#FF3B5C">RAPIDLY INTENSIFYING</span>':''}`)
+         .addTo(grp);
+      });
+    }catch(e){}
+  })();
+  return grp;
+}
+const miltonRILayer=makeMiltonRILayer();
+
 /* GULF SURFACE CURRENTS — improved particle animation with analytical eddy velocity */
 (function(){
   const NX=18,NY=12,LO1=-97,LA1=31;
@@ -1776,6 +1808,7 @@ const registry=[
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
  {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
  {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:false,heat:true},
+ {key:'★ Milton 2024 — live GOES-16 RI animation',lyr:miltonRILayer,on:false,heat:false},
  {key:'Historical Gulf hurricanes (326 · 1851–2025 · HURDAT2)',lyr:histTracksLayer,on:false,heat:false},
  {key:'Intensification to peak (run-up · red = rapid)',lyr:intensLayer,on:false,heat:false},
  {key:'NHC active storm cone (live)',lyr:nhcLayer,on:false,heat:false},

@@ -6,3 +6,10 @@ __pycache__/
 data/ohc_raw/*.nc
 data/ohc/raw/
 *.nc
+
+# GOES experiment (large binaries)
+data/goes_cache/
+data/milton_frames/
+milton_test_frame.png
+data/milton_overlay_frames/
+milton_overlay_test.png
