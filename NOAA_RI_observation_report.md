@@ -2,16 +2,13 @@
 
 #### A climatological targeting recommendation for rapid-intensification (RI) observations in the Gulf of Mexico
 
-*Technical memorandum · RapidWatch independent analysis · not for distribution*
+*Technical memorandum · RapidWatch independent analysis · not for distribution*[^data]
 
 | | |
 |---|---|
 | **Author** | Alex Philp, Ph.D. — RapidWatch |
 | **Date** | 21 June 2026 *(revised 22 June 2026)* |
 | **Prepared for** | NOAA National Hurricane Center (NHC); AOML Hurricane Research Division (HRD); Office of Marine & Aviation Operations / Aircraft Operations Center (OMAO/AOC); NESDIS; U.S. IOOS Underwater Glider Program |
-| **Copy** | Joint Hurricane Testbed |
-| **Best-track data** | NOAA HURDAT2 Atlantic database, 1851–2025 (release 2026-02-27) [10] |
-| **Ocean data** | HYCOM GOFS 3.1 reanalysis [21]; Copernicus Marine GLORYS reanalysis & analysis [22] — depth of the 26 °C isotherm (D26) |
 
 ---
 
@@ -262,6 +259,8 @@ The bracketed numerals **[n]** throughout the text refer to the numbered entries
 ---
 
 *Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1 [21], and Copernicus Marine GLORYS [22]. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
+
+[^data]: **Data sources.** Best-track: NOAA HURDAT2 Atlantic database, 1851–2025 (release 2026-02-27) [10]. Ocean: HYCOM GOFS 3.1 reanalysis [21]; Copernicus Marine GLORYS reanalysis & analysis [22] — depth of the 26 °C isotherm (D26).
 
 [^1]: This test uses one ocean snapshot per storm sampled at the storm centre, so the storm's own cold wake and best-track position error add noise that biases the measured association low. A time-matched, pre-storm (ahead-of-track) D26 sample is the natural refinement, and is enabled by the same pipeline.
 
