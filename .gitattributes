@@ -1,0 +1,7 @@
+# Keep line endings stable across Windows (local) and Linux (GitHub Actions),
+# so the live-data refresh job doesn't produce phantom CRLF/LF diffs each run.
+data/ndbc/*.txt            text eol=lf
+data/nhc/*.geojson         text eol=lf
+data/nhc_currentstorms.json text eol=lf
+build_live_data.py         text eol=lf
+*.yml                      text eol=lf
