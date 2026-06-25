@@ -20,13 +20,19 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ---- per-storm config ----
 STORMS = {
-    "milton": dict(name="Milton", year=2024, bucket="noaa-goes16",
+    "milton": dict(name="Milton", year=2024, source="abi", bucket="noaa-goes16",
                    start=(2024, 10, 5, 12), end=(2024, 10, 8, 0),
                    bounds=(-98.0, -80.0, 16.5, 28.5), d26="data/ohc/milton_d26.json"),
-    "helene": dict(name="Helene", year=2024, bucket="noaa-goes16",
+    "helene": dict(name="Helene", year=2024, source="abi", bucket="noaa-goes16",
                    start=(2024, 9, 24, 6), end=(2024, 9, 27, 6),
                    bounds=(-91.0, -79.0, 16.5, 32.0), d26="data/ohc/helene_d26.json"),
-    # 2005 storms are GOES-12 era (not on noaa-goes16) — data-source hunt required.
+    # 2005 storms = GOES-12 era -> GridSat-GOES (NCEI, anonymous HTTPS, hourly, var ch4)
+    "katrina": dict(name="Katrina", year=2005, source="gridsat", sat="goes12",
+                    start=(2005, 8, 26, 0), end=(2005, 8, 29, 6),
+                    bounds=(-92.0, -79.0, 22.5, 31.0), d26="data/ohc/katrina_d26.json"),
+    "rita": dict(name="Rita", year=2005, source="gridsat", sat="goes12",
+                 start=(2005, 9, 19, 18), end=(2005, 9, 23, 0),
+                 bounds=(-93.0, -78.0, 21.5, 29.0), d26="data/ohc/rita_d26.json"),
 }
 
 # ---- palette ----
@@ -38,7 +44,9 @@ LON0 = LON1 = LAT0 = LAT1 = None
 BUCKET = None
 PRODUCT = "ABI-L2-CMIPC"; BAND = "C13"
 CACHE = None
+SOURCE = "abi"; SAT = "goes12"
 
+import requests
 import boto3
 from botocore import UNSIGNED
 from botocore.config import Config
@@ -47,22 +55,46 @@ _GEO = {}
 
 
 def setup(cfg):
-    global LON0, LON1, LAT0, LAT1, BUCKET, CACHE
+    global LON0, LON1, LAT0, LAT1, BUCKET, CACHE, SOURCE, SAT
     LON0, LON1, LAT0, LAT1 = cfg["bounds"]
-    BUCKET = cfg["bucket"]
+    BUCKET = cfg.get("bucket")
+    SOURCE = cfg.get("source", "abi")
+    SAT = cfg.get("sat", "goes12")
     CACHE = os.path.join(HERE, "data", "goes_cache")
     os.makedirs(CACHE, exist_ok=True)
     _GEO.clear()
 
 
+GRIDSAT_BASE = "https://www.ncei.noaa.gov/data/gridsat-goes/access/goes"
+
+
 # ===================== GOES helpers =====================
 def _fname_start(key):
+    if "GridSat" in key:                       # GridSat-GOES.goesNN.YYYY.MM.DD.HHMM.v01.nc
+        p = key.split("/")[-1].split(".")
+        return dt.datetime(int(p[2]), int(p[3]), int(p[4]), int(p[5][:2]), int(p[5][2:]))
     tok = key.split("_s")[1]
     yr = int(tok[0:4]); doy = int(tok[4:7]); hh = int(tok[7:9]); mm = int(tok[9:11]); ss = int(tok[11:13])
     return dt.datetime(yr, 1, 1) + dt.timedelta(days=doy - 1, hours=hh, minutes=mm, seconds=ss)
 
 
+def _gridsat_url(t):
+    return f"{GRIDSAT_BASE}/{t:%Y}/{t:%m}/GridSat-GOES.{SAT}.{t:%Y}.{t:%m}.{t:%d}.{t:%H}00.v01.nc"
+
+
 def nearest_key(target):
+    if SOURCE == "gridsat":                    # hourly; round to nearest hour, search outward
+        base = target.replace(minute=0, second=0, microsecond=0)
+        if target.minute >= 30:
+            base += dt.timedelta(hours=1)
+        for off in (0, -1, 1, -2, 2, 3, -3):
+            url = _gridsat_url(base + dt.timedelta(hours=off))
+            try:
+                if requests.head(url, timeout=25).status_code == 200:
+                    return url
+            except Exception:
+                pass
+        return None
     cands = []
     for off in (-1, 0, 1):
         t = target + dt.timedelta(hours=off)
@@ -78,7 +110,12 @@ def nearest_key(target):
 
 def download(key):
     local = os.path.join(CACHE, key.split("/")[-1])
-    if not (os.path.exists(local) and os.path.getsize(local) > 10000):
+    if os.path.exists(local) and os.path.getsize(local) > 10000:
+        return local
+    if SOURCE == "gridsat":
+        r = requests.get(key, timeout=300); r.raise_for_status()
+        open(local, "wb").write(r.content)
+    else:
         _S3.download_file(BUCKET, key, local)
     return local
 
@@ -106,6 +143,18 @@ def latlon_grid(ds):
 def load_crop(local):
     import xarray as xr
     ds = xr.open_dataset(local)
+    if SOURCE == "gridsat":                    # regular lat/lon grid; var ch4 (Kelvin)
+        if "rows" not in _GEO:
+            lat1 = ds["lat"].values; lon1 = ds["lon"].values
+            ri = np.where((lat1 >= LAT0) & (lat1 <= LAT1))[0]
+            ci = np.where((lon1 >= LON0) & (lon1 <= LON1))[0]
+            r0, r1, c0, c1 = ri.min(), ri.max() + 1, ci.min(), ci.max() + 1
+            lon2d, lat2d = np.meshgrid(lon1[c0:c1], lat1[r0:r1])
+            _GEO.update(rows=(r0, r1), cols=(c0, c1), lat=lat2d, lon=lon2d)
+        (r0, r1) = _GEO["rows"]; (c0, c1) = _GEO["cols"]
+        cmi = np.asarray(ds["ch4"].values).squeeze()[r0:r1, c0:c1] - 273.15
+        ds.close()
+        return _GEO["lon"], _GEO["lat"], cmi
     if "rows" not in _GEO:
         lat, lon = latlon_grid(ds)
         m = (lon >= LON0) & (lon <= LON1) & (lat >= LAT0) & (lat <= LAT1)
@@ -263,7 +312,9 @@ def render(t, cfg, fixes, lines, ir, vmin, vmax, d26, dcmap, outpath, dpi=120):
     tk = dict(transform=ax.transAxes, family="DejaVu Sans", zorder=12)
     ax.text(0.022, 0.95, f"HURRICANE {cfg['name'].upper()}  ·  {cfg['year']}", color=INK,
             fontsize=17, fontweight="bold", **tk)
-    ax.text(0.022, 0.915, "GOES-16 ABI Band 13 (clean longwave IR)  ·  D26 ocean heat beneath",
+    src_lbl = ("GOES-12 IR (GridSat-GOES ch4 ~10.7µm)" if SOURCE == "gridsat"
+               else "GOES-16 ABI Band 13 (clean longwave IR)")
+    ax.text(0.022, 0.915, src_lbl + "  ·  D26 ocean heat beneath",
             color=MUTE, fontsize=9.5, **tk)
     ax.text(0.022, 0.07, f"{actual:%b %d, %Y   %H:%M} UTC", color=INK, fontsize=14, fontweight="bold", **tk)
     ax.text(0.022, 0.032, f"{cat_label(ckt)}   ·   {round(ckt)} kt", color=cat_color(ckt),
@@ -348,7 +399,7 @@ def main():
     key = args[0]; cfg = STORMS[key]; setup(cfg)
     fixes = load_fixes(cfg["name"]); lines = geo_lines()
     ir, vmin, vmax = ir_cmap(); dcmap = d26_cmap(); d26 = load_d26(cfg["d26"])
-    CADENCE = 10  # minutes
+    CADENCE = 60 if cfg.get("source") == "gridsat" else 10  # GridSat is hourly
 
     if "--overlay" in flags:
         import subprocess, glob
@@ -365,15 +416,17 @@ def main():
         exe = __import__("imageio_ffmpeg").get_ffmpeg_exe()
         pat = os.path.join(cdir, "c%04d.png")
         webm = os.path.join(outdir, f"{key}_ir.webm"); mp4 = os.path.join(outdir, f"{key}_ir.mp4")
-        r1 = subprocess.run([exe, "-y", "-framerate", "18", "-i", pat, "-c:v", "libvpx-vp9",
-                             "-pix_fmt", "yuva420p", "-b:v", "0", "-crf", "34", "-an", webm],
-                            capture_output=True, text=True)
         from PIL import Image
         W, H = Image.open(sorted(glob.glob(os.path.join(cdir, "c*.png")))[0]).size
-        r2 = subprocess.run([exe, "-y", "-f", "lavfi", "-i", f"color=c=0x0A182B:s={W}x{H}:r=18",
+        sW = 820; sH = round(H * 820 / W); sH += sH % 2          # web-optimized size, even dims
+        r1 = subprocess.run([exe, "-y", "-framerate", "18", "-i", pat, "-vf", "scale=820:-2",
+                             "-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0",
+                             "-crf", "42", "-an", webm], capture_output=True, text=True)
+        r2 = subprocess.run([exe, "-y", "-f", "lavfi", "-i", f"color=c=0x0A182B:s={sW}x{sH}:r=18",
                              "-framerate", "18", "-i", pat, "-filter_complex",
-                             "[0:v][1:v]overlay=shortest=1,format=yuv420p", "-c:v", "libx264",
-                             "-crf", "23", "-movflags", "+faststart", mp4], capture_output=True, text=True)
+                             "[1:v]scale=820:-2[v];[0:v][v]overlay=shortest=1,format=yuv420p",
+                             "-c:v", "libx264", "-crf", "32", "-movflags", "+faststart", mp4],
+                            capture_output=True, text=True)
         print("webm", r1.returncode, os.path.getsize(webm) if os.path.exists(webm) else "-",
               "| mp4", r2.returncode, os.path.getsize(mp4) if os.path.exists(mp4) else "-")
         print("bounds: [[%.1f,%.1f],[%.1f,%.1f]]" % (LAT0, LON0, LAT1, LON1))

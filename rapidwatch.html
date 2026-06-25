@@ -2313,6 +2313,8 @@ function makeStormRILayer(stormName, slug, bounds){     // bounds = [[S,W],[N,E]
 }
 const miltonRILayer=makeStormRILayer('Milton','milton',[[16.5,-98.0],[28.5,-80.0]]);
 const heleneRILayer=makeStormRILayer('Helene','helene',[[16.5,-91.0],[32.0,-79.0]]);
+const katrinaRILayer=makeStormRILayer('Katrina','katrina',[[22.5,-92.0],[31.0,-79.0]]);
+const ritaRILayer=makeStormRILayer('Rita','rita',[[21.5,-93.0],[29.0,-78.0]]);
 
 /* GULF SURFACE CURRENTS — improved particle animation with analytical eddy velocity */
 (function(){
@@ -2802,6 +2804,8 @@ const registry=[
  {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:false,heat:true},
  {key:'★ Milton 2024 — live GOES-16 RI animation',lyr:miltonRILayer,on:false,heat:false},
  {key:'★ Helene 2024 — live GOES-16 RI animation',lyr:heleneRILayer,on:false,heat:false},
+ {key:'★ Katrina 2005 — live GOES-12 RI animation',lyr:katrinaRILayer,on:false,heat:false},
+ {key:'★ Rita 2005 — live GOES-12 RI animation',lyr:ritaRILayer,on:false,heat:false},
  {key:'Historical Gulf hurricanes (326 · 1851–2025 · HURDAT2)',lyr:histTracksLayer,on:false,heat:false},
  {key:'Intensification to peak (run-up · red = rapid)',lyr:intensLayer,on:false,heat:false},
  {key:'NHC active storm cone (live)',lyr:nhcLayer,on:false,heat:false},

@@ -16,3 +16,10 @@ milton_overlay_test.png
 data/helene_frames/
 data/helene_overlay_frames/
 helene_test_frame.png
+data/katrina_frames/
+data/katrina_overlay_frames/
+data/rita_frames/
+data/rita_overlay_frames/
+katrina_test_frame.png
+rita_test_frame.png
+# HUD showcase videos (*_RI_*.mp4) and data/overlays/* ARE committed.
