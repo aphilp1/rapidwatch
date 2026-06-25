@@ -399,7 +399,9 @@ def main():
     key = args[0]; cfg = STORMS[key]; setup(cfg)
     fixes = load_fixes(cfg["name"]); lines = geo_lines()
     ir, vmin, vmax = ir_cmap(); dcmap = d26_cmap(); d26 = load_d26(cfg["d26"])
-    CADENCE = 60 if cfg.get("source") == "gridsat" else 10  # GridSat is hourly
+    is_gridsat = cfg.get("source") == "gridsat"
+    CADENCE = 60 if is_gridsat else 10        # GridSat is hourly
+    FPS = 6 if is_gridsat else 9              # playback speed (slowed; gridsat has fewer frames)
 
     if "--overlay" in flags:
         import subprocess, glob
@@ -419,11 +421,11 @@ def main():
         from PIL import Image
         W, H = Image.open(sorted(glob.glob(os.path.join(cdir, "c*.png")))[0]).size
         sW = 820; sH = round(H * 820 / W); sH += sH % 2          # web-optimized size, even dims
-        r1 = subprocess.run([exe, "-y", "-framerate", "18", "-i", pat, "-vf", "scale=820:-2",
+        r1 = subprocess.run([exe, "-y", "-framerate", str(FPS), "-i", pat, "-vf", "scale=820:-2",
                              "-c:v", "libvpx-vp9", "-pix_fmt", "yuva420p", "-b:v", "0",
                              "-crf", "42", "-an", webm], capture_output=True, text=True)
-        r2 = subprocess.run([exe, "-y", "-f", "lavfi", "-i", f"color=c=0x0A182B:s={sW}x{sH}:r=18",
-                             "-framerate", "18", "-i", pat, "-filter_complex",
+        r2 = subprocess.run([exe, "-y", "-f", "lavfi", "-i", f"color=c=0x0A182B:s={sW}x{sH}:r={FPS}",
+                             "-framerate", str(FPS), "-i", pat, "-filter_complex",
                              "[1:v]scale=820:-2[v];[0:v][v]overlay=shortest=1,format=yuv420p",
                              "-c:v", "libx264", "-crf", "32", "-movflags", "+faststart", mp4],
                             capture_output=True, text=True)
@@ -446,7 +448,7 @@ def main():
             except Exception as e:
                 print("  SKIP", t, type(e).__name__, e)
         out = os.path.join(HERE, f"{key}_RI_{cfg['year']}.mp4")
-        rc, err = encode_mp4(os.path.join(fdir, "f%04d.png"), out, fps=18)
+        rc, err = encode_mp4(os.path.join(fdir, "f%04d.png"), out, fps=FPS)
         print("HUD mp4", rc, os.path.getsize(out) if os.path.exists(out) else "-")
         if rc: print(err[-700:])
         return
