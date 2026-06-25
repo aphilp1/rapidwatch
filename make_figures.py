@@ -29,6 +29,8 @@ plt.rcParams.update({
     'axes.grid': True, 'grid.color': '#e6e6e6', 'grid.linewidth': 0.7,
 })
 INK, AMBER, RED, TEAL = '#16222e', '#c9700f', '#c0392b', '#0d6b73'
+# white halo behind floating text labels so they never read as "behind the bars"
+BBOX = dict(boxstyle='round,pad=0.3', fc='white', ec='none', alpha=0.82)
 
 # ── Fig 1: hotspot map ────────────────────────────────────────────────────────
 def fig1():
@@ -77,9 +79,11 @@ def fig2():
     fig, ax = plt.subplots(figsize=(7, 4.2))
     ax.bar([names[m] for m in months], vals, color=cols, edgecolor='#7a5a2a', lw=.5)
     ax.set_ylabel('Number of RI onsets'); ax.set_title('When RI happens: onsets by month')
+    ax.set_ylim(0, max(vals) * 1.22)   # headroom so the callout clears the Sep bar
     tot = sum(vals); aso = sum(bm.get(str(m),0) for m in (8,9,10))
-    ax.annotate(f'Aug–Oct = {100*aso/tot:.0f}% of all onsets', (0.97, 0.93),
-                xycoords='axes fraction', ha='right', fontsize=9.5, color=RED, fontweight='bold')
+    ax.annotate(f'Aug–Oct = {100*aso/tot:.0f}% of all onsets', (0.97, 0.95),
+                xycoords='axes fraction', ha='right', va='top', fontsize=9.5,
+                color=RED, fontweight='bold', bbox=BBOX)
     ax.set_axisbelow(True); ax.grid(axis='x', alpha=0)
     fig.savefig(FIG / 'fig2_seasonality.png'); plt.close(fig)
 
@@ -88,15 +92,18 @@ def fig3():
     w = np.array([float(r['wind']) for r in ROWS if r['is_ri'] == '1'])
     fig, ax = plt.subplots(figsize=(7, 4.2))
     ax.hist(w, bins=np.arange(20, 130, 10), color=TEAL, edgecolor='#093d42', alpha=.85)
+    ax.set_ylim(0, ax.get_ylim()[1] * 1.15)   # headroom for the top callouts
+    top = ax.get_ylim()[1]
     ax.axvline(64, color=RED, lw=1.4, ls='--'); ax.annotate('hurricane\nstrength (64 kt)',
-               (64, ax.get_ylim()[1]*.82), xytext=(78, ax.get_ylim()[1]*.82), fontsize=8.5, color=RED)
+               (78, top*.80), fontsize=8.5, color=RED, bbox=BBOX)
     med = np.median(w); ax.axvline(med, color=INK, lw=1.2)
-    ax.annotate(f'median {med:.0f} kt', (med, ax.get_ylim()[1]*.96), fontsize=8.5, color=INK, ha='center')
+    ax.annotate(f'median {med:.0f} kt', (med, top*.97), fontsize=8.5, color=INK, ha='center',
+                va='top', bbox=BBOX)
     pct_ts = 100*np.mean(w <= 63)
     ax.set_xlabel('Storm intensity when RI begins (kt)'); ax.set_ylabel('Number of RI onsets')
     ax.set_title('RI begins while storms are still weak')
     ax.annotate(f'{pct_ts:.0f}% begin at tropical-storm strength (≤63 kt)',
-                (0.97, 0.62), xycoords='axes fraction', ha='right', fontsize=9, color=INK)
+                (0.97, 0.62), xycoords='axes fraction', ha='right', fontsize=9, color=INK, bbox=BBOX)
     ax.set_axisbelow(True); ax.grid(axis='x', alpha=0)
     fig.savefig(FIG / 'fig3_onset_intensity.png'); plt.close(fig)
 
@@ -112,17 +119,18 @@ def fig4():
     for med in bp['medians']: med.set_color(INK); med.set_linewidth(1.6)
     a1.set_ylabel('D26 — depth of 26 °C isotherm (m)')
     a1.set_title('A. Ocean heat barely differs', fontsize=11)
-    a1.annotate('medians 46 vs 44 m\nAUC = 0.55', (0.05, 0.9), xycoords='axes fraction',
-                fontsize=8.5, va='top', color=INK)
+    a1.annotate('medians 46 vs 44 m\nAUC = 0.55', (0.05, 0.95), xycoords='axes fraction',
+                fontsize=8.5, va='top', color=INK, bbox=BBOX)
     # terciles
     q1, q2 = np.percentile(d, [33, 67])
     masks = [d < q1, (d >= q1) & (d < q2), d >= q2]
     rates = [100*y[m].mean() for m in masks]
     a2.bar(['shallow', 'mid', 'deep'], rates, color=['#cfe0e6', '#6fa8b0', TEAL], edgecolor='#093d42', lw=.5)
     a2.set_ylabel('RI-onset rate (%)'); a2.set_title('B. …and adds little skill', fontsize=11)
+    a2.set_ylim(0, max(rates) * 1.22)   # headroom so bar-top labels + callout don't collide
     for i, v in enumerate(rates): a2.annotate(f'{v:.1f}%', (i, v+.3), ha='center', fontsize=9)
-    a2.annotate('beyond location + season:\n+0.00 AUC', (0.5, 0.9), xycoords='axes fraction',
-                ha='center', va='top', fontsize=8.5, color=INK)
+    a2.annotate('beyond location + season:\n+0.00 AUC', (0.04, 0.96), xycoords='axes fraction',
+                ha='left', va='top', fontsize=8.5, color=INK, bbox=BBOX)
     a2.set_axisbelow(True); a2.grid(axis='x', alpha=0); a1.grid(axis='x', alpha=0)
     fig.suptitle('Does measured ocean heat predict RI across 76 Gulf hurricanes?',
                  fontsize=12, fontweight='bold', y=1.02)
@@ -138,9 +146,11 @@ def fig5():
     ax.bar(x + w/2, med, w, label='Gulf-median D26 that day', color='#9fb3c0', edgecolor='#5a6b78', lw=.5)
     ax.set_xticks(x); ax.set_xticklabels(storms)
     ax.set_ylabel('D26 (m)'); ax.set_title('Did the storm rapidly intensify over deep warm water?')
+    ax.set_ylim(0, max(seg + med) * 1.18)   # headroom for the legend + Milton callout
     ax.legend(fontsize=8.5, loc='upper left')
-    ax.annotate('Milton: RI over\nbelow-median D26', (3, 56), xytext=(2.25, 92), fontsize=8.5,
-                color=RED, ha='center', arrowprops=dict(arrowstyle='->', color=RED, lw=1))
+    ax.annotate('Milton: RI over\nbelow-median D26', (3, 56), xytext=(2.3, 92), fontsize=8.5,
+                color=RED, ha='center', bbox=BBOX,
+                arrowprops=dict(arrowstyle='->', color=RED, lw=1))
     ax.set_axisbelow(True); ax.grid(axis='x', alpha=0)
     fig.savefig(FIG / 'fig5_storm_d26.png'); plt.close(fig)
 
