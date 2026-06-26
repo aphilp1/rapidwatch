@@ -710,6 +710,11 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .pop p{margin:0;color:var(--slate);font-size:12.5px}
 .pop .tags{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
 .pop .tags span{font-family:"IBM Plex Mono";font-size:9.5px;padding:2px 6px;border-radius:4px;background:rgba(70,207,214,.1);border:1px solid rgba(70,207,214,.2);color:var(--aqua)}
+/* operational RI-watch zone labels (Zone A / Zone B — see NOAA report Fig 7) */
+.zone-tip{background:rgba(5,11,18,.82);border:1px solid;border-radius:6px;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;letter-spacing:.08em;padding:3px 8px;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+.zone-tip::before{display:none}
+.zone-tip.za{border-color:#e74c3c;color:#ff9b91}
+.zone-tip.zb{border-color:#ff8a3d;color:#ffc69a}
 .panel{
   position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.94),rgba(6,14,22,.9));
   border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5);
@@ -1767,37 +1772,53 @@ map.on('click',e=>{
     .openOn(map);
 });
 
-/* GULF RI WATCH PROTOCOL — onset core/watch boxes + Zone B corridor (coords/figures from NOAA_RI_observation_report) */
-const riWatchLayer = L.layerGroup();
-// Core box — 20.9–22.9°N, 91.6–93.9°W
-L.rectangle([[20.9,-93.9],[22.9,-91.6]],
-  {color:'#ff8a3d',weight:2,fillOpacity:.18})
-  .bindPopup("RI-onset core box — P(RI onset | fix) 23.1%, 3.1× basin lift. "
-    +"Official best-track climatology 1851–2025 (n=326 Gulf hurricanes, "
-    +"411 onset intervals).").addTo(riWatchLayer);
-// Watch box — 20.1–23.4°N, 84.4–95.1°W
-L.rectangle([[20.1,-95.1],[23.4,-84.4]],
-  {color:'#ff8a3d',weight:1.5,fillOpacity:.07,dashArray:'5,4'})
-  .bindPopup("RI-onset watch box — 14.6% (1.95× lift). Includes the Yucatán "
-    +"Channel / Loop Current intrusion.").addTo(riWatchLayer);
-// Peak-density cell — 21.6°N, 92.9°W
-L.circleMarker([21.6,-92.9],{radius:5,color:'#ff8a3d',weight:2,fillColor:'#ff8a3d',fillOpacity:.9})
-  .bindPopup("Peak RI-onset density cell").addTo(riWatchLayer);
-// Onset-weighted centroid — 22.7°N, 88.6°W
-L.circleMarker([22.7,-88.6],{radius:6,color:'#ff8a3d',weight:2,fillColor:'#fff',fillOpacity:.95})
-  .bindPopup("Onset-weighted centroid").addTo(riWatchLayer);
+/* ── GULF RI WATCH PROTOCOL — two operational watch zones (NOAA report §5.5, §6, Fig 7) ──
+   Zone A (red)   = southern-Gulf onset core, PRIMARY target — where RI begins in weak systems.
+   Zone B (amber) = Loop Current corridor & N-central shelf, SECONDARY target — where RI
+                    continues to U.S. landfall. A complete strategy samples both.            */
+const ZA='#e74c3c', ZB='#ff8a3d';
+const TRIGGER='<b>Triggered when</b> any tropical cyclone (any intensity, incl. high-genesis disturbances) forms in the Gulf or Bay of Campeche; a NW-Caribbean system is forecast through the Yucatán Channel within 72 h; or a Gulf system is forecast over the Loop Current corridor toward the north-central shelf.';
+const SAMPLE='<b>Sample 12–36 h ahead</b> of projected onset and ahead of the track — the ocean the storm is about to enter, not the wake it leaves. Priority where assets are limited: (1) upper-ocean heat over the core, (2) inner-core structure even at TS strength, (3) environmental shear.';
 
+/* ===== ZONE A — onset watch (PRIMARY) ===== */
+const zoneALayer = L.layerGroup();
+// Elevated watch box — 20.1–23.4°N, 84.4–95.1°W (takes in the Yucatán Channel intrusion)
+L.rectangle([[20.1,-95.1],[23.4,-84.4]],
+  {color:ZA,weight:1.4,fillColor:ZA,fillOpacity:.05,dashArray:'5,5'})
+  .bindPopup(pop('Watch zone · expanded target','','Zone A — elevated watch box','20.1–23.4°N · 84.4–95.1°W',
+    'Expanded onset watch box — P(RI onset | fix) ≈ 14.6%, a 1.95× basin lift. Adds the Yucatán Channel / Loop Current intrusion to the core box. '+SAMPLE,
+    ['1.95× lift','Yucatán intrusion','expand here'])).addTo(zoneALayer);
+// Onset core box — 20.9–22.9°N, 91.6–93.9°W (PRIMARY target)
+L.rectangle([[20.9,-93.9],[22.9,-91.6]],
+  {color:ZA,weight:2.4,fillColor:ZA,fillOpacity:.20})
+  .bindPopup(pop('Watch zone · PRIMARY target','','Zone A — southern-Gulf onset core','20.9–22.9°N · 91.6–93.9°W',
+    'Where RI most often <b>begins</b> — in weak systems entering from the Caribbean or forming over the Bay of Campeche, the best place to catch the process early. P(RI onset | fix) 23.1%, a <b>3.1× basin lift</b> (best-track climatology 1851–2025; 326 Gulf hurricanes, 411 onset intervals).<br><br>'+TRIGGER+'<br><br>'+SAMPLE,
+    ['3.1× lift','onset','PRIMARY target','sample ocean ahead']))
+  .bindTooltip('ZONE A · ONSET (PRIMARY)',{permanent:true,direction:'center',className:'zone-tip za'})
+  .addTo(zoneALayer);
+// Peak onset-density cell — 21.6°N, 92.9°W
+L.circleMarker([21.6,-92.9],{radius:5,color:ZA,weight:2,fillColor:ZA,fillOpacity:.9})
+  .bindPopup(pop('Watch zone','','Peak RI-onset density cell','21.6°N · 92.9°W',
+    'The single densest RI-onset cell in the 1851–2025 record — the bullseye of Zone A.',['peak density'])).addTo(zoneALayer);
+// Onset-weighted centroid — 22.7°N, 88.6°W
+L.circleMarker([22.7,-88.6],{radius:6,color:ZA,weight:2,fillColor:'#fff',fillOpacity:.95})
+  .bindPopup(pop('Watch zone','','Onset-weighted centroid','22.7°N · 88.6°W',
+    'Mean position of all Gulf RI onsets, weighted by frequency.',['centroid'])).addTo(zoneALayer);
+
+/* ===== ZONE B — continuation watch (SECONDARY) ===== */
 const zoneBLayer = L.layerGroup();
-// Zone B corridor — 24–29°N, 86–94°W
+// Loop Current corridor & N-central shelf — 24–29°N, 86–94°W
 L.rectangle([[24,-94],[29,-86]],
-  {color:'#ffb27a',weight:1.5,fillOpacity:.05,dashArray:'2,5'})
-  .bindPopup("Zone B — Loop Current corridor & north-central shelf. Where RI "
-    +"continues to U.S. landfall (Katrina, Rita, Michael, Ida). Highest-stakes "
-    +"for warning.").addTo(zoneBLayer);
+  {color:ZB,weight:2,fillColor:ZB,fillOpacity:.07,dashArray:'2,6'})
+  .bindPopup(pop('Watch zone · SECONDARY target','','Zone B — Loop Current corridor & N-central shelf','24–29°N · 86–94°W',
+    'Where RI most often <b>continues</b> toward U.S. landfall — a storm that begins in Zone A and tracks north re-intensifies over this warm corridor and shelf. Highest stakes for warning: <b>Katrina, Rita, Michael</b> (reanalyzed Cat 5 at the Florida Panhandle), <b>Ida</b>. Sample the warm corridor ahead of a northbound storm to forecast landfall intensity.',
+    ['continuation','landfall risk','SECONDARY target','sample ahead of track']))
+  .bindTooltip('ZONE B · CORRIDOR (SECONDARY)',{permanent:true,direction:'center',className:'zone-tip zb'})
+  .addTo(zoneBLayer);
 
 const registry=[
- {key:'RI Watch zone (onset)',lyr:riWatchLayer,on:true,heat:true},
- {key:'Loop Current corridor (Zone B)',lyr:zoneBLayer,on:false,heat:true},
+ {key:'RI Watch — Zone A · onset core (primary)',lyr:zoneALayer,on:true,heat:true},
+ {key:'RI Watch — Zone B · corridor (secondary)',lyr:zoneBLayer,on:false,heat:true},
  {key:'Loop Current + flow arrows',lyr:loopLayer,on:false,heat:true},
  {key:'Loop Current OHC corridor',lyr:corridorLayer,on:false,heat:true},
  {key:'Gulf peak-season warm pool',lyr:ohcGulfLayer,on:false,heat:true},
