@@ -1,0 +1,183 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RapidWatch — README</title>
+<style>
+:root{--ink:#16222e;--mute:#5b6b78;--line:#e2e8ee;--amber:#c9700f;--red:#c0392b;--accent:#0d6b73;--bg:#fbfcfd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.62 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.doc{max-width:860px;margin:0 auto;padding:40px 40px 96px}
+h1{font-size:29px;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:21px;margin:40px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:24px 0 6px;color:var(--accent)}
+p,li{color:#26323d}
+a{color:var(--accent);word-break:break-word}
+strong{color:var(--ink)}
+em{color:var(--mute)}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+th{background:#eef3f6;font-weight:700}
+tr:nth-child(even) td{background:#f6f9fb}
+code{background:#eef3f6;border-radius:4px;padding:1px 5px;font:13px ui-monospace,SFMono-Regular,Menlo,monospace}
+pre{background:#0d1b26;color:#dbe7ee;border-radius:10px;padding:16px 18px;overflow:auto;line-height:1.5;font-size:13px}
+pre code{background:none;color:inherit;padding:0}
+blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:var(--mute)}
+@media print{pre{break-inside:avoid;white-space:pre-wrap}body{background:#fff}.doc{padding:0}.print{display:none}}
+.print{position:fixed;top:16px;right:16px;background:var(--accent);color:#fff;border:0;border-radius:8px;
+  padding:9px 16px;font:600 13px sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.banner{background:linear-gradient(135deg,#0d2436,#123a44);color:#eaf3f5;border-radius:14px;
+  padding:22px 26px;margin:0 0 28px}
+.banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
+.banner h1{color:#fff;margin:8px 0 0;border:0;padding:0}
+/* the README's own H1 is replaced by the banner */
+.doc > h1:first-of-type{display:none}
+</style></head><body>
+<button class="print" onclick="window.print()">Save / Print as PDF</button>
+<div class="doc">
+<div class="banner"><div class="k">RapidWatch · project README</div>
+<h1>Gulf Rapid Intensification Observatory</h1></div>
+<h1 id="rapidwatch-gulf-rapid-intensification-observatory">RAPIDWATCH — Gulf Rapid Intensification Observatory</h1>
+<p>A working reference for the sensors, platforms, and science used to observe and
+forecast <strong>hurricane rapid intensification (RI)</strong> — a maximum-wind increase of
+<strong>30 kt (35 mph) in 24 hours</strong> (NHC threshold) — across the Gulf of Mexico
+(Gulf of America). Sibling project to Stormwatch; same build philosophy
+(hindcast known events to learn where each model layer fails).</p>
+<p><strong>Live site:</strong> https://aphilp1.github.io/rapidwatch/
+&nbsp;·&nbsp; <strong>App:</strong> https://aphilp1.github.io/rapidwatch/rapidwatch-gulf-ri.html
+&nbsp;·&nbsp; <strong>Repo:</strong> https://github.com/aphilp1/rapidwatch</p>
+<p>The site auto-deploys from <code>master</code> via GitHub Pages, and a scheduled GitHub
+Action refreshes the live buoy/storm data every 30 minutes.</p>
+<h2 id="the-thesis">The thesis</h2>
+<p>Track forecasting has improved for decades; intensity — and the <em>timing</em> of RI —
+remains the hard problem, and the Gulf concentrates every ingredient that drives it.
+The Gulf-specific signal is <strong>deep ocean heat</strong>: the Loop Current and the warm-core
+eddies it sheds carry a warm layer 80–150 m deep, so a storm's self-induced cold
+wake doesn't cut off its fuel. Knowing that heat reservoir <em>before</em> a storm forms is
+the highest-leverage, most Gulf-specific observation — which is why the observing
+priorities and the modeling priorities point at the same place: the upper-ocean
+heat field and the air–sea interface.</p>
+<p>The project's analysis (see the <strong>Analysis</strong> tab / report) quantifies <em>where</em> and
+<em>when</em> RI begins in the Gulf from 175 years of best-track data, and tests the
+ocean-heat link directly against reconstructed ocean fields.</p>
+<h2 id="the-app-three-tabs">The app — three tabs</h2>
+<p>The published page (<code>rapidwatch-gulf-ri.html</code>) is a single app with three tabs:</p>
+<ul>
+<li><strong>RI Observatory</strong> — the observing-systems reference. An interactive vertical
+  "stack" from geostationary orbit (35,786 km) down to a 2,000 m float, with every
+  platform tappable; the air–sea interface is highlighted as the flux bottleneck.
+  Includes the Gulf RI problem, the four-tier platform catalog, a ranked
+  "what's essential" deployment argument, and where RI happens.</li>
+<li><strong>Gulf Map</strong> — a coordinate-accurate, fully self-contained Leaflet canvas
+  (Leaflet + coastline inlined, renders offline) with toggleable layers (see below).</li>
+<li><strong>Analysis</strong> — the full research memo, <em>Understanding Hurricane Rapid
+  Intensification Dynamics</em>, embedded as a styled report with seven figures.</li>
+</ul>
+<h3 id="gulf-map-layers">Gulf Map layers</h3>
+<ul>
+<li><strong>Real hurricane best tracks</strong> — Katrina/Rita (2005), Helene/Milton (2024),
+  colored by Saffir–Simpson category with the RI stretch ringed in amber.</li>
+<li><strong>Live GOES RI animations</strong> — georeferenced Band-13 IR video overlays of each
+  storm's rapid-intensification window (2005 via GridSat-GOES, 2024 via GOES-16).</li>
+<li><strong>Real ocean heat (D26)</strong> — measured depth of the 26 °C isotherm beneath each of
+  the four storms (HYCOM GOFS 3.1 for 2005, Copernicus GLORYS for 2024).</li>
+<li><strong>Gulf RI Watch — Zone A / Zone B</strong> — the two operational watch zones from the
+  report: Zone A (onset core, primary target) and Zone B (Loop Current corridor &amp;
+  north-central shelf, secondary target).</li>
+<li><strong>RI climatology hotspot</strong> — observed RI-onset density (1851–2025), exposure-
+  normalized, with the 3.1× core box.</li>
+<li><strong>Historical Gulf hurricanes</strong> — 326 Gulf hurricanes from HURDAT2 (1851–2025),
+  plus their run-up-to-peak intensification segments.</li>
+<li><strong>Ocean context</strong> — Loop Current &amp; OHC corridor, warm-core eddies (with rotation),
+  animated surface currents, peak-season SST and wind-shear climatology.</li>
+<li><strong>Live observing assets</strong> — NDBC buoys (live SST/wind/pressure) and the active
+  NHC storm cone, refreshed server-side; plus Argo floats, glider/saildrone zones,
+  and Hurricane Hunter bases. Click any Gulf water point for a D26 depth sounding.</li>
+</ul>
+<h2 id="how-its-built">How it's built</h2>
+<p>The published page is <strong>assembled</strong> — do not edit it directly:</p>
+<pre><code>rapidwatch-gulf-ri-source.html  ┐
+rapidwatch-gulf-map.html        ┙─ python assemble_rapidwatch.py ─►  rapidwatch-gulf-ri.html
+                                                                     rapidwatch.html
+</code></pre>
+<p>Edit a source file, run <code>python assemble_rapidwatch.py</code>, then hard-refresh.
+The <strong>Analysis</strong> tab is an iframe of <code>NOAA_RI_observation_report.html</code>, which is
+rendered from the Markdown report by <code>make_report_html.py</code> (figures from
+<code>make_figures.py</code>).</p>
+<h3 id="live-data-no-cors-proxy">Live data (no CORS proxy)</h3>
+<p><code>.github/workflows/live-data.yml</code> runs <code>build_live_data.py</code> every 30 minutes,
+fetches NDBC buoys + the NHC cone server-side, and commits trimmed same-origin
+snapshots under <code>data/</code>. The page fetches those local files, so live data works
+for every visitor without a third-party proxy.</p>
+<h2 id="directory-layout">Directory layout</h2>
+<pre><code>RapidWatch/
+├── index.html                       public landing page (links into the app)
+├── rapidwatch-gulf-ri.html          ← published app (assembled — do not edit)
+├── rapidwatch.html                  identical assembled copy
+├── rapidwatch-gulf-ri-source.html   SOURCE: RI Observatory tab
+├── rapidwatch-gulf-map.html         SOURCE: Gulf Map tab
+├── assemble_rapidwatch.py           builds the two assembled files from the sources
+├── NOAA_RI_observation_report.md    the research memo (source)
+├── NOAA_RI_observation_report.html  rendered report (the Analysis tab)
+├── make_report_html.py / make_figures.py    report + figure pipeline
+├── serve.bat                        double-click: serves the folder at :8000
+├── .github/workflows/live-data.yml  30-min live buoy/cone refresh
+├── docs/
+│   ├── observing_systems.md         four-tier sensor catalog
+│   └── RI_literature.md             curated, verified reading list
+├── figures/                         report figures (PNG)
+└── data/
+    ├── storms.geojson               real best tracks (4 storms)
+    ├── gulf_hurricanes.geojson      326 Gulf hurricanes (HURDAT2 1851–2025)
+    ├── ri_climatology.json          observed RI-onset density grid
+    ├── ohc/                         measured D26 fields + the D26-vs-RI study
+    ├── overlays/                    georeferenced GOES RI animation videos
+    ├── ndbc/  nhc_currentstorms.json  live buoy + storm snapshots (auto-refreshed)
+    └── geo/                         coastline / land geometry
+</code></pre>
+<h3 id="analysis-scripts">Analysis scripts</h3>
+<p><code>build_gulf_hurricanes.py</code> (HURDAT2 → Gulf storm library) · <code>ri_climatology.py</code>
+(RI-onset climatology) · <code>build_ohc_hycom.py</code> / <code>build_ohc_copernicus.py</code> (measured
+D26 fields) · <code>scaled_d26_ri.py</code> + <code>analyze_d26_ri.py</code> (population D26-vs-RI test) ·
+<code>make_storm_ri_animation.py</code> (GOES RI video overlays) · <code>make_presentation.py</code>
+(slide deck).</p>
+<h2 id="run-locally">Run locally</h2>
+<p>Double-click <code>serve.bat</code>, or from a terminal in this folder:</p>
+<pre><code>python -m http.server 8000
+</code></pre>
+<p>Then open http://localhost:8000/rapidwatch-gulf-ri.html . Serving over localhost
+(rather than <code>file://</code>) is what lets the page fetch the <code>data/</code> files at runtime.</p>
+<h2 id="data-provenance-honesty-notes">Data provenance &amp; honesty notes</h2>
+<ul>
+<li><strong>Hurricane tracks are real best-track data.</strong> The 2005 Katrina/Rita pair is from
+  NOAA <strong>HURDAT2</strong>; the 2024 Helene/Milton pair is from the official <strong>NHC Tropical
+  Cyclone Reports</strong>. RI is detected from the wind data itself (≥30 kt / 24 h on
+  synoptic fixes), not hand-placed.</li>
+<li><strong>Ocean heat (D26) is measured, not schematic</strong> for the four storms: HYCOM GOFS 3.1
+  reanalysis (2005) and Copernicus Marine GLORYS (2024).</li>
+<li><strong>Live buoys &amp; cone are real</strong>, refreshed every 30 min via the GitHub Action.</li>
+<li><strong>Still illustrative</strong> (labeled in-app): the schematic Loop Current path, the
+  representative eddy/glider/saildrone scaffolding, and the analytical SST/shear/
+  current climatology layers.</li>
+<li><strong>Coastline</strong>: Natural Earth 50 m, clipped to the Gulf and simplified.</li>
+<li>The research memo's citations are verified against primary sources; the D26-vs-RI
+  finding is reported honestly, including its null result on independent skill.</li>
+</ul>
+<h2 id="next-increments">Next increments</h2>
+<ul>
+<li>More real best tracks (Ida 2021, Michael 2018, Laura 2020, Beryl 2024).</li>
+<li>Pre-storm / ahead-of-track D26 sampling for a cleaner ocean-heat test (report §5.7).</li>
+<li>A real-time altimetry-derived OHC field to replace the schematic Loop Current layer.</li>
+<li>An observing-system-impact (OSSE / data-denial) pass to quantify leverage per tier.</li>
+</ul>
+<h2 id="license">License</h2>
+<p>Code and original content are released under the <strong>MIT License</strong> (see
+<a href="LICENSE"><code>LICENSE</code></a>). Third-party datasets remain the property of their providers
+(NOAA, Copernicus Marine Service, Natural Earth) and carry their own terms — please
+credit the original sources when reusing the data.</p>
+<hr />
+<p><em>Assembled 2026 from NOAA AOML/PMEL/OMAO, NHC, NDBC, NOAA/NRL HYCOM, Copernicus
+Marine Service, Saildrone, SOFAR Ocean, and peer-reviewed literature.
+RI = +30 kt / 24 h (NHC).</em></p>
+</div></body></html>
