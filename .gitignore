@@ -23,3 +23,8 @@ data/rita_overlay_frames/
 katrina_test_frame.png
 rita_test_frame.png
 # HUD showcase videos (*_RI_*.mp4) and data/overlays/* ARE committed.
+
+# Local dated backups — git history is the real backup, so these stay PC-only.
+*.backup-*
+backup-*/
+figures/backup-*/
