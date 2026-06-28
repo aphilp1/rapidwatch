@@ -2917,6 +2917,10 @@ ct.addEventListener('click',()=>{ab.classList.toggle('min');ct.textContent=ab.cl
       '<button class="gc-spd" data-rate="4">4×</button>'+
     '</span>';
   map.getContainer().appendChild(bar);
+  // keep slider drags / clicks / wheel from panning or zooming the map underneath
+  L.DomEvent.disableClickPropagation(bar);
+  L.DomEvent.disableScrollPropagation(bar);
+  L.DomEvent.on(bar,'mousedown touchstart pointerdown mousemove',L.DomEvent.stopPropagation);
   const playBtn=bar.querySelector('.gc-play'), title=bar.querySelector('.gc-title');
   const seek=bar.querySelector('.gc-seek'), timeEl=bar.querySelector('.gc-time');
   let scrubbing=false;

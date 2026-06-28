@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # ---- per-storm config ----
 STORMS = {
     "milton": dict(name="Milton", year=2024, source="abi", bucket="noaa-goes16",
-                   start=(2024, 10, 5, 12), end=(2024, 10, 8, 0),
+                   start=(2024, 10, 5, 12), end=(2024, 10, 10, 8),   # through Florida landfall (Oct 10)
                    bounds=(-98.0, -80.0, 16.5, 28.5), d26="data/ohc/milton_d26.json"),
     "helene": dict(name="Helene", year=2024, source="abi", bucket="noaa-goes16",
                    start=(2024, 9, 24, 6), end=(2024, 9, 27, 6),
