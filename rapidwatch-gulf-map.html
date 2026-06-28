@@ -771,6 +771,8 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .collapse{position:absolute;top:13px;right:14px;cursor:pointer;color:var(--mute);font-size:16px;line-height:1}
 .collapse:hover{color:var(--aqua)}
 #about.min p,#about.min .note{display:none}
+#legend.min #layers,#legend.min .legkey{display:none}
+#legend.min{max-height:none}
 @media(max-width:680px){#about{display:none}#legend{width:212px}}
 .leaflet-div-icon{background:transparent;border:none}
 .eddy-spin{animation:eddy-cw var(--sp,6s) linear infinite;transform-origin:center}
@@ -786,6 +788,7 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
   </header>
   <div id="map"></div>
   <div class="panel" id="legend">
+    <span class="collapse" id="legToggle">–</span>
     <h3><span class="sq"></span>LAYERS</h3>
     <div id="layers"></div>
     <div class="legkey">
@@ -1854,7 +1857,7 @@ L.rectangle([[24,-94],[29,-86]],
   .addTo(zoneBLayer);
 
 const registry=[
- {key:'RI Watch — Zone A · onset core (primary)',lyr:zoneALayer,on:true,heat:true},
+ {key:'RI Watch — Zone A · onset core (primary)',lyr:zoneALayer,on:false,heat:true},
  {key:'RI Watch — Zone B · corridor (secondary)',lyr:zoneBLayer,on:false,heat:true},
  {key:'Loop Current + flow arrows',lyr:loopLayer,on:false,heat:true},
  {key:'Loop Current OHC corridor',lyr:corridorLayer,on:false,heat:true},
@@ -1863,7 +1866,7 @@ const registry=[
  {key:'Gulf RI hot zone (21–29°N · all 4 storms)',lyr:riZoneLayer,on:false,heat:true},
  {key:'Warm-core eddies (2 rings)',lyr:eddyLayer,on:false,heat:true},
  {key:'Eddy rotation speed (Rankine vortex)',lyr:eddySpinLayer,on:false,heat:true},
- {key:'RI convergence · peak intensity (4 storms)',lyr:convLayer,on:false,heat:true},
+ {key:'RI convergence · peak intensity (4 storms)',lyr:convLayer,on:true,heat:true},
  {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:false,heat:true},
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
  {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
@@ -1883,7 +1886,7 @@ const registry=[
  {key:'Sea surface temperature (SST)',lyr:sstLayer,on:false,heat:true},
  {key:'Wind shear (200–850 hPa climatology)',lyr:shearLayer,on:false,heat:true},
  {key:'RI probability zones (D26 + shear)',lyr:riProbLayer,on:false,heat:true},
- {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:false,heat:true},
+ {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:true,heat:true},
  {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Warm water depth (D26 glow)',lyr:warmDepthLayer,on:false,heat:true},
  {key:'Real D26 — Katrina 27 Aug 2005 (HYCOM)',lyr:d26KatrinaLayer,on:false,heat:true},
@@ -1903,6 +1906,11 @@ registry.forEach(r=>{
 });
 const ab=document.getElementById('about'),ct=document.getElementById('cToggle');
 ct.addEventListener('click',()=>{ab.classList.toggle('min');ct.textContent=ab.classList.contains('min')?'+':'–';});
+// LAYERS panel collapse — starts collapsed on small screens so it doesn't cover the map
+const lg=document.getElementById('legend'),lgT=document.getElementById('legToggle');
+function setLeg(min){lg.classList.toggle('min',min);lgT.textContent=min?'+':'–';}
+lgT.addEventListener('click',()=>setLeg(!lg.classList.contains('min')));
+if(window.innerWidth<=680) setLeg(true);
 
 /* ── GOES RI animation playback controls (play/pause · restart · speed) ── */
 (function(){
