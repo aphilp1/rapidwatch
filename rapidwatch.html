@@ -963,6 +963,24 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .zone-tip::before{display:none}
 .zone-tip.za{border-color:#e74c3c;color:#ff9b91}
 .zone-tip.zb{border-color:#ff8a3d;color:#ffc69a}
+/* GOES RI animation playback control bar */
+#goes-controls{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:1200;
+  display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;
+  background:linear-gradient(180deg,rgba(13,28,41,.96),rgba(6,14,22,.94));
+  border:1px solid var(--line-2);box-shadow:0 10px 36px rgba(0,0,0,.55);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  font-family:"IBM Plex Mono";color:var(--ink);transition:opacity .2s,transform .2s}
+#goes-controls.hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(14px)}
+#goes-controls .gc-title{font-size:10px;letter-spacing:.1em;color:var(--amber);font-weight:600;white-space:nowrap;max-width:230px;overflow:hidden;text-overflow:ellipsis}
+#goes-controls .gc-sep{width:1px;height:20px;background:var(--line-2)}
+#goes-controls button{cursor:pointer;border:1px solid var(--line-2);background:rgba(255,255,255,.04);
+  color:var(--ink);border-radius:7px;font-family:"IBM Plex Mono";transition:all .15s}
+#goes-controls .gc-btn{font-size:14px;line-height:1;padding:5px 9px}
+#goes-controls .gc-btn:hover{border-color:var(--aqua);color:var(--aqua)}
+#goes-controls .gc-spd{font-size:10.5px;padding:5px 8px;color:var(--slate)}
+#goes-controls .gc-spd:hover{color:var(--ink)}
+#goes-controls .gc-spd.active{background:rgba(255,138,61,.16);border-color:rgba(255,138,61,.5);color:var(--amber)}
+#goes-controls .gc-speeds{display:flex;gap:4px}
 .panel{
   position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.94),rgba(6,14,22,.9));
   border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5);
@@ -1806,8 +1824,16 @@ L.control.zoom({position:'bottomright'}).addTo(map);
 map.setMaxBounds([[12,-103],[35,-74]]);
 map.attributionControl.setPrefix('RapidWatch · Natural Earth');
 
-// ---- land base ----
-L.geoJSON(GULF_LAND,{style:{color:'rgba(70,207,214,.28)',weight:.8,fillColor:'#16242f',fillOpacity:1}}).addTo(map);
+// ---- custom panes for explicit z-stacking ----
+// land(250) < default overlay vectors/heat(400) < GOES IR imagery(450) < storm track(460)
+map.createPane('landPane').style.zIndex    = 250;   // opaque coastline, always at the bottom
+map.createPane('goesPane').style.zIndex    = 450;   // GOES IR animation — sits OVER land + heat
+map.createPane('trackPane').style.zIndex   = 460;   // storm best track — stays OVER the imagery
+map.getPane('goesPane').style.pointerEvents  = 'none';
+map.getPane('trackPane').style.pointerEvents = 'auto';
+
+// ---- land base (in landPane so animations render over the land) ----
+L.geoJSON(GULF_LAND,{pane:'landPane',style:{color:'rgba(70,207,214,.28)',weight:.8,fillColor:'#16242f',fillOpacity:1}}).addTo(map);
 
 // ---- graticule ----
 const grat = L.layerGroup();
@@ -2288,12 +2314,16 @@ const d26HeleneLayer=makeRealD26Layer('data/ohc/helene_d26.json');
 const d26MiltonLayer=makeRealD26Layer('data/ohc/milton_d26.json');
 
 /* GOES-16 Band-13 IR rapid-intensification animations (georeferenced video overlays) */
+// shared playback state for all GOES RI animations (driven by the on-map control bar)
+const goesState={paused:false, rate:1};
 function makeStormRILayer(stormName, slug, bounds){     // bounds = [[S,W],[N,E]] = render extent
   const grp=L.layerGroup();
   const vid=L.videoOverlay(['data/overlays/'+slug+'_ir.webm','data/overlays/'+slug+'_ir.mp4'],bounds,
-    {opacity:0.95,autoplay:true,loop:true,muted:true,playsInline:true,keepAspectRatio:false,interactive:false});
+    {pane:'goesPane',opacity:0.95,autoplay:true,loop:true,muted:true,playsInline:true,keepAspectRatio:false,interactive:false});
   grp.addLayer(vid);
-  vid.on('add',()=>{const v=vid.getElement(); if(v){v.muted=true; v.play&&v.play().catch(()=>{});}});
+  vid.on('add',()=>{const v=vid.getElement(); if(v){v.muted=true; v.playbackRate=goesState.rate;
+    if(goesState.paused) v.pause(); else (v.play&&v.play().catch(()=>{}));}});
+  grp._goesVid=vid; grp._goesName=stormName;        // exposed for the playback control bar
   const catCol=kt=> kt>=137?'#FF3B5C': kt>=113?'#ff6b3d': kt>=96?'#FFB24D': kt>=83?'#ffe05a': kt>=64?'#fff2a8': kt>=34?'#3CDDC9':'#7FE3FF';
   (async function(){
     try{
@@ -2305,9 +2335,9 @@ function makeStormRILayer(stormName, slug, bounds){     // bounds = [[S,W],[N,E]
                   kt:f.properties.wind_kt,ri:!!f.properties.rapid_intensifying,t:f.properties.time_utc}))
         .sort((a,b)=>a.t<b.t?-1:1);
       if(pts.length>1)
-        L.polyline(pts.map(p=>[p.lat,p.lon]),{color:'#ffffff',weight:2,opacity:0.85}).addTo(grp);
+        L.polyline(pts.map(p=>[p.lat,p.lon]),{pane:'trackPane',color:'#ffffff',weight:2,opacity:0.85}).addTo(grp);
       pts.forEach(p=>{
-        L.circleMarker([p.lat,p.lon],{radius:3.6,color:p.ri?'#FF3B5C':'#ffffff',
+        L.circleMarker([p.lat,p.lon],{pane:'trackPane',radius:3.6,color:p.ri?'#FF3B5C':'#ffffff',
           weight:p.ri?1.6:0.8,fillColor:catCol(p.kt),fillOpacity:0.95})
          .bindPopup('<b>'+stormName+'</b> · '+p.t+'<br>'+p.kt+' kt'+(p.ri?' · <span style="color:#FF3B5C">RAPIDLY INTENSIFYING</span>':''))
          .addTo(grp);
@@ -2858,6 +2888,51 @@ registry.forEach(r=>{
 });
 const ab=document.getElementById('about'),ct=document.getElementById('cToggle');
 ct.addEventListener('click',()=>{ab.classList.toggle('min');ct.textContent=ab.classList.contains('min')?'+':'–';});
+
+/* ── GOES RI animation playback controls (play/pause · restart · speed) ── */
+(function(){
+  const anims=[miltonRILayer,heleneRILayer,katrinaRILayer,ritaRILayer]
+    .map(g=>({grp:g,name:g._goesName,vidLayer:g._goesVid}));
+  const bar=document.createElement('div');
+  bar.id='goes-controls'; bar.className='hidden';
+  bar.innerHTML=
+    '<span class="gc-title">RI ANIMATION</span>'+
+    '<span class="gc-sep"></span>'+
+    '<button class="gc-btn" data-act="restart" title="Restart from beginning">⏮</button>'+
+    '<button class="gc-btn gc-play" data-act="playpause" title="Play / Pause">⏸</button>'+
+    '<span class="gc-sep"></span>'+
+    '<span class="gc-speeds">'+
+      '<button class="gc-spd" data-rate="0.5">0.5×</button>'+
+      '<button class="gc-spd active" data-rate="1">1×</button>'+
+      '<button class="gc-spd" data-rate="2">2×</button>'+
+      '<button class="gc-spd" data-rate="4">4×</button>'+
+    '</span>';
+  map.getContainer().appendChild(bar);
+  const playBtn=bar.querySelector('.gc-play'), title=bar.querySelector('.gc-title');
+  const activeVids=()=>anims.filter(a=>map.hasLayer(a.grp))
+                          .map(a=>a.vidLayer&&a.vidLayer.getElement()).filter(Boolean);
+  function applyState(){
+    activeVids().forEach(v=>{ v.muted=true; v.playbackRate=goesState.rate;
+      if(goesState.paused) v.pause(); else (v.play&&v.play().catch(()=>{})); });
+    playBtn.textContent=goesState.paused?'▶':'⏸';
+  }
+  function refresh(){
+    const on=anims.filter(a=>map.hasLayer(a.grp)).map(a=>a.name);
+    if(on.length){ bar.classList.remove('hidden');
+      title.textContent='● '+on.join(' + ')+(on.length>1?' RI':' '); applyState(); }
+    else bar.classList.add('hidden');
+  }
+  map.on('layeradd layerremove',()=>setTimeout(refresh,30));
+  bar.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    if(b.dataset.act==='playpause'){ goesState.paused=!goesState.paused; applyState(); }
+    else if(b.dataset.act==='restart'){ activeVids().forEach(v=>{ try{v.currentTime=0;}catch(_){}
+      if(!goesState.paused) v.play&&v.play().catch(()=>{}); }); }
+    else if(b.dataset.rate){ goesState.rate=parseFloat(b.dataset.rate);
+      bar.querySelectorAll('.gc-spd').forEach(s=>s.classList.toggle('active',s===b)); applyState(); }
+  });
+  refresh();
+})();
 
 </script>
 <script>
