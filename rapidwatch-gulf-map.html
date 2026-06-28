@@ -697,6 +697,15 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .leaflet-container{background:#071420;font-family:"IBM Plex Sans";outline:none}
 .leaflet-control-zoom a{background:var(--panel)!important;color:var(--aqua)!important;border-color:var(--line)!important}
 .leaflet-control-zoom a:hover{background:var(--deep)!important}
+/* north arrow + scale bar (top-left map collar) */
+.rw-north{background:rgba(13,28,41,.85);border:1px solid var(--line);border-radius:8px;
+  padding:4px 9px 5px;text-align:center;line-height:1;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.rw-north .rw-arrow{font-size:13px;color:var(--amber);line-height:1}
+.rw-north .rw-n{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;color:var(--ink);margin-top:1px}
+.leaflet-control-scale{margin-left:10px!important}
+.leaflet-control-scale-line{background:rgba(13,28,41,.82)!important;border:1px solid var(--line)!important;
+  border-top:none!important;color:var(--slate)!important;font-family:"IBM Plex Mono";font-size:9px;
+  letter-spacing:.04em;padding:1px 6px 2px;text-shadow:none!important}
 .leaflet-bar{border-color:var(--line)!important;box-shadow:0 2px 16px rgba(0,0,0,.5)!important}
 .leaflet-control-attribution{background:rgba(5,11,18,.7)!important;color:var(--mute)!important;font-size:10px!important}
 .leaflet-control-attribution a{color:var(--aqua)!important}
@@ -839,6 +848,12 @@ const GULF_LAND = {"type":"Feature","properties":{"name":"Gulf land"},"geometry"
 const map = L.map('map',{zoomControl:false,minZoom:4,maxZoom:11,worldCopyJump:false,attributionControl:true})
   .setView([24.6,-89.0],6);
 L.control.zoom({position:'bottomright'}).addTo(map);
+// north arrow (map is north-up) + scale bar — bottom-right collar (top corners hold the panels)
+const NorthArrow=L.Control.extend({options:{position:'bottomright'},
+  onAdd(){const d=L.DomUtil.create('div','rw-north');d.innerHTML='<div class="rw-arrow">▲</div><div class="rw-n">N</div>';
+    d.title='North (map is north-up)';return d;}});
+new NorthArrow().addTo(map);
+L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140}).addTo(map);
 map.setMaxBounds([[12,-103],[35,-74]]);
 map.attributionControl.setPrefix('© 2026 Alex Philp · RapidWatch · Natural Earth');
 
@@ -1869,10 +1884,10 @@ const registry=[
  {key:'RI convergence · peak intensity (4 storms)',lyr:convLayer,on:true,heat:true},
  {key:'Katrina 2005 · RI in amber',lyr:stormLayers['Katrina'],on:false,heat:true},
  {key:'Rita 2005 · RI in amber',lyr:stormLayers['Rita'],on:false,heat:true},
- {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:false,heat:true},
+ {key:'Helene 2024 · RI in amber',lyr:stormLayers['Helene'],on:true,heat:true},
  {key:'Milton 2024 · RI in amber',lyr:stormLayers['Milton'],on:false,heat:true},
  {key:'★ Milton 2024 — live GOES-16 RI animation',lyr:miltonRILayer,on:false,heat:false},
- {key:'★ Helene 2024 — live GOES-16 RI animation',lyr:heleneRILayer,on:false,heat:false},
+ {key:'★ Helene 2024 — live GOES-16 RI animation',lyr:heleneRILayer,on:true,heat:false},
  {key:'★ Katrina 2005 — live GOES-12 RI animation',lyr:katrinaRILayer,on:false,heat:false},
  {key:'★ Rita 2005 — live GOES-12 RI animation',lyr:ritaRILayer,on:false,heat:false},
  {key:'Historical Gulf hurricanes (326 · 1851–2025 · HURDAT2)',lyr:histTracksLayer,on:false,heat:false},
@@ -1886,15 +1901,15 @@ const registry=[
  {key:'Sea surface temperature (SST)',lyr:sstLayer,on:false,heat:true},
  {key:'Wind shear (200–850 hPa climatology)',lyr:shearLayer,on:false,heat:true},
  {key:'RI probability zones (D26 + shear)',lyr:riProbLayer,on:false,heat:true},
- {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:true,heat:true},
+ {key:'RI climatology hotspot (observed 1851–2025 · 3.1× core)',lyr:riClimLayer,on:false,heat:true},
  {key:'Gulf surface currents (LC climatology)',lyr:gulfCurrentLayer,on:false,heat:true},
  {key:'Warm water depth (D26 glow)',lyr:warmDepthLayer,on:false,heat:true},
  {key:'Real D26 — Katrina 27 Aug 2005 (HYCOM)',lyr:d26KatrinaLayer,on:false,heat:true},
  {key:'Real D26 — Rita 20 Sep 2005 (HYCOM)',lyr:d26RitaLayer,on:false,heat:true},
  {key:'Real D26 — Helene 25 Sep 2024 (Copernicus)',lyr:d26HeleneLayer,on:false,heat:true},
  {key:'Real D26 — Milton 6 Oct 2024 (Copernicus)',lyr:d26MiltonLayer,on:false,heat:true},
- {key:'Graticule',lyr:grat,on:false,heat:false},
- {key:'Reference cities',lyr:cityLayer,on:false,heat:false}
+ {key:'Graticule',lyr:grat,on:true,heat:false},
+ {key:'Reference cities',lyr:cityLayer,on:true,heat:false}
 ];
 const host=document.getElementById('layers');
 registry.forEach(r=>{
