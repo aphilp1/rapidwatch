@@ -260,6 +260,10 @@ The bracketed numerals **[n]** throughout the text refer to the numbered entries
 
 ---
 
+*© 2026 Alex Philp · RapidWatch*
+
+---
+
 *Analysis and figures reproducible from `build_gulf_hurricanes.py`, `ri_climatology.py`, and the ocean-heat pipeline (`build_ohc_hycom.py`, `build_ohc_copernicus.py`, `analyze_d26_ri.py`, `scaled_d26_ri.py`) — NOAA HURDAT2 1851–2025 [10], HYCOM GOFS 3.1 [21], and Copernicus Marine GLORYS [22]. Companion interactive map: RapidWatch Gulf Geospatial Canvas — layers "Historical Gulf hurricanes," "Intensification to peak," "RI climatology hotspot," and four measured "Real D26" fields.*
 
 [^data]: **Data sources.** Best-track: NOAA HURDAT2 Atlantic database, 1851–2025 (release 2026-02-27) [10]. Ocean: HYCOM GOFS 3.1 reanalysis [21]; Copernicus Marine GLORYS reanalysis & analysis [22] — depth of the 26 °C isotherm (D26).

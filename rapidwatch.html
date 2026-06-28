@@ -1756,6 +1756,9 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
       literature, June 2026. Rapid intensification = +30 kt / 24 h (NHC). The vertical stack uses banded, not linear,
       scale — geostationary orbit is ~35,786 km; the deepest ocean profiler reaches ~2,000 m. Rename and extend freely.</p>
   </div>
+  <div class="wrap" style="margin-top:14px;justify-content:center">
+    <p style="font-size:10.5px;color:var(--mute);letter-spacing:.08em">© 2026 Alex Philp · RapidWatch</p>
+  </div>
 </footer>
 
 </div>
@@ -1832,7 +1835,7 @@ const map = L.map('map',{zoomControl:false,minZoom:4,maxZoom:11,worldCopyJump:fa
   .setView([24.6,-89.0],6);
 L.control.zoom({position:'bottomright'}).addTo(map);
 map.setMaxBounds([[12,-103],[35,-74]]);
-map.attributionControl.setPrefix('RapidWatch · Natural Earth');
+map.attributionControl.setPrefix('© 2026 Alex Philp · RapidWatch · Natural Earth');
 
 // ---- custom panes for explicit z-stacking ----
 // land(250) < default overlay vectors/heat(400) < GOES IR imagery(450) < storm track(460)
