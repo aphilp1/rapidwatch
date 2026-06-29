@@ -28,11 +28,11 @@ STORMS = {
                    bounds=(-91.0, -79.0, 16.5, 32.0), d26="data/ohc/helene_d26.json"),
     # 2005 storms = GOES-12 era -> GridSat-GOES (NCEI, anonymous HTTPS, hourly, var ch4)
     "katrina": dict(name="Katrina", year=2005, source="gridsat", sat="goes12",
-                    start=(2005, 8, 26, 0), end=(2005, 8, 29, 6),
+                    start=(2005, 8, 26, 0), end=(2005, 8, 29, 18),   # through LA/MS landfall (Aug 29)
                     bounds=(-92.0, -79.0, 22.5, 31.0), d26="data/ohc/katrina_d26.json"),
     "rita": dict(name="Rita", year=2005, source="gridsat", sat="goes12",
-                 start=(2005, 9, 19, 18), end=(2005, 9, 23, 0),
-                 bounds=(-93.0, -78.0, 21.5, 29.0), d26="data/ohc/rita_d26.json"),
+                 start=(2005, 9, 19, 18), end=(2005, 9, 24, 12),     # through TX/LA landfall (Sep 24)
+                 bounds=(-94.5, -78.0, 21.5, 30.5), d26="data/ohc/rita_d26.json"),
 }
 
 # ---- palette ----
