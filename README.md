@@ -95,6 +95,7 @@ RapidWatch/
 ├── rapidwatch-gulf-ri-source.html   SOURCE: RI Observatory tab
 ├── rapidwatch-gulf-map.html         SOURCE: Gulf Map tab
 ├── assemble_rapidwatch.py           builds the two assembled files from the sources
+├── DATA_SOURCES.md                  full geospatial source & metadata manifest
 ├── NOAA_RI_observation_report.md    the research memo (source)
 ├── NOAA_RI_observation_report.html  rendered report (the Analysis tab)
 ├── make_report_html.py / make_figures.py    report + figure pipeline
@@ -134,6 +135,11 @@ Then open http://localhost:8000/rapidwatch-gulf-ri.html . Serving over localhost
 (rather than `file://`) is what lets the page fetch the `data/` files at runtime.
 
 ## Data provenance & honesty notes
+
+> **Full source manifest:** [`DATA_SOURCES.md`](DATA_SOURCES.md) is the complete
+> geospatial metadata document — every layer's provider, access endpoint / dataset ID,
+> resolution, spatial extent, temporal coverage, local file, build script, and license,
+> all verified against the code. The notes below are the short version.
 
 - **Hurricane tracks are real best-track data.** The 2005 Katrina/Rita pair is from
   NOAA **HURDAT2**; the 2024 Helene/Milton pair is from the official **NHC Tropical

@@ -118,6 +118,7 @@ for every visitor without a third-party proxy.</p>
 ├── rapidwatch-gulf-ri-source.html   SOURCE: RI Observatory tab
 ├── rapidwatch-gulf-map.html         SOURCE: Gulf Map tab
 ├── assemble_rapidwatch.py           builds the two assembled files from the sources
+├── DATA_SOURCES.md                  full geospatial source &amp; metadata manifest
 ├── NOAA_RI_observation_report.md    the research memo (source)
 ├── NOAA_RI_observation_report.html  rendered report (the Analysis tab)
 ├── make_report_html.py / make_figures.py    report + figure pipeline
@@ -149,6 +150,12 @@ D26 fields) · <code>scaled_d26_ri.py</code> + <code>analyze_d26_ri.py</code> (p
 <p>Then open http://localhost:8000/rapidwatch-gulf-ri.html . Serving over localhost
 (rather than <code>file://</code>) is what lets the page fetch the <code>data/</code> files at runtime.</p>
 <h2 id="data-provenance-honesty-notes">Data provenance &amp; honesty notes</h2>
+<blockquote>
+<p><strong>Full source manifest:</strong> <a href="DATA_SOURCES.md"><code>DATA_SOURCES.md</code></a> is the complete
+geospatial metadata document — every layer's provider, access endpoint / dataset ID,
+resolution, spatial extent, temporal coverage, local file, build script, and license,
+all verified against the code. The notes below are the short version.</p>
+</blockquote>
 <ul>
 <li><strong>Hurricane tracks are real best-track data.</strong> The 2005 Katrina/Rita pair is from
   NOAA <strong>HURDAT2</strong>; the 2024 Helene/Milton pair is from the official <strong>NHC Tropical

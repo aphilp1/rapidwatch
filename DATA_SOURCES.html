@@ -1,0 +1,409 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RapidWatch — Data Sources & Metadata</title>
+<style>
+:root{--ink:#16222e;--mute:#5b6b78;--line:#e2e8ee;--amber:#c9700f;--red:#c0392b;--accent:#0d6b73;--bg:#fbfcfd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.62 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.doc{max-width:920px;margin:0 auto;padding:40px 40px 96px}
+h1{font-size:29px;line-height:1.2;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:21px;margin:40px 0 10px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:24px 0 6px;color:var(--accent)}
+p,li{color:#26323d}
+a{color:var(--accent);word-break:break-word}
+strong{color:var(--ink)}
+em{color:var(--mute)}
+hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eef3f6;font-weight:700}
+tr:nth-child(even) td{background:#f6f9fb}
+code{background:#eef3f6;border-radius:4px;padding:1px 5px;font:12.5px ui-monospace,SFMono-Regular,Menlo,monospace}
+pre{background:#0d1b26;color:#dbe7ee;border-radius:10px;padding:16px 18px;overflow:auto;line-height:1.5;font-size:13px}
+pre code{background:none;color:inherit;padding:0}
+blockquote{margin:0;padding:2px 16px;border-left:3px solid var(--amber);color:var(--mute)}
+@media print{table,pre,tr{break-inside:avoid}body{background:#fff}.doc{padding:0}.print{display:none}}
+.print{position:fixed;top:16px;right:16px;background:var(--accent);color:#fff;border:0;border-radius:8px;
+  padding:9px 16px;font:600 13px sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.banner{background:linear-gradient(135deg,#0d2436,#123a44);color:#eaf3f5;border-radius:14px;
+  padding:22px 26px;margin:0 0 28px}
+.banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
+.banner h1{color:#fff;margin:8px 0 0;border:0;padding:0}
+.doc > h1:first-of-type{display:none}
+</style></head><body>
+<button class="print" onclick="window.print()">Save / Print as PDF</button>
+<div class="doc">
+<div class="banner"><div class="k">RapidWatch · geospatial source manifest</div>
+<h1>Data Sources &amp; Metadata</h1></div>
+<h1 id="rapidwatch-geospatial-data-source-metadata-document">RapidWatch — Geospatial Data Source &amp; Metadata Document</h1>
+<p><strong>Project:</strong> RapidWatch — Gulf of Mexico rapid-intensification observatory
+<strong>Live site:</strong> https://aphilp1.github.io/rapidwatch/
+<strong>This document:</strong> complete provenance for every geospatial layer, dataset, and live
+feed in the project — what it is, who produced it, where it comes from, how it is
+fetched, its resolution / extent / coverage, the local file it lands in, the script
+that builds it, and its license. Maintained by hand; update when a source changes.</p>
+<p><strong>Coordinate reference system (everything):</strong> WGS84 geographic, lon/lat decimal degrees
+(<code>urn:ogc:def:crs:OGC:1.3:CRS84</code> / EPSG:4326). No projected CRS is used; the web map
+applies a simple equirectangular canvas projection for rendering.</p>
+<p><strong>Standard analysis box (Gulf of Mexico):</strong> lat 15.0 → 32.0 °N, lon −100.0 → −74.0 °E
+(used for all ocean-heat subsets). Hurricane selection uses a hand-drawn Gulf polygon
+(see <code>build_gulf_hurricanes.py › GULF_POLY</code>) that includes the Bay of Campeche.</p>
+<p><strong>"Measured" vs "illustrative":</strong> Layers are explicitly tagged below. Best tracks, D26,
+GOES IR, live buoys, and the NHC cone are <strong>real observational/reanalysis data</strong>. The
+Loop Current path, eddy/glider/saildrone scaffolding, and analytical SST/shear/current
+climatology are <strong>schematic</strong> (labeled as such in-app) and are NOT in this provenance
+table because they are illustrative, not sourced.</p>
+<hr />
+<h2 id="1-master-quick-reference-table">1. Master quick-reference table</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Layer / product</th>
+<th>Provider</th>
+<th>Type</th>
+<th>Local file(s)</th>
+<th>Built by</th>
+<th>Refresh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>RI best tracks (4 storms)</td>
+<td>NOAA HURDAT2 + NHC TCRs</td>
+<td>Measured</td>
+<td><code>data/storms.geojson</code></td>
+<td>hand-assembled</td>
+<td>static</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Historical Gulf hurricanes (326)</td>
+<td>NOAA HURDAT2</td>
+<td>Measured</td>
+<td><code>data/gulf_hurricanes.geojson</code> · <code>.json</code></td>
+<td><code>build_gulf_hurricanes.py</code></td>
+<td>static (annual HURDAT2 release)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Intensification run-ups (311)</td>
+<td>NOAA HURDAT2 (derived)</td>
+<td>Derived</td>
+<td><code>data/gulf_intensification.geojson</code></td>
+<td><code>build_gulf_hurricanes.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RI climatology hotspot grid</td>
+<td>NOAA HURDAT2 (derived)</td>
+<td>Derived</td>
+<td><code>data/ri_climatology.json</code></td>
+<td><code>ri_climatology.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ocean heat D26 — 2005 storms</td>
+<td>NOAA/NRL HYCOM GOFS 3.1</td>
+<td>Measured (reanalysis)</td>
+<td><code>data/ohc/katrina_d26.json</code> · <code>rita_d26.json</code></td>
+<td><code>build_ohc_hycom.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Ocean heat D26 — 2024 storms</td>
+<td>Copernicus Marine (GLORYS/analysis)</td>
+<td>Measured (analysis)</td>
+<td><code>data/ohc/helene_d26.json</code> · <code>milton_d26.json</code></td>
+<td><code>build_ohc_copernicus.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Scaled D26-vs-RI study</td>
+<td>Copernicus Marine</td>
+<td>Derived</td>
+<td><code>data/ohc/ri_d26_samples.csv</code> · <code>ri_d26_ahead_1p0.csv</code></td>
+<td><code>scaled_d26_ri.py</code> · <code>scaled_d26_ri_ahead.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>8</td>
+<td>GOES IR animation — 2024</td>
+<td>NOAA GOES-16 (ABI) via AWS</td>
+<td>Measured</td>
+<td><code>data/overlays/{helene,milton}_ir.{mp4,webm}</code></td>
+<td><code>make_storm_ri_animation.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>9</td>
+<td>GOES IR animation — 2005</td>
+<td>NOAA GridSat-GOES (GOES-12) via NCEI</td>
+<td>Measured</td>
+<td><code>data/overlays/{katrina,rita}_ir.{mp4,webm}</code></td>
+<td><code>make_storm_ri_animation.py</code></td>
+<td>static</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Live buoy observations</td>
+<td>NOAA NDBC</td>
+<td>Measured (live)</td>
+<td><code>data/ndbc/*.txt</code></td>
+<td><code>build_live_data.py</code></td>
+<td>every 30 min</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Live NHC active storms + cone</td>
+<td>NOAA NHC</td>
+<td>Measured (live)</td>
+<td><code>data/nhc_currentstorms.json</code> · <code>data/nhc/*.geojson</code></td>
+<td><code>build_live_data.py</code></td>
+<td>every 30 min</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Coastline / admin basemap</td>
+<td>Natural Earth</td>
+<td>Reference</td>
+<td><code>data/geo/ne_50m_*.geojson</code></td>
+<td>static download</td>
+<td>static</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-detailed-source-entries">2. Detailed source entries</h2>
+<h3 id="1-rapid-intensification-best-tracks-the-4-headline-storms">1 — Rapid-intensification best tracks (the 4 headline storms)</h3>
+<ul>
+<li><strong>What:</strong> Synoptic best-track fixes (position, max wind, MSLP, category, RI flag,
+  landfall flag) for Katrina (2005), Rita (2005), Helene (2024), Milton (2024).
+  123 point/line features.</li>
+<li><strong>Provider / source:</strong> NOAA HURDAT2 for the 2005 pair; official <strong>NHC Tropical
+  Cyclone Reports</strong> for the 2024 pair. (Recorded in the file's own <code>metadata.source</code>.)</li>
+<li><strong>RI definition:</strong> +30 kt sustained-wind increase within 24 h on synoptic fixes
+  (NHC operational threshold); detected from the wind series, not hand-placed.</li>
+<li><strong>Local file:</strong> <code>data/storms.geojson</code> · <strong>CRS:</strong> WGS84 · <strong>Cadence:</strong> static.</li>
+</ul>
+<h3 id="2-historical-gulf-hurricane-track-library-326-storms-18512025">2 — Historical Gulf hurricane track library (326 storms, 1851–2025)</h3>
+<ul>
+<li><strong>What:</strong> Full LineString track + lifetime-peak and in-Gulf-peak wind/category/
+  pressure for every Atlantic hurricane that reached HU status <strong>and</strong> entered the
+  Gulf-of-Mexico polygon. 12 reached Cat 5 in-Gulf.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA HURDAT2</strong> Atlantic best-track database, 1851–present.</li>
+<li>Download (once): <code>https://www.nhc.noaa.gov/data/hurdat/</code> → file
+    <code>hurdat2-1851-2025-02272026.txt</code> (the 27 Feb 2026 release, 2004 systems).</li>
+<li>Stored locally as <code>data/hurdat2-atlantic.txt</code> (7.1 MB).</li>
+<li><strong>Local files:</strong> <code>data/gulf_hurricanes.geojson</code> (tracks) · <code>data/gulf_hurricanes.json</code>
+  (summary) · <strong>Built by:</strong> <code>build_gulf_hurricanes.py</code>.</li>
+<li><strong>License:</strong> U.S. Government work, public domain. Cite NOAA/NHC; Landsea &amp; Franklin (2013).</li>
+</ul>
+<h3 id="3-intensification-run-up-segments-311">3 — Intensification "run-up" segments (311)</h3>
+<ul>
+<li><strong>What:</strong> The contiguous strengthening stretch culminating at each storm's lifetime
+  max wind; flagged rapid (≥30 kt/24 h) vs gradual. 190/311 (~61%) qualified as RI.</li>
+<li><strong>Source:</strong> derived from HURDAT2 (#2) by <code>build_gulf_hurricanes.py</code>.</li>
+<li><strong>Local file:</strong> <code>data/gulf_intensification.geojson</code>.</li>
+</ul>
+<h3 id="4-ri-climatology-hotspot-grid">4 — RI climatology hotspot grid</h3>
+<ul>
+<li><strong>What:</strong> Gridded conditional RI-onset propensity over the Gulf — Gaussian KDE of
+  RI-onset start points, exposure-normalized by track traffic. 0.25° grid, 0.75° KDE
+  bandwidth. Yields the core box (Bay of Campeche / SW Loop Current, ~3.1× domain avg)
+  and a watch box. 3744 cells.</li>
+<li><strong>Source:</strong> derived from HURDAT2 (#2) by <code>ri_climatology.py</code>.</li>
+<li><strong>Local file:</strong> <code>data/ri_climatology.json</code>.</li>
+<li><strong>Caveat:</strong> Pre-1944 / pre-satellite undercount and growing observing density bias
+  early-era counts — documented in the research memo.</li>
+</ul>
+<h3 id="5-ocean-heat-content-d26-2005-storms-katrina-rita">5 — Ocean heat content / D26 — 2005 storms (Katrina, Rita)</h3>
+<ul>
+<li><strong>What:</strong> D26 = depth of the 26 °C isotherm (m), computed at every grid point from
+  3-D ocean temperature profiles over the Gulf box for the storm's RI date.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA/NRL HYCOM GOFS 3.1 reanalysis</strong> (1994–2015).</li>
+<li>Dataset: <code>GLBv0.08/expt_53.X</code>, variable <code>water_temp</code>.</li>
+<li>Access: OPeNDAP via HYCOM THREDDS —
+    <code>https://tds.hycom.org/thredds/dodsC/GLBv0.08/expt_53.X/data/{year}</code>.</li>
+<li>Note: GLBv0.08 longitude is 0–360 (auto-detected/converted to −180…180).</li>
+<li><strong>Extent / resolution:</strong> Gulf box (15–32 °N, 100–74 °W), native 0.08° grid (~214×327),
+  40 depth levels, time step nearest the RI-window midpoint.</li>
+<li><strong>Local files:</strong> <code>data/ohc/katrina_d26.json</code> · <code>data/ohc/rita_d26.json</code> (+ <code>manifest.json</code>).</li>
+<li><strong>Built by:</strong> <code>build_ohc_hycom.py</code>. <strong>License:</strong> public (NRL/NOAA); cite HYCOM/GOFS 3.1.</li>
+</ul>
+<h3 id="6-ocean-heat-content-d26-2024-storms-helene-milton">6 — Ocean heat content / D26 — 2024 storms (Helene, Milton)</h3>
+<ul>
+<li><strong>What:</strong> Same D26 product for the 2024 pair (HYCOM reanalysis does not extend past
+  Sep 2024, so a 2024-capable source was required).</li>
+<li><strong>Provider / source:</strong> <strong>Copernicus Marine Service</strong> —
+  <code>GLOBAL_ANALYSISFORECAST_PHY_001_024</code>.</li>
+<li>Dataset id: <code>cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m</code> (daily-mean potential
+    temperature <code>thetao</code>), product version 202406.</li>
+<li>Access: <code>copernicusmarine</code> Python API (<code>cm.login()</code> / <code>cm.subset()</code>); requires a
+    free Copernicus Marine account. <strong>Credentials live in <code>~/.copernicusmarine/</code> and are
+    never committed to the repo.</strong></li>
+<li><strong>Extent / resolution:</strong> Gulf box (15–32 °N, 100–74 °W), 0.083° grid, depths 0–300 m,
+  storm's RI date.</li>
+<li><strong>Local files:</strong> <code>data/ohc/helene_d26.json</code> · <code>data/ohc/milton_d26.json</code>.</li>
+<li><strong>Built by:</strong> <code>build_ohc_copernicus.py</code>. <strong>License:</strong> Copernicus Marine Service terms —
+  free reuse with attribution ("Generated using E.U. Copernicus Marine Service Information").</li>
+</ul>
+<h3 id="7-scaled-d26-vs-ri-statistical-study">7 — Scaled D26-vs-RI statistical study</h3>
+<ul>
+<li><strong>What:</strong> D26 sampled at best-track fixes for 76 Gulf hurricanes (698 fixes, 89 RI-onset)
+  to test D26 as an RI predictor; plus the <strong>ahead-of-track</strong> refinement that samples
+  ~1° along each storm's heading (un-waked ocean) instead of at the cold-wake center.</li>
+<li><strong>Provider / source:</strong> Copernicus Marine GLORYS reanalysis
+  <code>cmems_mod_glo_phy_my_0.083deg_P1D-m</code> (fixes ≤ 2021) chained with the analysis dataset
+  <code>cmems_mod_glo_phy-thetao_anfc_0.083deg_P1D-m</code> (≥ 2022). Cached NetCDF in
+  <code>data/ohc/raw/</code> (gitignored).</li>
+<li><strong>Local files (headline CSVs):</strong> <code>data/ohc/ri_d26_samples.csv</code> (center sample) ·
+  <code>data/ohc/ri_d26_ahead_1p0.csv</code> (1° ahead). Sweep CSVs are regenerable via
+  <code>python scaled_d26_ri_ahead.py --sweep</code>.</li>
+<li><strong>Built by:</strong> <code>scaled_d26_ri.py</code>, <code>scaled_d26_ri_ahead.py</code>, <code>analyze_d26_ri.py</code>.</li>
+<li><strong>Headline result (honest):</strong> at center, D26 adds ~0 independent skill (AUC 0.55, p≈0.07);
+  ahead-of-track, AUC rises to 0.64 (p≈1.3e-5) with +0.01–0.02 CV-AUC independent skill —
+  i.e. cold-wake sampling masked the signal. Reported with its caveats in the memo §5.7.</li>
+</ul>
+<h3 id="8-goes-infrared-animation-2024-storms-helene-milton">8 — GOES infrared animation — 2024 storms (Helene, Milton)</h3>
+<ul>
+<li><strong>What:</strong> Reconstructed RI animation from satellite clean-IR brightness temperature.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA GOES-16 (GOES-East) ABI</strong>, Level-2 Cloud &amp; Moisture
+  Imagery, product <code>ABI-L2-CMIPC</code> (CONUS), <strong>Band 13</strong> (clean longwave IR, ~10.3 µm).</li>
+<li>Access: <strong>AWS Open Data</strong> S3 bucket <code>noaa-goes16</code>, anonymous/unsigned reads (boto3
+    UNSIGNED). Cached to <code>data/goes_cache/</code>.</li>
+<li><strong>Cadence (native):</strong> ~10 min (CONUS). <strong>Local files:</strong> <code>data/overlays/{helene,milton}_ir.mp4</code></li>
+<li><code>.webm</code> (+ frame dirs <code>data/{helene,milton}_frames/</code>, <code>*_overlay_frames/</code>).</li>
+<li><strong>Built by:</strong> <code>make_storm_ri_animation.py &lt;storm&gt;</code>. <strong>License:</strong> public domain (NOAA);
+  AWS NOAA Open Data Program.</li>
+</ul>
+<h3 id="9-goes-infrared-animation-2005-storms-katrina-rita">9 — GOES infrared animation — 2005 storms (Katrina, Rita)</h3>
+<ul>
+<li><strong>What:</strong> Same animation for the GOES-12 era (pre-ABI), so a different archive is used.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA NCEI GridSat-GOES</strong> (gridded geostationary IR), satellite
+  <code>goes12</code>, variable <code>ch4</code> (IR window ~10.7 µm).</li>
+<li>Access: anonymous HTTPS —
+    <code>https://www.ncei.noaa.gov/data/gridsat-goes/access/goes/{YYYY}/{MM}/GridSat-GOES.goes12.{YYYY}.{MM}.{DD}.{HH}00.v01.nc</code></li>
+<li><strong>Cadence (native):</strong> hourly (regular lat/lon grid).</li>
+<li><strong>Local files:</strong> <code>data/overlays/{katrina,rita}_ir.mp4</code> + <code>.webm</code>.</li>
+<li><strong>Built by:</strong> <code>make_storm_ri_animation.py &lt;storm&gt;</code>. <strong>License:</strong> public domain (NOAA NCEI).</li>
+</ul>
+<h3 id="10-live-buoy-observations-ndbc">10 — Live buoy observations (NDBC)</h3>
+<ul>
+<li><strong>What:</strong> Real-time marine observations (wind, gust, wave height/period, pressure, air
+  &amp; sea temperature, dewpoint, etc.) from Gulf moored buoys.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA National Data Buoy Center (NDBC)</strong>, realtime2 feed —
+  <code>https://www.ndbc.noaa.gov/data/realtime2/{station}.txt</code>.</li>
+<li><strong>Stations (Gulf of Mexico moored buoys):</strong> <code>42001, 42002, 42036, 42039, 42040, 42055</code>
+  (station coordinates &amp; names are on each NDBC station page;
+  <code>https://www.ndbc.noaa.gov/station_page.php?station={id}</code>).</li>
+<li><strong>Local files:</strong> <code>data/ndbc/{id}.txt</code> (raw realtime2, parsed by the page as-is).</li>
+<li><strong>Built by:</strong> <code>build_live_data.py</code>. <strong>Refresh:</strong> every 30 min via GitHub Action.</li>
+<li><strong>Why mirrored:</strong> NDBC has no CORS headers, so the page cannot fetch it directly in a
+  browser — the Action mirrors it to a same-origin file.</li>
+</ul>
+<h3 id="11-live-nhc-active-storms-forecast-cone">11 — Live NHC active storms &amp; forecast cone</h3>
+<ul>
+<li><strong>What:</strong> Current active tropical cyclones and their 5-day forecast cone / track / points.</li>
+<li><strong>Provider / source:</strong> <strong>NOAA National Hurricane Center (NHC)</strong> —</li>
+<li><code>https://www.nhc.noaa.gov/CurrentStorms.json</code> (active-storm index, verbatim).</li>
+<li><code>https://www.nhc.noaa.gov/storm_graphics/api/{stormID}_5day_{pgn,lin,pts}.geojson</code>
+    (cone polygon / track line / points per active storm).</li>
+<li><strong>Local files:</strong> <code>data/nhc_currentstorms.json</code> · <code>data/nhc/{ID}_5day_{pgn,lin,pts}.geojson</code>.</li>
+<li><strong>Built by:</strong> <code>build_live_data.py</code>. <strong>Refresh:</strong> every 30 min. (Empty when no active storms.)</li>
+</ul>
+<h3 id="12-coastline-administrative-basemap">12 — Coastline &amp; administrative basemap</h3>
+<ul>
+<li><strong>What:</strong> Gulf coastline and admin-0 boundary lines used as the vector basemap (the app
+  uses no raster tile service — basemap is drawn from these vectors on canvas).</li>
+<li><strong>Provider / source:</strong> <strong>Natural Earth</strong> 50 m cultural/physical vectors
+  (<code>ne_50m_admin_0_boundary_lines_land</code>, <code>ne_50m_coastline</code>), clipped to the Gulf and
+  simplified. Download: https://www.naturalearthdata.com/.</li>
+<li><strong>Local files:</strong> <code>data/geo/ne_50m_admin0.geojson</code> · <code>data/geo/ne_50m_coastline.geojson</code>.</li>
+<li><strong>License:</strong> <strong>public domain</strong> (Natural Earth). Attribution appreciated, not required.</li>
+</ul>
+<hr />
+<h2 id="3-live-data-pipeline-the-only-auto-updating-part">3. Live-data pipeline (the only auto-updating part)</h2>
+<ul>
+<li><strong>Driver:</strong> <code>build_live_data.py</code> (stdlib <code>urllib</code>, User-Agent
+  <code>RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)</code>).</li>
+<li><strong>Scheduler:</strong> GitHub Action <code>.github/workflows/live-data.yml</code>, <code>cron: */30 * * * *</code>
+  (every 30 min; GitHub may delay/coalesce under load), Python 3.12.</li>
+<li><strong>Mechanism (git-scraping):</strong> the Action fetches NDBC + NHC, writes the files above,
+  and commits them (<code>data: refresh live buoy/NHC snapshot [skip ci]</code>) so the GitHub Pages
+  site serves them same-origin — <strong>no CORS proxy</strong> (all free proxies are dead/unreliable).</li>
+<li><strong>Failure mode:</strong> on a fetch error the previous good file is kept (never overwritten with
+  a bad/empty payload).</li>
+</ul>
+<hr />
+<h2 id="4-licenses-required-attribution-summary">4. Licenses &amp; required attribution (summary)</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>License</th>
+<th>Attribution string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOAA HURDAT2 / NHC TCRs / NDBC / NHC cone / GOES-16 / GridSat-GOES</td>
+<td>U.S. Government work, public domain</td>
+<td>"NOAA" (cite the specific product)</td>
+</tr>
+<tr>
+<td>NOAA/NRL HYCOM GOFS 3.1</td>
+<td>Public (NRL/NOAA)</td>
+<td>"HYCOM GOFS 3.1 reanalysis (NRL/NOAA)"</td>
+</tr>
+<tr>
+<td>Copernicus Marine (GLORYS / analysis)</td>
+<td>Free reuse w/ attribution</td>
+<td>"Generated using E.U. Copernicus Marine Service Information"</td>
+</tr>
+<tr>
+<td>Natural Earth</td>
+<td>Public domain</td>
+<td>"Natural Earth"</td>
+</tr>
+<tr>
+<td>RapidWatch code &amp; original content</td>
+<td><strong>MIT License</strong> (<code>LICENSE</code>)</td>
+<td>"© Alex Philp"</td>
+</tr>
+</tbody>
+</table>
+<p>Third-party datasets remain the property of their providers and carry their own terms —
+credit the original sources when reusing the data.</p>
+<hr />
+<h2 id="5-software-libraries-provenance-of-the-tooling">5. Software &amp; libraries (provenance of the tooling)</h2>
+<ul>
+<li><strong>Web map:</strong> Leaflet (https://leafletjs.com) + a custom HTML5 canvas renderer for the
+  layered raster/vector stack; all in a single self-contained page (no build step).</li>
+<li><strong>Python pipeline:</strong> <code>numpy</code>, <code>netCDF4</code>, <code>requests</code>/<code>urllib</code>, <code>copernicusmarine</code> (v2.4.1),
+  <code>boto3</code> (UNSIGNED S3), <code>scikit-learn</code> (D26-vs-RI study), <code>matplotlib</code> (figures),
+  plus <code>ffmpeg</code> for animation encoding.</li>
+<li><strong>Build / assembly:</strong> <code>assemble_rapidwatch.py</code> (page assembly + checks),
+  <code>make_*</code> scripts (figures, animations, report/README HTML).</li>
+</ul>
+<hr />
+<h2 id="6-research-memo-citations">6. Research memo &amp; citations</h2>
+<p>The observing-recommendation memo (<code>NOAA_RI_observation_report.md</code> / <code>.html</code>) cites 20
+<strong>verified</strong> peer-reviewed / NOAA primary sources (DOIs confirmed) — e.g. Kaplan &amp; DeMaria
+(2003), Shay (2000), Scharroo (2005), Jaimes &amp; Shay (2009), DeMaria (1996), Landsea &amp;
+Franklin (2013), Yaukey (2014), Benedetto &amp; Mercer (2020), plus Milton/Michael TCRs.
+<strong>Rule of record:</strong> citations are never invented — each is verified against the primary
+source before use. The D26-vs-RI finding (including its null result on independent skill)
+is reported honestly.</p>
+<hr />
+<p><em>Maintained for RapidWatch. CRS throughout: WGS84 (EPSG:4326). When a source, endpoint,
+dataset id, or station list changes, update the corresponding row above and the relevant
+<code>build_*</code> script — keep this document and the code in sync.</em></p>
+</div></body></html>
