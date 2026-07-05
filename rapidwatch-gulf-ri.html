@@ -1094,6 +1094,9 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 #ri-nowcast .rn-stats span{font-family:"IBM Plex Mono";font-size:7.5px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;line-height:1.3;display:block;margin-top:1px}
 #ri-nowcast .rn-fine{font-family:"IBM Plex Mono";font-size:9px;color:var(--mute);line-height:1.55;border-top:1px solid var(--line);padding-top:8px;margin-top:9px}
 .rn-stormdot{width:16px;height:16px;border-radius:50%;border:2px solid #ff5d6c;background:rgba(255,45,85,.25);box-shadow:0 0 12px rgba(255,45,85,.8);animation:rn-pulse 1.6s ease-in-out infinite}
+/* permanent label on the buoy(s) the nowcast cites, so a named buoy is visible on the map */
+.rn-buoytip{background:rgba(13,28,41,.92)!important;border:1px solid #46cfd6!important;color:#d3ecee!important;font-family:"IBM Plex Mono";font-size:9.5px;font-weight:600;padding:1px 6px!important;border-radius:4px!important;box-shadow:0 2px 8px rgba(0,0,0,.5)!important;white-space:nowrap}
+.rn-buoytip::before{display:none!important}
 @media(max-width:680px){#ri-nowcast{max-height:40vh}}
 
 </style>
@@ -3407,7 +3410,7 @@ if(window.innerWidth<=680) setLeg(true);
     }
     h+='<div class="rn-note">Where to watch: the red core box ('+cb.lat0+'&ndash;'+cb.lat1+'&deg;N, '
       +Math.abs(cb.lon1)+'&ndash;'+Math.abs(cb.lon0)+'&deg;W, Bay of Campeche) is where RI most often begins '
-      +'&mdash; toggle &ldquo;RI climatology hotspot&rdquo; to see it.</div>'+FINE;
+      +'&mdash; outlined in red on the map. The cited buoy is marked in aqua.</div>'+FINE;
     return h;
   }
 
@@ -3433,16 +3436,42 @@ if(window.innerWidth<=680) setLeg(true);
       +'</div>'};
   }
 
+  /* draw everything the panel REFERENCES onto the nowcast's own layer, so a cited buoy or box
+     is actually visible on the map (the panel runs in focus mode with other layers hidden) */
+  function drawContext(citedBuoys){
+    if(!clim) return;
+    const cb=clim.core_box, wb=clim.watch_box;
+    if(wb) L.rectangle([[wb.lat0,wb.lon0],[wb.lat1,wb.lon1]],{color:'#ffc24d',weight:1.3,opacity:.85,dashArray:'7,6',fill:false})
+      .bindTooltip('RI watch box &middot; 1.95&times; Gulf average',{sticky:true}).addTo(riNowcastLayer);
+    if(cb) L.rectangle([[cb.lat0,cb.lon0],[cb.lat1,cb.lon1]],{color:'#ff2d55',weight:2,opacity:.95,fillColor:'#ff2d55',fillOpacity:.06})
+      .bindTooltip('RI CORE box &middot; Bay of Campeche &middot; 3.1&times; Gulf average',{sticky:true}).addTo(riNowcastLayer);
+    const seen=new Set();
+    (citedBuoys||[]).forEach(b=>{ if(!b||b.la==null||seen.has(b.id)) return; seen.add(b.id);
+      L.circleMarker([b.la,b.lo],{radius:6,color:'#46cfd6',weight:2,fillColor:'#0d1c29',fillOpacity:.95})
+        .bindTooltip('Buoy '+b.id+(b.wtmp!=null?' &middot; '+b.wtmp.toFixed(1)+'&deg;C':''),{permanent:true,direction:'right',className:'rn-buoytip',offset:[7,0]})
+        .bindPopup(pop('Live NDBC buoy','','Buoy '+b.id+' &middot; '+esc(b.loc||''),fmt(b.la,b.lo),
+          (b.wtmp!=null?'Water temp <b>'+b.wtmp.toFixed(1)+'&deg;C</b>'+(b.wtmp>=SST_RI?' &mdash; RI-supportive':''):'SST not reporting')
+          +(b.t?'<br>Observed '+esc(b.t):''),['live obs','NDBC']))
+        .addTo(riNowcastLayer);
+    });
+  }
   function render(){
     if(climErr){ bodyEl.innerHTML='<div class="rn-note">RI climatology unavailable &mdash; nowcast offline.</div>'; return; }
     if(!clim||storms===null){ bodyEl.innerHTML='<div class="rn-note">Loading live feeds&hellip;</div>'; return; }
     riNowcastLayer.clearLayers();
-    if(!storms.length){ bodyEl.innerHTML=baselineHTML(); return; }
+    if(!storms.length){
+      bodyEl.innerHTML=baselineHTML();
+      const warm=buoyObs.filter(b=>b.wtmp!=null).sort((a,b)=>b.wtmp-a.wtmp)[0];
+      drawContext(warm?[warm]:[]);   // show the cited warmest buoy + the core/watch boxes
+      return;
+    }
     let h='<div class="rn-note">'+storms.length+' active Gulf storm'+(storms.length>1?'s':'')
       +(outsideN?' ('+outsideN+' more outside the Gulf domain)':'')+'. Scoring: core box +2 &middot; watch box +1 &middot; warm SST +1 &rarr; 3 HIGH &middot; 2 ELEVATED &middot; 0&ndash;1 LOW.</div>';
+    const nbs=[];
     storms.forEach(s=>{
       const c=stormHTML(s);
       h+=c.html;
+      if(c.nb) nbs.push(c.nb);   // remember each storm's cited nearest buoy so we can show it
       // map presence: pulsing fix at the current advisory position, popup mirrors the card
       L.marker([s.la,s.lo],{icon:L.divIcon({className:'',html:'<div class="rn-stormdot"></div>',iconSize:[16,16],iconAnchor:[8,8]})})
         .bindPopup(pop('Live RI nowcast','',esc(s.name)+' &middot; '+esc(s.cls),fmt(s.la,s.lo),
@@ -3452,6 +3481,7 @@ if(window.innerWidth<=680) setLeg(true);
           ['live NHC',c.sig.txt+' signal','climatology']))
         .addTo(riNowcastLayer);
     });
+    drawContext(nbs);   // show the cited nearest buoys + the core/watch boxes
     bodyEl.innerHTML=h+FINE;
   }
 
