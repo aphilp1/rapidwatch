@@ -3,7 +3,7 @@ test.txt
 __pycache__/
 *.pyc
 *.log
-data/ohc_raw/*.nc
+data/ohc_raw/
 data/ohc/raw/
 *.nc
 
