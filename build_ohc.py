@@ -6,17 +6,24 @@ Step 2  Regrid to RapidWatch Gulf canvas grid             (future)
 Step 3  Export JS lookup table                            (future)
 Step 4  Inject into rapidwatch-gulf-map.html              (future)
 
-Data source
+Data source (re-pointed 2026-07-05 — see OHC_SOURCE_NOTES.md)
   NESDIS Satellite Ocean Heat Content Suite (SOHCS)
-  Derived from satellite altimetry + climatological T/S profiles
-  Covers 1993–present  →  single source for 2005 (Katrina/Rita)
-  and 2024 (Helene/Milton)
-  Variables used here:
-    D26  depth of the 26 °C isotherm  (metres)
-    OHC  ocean heat content above D26 (kJ cm⁻²)
+  Derived from satellite altimetry + climatological T/S profiles.
+  The old CoastWatch ERDDAP id `nesdisVHsohcsDaily` at
+  https://coastwatch.noaa.gov/erddap now returns HTTP 404 (dataset removed
+  from that server). The live SOHCS grids are on the NOAA PolarWatch ERDDAP:
+    noaacwOHC14na   North Atlantic, 0.25°, 2024-01-15 → present  (Helene, Milton)
+    noaacwOHCna     North Atlantic, 0.25°, 2020-04-30 → 2024-01-18
+  Variables (renamed from the old OHC/D26):
+    iso26C  depth of the 26 °C isotherm  (metres)
+    ohc     ocean heat content above D26 (kJ cm⁻²)
+  ⚠ COVERAGE TRUTH: no public SOHCS ERDDAP archive reaches 2005 (the old
+  header claim of "1993–present" was wrong; AOML's ERDDAP starts 2012,
+  PolarWatch 2020). For Katrina/Rita (2005) use build_ohc_hycom.py
+  (HYCOM GOFS 3.1 reanalysis → D26), which is verified alive.
 
 Usage
-  python build_ohc.py              # pull all four storms
+  python build_ohc.py              # pull storms within SOHCS coverage (2024 pair)
   python build_ohc.py --discover   # list ERDDAP dataset IDs and exit
 """
 
@@ -39,9 +46,27 @@ GEOJSON  = DIR / 'data' / 'storms.geojson'
 RAW.mkdir(parents=True, exist_ok=True)
 
 # ── ERDDAP config ─────────────────────────────────────────────────────────────
-ERDDAP_BASE  = 'https://coastwatch.noaa.gov/erddap'
-DATASET_ID   = 'nesdisVHsohcsDaily'          # verify: {ERDDAP_BASE}/griddap/{DATASET_ID}.html
-VARIABLES    = ['OHC', 'D26']               # kJ/cm² and metres
+# PolarWatch hosts the live SOHCS North Atlantic grids (verified 2026-07-05:
+# Gulf-box .nc request returned HTTP 200; ohc 0–230 kJ/cm², iso26C 20–158 m
+# for 2024-09-25 — physically sane).
+ERDDAP_BASE  = 'https://polarwatch.noaa.gov/erddap'
+DATASET_ID   = 'noaacwOHC14na'              # default/current; verify: {ERDDAP_BASE}/griddap/{DATASET_ID}.html
+VARIABLES    = ['ohc', 'iso26C']            # kJ/cm² and metres (old names: OHC, D26)
+
+# Dataset coverage windows (RI window must fall inside one of these).
+# (dataset_id, first_day, last_day_or_None-for-present)
+from datetime import datetime as _dt
+DATASET_WINDOWS = [
+    ('noaacwOHC14na', _dt(2024, 1, 16), None),
+    ('noaacwOHCna',   _dt(2020, 5, 1),  _dt(2024, 1, 17)),
+]
+
+def dataset_for(storm):
+    """Return the SOHCS dataset id covering a storm's RI window, or None."""
+    for did, d0, d1 in DATASET_WINDOWS:
+        if storm['ri_start'] >= d0 and (d1 is None or storm['ri_end'] <= d1):
+            return did
+    return None
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; RapidWatch/1.0; research)'}
 
@@ -105,15 +130,23 @@ def erddap_nc_url(storm, dataset_id=DATASET_ID, use_360=False):
     return f"{ERDDAP_BASE}/griddap/{dataset_id}.nc?{var_str}"
 
 # ── download one storm ────────────────────────────────────────────────────────
-def pull_storm(storm):
+def pull_storm(storm, dataset_override=None):
     out = RAW / f"{storm['name']}_ohc.nc"
     if out.exists():
         print(f"  [skip] {out.name} already on disk ({out.stat().st_size//1024} KB)")
         return True
 
+    # Pick the SOHCS dataset whose archive covers this storm's RI window
+    # (or honour an explicit --dataset override).
+    dataset_id = dataset_override or dataset_for(storm)
+    if dataset_id is None:
+        print(f"  {storm['name']} ({storm['year']}): outside SOHCS ERDDAP coverage "
+              f"(earliest archive 2020-04-30) — use build_ohc_hycom.py for this storm")
+        return None                                 # no-coverage, not a failure
+
     # Try negative-east longitude first; fall back to 0-360
     for use_360, label in [(False, '-180/180'), (True, '0/360')]:
-        url = erddap_nc_url(storm, use_360=use_360)
+        url = erddap_nc_url(storm, dataset_id=dataset_id, use_360=use_360)
         print(f"  {storm['name']}  ({storm['ri_start'].date()} to {storm['ri_end'].date()})")
         print(f"    GET {url[:120]}…")
 
@@ -222,8 +255,9 @@ def main():
     storms  = ri_windows()
     results = {}
 
+    override = args.dataset if args.dataset != DATASET_ID else None
     for s in storms:
-        ok = pull_storm(s)
+        ok = pull_storm(s, dataset_override=override)
         results[s['name']] = ok
 
     print("\n-- Summary --------------------------------------------------")
@@ -231,9 +265,13 @@ def main():
         summarise(s)
 
     print()
-    passed = [k for k, v in results.items() if v]
-    failed = [k for k, v in results.items() if not v]
-    print(f"\n{len(passed)}/4 storms pulled successfully: {passed}")
+    passed     = [k for k, v in results.items() if v]
+    nocoverage = [k for k, v in results.items() if v is None]      # pre-2020 storms
+    failed     = [k for k, v in results.items() if v is False]     # real errors
+    eligible   = len(results) - len(nocoverage)
+    print(f"\n{len(passed)}/{eligible} SOHCS-eligible storms pulled: {passed}")
+    if nocoverage:
+        print(f"Outside SOHCS archive (use build_ohc_hycom.py): {nocoverage}")
 
     if failed:
         print(f"Failed: {failed}")
@@ -243,7 +281,8 @@ def main():
         print(f"  3. Override dataset:    python build_ohc.py --dataset <ID>")
         sys.exit(1)
 
-    manifest = {s['name']: str(RAW / f"{s['name']}_ohc.nc") for s in storms}
+    manifest = {s['name']: str(RAW / f"{s['name']}_ohc.nc")
+                for s in storms if results[s['name']]}
     (RAW / 'manifest.json').write_text(json.dumps(manifest, indent=2))
     print(f"Manifest -> data/ohc_raw/manifest.json")
 
