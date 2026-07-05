@@ -786,6 +786,36 @@ header .coords{margin-left:auto;font-family:"IBM Plex Mono";font-size:11px;color
 .leaflet-div-icon{background:transparent;border:none}
 .eddy-spin{animation:eddy-cw var(--sp,6s) linear infinite;transform-origin:center}
 @keyframes eddy-cw{to{transform:rotate(360deg)}}
+/* HISTORICAL EXPLORER — filter + analytics panel for the 326-storm HURDAT2 layer */
+#hist-explorer{right:14px;bottom:36px;width:258px;padding:14px 16px 13px;z-index:1150;
+  max-height:calc(100% - 80px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#hist-explorer.hidden{display:none}
+#hist-explorer.min .hx-body{display:none}
+#hist-explorer h3{font-family:"Space Grotesk";font-weight:600;font-size:12px;letter-spacing:.04em;margin:0;color:var(--ink);display:flex;align-items:center;gap:8px}
+#hist-explorer h3 .hx-sq{width:8px;height:8px;border-radius:2px;background:var(--aqua)}
+#hist-explorer .hx-body{margin-top:9px}
+#hist-explorer .hx-note{font-size:10.5px;color:var(--mute);line-height:1.45;margin-bottom:4px}
+#hist-explorer .hx-lab{font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.14em;color:var(--mute);margin:11px 0 5px;display:flex;justify-content:space-between;align-items:center;text-transform:uppercase}
+#hist-explorer .hx-years{font-size:10px;color:var(--aqua);letter-spacing:.04em}
+#hist-explorer .hx-y{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:3px;background:rgba(255,255,255,.16);outline:none;cursor:pointer;margin:5px 0;display:block}
+#hist-explorer .hx-y::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:13px;height:13px;border-radius:50%;background:var(--aqua);border:2px solid #1a2a38;box-shadow:0 0 6px rgba(70,207,214,.6);cursor:pointer}
+#hist-explorer .hx-y::-moz-range-thumb{width:13px;height:13px;border-radius:50%;background:var(--aqua);border:2px solid #1a2a38;cursor:pointer}
+#hist-explorer .hx-chips{display:flex;flex-wrap:wrap;gap:5px}
+#hist-explorer .hx-chip{cursor:pointer;font-family:"IBM Plex Mono";font-size:9.5px;font-weight:600;letter-spacing:.05em;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,.04);border:1px solid var(--line-2);color:var(--mute);transition:all .15s}
+#hist-explorer .hx-chip.on{color:#0b1017;border-color:transparent}
+#hist-explorer .hx-ri{display:flex;align-items:center;gap:7px;margin-top:11px;cursor:pointer;user-select:none;font-size:11px;color:var(--slate)}
+#hist-explorer .hx-ri:hover{color:var(--ink)}
+#hist-explorer .hx-ri input{appearance:none;width:15px;height:15px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;position:relative;flex:none;transition:all .15s}
+#hist-explorer .hx-ri input:checked{background:var(--coral);border-color:var(--coral)}
+#hist-explorer .hx-ri input:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;border:solid var(--abyss);border-width:0 2px 2px 0;transform:rotate(45deg)}
+#hist-explorer .hx-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:2px}
+#hist-explorer .hx-stats div{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:7px;padding:6px 9px 5px}
+#hist-explorer .hx-stats b{display:block;font-family:"IBM Plex Mono";font-weight:600;font-size:15px;color:var(--aqua)}
+#hist-explorer .hx-stats span{font-family:"IBM Plex Mono";font-size:8.5px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+#hist-explorer .hx-play{width:100%;margin-top:11px;cursor:pointer;border:1px solid var(--line-2);background:rgba(255,255,255,.04);color:var(--ink);border-radius:7px;font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.08em;padding:7px 0;transition:all .15s}
+#hist-explorer .hx-play:hover{border-color:var(--amber);color:var(--amber)}
+#hist-explorer .hx-play.playing{background:rgba(255,138,61,.16);border-color:rgba(255,138,61,.5);color:var(--amber)}
+@media(max-width:680px){#hist-explorer{width:212px;bottom:30px}}
 </style>
 </head>
 <body>
@@ -1871,6 +1901,9 @@ L.rectangle([[24,-94],[29,-86]],
   .bindTooltip('ZONE B · CORRIDOR (SECONDARY)',{permanent:true,direction:'center',className:'zone-tip zb'})
   .addTo(zoneBLayer);
 
+/* HISTORICAL EXPLORER — filtered, interactive view of the 326 HURDAT2 tracks (layer + floating panel; default OFF) */
+const histExplorerLayer=L.layerGroup();
+
 const registry=[
  {key:'RI Watch — Zone A · onset core (primary)',lyr:zoneALayer,on:false,heat:true},
  {key:'RI Watch — Zone B · corridor (secondary)',lyr:zoneBLayer,on:false,heat:true},
@@ -1892,6 +1925,7 @@ const registry=[
  {key:'★ Rita 2005 — live GOES-12 RI animation',lyr:ritaRILayer,on:false,heat:false},
  {key:'Historical Gulf hurricanes (326 · 1851–2025 · HURDAT2)',lyr:histTracksLayer,on:false,heat:false},
  {key:'Intensification to peak (run-up · red = rapid)',lyr:intensLayer,on:false,heat:false},
+ {key:'★ Historical Explorer — filter the 326 storms (opens panel)',lyr:histExplorerLayer,on:false,heat:false},
  {key:'NHC active storm cone (live)',lyr:nhcLayer,on:false,heat:false},
  {key:'NDBC buoys (live obs)',lyr:buoyLayer,on:false,heat:false},
  {key:'Underwater glider line',lyr:gliderLayer,on:false,heat:false},
@@ -1995,6 +2029,180 @@ if(window.innerWidth<=680) setLeg(true);
       bar.querySelectorAll('.gc-spd').forEach(s=>s.classList.toggle('active',s===b)); applyState(); }
   });
   refresh();
+})();
+
+/* ══ HISTORICAL EXPLORER — interactive filter/analytics panel over the 326 HURDAT2 Gulf hurricanes ══
+   Panel + histExplorerLayer are gated by ONE registry toggle ("★ Historical Explorer", default OFF):
+   checking it adds the layer, which reveals the panel; unchecking hides both. Purely additive —
+   the static histTracksLayer / intensLayer above are untouched. */
+(function(){
+  const MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  const catColor=c=>c>=5?'#ff3860':c>=4?'#ff5d6c':c>=3?'#ff8a3d':c>=2?'#ffc24d':c>=1?'#ffe08a':'#9fb3c0';
+  const catName=c=>c>=1?('Cat '+c):'tropical storm';
+  const fdate=s=>s?String(s).slice(0,4)+'-'+String(s).slice(4,6)+'-'+String(s).slice(6,8):'?';
+  const catKey=c=>Math.max(0,Math.min(5,c|0));
+
+  /* ── panel DOM (same .panel chrome as legend/about; propagation-guarded like goes-controls) ── */
+  const px=document.createElement('div');
+  px.id='hist-explorer'; px.className='panel hidden';
+  px.innerHTML=
+    '<h3><span class="hx-sq"></span>HISTORICAL EXPLORER<span class="collapse hx-min" title="Collapse / expand">&ndash;</span></h3>'+
+    '<div class="hx-body">'+
+      '<div class="hx-note">Filter the 326 Gulf hurricanes (HURDAT2). Untick the &#9733; layer in LAYERS &amp; DATA to close.</div>'+
+      '<div class="hx-lab">Year range <span class="hx-years">&hellip;</span></div>'+
+      '<input type="range" class="hx-y hx-y0" min="1851" max="2024" value="1851" step="1" title="Earliest year shown">'+
+      '<input type="range" class="hx-y hx-y1" min="1851" max="2024" value="2024" step="1" title="Latest year shown">'+
+      '<div class="hx-lab">Lifetime peak category</div>'+
+      '<div class="hx-chips"></div>'+
+      '<label class="hx-ri"><input type="checkbox" class="hx-riq"> Rapid intensification only</label>'+
+      '<div class="hx-lab">Live stats</div>'+
+      '<div class="hx-stats">'+
+        '<div><b class="hx-n">&ndash;</b><span>storms shown</span></div>'+
+        '<div><b class="hx-nri">&ndash;</b><span>had RI</span></div>'+
+        '<div><b class="hx-n5">&ndash;</b><span>Cat 5</span></div>'+
+        '<div><b class="hx-mo">&ndash;</b><span>top month</span></div>'+
+      '</div>'+
+      '<button type="button" class="hx-play" title="Sweep the year range forward so tracks accumulate chronologically">&#9654;&nbsp;&nbsp;TIME-LAPSE 175 YEARS</button>'+
+    '</div>';
+  map.getContainer().appendChild(px);
+  // keep clicks / slider drags / wheel from panning or zooming the map underneath (goes-controls pattern)
+  L.DomEvent.disableClickPropagation(px);
+  L.DomEvent.disableScrollPropagation(px);
+  L.DomEvent.on(px,'mousedown touchstart pointerdown mousemove',L.DomEvent.stopPropagation);
+
+  const y0El=px.querySelector('.hx-y0'), y1El=px.querySelector('.hx-y1'),
+        yearsEl=px.querySelector('.hx-years'), chipsEl=px.querySelector('.hx-chips'),
+        riEl=px.querySelector('.hx-riq'), playBtn=px.querySelector('.hx-play'),
+        nEl=px.querySelector('.hx-n'), nriEl=px.querySelector('.hx-nri'),
+        n5El=px.querySelector('.hx-n5'), moEl=px.querySelector('.hx-mo'),
+        minBtn=px.querySelector('.hx-min');
+
+  /* ── state ── */
+  let feats=null, riSet=new Set(), minY=1851, maxY=2024;
+  const st={y0:minY,y1:maxY,cats:new Set(),riOnly:false};
+
+  /* ── track drawing (reuses pop(); same category palette as the static layer) ── */
+  function addTrack(f){
+    const p=f.properties, c5=p.peak_category>=5, ri=riSet.has(p.id);
+    const ll=f.geometry.coordinates.map(xy=>[xy[1],xy[0]]);
+    L.polyline(ll,{color:catColor(p.peak_category),weight:c5?2:1.3,opacity:c5?.9:.55,lineCap:'round',lineJoin:'round'})
+      .bindPopup(pop('Historical explorer','',p.name+' ('+p.year+')','entered Gulf '+fdate(p.gulf_entry_date),
+        'Lifetime peak: <b>'+p.peak_wind_kt+' kt · '+catName(p.peak_category)+'</b>'
+        +(p.min_pressure_mb?' · '+p.min_pressure_mb+' mb':'')
+        +'<br>Peak while in Gulf: <b>'+(p.gulf_peak_wind_kt||'?')+' kt · '+catName(p.gulf_peak_category)+'</b>'
+        +'<br>Run-up to peak: '+(ri?'<b style="color:#ff7a8c">RAPID intensification</b> (&ge;30 kt/24 h)':'gradual'),
+        ['HURDAT2',p.id,ri?'rapid':'gradual']))
+      .addTo(histExplorerLayer);
+  }
+  const matches=p=>p.year>=st.y0&&p.year<=st.y1
+    &&st.cats.has(catKey(p.peak_category))
+    &&(!st.riOnly||riSet.has(p.id));
+
+  function updateStats(sel){
+    nEl.textContent=sel.length;
+    nriEl.textContent=sel.filter(f=>riSet.has(f.properties.id)).length;
+    n5El.textContent=sel.filter(f=>f.properties.peak_category>=5).length;
+    const mc={}; sel.forEach(f=>{const m=+String(f.properties.gulf_entry_date).slice(4,6); if(m>=1&&m<=12) mc[m]=(mc[m]||0)+1;});
+    let best=0,bn=0; for(const m in mc) if(mc[m]>bn){bn=mc[m];best=+m;}
+    moEl.textContent=best?MONTHS[best-1]:'—';
+  }
+  function rebuild(){
+    if(!feats) return;
+    histExplorerLayer.clearLayers();
+    const sel=feats.filter(f=>matches(f.properties));
+    sel.forEach(addTrack);
+    updateStats(sel);
+  }
+  // debounce so dragging a year slider doesn't rebuild 326 polylines per pixel
+  let deb=null;
+  function queue(){ stopPlay(); clearTimeout(deb); deb=setTimeout(rebuild,120); }
+
+  /* ── filter controls ── */
+  function onYear(){
+    let a=+y0El.value, b=+y1El.value;
+    if(a>b){ if(this===y0El){b=a;y1El.value=String(a);} else {a=b;y0El.value=String(b);} }
+    st.y0=a; st.y1=b; yearsEl.textContent=a+'–'+b; queue();
+  }
+  y0El.addEventListener('input',onYear); y1El.addEventListener('input',onYear);
+
+  function paintChip(b){ const on=b.classList.contains('on');
+    b.style.background=on?catColor(+b.dataset.cat):''; b.style.color=on?'#0b1017':''; }
+  chipsEl.addEventListener('click',e=>{
+    const b=e.target.closest('.hx-chip'); if(!b) return;
+    b.classList.toggle('on'); paintChip(b);
+    st.cats=new Set([...chipsEl.querySelectorAll('.hx-chip.on')].map(x=>+x.dataset.cat));
+    queue();
+  });
+  riEl.addEventListener('change',()=>{ st.riOnly=riEl.checked; queue(); });
+
+  /* ── time-lapse: sweep max-year forward so tracks accumulate chronologically ── */
+  let playT=null;
+  function stopPlay(){
+    if(!playT) return;
+    clearInterval(playT); playT=null;
+    playBtn.classList.remove('playing');
+    playBtn.innerHTML='&#9654;&nbsp;&nbsp;TIME-LAPSE 175 YEARS';
+  }
+  playBtn.addEventListener('click',()=>{
+    if(playT){ stopPlay(); rebuild(); return; }
+    if(!feats) return;
+    clearTimeout(deb);
+    const base=feats.filter(f=>{const p=f.properties;
+        return p.year>=st.y0&&st.cats.has(catKey(p.peak_category))&&(!st.riOnly||riSet.has(p.id));})
+      .sort((x,y)=>x.properties.year-y.properties.year);
+    histExplorerLayer.clearLayers(); updateStats([]);
+    let cur=st.y0-1, idx=0;
+    playBtn.classList.add('playing'); playBtn.innerHTML='&#9632;&nbsp;&nbsp;STOP TIME-LAPSE';
+    playT=setInterval(()=>{                       // +2 yr per 80 ms ≈ 7 s for 175 years; adds tracks incrementally (no rebuild churn)
+      cur=Math.min(cur+2,maxY);
+      while(idx<base.length&&base[idx].properties.year<=cur){ addTrack(base[idx]); idx++; }
+      st.y1=cur; y1El.value=String(cur); yearsEl.textContent=st.y0+'–'+cur;
+      updateStats(base.slice(0,idx));
+      if(cur>=maxY) stopPlay();                   // ends with y1=maxY and the full filtered set on the map
+    },80);
+  });
+
+  /* ── panel chrome: collapse (mirrors legend), show/hide with the registry layer toggle ── */
+  minBtn.addEventListener('click',()=>{
+    px.classList.toggle('min');
+    minBtn.innerHTML=px.classList.contains('min')?'+':'&ndash;';
+  });
+  if(window.innerWidth<=680){ px.classList.add('min'); minBtn.textContent='+'; } // don't cover small screens
+  function syncPanel(){
+    const on=map.hasLayer(histExplorerLayer);
+    px.classList.toggle('hidden',!on);
+    if(!on) stopPlay();
+  }
+  map.on('layeradd layerremove',()=>setTimeout(syncPanel,30));
+  syncPanel();
+
+  /* ── data: same two files the static layers use (browser-cached); join RI by storm id ── */
+  (async function(){
+    try{
+      const [hr,ir]=await Promise.all([
+        fetch('data/gulf_hurricanes.geojson'),
+        fetch('data/gulf_intensification.geojson').catch(()=>null)
+      ]);
+      if(!hr.ok) throw new Error('explorer-data-unavailable');
+      feats=(await hr.json()).features;
+      if(ir&&ir.ok) (await ir.json()).features.forEach(f=>{ if(f.properties.rapid) riSet.add(f.properties.id); });
+      const yrs=feats.map(f=>f.properties.year);
+      minY=Math.min.apply(null,yrs); maxY=Math.max.apply(null,yrs);
+      y0El.min=y1El.min=String(minY); y0El.max=y1El.max=String(maxY);
+      y0El.value=String(minY); y1El.value=String(maxY);
+      st.y0=minY; st.y1=maxY; yearsEl.textContent=minY+'–'+maxY;
+      // chips built from the categories actually present (peak_category 1–5 here; a TS chip appears automatically if 0 ever exists)
+      const cats=[...new Set(feats.map(f=>catKey(f.properties.peak_category)))].sort((a,b)=>a-b);
+      chipsEl.innerHTML='';
+      cats.forEach(c=>{
+        const b=document.createElement('button');
+        b.type='button'; b.className='hx-chip on'; b.dataset.cat=String(c);
+        b.textContent=c>=1?('CAT '+c):'TS'; b.title=catName(c);
+        chipsEl.appendChild(b); paintChip(b); st.cats.add(c);
+      });
+      rebuild();
+    }catch(e){}
+  })();
 })();
 </script>
 </body>
