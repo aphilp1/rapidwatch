@@ -141,6 +141,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
    container overflow:auto + -webkit-overflow-scrolling fixes iframe scroll on iOS Safari. */
 #panel-analysis{overflow:auto;-webkit-overflow-scrolling:touch;background:#fbfcfd}
 #panel-analysis iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
+
+/* Live Sensor Systems panel: full-bleed iframe of the standalone glider map (own dark theme). */
+#panel-sensors{overflow:hidden;background:var(--abyss)}
+#panel-sensors iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
 """
 
 # ── tab switcher JS ───────────────────────────────────────────────────────────
@@ -197,6 +201,7 @@ html = f"""<!DOCTYPE html>
   <div class="tabs">
     <button class="tab active" data-panel="panel-ri">RI Observatory</button>
     <button class="tab" data-panel="panel-map">Gulf Map</button>
+    <button class="tab" data-panel="panel-sensors">Live Sensor Systems</button>
     <button class="tab" data-panel="panel-analysis">Analysis</button>
   </div>
 </div>
@@ -207,6 +212,10 @@ html = f"""<!DOCTYPE html>
 
 <div id="panel-map" class="tab-panel">
 {map_body}
+</div>
+
+<div id="panel-sensors" class="tab-panel">
+  <iframe src="rapidwatch-sensors.html" title="RapidWatch — Live Sensor Systems"></iframe>
 </div>
 
 <div id="panel-analysis" class="tab-panel">
