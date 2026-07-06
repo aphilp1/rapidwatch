@@ -46,7 +46,7 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 /* popup */
 .leaflet-popup-content-wrapper{background:var(--panel);color:var(--ink);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
 .leaflet-popup-tip{background:var(--panel);border:1px solid var(--line-2)}
-.leaflet-popup-content{margin:13px 15px;font-size:12.5px;line-height:1.5}
+.leaflet-popup-content{margin:12px 14px;font-size:12.5px;line-height:1.5;max-height:76vh;overflow-y:auto}
 .gp .gk{font-family:"IBM Plex Mono";font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
 .gp h4{font-family:"Space Grotesk";font-weight:600;font-size:15px;margin:5px 0 2px}
 .gp .op{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--aqua);margin-bottom:8px}
@@ -67,7 +67,12 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 .rw-north .rw-n{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;color:var(--ink);margin-top:1px}
 .leaflet-control-attribution{background:rgba(5,11,18,.7)!important;color:var(--mute)!important;font-size:9px!important}
 .leaflet-control-attribution a{color:var(--aqua)!important}
-@media(max-width:640px){#ctl,#miss{width:220px}}
+/* glider detail — docked top-right (fills empty space; never clips like a floating popup) */
+#detail{top:14px;right:14px;width:236px;padding:14px 15px;display:none;max-height:calc(100% - 28px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#detail.on{display:block}
+.dclose{position:absolute;top:9px;right:12px;cursor:pointer;color:var(--mute);font-size:18px;line-height:1;z-index:2}
+.dclose:hover{color:var(--aqua)}
+@media(max-width:640px){#ctl,#miss,#detail{width:210px}}
 </style>
 </head>
 <body>
@@ -90,6 +95,8 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
   <div id="mrows"></div>
   <div class="foot">Data: IOOS National Glider DAC (<a href="https://gliders.ioos.us" target="_blank" rel="noopener">gliders.ioos.us</a>). Tracks subsampled; click a glider for its latest depth profile. Near-surface values shown.</div>
 </div>
+
+<div class="panel" id="detail"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -159,7 +166,7 @@ function profileSVG(p){
   const d=p.profile.depth, y=p.profile[curVar];
   const pts=d.map((dv,i)=>[y[i],dv]).filter(a=>a[0]!=null);
   if(pts.length<2) return '<div style="font-size:10px;color:var(--mute)">no profile</div>';
-  const W=210,H=150,mL=34,mR=8,mT=8,mB=20;
+  const W=196,H=116,mL=32,mR=8,mT=6,mB=18;
   const xs=pts.map(a=>a[0]), ds=pts.map(a=>a[1]);
   const xmin=Math.min(...xs),xmax=Math.max(...xs),dmax=Math.max(...ds);
   const X=v=>mL+(xmax===xmin?0.5:(v-xmin)/(xmax-xmin))*(W-mL-mR);
@@ -193,10 +200,11 @@ function drawNow(){
   DATA.features.filter(f=>f.properties.kind==='now' && enabled[f.properties.id]).forEach(f=>{
     const p=f.properties, ll=[f.geometry.coordinates[1],f.geometry.coordinates[0]];
     const m=L.marker(ll,{icon:L.divIcon({className:'',html:`<div class="glidernow" style="background:${p.color}"></div>`,iconSize:[16,16],iconAnchor:[8,8]})})
-      .bindPopup(()=>popupHTML(p),{maxWidth:250})
-      .bindTooltip(p.id,{permanent:true,direction:'right',offset:[8,0],className:'gl-tip'});
+      .bindTooltip(p.id,{permanent:true,direction:'right',offset:[8,0],className:'gl-tip'})
+      .on('click',()=>setDetail(p));
     m.addTo(map); nowMarkers.push(m);
   });
+  if(curDetail && !enabled[curDetail.id]) closeDetail();   // close panel if its glider was toggled off
 }
 
 function redraw(){ drawTracks(); drawNow(); }
@@ -219,9 +227,13 @@ function buildUI(){
     mr.appendChild(row);
   });
 }
-function refreshOpenPopup(){ /* re-render an open popup so its profile chart matches the selected variable */
-  nowMarkers.forEach(m=>{ const pu=m.getPopup(); if(pu && pu.isOpen()) pu.update(); });
+let curDetail=null;
+function setDetail(p){ curDetail=p; const d=document.getElementById('detail');
+  d.innerHTML='<span class="dclose" title="Close">&times;</span>'+popupHTML(p);
+  d.classList.add('on'); d.querySelector('.dclose').onclick=closeDetail; d.scrollTop=0;
 }
+function closeDetail(){ curDetail=null; document.getElementById('detail').classList.remove('on'); }
+function refreshOpenPopup(){ if(curDetail) setDetail(curDetail); }   // re-render the docked detail for the newly-selected variable
 
 fetch('data/gliders/gliders_gulf.geojson').then(r=>r.json()).then(d=>{
   DATA=d;
