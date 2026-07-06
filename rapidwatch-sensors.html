@@ -14,6 +14,8 @@
 html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:300;overflow:hidden}
 #map{position:absolute;inset:0;background:#071420}
 .leaflet-container{background:#071420;font-family:"IBM Plex Sans"}
+/* darken the bathymetry tiles into the dark theme (keeps depth shading, drops the bright blue) */
+#map .leaflet-tile-pane{filter:brightness(.5) saturate(1.4) contrast(1.04)}
 .panel{position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.95),rgba(6,14,22,.92));
   border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
 /* title / controls — top-left */
@@ -41,6 +43,13 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 .mrow .nm{font-family:"IBM Plex Mono";font-size:11px;color:var(--ink);font-weight:600}
 .mrow .op{font-size:10.5px;color:var(--mute);margin-left:auto}
 .mrow.off{opacity:.4}
+#miss .lyr-h{margin-top:13px}
+.lyr-row{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;user-select:none}
+.lyr-row input{appearance:none;width:14px;height:14px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;position:relative;flex:none;transition:all .15s}
+.lyr-row input:checked{background:var(--aqua);border-color:var(--aqua)}
+.lyr-row input:checked::after{content:"";position:absolute;left:4px;top:1px;width:3px;height:7px;border:solid #05121a;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.lyr-row span{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--slate)}
+.lyr-row:hover span{color:var(--ink)}
 #miss .foot{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);line-height:1.5;border-top:1px solid var(--line);padding-top:8px;margin-top:9px}
 #miss .foot a{color:var(--aqua);text-decoration:none}
 /* popup */
@@ -91,9 +100,11 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 </div>
 
 <div class="panel" id="miss">
-  <h3>Active Gulf missions</h3>
+  <h3>Glider missions</h3>
   <div id="mrows"></div>
-  <div class="foot">Data: IOOS National Glider DAC (<a href="https://gliders.ioos.us" target="_blank" rel="noopener">gliders.ioos.us</a>). Tracks subsampled; click a glider for its latest depth profile. Near-surface values shown.</div>
+  <h3 class="lyr-h">Networks &amp; reference</h3>
+  <div id="lrows"></div>
+  <div class="foot">Gliders: IOOS DAC. Buoys: NDBC + NWS. Floats: Argo / Argovis. Bathymetry: Esri · GEBCO. Click any sensor for detail.</div>
 </div>
 
 <div class="panel" id="detail"></div>
@@ -113,6 +124,10 @@ let curVar = 'temperature';
 
 const map = L.map('map',{zoomControl:false,attributionControl:true,minZoom:4,maxZoom:11,worldCopyJump:false}).setView([24.6,-89.0],6);
 map.setMaxBounds([[12,-103],[35,-74]]);
+// bathymetry underlay — ocean-depth shading + isobath/depth labels (Esri Ocean · GEBCO · NOAA).
+// sits at the bottom (tilePane 200); the dark vector land (landPane 250) draws on top of it.
+L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}',
+  {attribution:'Bathymetry: Esri · GEBCO · NOAA',maxZoom:11}).addTo(map);
 // zoom in/out — bottom-right, clear of the top-left + bottom-left panels
 L.control.zoom({position:'bottomright'}).addTo(map);
 // north arrow + scale bar — same map furniture as the Gulf Map
@@ -123,8 +138,96 @@ map.addControl(new NorthArrow());
 L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140}).addTo(map);
 // land base — EXACT copy of the Gulf Map's geography (clipped Natural Earth Gulf land, GULF_LAND)
 map.createPane('landPane').style.zIndex = 250;   // land sits beneath tracks + markers
-L.geoJSON(GULF_LAND,{pane:'landPane',interactive:false,
-  style:{color:'rgba(70,207,214,.28)',weight:.8,fillColor:'#16242f',fillOpacity:1}}).addTo(map);
+// dark-slate land on top of the bathymetry — full coverage so no beige interiors; bathymetry shows only in the ocean
+const _landStyle={pane:'landPane',interactive:false,style:{color:'rgba(70,207,214,.38)',weight:.9,fillColor:'#16242f',fillOpacity:1}};
+fetch('data/geo/ne_50m_land.geojson').then(r=>r.json())
+  .then(land=>{ L.geoJSON(land,_landStyle).addTo(map); })
+  .catch(()=>{ L.geoJSON(GULF_LAND,_landStyle).addTo(map); });   // fallback to the inlined clipped Gulf land
+
+// ══ live sensor networks + reference layers (ported from the Gulf Map) ══
+const fmt=(la,lo)=>Math.abs(la).toFixed(2)+'°'+(la>=0?'N':'S')+' '+Math.abs(lo).toFixed(2)+'°'+(lo>=0?'E':'W');
+function pop(kicker,title,sub,body,tags){
+  return '<div class="gp"><div class="gk">'+kicker+'</div><h4>'+title+'</h4>'
+    +(sub?'<div class="op">'+sub+'</div>':'')
+    +'<div style="color:var(--slate);font-size:11.5px;line-height:1.5">'+body+'</div>'
+    +(tags&&tags.length?'<div style="margin-top:7px;display:flex;flex-wrap:wrap;gap:4px">'
+      +tags.map(t=>'<span style="font-family:IBM Plex Mono;font-size:8.5px;padding:2px 6px;border-radius:4px;background:rgba(70,207,214,.1);border:1px solid rgba(70,207,214,.22);color:var(--aqua)">'+t+'</span>').join('')+'</div>':'')
+    +'</div>';
+}
+// graticule
+const grat=L.layerGroup();
+for(let lo=-100;lo<=-80;lo+=5){
+  L.polyline([[15,lo],[31,lo]],{color:'rgba(120,160,180,.14)',weight:.6,interactive:false}).addTo(grat);
+  L.marker([15.4,lo],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font:400 9px IBM Plex Mono;color:#8ba0b0">'+Math.abs(lo)+'°W</span>',iconSize:[0,0]})}).addTo(grat);
+}
+for(let la=18;la<=30;la+=4){
+  L.polyline([[la,-100],[la,-80]],{color:'rgba(120,160,180,.14)',weight:.6,interactive:false}).addTo(grat);
+  L.marker([la,-99.5],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font:400 9px IBM Plex Mono;color:#8ba0b0">'+la+'°N</span>',iconSize:[0,0]})}).addTo(grat);
+}
+// reference cities
+const cityLayer=L.layerGroup();
+[['New Orleans',29.95,-90.07],['Galveston',29.30,-94.80],['Tampa',27.95,-82.46],['Pensacola',30.42,-87.22],
+ ['Corpus Christi',27.80,-97.40],['Cancún',21.16,-86.85],['Veracruz',19.17,-96.13],['Havana',23.13,-82.38]]
+ .forEach(([n,la,lo])=>L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div style="color:#9fb3c0;font:400 10px IBM Plex Mono;white-space:nowrap;text-shadow:0 0 5px #050b12">▪ '+n+'</div>',iconSize:[0,0]})}).addTo(cityLayer));
+// NDBC moored buoys — live SST/wind (NWS + NDBC merged, colored by SST)
+const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const _fmtUTC=ts=>{const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';};
+function _ndbcObs(id){
+  const nws=fetch('https://api.weather.gov/stations/'+id+'/observations/latest',{headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}})
+    .then(async r=>{if(!r.ok)throw 0;const p=(await r.json()).properties;if(!p.timestamp)throw 0;
+      return{wtmp:p.seaSurfaceTemperature?.value,atmp:p.temperature?.value,wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,wdir:p.windDirection?.value,pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,t:_fmtUTC(p.timestamp)};}).catch(()=>null);
+  const ndbc=fetch('data/ndbc/'+id+'.txt').then(async r=>{if(!r.ok)throw 0;
+      const obs=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];if(obs.length<15)throw 0;
+      const v=x=>x==='MM'?null:+x;return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};}).catch(()=>null);
+  return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');const f=(x,y)=>x!=null?x:y;
+    return{wtmp:f(a?.wtmp,b?.wtmp),atmp:f(a?.atmp,b?.atmp),wspd:f(a?.wspd,b?.wspd),wdir:f(a?.wdir,b?.wdir),pres:f(a?.pres,b?.pres),t:a?.t||b?.t||'--'};});
+}
+const buoyLayer=L.layerGroup();
+[['42001',25.90,-89.67,'Mid Gulf'],['42002',25.79,-93.67,'West Gulf'],['42036',28.50,-84.52,'West Tampa'],
+ ['42039',28.79,-86.01,'Pensacola'],['42040',29.21,-88.21,'Mobile South'],['42055',22.12,-94.05,'Bay of Campeche']]
+ .forEach(([id,la,lo,loc])=>{
+   const mk=L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#0d1c29',fillOpacity:.9})
+     .bindPopup(pop('NDBC moored buoy','Station '+id,fmt(la,lo)+' · '+loc,'Fixed-point continuous wind, pressure, wave, and SST.',['surface met','waves','SST'])).addTo(buoyLayer);
+   _ndbcObs(id).then(o=>{
+     if(o.wtmp!=null) mk.setStyle({fillColor:o.wtmp>=29?'#ff8a3d':o.wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
+     const lines=[o.wtmp!=null?'SST: <b>'+o.wtmp.toFixed(1)+'°C</b>':'SST: --',o.atmp!=null?'Air: <b>'+o.atmp.toFixed(1)+'°C</b>':'Air: --',o.wspd!=null?'Wind: <b>'+o.wspd+' m/s</b>'+(o.wdir!=null?' @ '+o.wdir+'°':''):'Wind: --',o.pres!=null?'Pressure: <b>'+o.pres+' hPa</b>':'Pres: --','<span style="opacity:.6;font-size:.9em">Obs: '+o.t+'</span>'].join('<br>');
+     const tags=['live obs','SST','wind']; if(o.wtmp!=null&&o.wtmp>=29) tags.push('RI-favorable SST');
+     mk.bindPopup(pop('NDBC buoy — live','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
+   }).catch(()=>{});
+ });
+// ARGO profiling floats — Argovis API (fallback: representative AOML Gulf positions)
+const argoLayer=L.layerGroup();
+(async function(){
+  const argoPopup=(id,la,lo,dt)=>pop('Argo profiling float','Float '+id,fmt(la,lo)+(dt?' · '+dt:''),'Autonomous float diving to 2000 m every ~10 days for T/S profiles — the sub-surface ocean-heat (D26) signal behind rapid intensification.',['T/S profile','D26','sub-surface OHC']);
+  const poly=encodeURIComponent(JSON.stringify([[-97,20],[-81,20],[-81,31],[-97,31],[-97,20]]));
+  const end=new Date().toISOString().slice(0,10), start=new Date(Date.now()-45*864e5).toISOString().slice(0,10);
+  try{
+    const r=await fetch('https://argovis-api.colorado.edu/argo?polygon='+poly+'&startDate='+start+'&endDate='+end);
+    if(!r.ok) throw 0; const d=await r.json(); const profiles=Array.isArray(d)?d:(d.data||[]);
+    profiles.slice(0,60).forEach(p=>{const c=p.geolocation?.coordinates||p.location; if(!c||c.length<2)return; const lo=c[0],la=c[1];
+      L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85}).bindPopup(argoPopup(p._id||p.platform_number||'?',la,lo,(p.timestamp||p.date||'').slice(0,10))).addTo(argoLayer);});
+  }catch(e){
+    [[25.2,-87.3],[23.8,-90.1],[26.5,-84.2],[22.3,-92.5],[27.8,-85.8],[24.6,-88.1],[21.5,-89.4],[26.0,-91.2]]
+      .forEach(([la,lo])=>L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.45}).bindPopup(argoPopup('(representative)',la,lo,null)).addTo(argoLayer));
+  }
+})();
+// organize: toggleable network + reference layers (default on)
+const toggleLayers=[
+  {key:'NDBC buoys · live SST/wind',lyr:buoyLayer,on:true},
+  {key:'Argo floats · T/S profiles',lyr:argoLayer,on:true},
+  {key:'Graticule',lyr:grat,on:true},
+  {key:'Reference cities',lyr:cityLayer,on:true},
+];
+toggleLayers.forEach(t=>{ if(t.on) t.lyr.addTo(map); });
+(function buildLayerToggles(){
+  const host=document.getElementById('lrows');
+  toggleLayers.forEach(t=>{
+    const row=document.createElement('label'); row.className='lyr-row';
+    row.innerHTML='<input type="checkbox"'+(t.on?' checked':'')+'><span>'+t.key+'</span>';
+    row.querySelector('input').addEventListener('change',e=>{ e.target.checked?t.lyr.addTo(map):map.removeLayer(t.lyr); });
+    host.appendChild(row);
+  });
+})();
 
 // ── turbo-lite ramp: deep blue -> cyan -> green -> yellow -> red ──
 const STOPS = [[13,40,120],[20,120,200],[40,200,180],[150,220,90],[250,200,50],[240,90,45]];
