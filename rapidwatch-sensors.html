@@ -204,22 +204,20 @@ const buoyLayer=L.layerGroup();
      mk.bindPopup(pop('NDBC buoy — live','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
    }).catch(()=>{});
  });
-// ARGO profiling floats — Argovis API (fallback: representative AOML Gulf positions)
+// ARGO profiling floats — REAL positions from the Argo GDAC (build_argo.py -> data/argo/argo_gulf.geojson).
+// No fake/representative fallback: if the file is missing or empty, the layer is simply empty.
 const argoLayer=L.layerGroup();
-(async function(){
-  const argoPopup=(id,la,lo,dt)=>pop('Argo profiling float','Float '+id,fmt(la,lo)+(dt?' · '+dt:''),'Autonomous float diving to 2000 m every ~10 days for T/S profiles — the sub-surface ocean-heat (D26) signal behind rapid intensification.',['T/S profile','D26','sub-surface OHC']);
-  const poly=encodeURIComponent(JSON.stringify([[-97,20],[-81,20],[-81,31],[-97,31],[-97,20]]));
-  const end=new Date().toISOString().slice(0,10), start=new Date(Date.now()-45*864e5).toISOString().slice(0,10);
-  try{
-    const r=await fetch('https://argovis-api.colorado.edu/argo?polygon='+poly+'&startDate='+start+'&endDate='+end);
-    if(!r.ok) throw 0; const d=await r.json(); const profiles=Array.isArray(d)?d:(d.data||[]);
-    profiles.slice(0,60).forEach(p=>{const c=p.geolocation?.coordinates||p.location; if(!c||c.length<2)return; const lo=c[0],la=c[1];
-      L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85}).bindPopup(argoPopup(p._id||p.platform_number||'?',la,lo,(p.timestamp||p.date||'').slice(0,10))).addTo(argoLayer);});
-  }catch(e){
-    [[25.2,-87.3],[23.8,-90.1],[26.5,-84.2],[22.3,-92.5],[27.8,-85.8],[24.6,-88.1],[21.5,-89.4],[26.0,-91.2]]
-      .forEach(([la,lo])=>L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.45}).bindPopup(argoPopup('(representative)',la,lo,null)).addTo(argoLayer));
-  }
-})();
+fetch('data/argo/argo_gulf.geojson').then(r=>r.json()).then(d=>{
+  (d.features||[]).forEach(f=>{
+    const p=f.properties, lo=f.geometry.coordinates[0], la=f.geometry.coordinates[1];
+    L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85})
+      .bindPopup(pop('Argo profiling float','Float '+p.platform,fmt(la,lo)+(p.time?' · '+p.time.slice(0,10):''),
+        'Autonomous float diving to ~2000 m every ~10 days for T/S profiles — the sub-surface ocean-heat (D26) data behind rapid intensification.'
+        +'<br>Latest cycle '+(p.cycle||'?')+' · <a href="https://fleetmonitoring.euro-argo.eu/float/'+p.platform+'" target="_blank" rel="noopener" style="color:var(--aqua)">float profiles &#8599;</a>',
+        ['real position','T/S profile','D26']))
+      .addTo(argoLayer);
+  });
+}).catch(()=>{});
 // organize: toggleable network + reference layers (default on)
 const toggleLayers=[
   {key:'NDBC buoys · live SST/wind',lyr:buoyLayer,on:true},
@@ -317,14 +315,24 @@ function scaleFor(v){
 }
 function colorAt(val){ if(val==null) return '#5f7585'; const t=(val-scale.min)/((scale.max-scale.min)||1); return ramp(t); }
 
+// popup for a clicked point ON a glider track — the real near-surface values + fix time there
+function trackPointHTML(gid,coord,allv,tms,i){
+  const lo=coord[0], la=coord[1];
+  let rows='';
+  for(const v in VARS) rows+='<div class="row"><span>'+VARS[v].label+'</span><b>'+(allv[v][i]!=null?VARS[v].fmt(allv[v][i]):'–')+'</b></div>';
+  return '<div class="gp"><div class="gk">Glider fix · '+gid+'</div><h4>'+fmt(la,lo)+'</h4>'
+    +(tms[i]?'<div class="op">'+tms[i].replace('T',' ')+' UTC</div>':'')
+    +'<div style="font-size:10px;color:var(--mute);margin:0 0 6px">near-surface values at this point</div>'+rows+'</div>';
+}
 function drawTracks(){
   tracks.forEach(t=>map.removeLayer(t)); tracks=[];
   scale=scaleFor(curVar);
   DATA.features.filter(f=>f.properties.kind==='track' && enabled[f.properties.id]).forEach(f=>{
-    const c=f.geometry.coordinates, vals=f.properties.vals[curVar];
+    const c=f.geometry.coordinates, vals=f.properties.vals[curVar], allv=f.properties.vals, tms=f.properties.times||[], gid=f.properties.id;
     for(let i=0;i<c.length-1;i++){
       const seg=L.polyline([[c[i][1],c[i][0]],[c[i+1][1],c[i+1][0]]],
         {color:colorAt(vals[i]),weight:3,opacity:.9,lineCap:'round'});
+      seg.bindPopup(()=>trackPointHTML(gid,c[i],allv,tms,i),{autoPan:true,maxWidth:220});
       seg.addTo(map); tracks.push(seg);
     }
   });

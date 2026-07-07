@@ -91,7 +91,7 @@ def build_glider(g):
                 r["conductivity"] /= 10.0
 
     # ── track: bin the time-ordered stream into ~NBINS vertices ──
-    coords, vals = [], {v: [] for v in VARS}
+    coords, vals, times = [], {v: [] for v in VARS}, []
     step = max(1, n // NBINS)
     for i in range(0, n, step):
         chunk = rows[i:i + step]
@@ -99,6 +99,7 @@ def build_glider(g):
         if la is None or lo is None:
             continue
         coords.append([round(lo, 4), round(la, 4)])
+        times.append(chunk[len(chunk) // 2]["t"][:16])      # representative fix time for this point
         surf = shallowest(chunk)
         for v in VARS:
             vals[v].append(r3(mean([c[v] for c in surf])))
@@ -120,7 +121,7 @@ def build_glider(g):
     track = {"type": "Feature",
              "geometry": {"type": "LineString", "coordinates": coords},
              "properties": {"kind": "track", "id": g["name"], "operator": g["operator"],
-                            "color": g["color"], "dataset": g["id"], "vals": vals}}
+                            "color": g["color"], "dataset": g["id"], "vals": vals, "times": times}}
     now = {"type": "Feature",
            "geometry": {"type": "Point", "coordinates": [round(last["lo"], 4), round(last["la"], 4)]},
            "properties": {"kind": "now", "id": g["name"], "operator": g["operator"],
