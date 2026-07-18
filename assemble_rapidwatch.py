@@ -139,8 +139,17 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 /* Analysis panel: full-bleed iframe of the RI paper (its own light theme, isolated).
    Explicit height (viewport - 50px tabbar) so the iframe fills & scrolls reliably;
    container overflow:auto + -webkit-overflow-scrolling fixes iframe scroll on iOS Safari. */
-#panel-analysis{overflow:auto;-webkit-overflow-scrolling:touch;background:#fbfcfd}
-#panel-analysis iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
+#panel-analysis{overflow:auto;-webkit-overflow-scrolling:touch;background:#fbfcfd;display:flex;flex-direction:column}
+#analysis-switch{flex:none;display:flex;align-items:center;gap:6px;padding:7px 14px;
+  background:rgba(5,11,18,.96);border-bottom:1px solid rgba(120,160,180,.18)}
+#analysis-switch .asw-lab{font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.14em;
+  color:var(--mute);text-transform:uppercase;margin-right:6px}
+#analysis-switch .asw{font-family:"Space Grotesk";font-size:12px;font-weight:500;
+  padding:5px 14px;border-radius:7px;border:1px solid transparent;color:var(--slate);
+  background:none;cursor:pointer;transition:all .2s}
+#analysis-switch .asw:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+#analysis-switch .asw.on{color:var(--aqua);border-color:rgba(70,207,214,.3);background:rgba(70,207,214,.08)}
+#panel-analysis iframe{display:block;width:100%;flex:1;min-height:0;border:0}
 
 /* Live Sensor Systems panel: full-bleed iframe of the standalone glider map (own dark theme). */
 #panel-sensors{overflow:hidden;background:var(--abyss)}
@@ -166,6 +175,16 @@ TAB_JS = """<script>
       if(tab.dataset.panel === 'panel-map'){
         setTimeout(function(){ if(typeof map!=='undefined') map.invalidateSize(); }, 60);
       }
+    });
+  });
+  // Analysis tab: switch between the two reports without reloading the app
+  var sws = document.querySelectorAll('#analysis-switch .asw');
+  var frame = document.getElementById('analysis-frame');
+  sws.forEach(function(b){
+    b.addEventListener('click', function(){
+      sws.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      frame.src = b.dataset.src;
     });
   });
 })();
@@ -228,7 +247,12 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <div id="panel-analysis" class="tab-panel">
-  <iframe src="NOAA_RI_observation_report.html" title="RapidWatch — Hurricane RI Analysis"></iframe>
+  <div id="analysis-switch">
+    <span class="asw-lab">Reports</span>
+    <button class="asw on" data-src="NOAA_RI_observation_report.html">Field Observation Report</button>
+    <button class="asw" data-src="GULF_RI_BASELINE_REPORT.html">Gulf RI Model — Baseline Report</button>
+  </div>
+  <iframe id="analysis-frame" src="NOAA_RI_observation_report.html" title="RapidWatch — Hurricane RI Analysis"></iframe>
 </div>
 
 <script>
@@ -258,6 +282,7 @@ checks = [
     ('Map panel present',            'id="panel-map"' in v),
     ('Analysis panel present',       'id="panel-analysis"' in v and 'NOAA_RI_observation_report.html' in v),
     ('RI Model panel present',       'id="panel-model"' in v and 'rapidwatch-ri-model.html' in v),
+    ('Analysis report switcher',     'id="analysis-switch"' in v and 'GULF_RI_BASELINE_REPORT.html' in v),
     ('Leaflet L.map call present',   'L.map(' in v),
     ('stormLayers in map JS',        'stormLayers' in v),
     ('#app fixed rule removed',      '#app{position:fixed' not in v),
