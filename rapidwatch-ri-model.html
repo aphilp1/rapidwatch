@@ -144,12 +144,14 @@ const map = L.map('map',{zoomControl:false,attributionControl:true,minZoom:4,max
 L.tileLayer.wms('https://wms.gebco.net/mapserv?',
   {layers:'GEBCO_LATEST',format:'image/png',version:'1.3.0',transparent:false,
    attribution:'Bathymetry: GEBCO 2024 grid · Model: gulf-ri-model (LOSO)',maxZoom:11}).addTo(map);
-L.control.zoom({position:'bottomright'}).addTo(map);
-const NorthArrow = L.Control.extend({options:{position:'bottomright'},
+/* controls live bottom-LEFT of the map — clear of the scorecard (top-right)
+   and the chart dock; the ctl panel ends well above them */
+L.control.zoom({position:'bottomleft'}).addTo(map);
+const NorthArrow = L.Control.extend({options:{position:'bottomleft'},
   onAdd:function(){const d=L.DomUtil.create('div','rw-north');
     d.innerHTML='<div class="rw-arrow">▲</div><div class="rw-n">N</div>';return d;}});
 map.addControl(new NorthArrow());
-L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140}).addTo(map);
+L.control.scale({position:'bottomleft',metric:true,imperial:true,maxWidth:140}).addTo(map);
 
 /* probability colour ramp — slate → aqua (base rate) → amber → red */
 const STOPS=[[0,0x35,0x60,0x7a],[0.08,0x46,0xcf,0xd6],[0.30,0xff,0x8a,0x3d],[0.60,0xff,0x54,0x49]];
