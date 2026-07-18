@@ -145,6 +145,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 /* Live Sensor Systems panel: full-bleed iframe of the standalone glider map (own dark theme). */
 #panel-sensors{overflow:hidden;background:var(--abyss)}
 #panel-sensors iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
+
+/* RI Model panel: full-bleed iframe of the standalone model-output explorer (own dark theme). */
+#panel-model{overflow:hidden;background:var(--abyss)}
+#panel-model iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
 """
 
 # ── tab switcher JS ───────────────────────────────────────────────────────────
@@ -201,6 +205,7 @@ html = f"""<!DOCTYPE html>
   <div class="tabs">
     <button class="tab active" data-panel="panel-ri">RI Observatory</button>
     <button class="tab" data-panel="panel-map">Gulf Map</button>
+    <button class="tab" data-panel="panel-model">RI Model</button>
     <button class="tab" data-panel="panel-sensors">Live Sensor Systems</button>
     <button class="tab" data-panel="panel-analysis">Analysis</button>
   </div>
@@ -212,6 +217,10 @@ html = f"""<!DOCTYPE html>
 
 <div id="panel-map" class="tab-panel">
 {map_body}
+</div>
+
+<div id="panel-model" class="tab-panel">
+  <iframe src="rapidwatch-ri-model.html" title="RapidWatch — RI Model Explorer"></iframe>
 </div>
 
 <div id="panel-sensors" class="tab-panel">
@@ -248,6 +257,7 @@ checks = [
     ('RI panel present',             'id="panel-ri"' in v),
     ('Map panel present',            'id="panel-map"' in v),
     ('Analysis panel present',       'id="panel-analysis"' in v and 'NOAA_RI_observation_report.html' in v),
+    ('RI Model panel present',       'id="panel-model"' in v and 'rapidwatch-ri-model.html' in v),
     ('Leaflet L.map call present',   'L.map(' in v),
     ('stormLayers in map JS',        'stormLayers' in v),
     ('#app fixed rule removed',      '#app{position:fixed' not in v),

@@ -1192,6 +1192,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 #panel-sensors{overflow:hidden;background:var(--abyss)}
 #panel-sensors iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
 
+/* RI Model panel: full-bleed iframe of the standalone model-output explorer (own dark theme). */
+#panel-model{overflow:hidden;background:var(--abyss)}
+#panel-model iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
+
 </style>
 </head>
 <body>
@@ -1202,6 +1206,7 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
   <div class="tabs">
     <button class="tab active" data-panel="panel-ri">RI Observatory</button>
     <button class="tab" data-panel="panel-map">Gulf Map</button>
+    <button class="tab" data-panel="panel-model">RI Model</button>
     <button class="tab" data-panel="panel-sensors">Live Sensor Systems</button>
     <button class="tab" data-panel="panel-analysis">Analysis</button>
   </div>
@@ -1891,6 +1896,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
   </div>
 </div>
 
+</div>
+
+<div id="panel-model" class="tab-panel">
+  <iframe src="rapidwatch-ri-model.html" title="RapidWatch — RI Model Explorer"></iframe>
 </div>
 
 <div id="panel-sensors" class="tab-panel">

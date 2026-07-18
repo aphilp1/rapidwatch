@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RapidWatch — RI Model Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--abyss:#050b12;--water:#071420;--panel:#0d1c29;--line:rgba(120,160,180,.16);--line-2:rgba(120,160,180,.3);
+  --ink:#e9eef3;--slate:#c3d0da;--mute:#8ba0b0;--aqua:#46cfd6;--amber:#ff8a3d;--violet:#c98bff;--ri:#ff5449}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:300;overflow:hidden}
+#map{position:absolute;inset:0 0 232px 0;background:#071420}
+.leaflet-container{background:#071420;font-family:"IBM Plex Sans"}
+#map .leaflet-tile-pane{filter:brightness(.5) saturate(1.4) contrast(1.04)}
+.panel{position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.95),rgba(6,14,22,.92));
+  border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+/* ── control panel — top-left ─────────────────────────────── */
+#ctl{top:14px;left:14px;width:292px;padding:15px 16px 14px}
+#ctl h1{font-family:"Space Grotesk";font-weight:700;font-size:16px;letter-spacing:.03em;margin:0;display:flex;align-items:center;gap:9px}
+#ctl h1 .dot{width:11px;height:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px rgba(255,138,61,.16),0 0 14px 2px rgba(255,138,61,.55);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(255,138,61,.05),0 0 20px 4px rgba(255,138,61,.7)}}
+#ctl .sub{font-family:"IBM Plex Mono";font-size:10px;color:var(--mute);letter-spacing:.05em;margin:8px 0 0;line-height:1.5}
+.lab{font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.15em;color:var(--mute);text-transform:uppercase;margin:14px 0 7px}
+#stormSel{width:100%;font-family:"IBM Plex Mono";font-size:11.5px;font-weight:600;color:var(--ink);
+  background:rgba(255,255,255,.05);border:1px solid var(--line-2);border-radius:7px;padding:7px 8px;cursor:pointer}
+#stormSel:focus{outline:none;border-color:var(--aqua)}
+#stormSel option{background:var(--panel);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chip{cursor:pointer;font-family:"IBM Plex Mono";font-size:9.5px;font-weight:600;padding:4px 8px;border-radius:6px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line-2);color:var(--slate);transition:all .15s}
+.chip:hover{color:var(--ink);border-color:var(--aqua)}
+.chip.on{background:rgba(70,207,214,.14);border-color:var(--aqua);color:var(--aqua)}
+.vars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.vbtn{cursor:pointer;font-family:"IBM Plex Mono";font-size:10.5px;font-weight:600;letter-spacing:.03em;padding:7px 4px;border-radius:7px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line-2);color:var(--slate);transition:all .15s;text-align:center}
+.vbtn:hover{color:var(--ink);border-color:var(--aqua)}
+.vbtn.on{background:rgba(70,207,214,.14);border-color:var(--aqua);color:var(--aqua)}
+#cbar{margin-top:12px}
+#cbar .bar{height:11px;border-radius:3px;border:1px solid var(--line-2);
+  background:linear-gradient(90deg,#35607a 0%,#46cfd6 14%,#ff8a3d 50%,#ff5449 100%)}
+#cbar .ends{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:9.5px;color:var(--slate);margin-top:4px}
+#cbar .unit{font-family:"IBM Plex Mono";font-size:9px;color:var(--mute);text-align:center;margin-top:3px;letter-spacing:.04em}
+
+/* ── scorecard / leaderboards — top-right ─────────────────── */
+#board{top:14px;right:14px;width:252px;padding:13px 15px;max-height:calc(100% - 260px);overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#board h3{font-family:"Space Grotesk";font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);margin:0 0 8px;text-transform:uppercase}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px}
+.tile{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;padding:8px 9px 7px}
+.tile .v{font-family:"IBM Plex Mono";font-size:16px;font-weight:600;color:var(--aqua)}
+.tile .v.amber{color:var(--amber)}
+.tile .k{font-size:9px;color:var(--mute);line-height:1.35;margin-top:2px;font-family:"IBM Plex Mono";letter-spacing:.02em}
+.bh{margin-top:13px}
+.lrow{display:flex;align-items:baseline;gap:7px;padding:4px 2px;cursor:pointer;border-radius:5px;user-select:none}
+.lrow:hover{background:rgba(255,255,255,.05)}
+.lrow .nm{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--ink);font-weight:600;white-space:nowrap}
+.lrow .tt{font-family:"IBM Plex Mono";font-size:9px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .pv{font-family:"IBM Plex Mono";font-size:10.5px;font-weight:600;margin-left:auto}
+#board .foot{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);line-height:1.5;border-top:1px solid var(--line);padding-top:8px;margin-top:10px}
+
+/* ── chart dock — bottom ──────────────────────────────────── */
+#chartp{left:14px;right:14px;bottom:14px;height:204px;padding:10px 14px 8px;border-radius:12px}
+#chartHead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+#chartHead .snm{font-family:"Space Grotesk";font-weight:700;font-size:14px;letter-spacing:.02em}
+#chartHead .sinfo{font-family:"IBM Plex Mono";font-size:9.5px;color:var(--mute);letter-spacing:.04em}
+#chartHead .loso{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--aqua);letter-spacing:.06em;margin-left:auto}
+#chartSVG{display:block;width:100%;height:158px;margin-top:4px}
+#tip{position:absolute;z-index:2000;display:none;pointer-events:none;background:rgba(13,28,41,.96);border:1px solid var(--line-2);
+  border-radius:8px;padding:7px 10px;font-family:"IBM Plex Mono";font-size:10px;line-height:1.6;color:var(--slate);box-shadow:0 4px 20px rgba(0,0,0,.6);white-space:nowrap}
+#tip b{color:var(--ink)}
+#tip .tp{font-weight:600}
+
+/* popup */
+.leaflet-popup-content-wrapper{background:var(--panel);color:var(--ink);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+.leaflet-popup-tip{background:var(--panel);border:1px solid var(--line-2)}
+.leaflet-popup-content{margin:12px 14px;font-size:12px;line-height:1.55}
+.pp .pk{font-family:"IBM Plex Mono";font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
+.pp h4{font-family:"Space Grotesk";font-weight:600;font-size:14px;margin:4px 0 6px}
+.pp .row{display:flex;justify-content:space-between;gap:16px;padding:1px 0;color:var(--slate)}
+.pp .row b{color:var(--ink);font-weight:500;font-family:"IBM Plex Mono"}
+.pp .verdict{margin-top:7px;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;letter-spacing:.05em;padding:3px 8px;border-radius:5px;display:inline-block}
+.pp .verdict.hit{background:rgba(255,84,73,.15);color:var(--ri);border:1px solid rgba(255,84,73,.4)}
+.pp .verdict.miss{background:rgba(139,160,176,.12);color:var(--mute);border:1px solid var(--line-2)}
+.leaflet-control-zoom a{background:var(--panel)!important;color:var(--aqua)!important;border-color:var(--line)!important}
+.leaflet-bar{border-color:var(--line)!important;box-shadow:0 2px 16px rgba(0,0,0,.5)!important}
+.rw-north{background:rgba(13,28,41,.85);border:1px solid var(--line);border-radius:8px;padding:4px 9px 5px;text-align:center;line-height:1;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 2px 12px rgba(0,0,0,.5)}
+.rw-north .rw-arrow{font-size:13px;color:var(--amber);line-height:1}
+.rw-north .rw-n{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;color:var(--ink);margin-top:1px}
+.leaflet-control-attribution{background:rgba(5,11,18,.7)!important;color:var(--mute)!important;font-size:9px!important}
+.leaflet-control-attribution a{color:var(--aqua)!important}
+
+@media(max-width:900px){#board{display:none}}
+@media(max-width:640px){#ctl{width:230px}#chartp{height:170px}#chartSVG{height:124px}#map{inset:0 0 198px 0}}
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="panel" id="ctl">
+  <h1><span class="dot"></span>RI MODEL EXPLORER</h1>
+  <p class="sub">Rebuilt NHC rapid-intensification guidance (SHIPS-RII class), hindcast over 122 Gulf storms &mdash; every probability from leave-one-storm-out runs.</p>
+  <div class="lab">Storm</div>
+  <select id="stormSel"></select>
+  <div class="chips" id="chips"></div>
+  <div class="lab">RI threshold &mdash; wind gain in 24 h</div>
+  <div class="vars" id="thrBtns"></div>
+  <div id="cbar">
+    <div class="bar"></div>
+    <div class="ends"><span>0%</span><span>&ge;60%</span></div>
+    <div class="unit">MODEL RI PROBABILITY AT EACH 6-H FORECAST</div>
+  </div>
+</div>
+
+<div class="panel" id="board">
+  <h3>Model scorecard</h3>
+  <div class="tiles" id="tiles"></div>
+  <h3 class="bh">Best correct calls &middot; 30 kt</h3>
+  <div id="bestRows"></div>
+  <h3 class="bh">Worst Gulf misses &middot; 30 kt</h3>
+  <div id="missRows"></div>
+  <div class="foot">Skill scored leave-one-storm-out on 8,806 forecasts, 538 storms (1982&ndash;2023).
+    Source: SHIPS developmental data (RAMMB/CIRA) + HURDAT2. Repo: gulf-ri-model.</div>
+</div>
+
+<div class="panel" id="chartp">
+  <div id="chartHead">
+    <span class="snm" id="snm">&mdash;</span>
+    <span class="sinfo" id="sinfo"></span>
+    <span class="loso">LEAVE-ONE-STORM-OUT &mdash; THE MODEL NEVER SAW THIS STORM</span>
+  </div>
+  <svg id="chartSVG" preserveAspectRatio="none"></svg>
+</div>
+<div id="tip"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+"use strict";
+const map = L.map('map',{zoomControl:false,attributionControl:true,minZoom:4,maxZoom:11,worldCopyJump:false}).setView([25.0,-89.0],6);
+L.tileLayer.wms('https://wms.gebco.net/mapserv?',
+  {layers:'GEBCO_LATEST',format:'image/png',version:'1.3.0',transparent:false,
+   attribution:'Bathymetry: GEBCO 2024 grid · Model: gulf-ri-model (LOSO)',maxZoom:11}).addTo(map);
+L.control.zoom({position:'bottomright'}).addTo(map);
+const NorthArrow = L.Control.extend({options:{position:'bottomright'},
+  onAdd:function(){const d=L.DomUtil.create('div','rw-north');
+    d.innerHTML='<div class="rw-arrow">▲</div><div class="rw-n">N</div>';return d;}});
+map.addControl(new NorthArrow());
+L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140}).addTo(map);
+
+/* probability colour ramp — slate → aqua (base rate) → amber → red */
+const STOPS=[[0,0x35,0x60,0x7a],[0.08,0x46,0xcf,0xd6],[0.30,0xff,0x8a,0x3d],[0.60,0xff,0x54,0x49]];
+function ramp(p){
+  p=Math.max(0,Math.min(p,0.60));
+  let a=STOPS[0],b=STOPS[STOPS.length-1];
+  for(let i=0;i<STOPS.length-1;i++){if(p>=STOPS[i][0]&&p<=STOPS[i+1][0]){a=STOPS[i];b=STOPS[i+1];break;}}
+  const f=(b[0]===a[0])?0:(p-a[0])/(b[0]-a[0]);
+  const c=[1,2,3].map(k=>Math.round(a[k]+f*(b[k]-a[k])));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+const THRS=[25,30,35,40];
+let DATA=null, storm=null, thrIdx=1;
+let trackLayer=L.layerGroup().addTo(map), fixLayer=L.layerGroup().addTo(map);
+let fixMarkers=[];
+
+const fmtDay=t=>{const d=new Date(t);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});};
+const fmtFull=t=>{const d=new Date(t);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})+' '+String(d.getUTCHours()).padStart(2,'0')+'Z';};
+
+fetch('data/ri_model/ri_model_outputs.json')
+  .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(d=>{DATA=d;init();})
+  .catch(e=>{document.getElementById('snm').textContent='Data unavailable — '+e.message;});
+
+function init(){
+  const sel=document.getElementById('stormSel');
+  const sorted=[...DATA.storms].sort((a,b)=>b.yr-a.yr||a.nm.localeCompare(b.nm));
+  sorted.forEach(s=>{const o=document.createElement('option');
+    o.value=s.id;o.textContent=`${s.nm.toUpperCase()} ${s.yr} · peak ${s.peak} kt`;sel.appendChild(o);});
+  sel.addEventListener('change',()=>loadStorm(sel.value));
+
+  const CHIP_IDS=['AL122005','AL182005','AL092017','AL142018','AL092022','AL262020'];
+  const chips=document.getElementById('chips');
+  CHIP_IDS.forEach(id=>{const s=DATA.storms.find(x=>x.id===id);if(!s)return;
+    const c=document.createElement('span');c.className='chip';c.dataset.id=id;
+    c.textContent=`${s.nm} ${String(s.yr).slice(2)}`;
+    c.addEventListener('click',()=>loadStorm(id));chips.appendChild(c);});
+
+  const tb=document.getElementById('thrBtns');
+  THRS.forEach((t,i)=>{const b=document.createElement('button');b.className='vbtn'+(i===thrIdx?' on':'');
+    b.textContent='≥'+t;b.addEventListener('click',()=>{thrIdx=i;
+      tb.querySelectorAll('.vbtn').forEach((x,j)=>x.classList.toggle('on',j===i));
+      renderStorm(false);});tb.appendChild(b);});
+
+  const m=DATA.meta;
+  document.getElementById('tiles').innerHTML=
+    `<div class="tile"><div class="v">+${m.bss.all30.toFixed(1)}%</div><div class="k">skill vs climatology, Atlantic (30 kt)</div></div>`+
+    `<div class="tile"><div class="v amber">+${m.bss.gulf30.toFixed(1)}%</div><div class="k">skill in the Gulf — the gap to close</div></div>`+
+    `<div class="tile"><div class="v">${m.base_rate[1]}%</div><div class="k">how often RI actually happens</div></div>`+
+    `<div class="tile"><div class="v">8,806</div><div class="k">honest hindcast forecasts scored</div></div>`;
+
+  const mkRows=(list,el,cls)=>{const box=document.getElementById(el);
+    list.forEach(r=>{const d=document.createElement('div');d.className='lrow';
+      d.innerHTML=`<span class="nm">${r.nm} ${String(r.yr).slice(2)}</span>`+
+        `<span class="tt">${r.t} · ${r.v}→${r.v+r.dv} kt</span>`+
+        `<span class="pv" style="color:${cls==='best'?'var(--amber)':'var(--mute)'}">${(100*r.p).toFixed(cls==='best'?0:1)}%</span>`;
+      d.addEventListener('click',()=>loadStorm(r.id));box.appendChild(d);});};
+  mkRows(m.best_calls,'bestRows','best');
+  mkRows(m.worst_misses,'missRows','miss');
+
+  loadStorm('AL122005');
+}
+
+function loadStorm(id){
+  storm=DATA.storms.find(s=>s.id===id)||DATA.storms[0];
+  document.getElementById('stormSel').value=storm.id;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.id===storm.id));
+  renderStorm(true);
+}
+
+function renderStorm(refit){
+  const thr=THRS[thrIdx];
+  trackLayer.clearLayers();fixLayer.clearLayers();fixMarkers=[];
+  const pts=storm.track.map(p=>[p.lat,p.lon]);
+  if(pts.length){
+    L.polyline(pts,{color:'#8ba0b0',weight:2,opacity:.75}).addTo(trackLayer);
+    storm.track.forEach(p=>L.circleMarker([p.lat,p.lon],
+      {radius:2,color:'#8ba0b0',weight:1,fillOpacity:.8,opacity:.8}).addTo(trackLayer));
+  }
+  storm.fixes.forEach((f,i)=>{
+    const p=f.p[thrIdx], hit=f.dv>=thr;
+    const mk=L.circleMarker([f.lat,f.lon],{
+      radius:5.5+p*9,color:hit?'#ffffff':'rgba(233,238,243,.55)',weight:hit?2:1,
+      fillColor:ramp(p),fillOpacity:.92}).addTo(fixLayer);
+    mk.bindPopup(popupHTML(f,thr,p,hit));
+    mk.on('mouseover',()=>highlightFix(i,true));
+    mk.on('mouseout',()=>highlightFix(i,false));
+    fixMarkers.push(mk);
+  });
+  if(refit&&pts.length){map.fitBounds(L.latLngBounds(pts).pad(0.18),{paddingBottomRight:[260,0]});}
+  document.getElementById('snm').textContent=`${storm.nm.toUpperCase()} · ${storm.yr}`;
+  document.getElementById('sinfo').textContent=
+    `peak ${storm.peak} kt · ${storm.fixes.length} scored forecasts · loudest call ${(100*Math.max(...storm.fixes.map(f=>f.p[thrIdx]))).toFixed(0)}% (≥${thr} kt)`;
+  drawChart();
+}
+
+function popupHTML(f,thr,p,hit){
+  const dv=(f.dv>=0?'+':'')+f.dv;
+  return `<div class="pp"><div class="pk">MODEL FORECAST · ${storm.nm.toUpperCase()} ${storm.yr}</div>`+
+    `<h4>${fmtFull(f.t)}</h4>`+
+    `<div class="row"><span>Winds at forecast time</span><b>${f.v} kt</b></div>`+
+    `<div class="row"><span>Model RI probability (≥${thr} kt)</span><b style="color:${ramp(p)}">${(100*p).toFixed(1)}%</b></div>`+
+    `<div class="row"><span>What actually followed</span><b>${dv} kt in 24 h</b></div>`+
+    `<div class="verdict ${hit?'hit':'miss'}">${hit?'RI FOLLOWED':'NO RI'}</div></div>`;
+}
+
+function highlightFix(i,on){
+  const mk=fixMarkers[i];if(!mk)return;
+  mk.setStyle({weight:on?3:(storm.fixes[i].dv>=THRS[thrIdx]?2:1),
+    color:on?'#46cfd6':(storm.fixes[i].dv>=THRS[thrIdx]?'#ffffff':'rgba(233,238,243,.55)')});
+}
+
+/* ── chart: two stacked panels sharing x — intensity, then probability ── */
+function riSpans(thr){
+  const tr=storm.track, byT={};
+  tr.forEach(p=>{byT[p.t]=p.v;});
+  const spans=[];
+  tr.forEach(p=>{
+    const t24=new Date(new Date(p.t).getTime()+864e5).toISOString().slice(0,13)+':00Z';
+    if(byT[t24]!==undefined && byT[t24]-p.v>=thr){
+      const a=new Date(p.t).getTime(), b=a+864e5;
+      if(spans.length&&a<=spans[spans.length-1][1]){spans[spans.length-1][1]=b;}
+      else spans.push([a,b]);
+    }});
+  return spans;
+}
+
+function drawChart(){
+  const svg=document.getElementById('chartSVG');
+  const W=svg.clientWidth||900, H=svg.clientHeight||158;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const thr=THRS[thrIdx];
+  const padL=44,padR=10,topH=Math.round(H*0.44),gap=12,botY=topH+gap,botH=H-botY-16;
+  const tr=storm.track,fx=storm.fixes;
+  if(!tr.length){svg.innerHTML='';return;}
+  const t0=new Date(tr[0].t).getTime(),t1=new Date(tr[tr.length-1].t).getTime();
+  const X=t=>padL+(W-padL-padR)*(t-t0)/Math.max(1,(t1-t0));
+  const vmax=Math.max(100,...tr.map(p=>p.v))*1.1;
+  const Yv=v=>topH-(topH-6)*v/vmax;
+  const pmax=Math.max(0.6,...fx.map(f=>f.p[thrIdx]*1.15));
+  const Yp=p=>botY+botH-(botH-4)*p/pmax;
+  let s='';
+  /* RI spans (top panel) */
+  riSpans(thr).forEach(sp=>{
+    s+=`<rect x="${X(sp[0]).toFixed(1)}" y="6" width="${(X(sp[1])-X(sp[0])).toFixed(1)}" height="${topH-6}" fill="rgba(255,84,73,.14)"/>`;});
+  /* gridlines + axis labels */
+  [50,100,150].forEach(v=>{if(v<vmax){
+    s+=`<line x1="${padL}" y1="${Yv(v).toFixed(1)}" x2="${W-padR}" y2="${Yv(v).toFixed(1)}" stroke="rgba(120,160,180,.14)"/>`;
+    if(Yv(v)>24){s+=`<text x="${padL-6}" y="${Yv(v)+3.5}" text-anchor="end" font-size="9" fill="#8ba0b0" font-family="IBM Plex Mono">${v}</text>`;}}});
+  s+=`<text x="${padL-6}" y="14" text-anchor="end" font-size="8" fill="#8ba0b0" font-family="IBM Plex Mono">KT</text>`;
+  /* intensity path */
+  s+='<path d="'+tr.map((p,i)=>(i?'L':'M')+X(new Date(p.t).getTime()).toFixed(1)+' '+Yv(p.v).toFixed(1)).join('')+
+     '" fill="none" stroke="#c3d0da" stroke-width="2" stroke-linejoin="round"/>';
+  /* probability panel: base-rate dash + bars */
+  const base=DATA.meta.base_rate[thrIdx]/100;
+  [Math.round(pmax*100/2)/100,Math.round(pmax*100)/100-0.01].forEach(()=>{});
+  const pticks=pmax>0.45?[0.2,0.4,0.6]:[0.1,0.2,0.3];
+  pticks.forEach(p=>{if(p<pmax){
+    s+=`<line x1="${padL}" y1="${Yp(p).toFixed(1)}" x2="${W-padR}" y2="${Yp(p).toFixed(1)}" stroke="rgba(120,160,180,.14)"/>`+
+       `<text x="${padL-6}" y="${Yp(p)+3.5}" text-anchor="end" font-size="9" fill="#8ba0b0" font-family="IBM Plex Mono">${Math.round(p*100)}%</text>`;}});
+  s+=`<line x1="${padL}" y1="${Yp(base).toFixed(1)}" x2="${W-padR}" y2="${Yp(base).toFixed(1)}" stroke="#8ba0b0" stroke-dasharray="4 4" stroke-width="1.2"/>`+
+     `<text x="${W-padR-2}" y="${Yp(base)-3}" text-anchor="end" font-size="8" fill="#8ba0b0" font-family="IBM Plex Mono">BASE ${DATA.meta.base_rate[thrIdx]}%</text>`;
+  const bw=Math.max(3,Math.min(10,(W-padL-padR)/((t1-t0)/216e5)));
+  fx.forEach((f,i)=>{
+    const x=X(new Date(f.t).getTime()),p=f.p[thrIdx];
+    s+=`<rect data-i="${i}" x="${(x-bw/2).toFixed(1)}" y="${Yp(p).toFixed(1)}" width="${bw.toFixed(1)}" height="${(botY+botH-Yp(p)).toFixed(1)}" rx="1.5" fill="${ramp(p)}"/>`;});
+  /* x-axis day labels */
+  const days=Math.round((t1-t0)/864e5), step=days>9?2:1;
+  for(let d=0;d<=days;d+=step){
+    const t=t0+d*864e5;
+    s+=`<text x="${X(t).toFixed(1)}" y="${H-3}" text-anchor="middle" font-size="9" fill="#8ba0b0" font-family="IBM Plex Mono">${fmtDay(t)}</text>`;}
+  /* hover overlay */
+  s+=`<line id="xh" x1="0" y1="6" x2="0" y2="${botY+botH}" stroke="rgba(70,207,214,.6)" stroke-width="1" visibility="hidden"/>`+
+     `<rect id="ov" x="${padL}" y="0" width="${W-padL-padR}" height="${H}" fill="transparent"/>`;
+  svg.innerHTML=s;
+
+  const tip=document.getElementById('tip'), xh=svg.querySelector('#xh'), ov=svg.querySelector('#ov');
+  let lastIdx=-1;
+  ov.addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect();
+    const t=t0+(t1-t0)*(ev.clientX-r.left-padL*(r.width/W))/((W-padL-padR)*(r.width/W));
+    let bi=-1,bd=1/0;
+    fx.forEach((f,i)=>{const d=Math.abs(new Date(f.t).getTime()-t);if(d<bd){bd=d;bi=i;}});
+    let ti=-1;bd=1/0;
+    tr.forEach((p,i)=>{const d=Math.abs(new Date(p.t).getTime()-t);if(d<bd){bd=d;ti=i;}});
+    if(ti<0)return;
+    const tp=tr[ti];
+    xh.setAttribute('x1',X(new Date(tp.t).getTime()));xh.setAttribute('x2',X(new Date(tp.t).getTime()));
+    xh.setAttribute('visibility','visible');
+    let html=`<b>${fmtFull(tp.t)}</b><br>winds <b>${tp.v} kt</b>`;
+    if(bi>=0&&Math.abs(new Date(fx[bi].t).getTime()-new Date(tp.t).getTime())<108e5){
+      const f=fx[bi],p=f.p[thrIdx];
+      html+=`<br>model RI prob <span class="tp" style="color:${ramp(p)}">${(100*p).toFixed(1)}%</span>`+
+            `<br>next 24 h <b>${f.dv>=0?'+':''}${f.dv} kt</b>${f.dv>=thr?' · <span style="color:var(--ri)">RI</span>':''}`;
+      if(lastIdx!==bi){if(lastIdx>=0)highlightFix(lastIdx,false);highlightFix(bi,true);lastIdx=bi;}
+    } else if(lastIdx>=0){highlightFix(lastIdx,false);lastIdx=-1;}
+    tip.style.display='block';
+    tip.style.left=Math.min(ev.clientX+14,window.innerWidth-190)+'px';
+    tip.style.top=(ev.clientY-64)+'px';
+    tip.innerHTML=html;
+  });
+  ov.addEventListener('mouseleave',()=>{tip.style.display='none';xh.setAttribute('visibility','hidden');
+    if(lastIdx>=0){highlightFix(lastIdx,false);lastIdx=-1;}});
+}
+window.addEventListener('resize',()=>{if(storm)drawChart();});
+</script>
+</body>
+</html>
