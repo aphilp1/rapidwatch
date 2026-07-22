@@ -5,19 +5,19 @@
       "binNumber": "AT2",
       "name": "Bertha",
       "classification": "TS",
-      "intensity": "45",
-      "pressure": "998",
-      "latitude": "29.8N",
-      "longitude": "88.6W",
-      "latitudeNumeric": 29.8,
-      "longitudeNumeric": -88.6,
-      "movementDir": 290,
-      "movementSpeed": 6,
-      "lastUpdate": "2026-07-22T15:00:00.000Z",
+      "intensity": "40",
+      "pressure": "1000",
+      "latitude": "29.9N",
+      "longitude": "89.1W",
+      "latitudeNumeric": 29.9,
+      "longitudeNumeric": -89.1,
+      "movementDir": 295,
+      "movementSpeed": 7,
+      "lastUpdate": "2026-07-22T18:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:51:49.042Z",
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:36:45.598Z",
         "url": "https://www.nhc.noaa.gov/text/MIATCPAT2.shtml"
       },
       "forecastAdvisory": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/MIATCDAT2.shtml"
       },
       "forecastGraphics": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:51:49.042Z",
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:36:45.598Z",
         "url": "https://www.nhc.noaa.gov/graphics_at2.shtml"
       },
       "forecastTrack": {
@@ -115,10 +115,10 @@
         "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0226_13_tidalmask.zip"
       },
       "peakSurgeKML": {
-        "advNum": "13",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:53:38.985Z",
-        "peakSurgeKMLFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_PeakStormSurge_013adv.kml"
+        "advNum": "13a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:40:57.194Z",
+        "peakSurgeKMLFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_PeakStormSurge_013Aadv.kml"
       }
     },
     {
