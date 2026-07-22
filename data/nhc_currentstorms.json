@@ -45,43 +45,43 @@
         "url": "https://www.nhc.noaa.gov/graphics_at2.shtml"
       },
       "forecastTrack": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:58:40.750Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013adv_TRACK.kmz"
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:12.953Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013Aadv_TRACK.kmz"
       },
       "windWatchesWarnings": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:58:42.657Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013adv_WW.kmz"
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:15.232Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013Aadv_WW.kmz"
       },
       "trackCone": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:58:34.679Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013adv_CONE.kmz"
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:10.914Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_5day_013A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_013Aadv_CONE.kmz"
       },
       "initialWindExtent": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:59:13.472Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_fcst_013.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_initialradii_013adv.kmz"
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:43.719Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_fcst_013A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_initialradii_013Aadv.kmz"
       },
       "forecastWindRadiiGIS": {
-        "advNum": "013",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:59:09.470Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_fcst_013.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_forecastradii_013adv.kmz"
+        "advNum": "013a",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:39.875Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/al022026_fcst_013A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL022026_forecastradii_013Aadv.kmz"
       },
       "bestTrackGIS": {
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T14:58:52.850Z",
+        "issuance": "2026-07-22T18:00:00.000Z",
+        "fileUpdateTime": "2026-07-22T17:53:25.513Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/best_track/al022026_best_track.zip",
         "kmzFile": "https://www.nhc.noaa.gov/gis/best_track/al022026_best_track.kmz"
       },
@@ -107,13 +107,7 @@
         "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026072212_wsp64knt120hr_5km.kmz"
       },
       "stormSurgeWatchWarningGIS": null,
-      "potentialStormSurgeFloodingGIS": {
-        "advNum": "13",
-        "issuance": "2026-07-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-07-22T15:46:56.541Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0226_13_inundation.zip",
-        "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0226_13_tidalmask.zip"
-      },
+      "potentialStormSurgeFloodingGIS": null,
       "peakSurgeKML": {
         "advNum": "13a",
         "issuance": "2026-07-22T18:00:00.000Z",
