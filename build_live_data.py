@@ -57,25 +57,57 @@ def main():
         except Exception as e:
             kept.append(f"ndbc/{bid} ({type(e).__name__})")
 
-    # ── NHC active-storm cone / track / points ────────────────────────────────
+    # ── NHC active-storm cone / track / points / watches / past track ─────────
+    # NHC discontinued the storm_graphics/api/*_5day_*.geojson products (404 since
+    # ~2026). Source is now the NOAA IDP ArcGIS MapServer, which serves the same
+    # cone/track/points per storm *bin* (AT1..AT5, EP1..) as GeoJSON queries.
+    # Output filenames are unchanged so the map pages keep working.
+    MAPSRV = ("https://mapservices.weather.noaa.gov/tropical/rest/services/"
+              "tropical/NHC_tropical_weather/MapServer")
+    # layer-name suffix -> output filename suffix
+    NHC_KINDS = {
+        "Forecast Cone":   "5day_pgn",
+        "Forecast Track":  "5day_lin",
+        "Forecast Points": "5day_pts",
+        "Watch-Warning":   "ww",
+        "Past Track":      "past_lin",
+        "Past Points":     "past_pts",
+    }
     try:
         cs_raw = get("https://www.nhc.noaa.gov/CurrentStorms.json")
         cs = json.loads(cs_raw)
         save_if_ok(DATA / "nhc_currentstorms.json", cs_raw, 2)
         ok.append("nhc_currentstorms.json")
         storms = cs.get("activeStorms", []) or []
+        layers = {}
+        if storms:  # bin -> layer-id map, e.g. "AT2 Forecast Cone" -> 34
+            svc = json.loads(get(f"{MAPSRV}?f=json"))
+            layers = {l["name"]: l["id"] for l in svc.get("layers", [])}
         for s in storms:
             sid = str(s.get("id", "")).upper()
-            if not sid:
+            bin_ = str(s.get("binNumber", "")).upper()
+            if not sid or not bin_:
                 continue
-            for kind in ("pgn", "lin", "pts"):
-                url = f"https://www.nhc.noaa.gov/storm_graphics/api/{sid}_5day_{kind}.geojson"
+            for lname, suffix in NHC_KINDS.items():
+                lid = layers.get(f"{bin_} {lname}")
+                if lid is None:
+                    kept.append(f"nhc/{sid}_{suffix} (no layer)")
+                    continue
                 try:
-                    g = get(url)
-                    if save_if_ok(DATA / "nhc" / f"{sid}_5day_{kind}.geojson", g, 2):
-                        ok.append(f"nhc/{sid}_{kind}")
+                    g = get(f"{MAPSRV}/{lid}/query?where=1%3D1&outFields=*&f=geojson")
+                    gj = json.loads(g)
+                    if suffix == "5day_pts":
+                        # legacy prop aliases the Gulf Map popup reads
+                        for f_ in gj.get("features", []):
+                            p = f_.get("properties", {})
+                            p.setdefault("MAXWIND", p.get("maxwind"))
+                            p.setdefault("VALIDTIME", p.get("validtime"))
+                        g = json.dumps(gj).encode()
+                    if gj.get("features") and save_if_ok(
+                            DATA / "nhc" / f"{sid}_{suffix}.geojson", g, 2):
+                        ok.append(f"nhc/{sid}_{suffix}")
                 except Exception as e:
-                    kept.append(f"nhc/{sid}_{kind} ({type(e).__name__})")
+                    kept.append(f"nhc/{sid}_{suffix} ({type(e).__name__})")
         print(f"  NHC active storms: {len(storms)}")
     except Exception as e:
         kept.append(f"nhc_currentstorms ({type(e).__name__})")

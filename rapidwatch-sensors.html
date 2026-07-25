@@ -229,10 +229,22 @@ const toggleLayers=[
 map.createPane('oceanPane').style.zIndex=260;   // model rasters: over bathymetry, under sensors
 map.createPane('curPane').style.zIndex=265;     // current arrows just above the rasters
 const sstLayer=L.layerGroup(), d26Layer=L.layerGroup(), curLayer=L.layerGroup();
-// satellite SST — NASA GIBS GHRSST MUR L4 (observed, ~1-day latency); complements the HYCOM model SST
-const _ydate=new Date(Date.now()-864e5).toISOString().slice(0,10);   // yesterday — GIBS MUR default/latest (~1-day latency)
-const satSSTLayer=L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GHRSST_L4_MUR_Sea_Surface_Temperature/default/'+_ydate+'/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
+// satellite SST — NASA GIBS GHRSST MUR L4 (observed; publishes 1–3 days behind, and the exact
+// latest date varies — a hardcoded "yesterday" 404s whenever processing lags, leaving the layer
+// silently blank). Probe backward until GIBS answers 200 for a Gulf tile, then use that date.
+const _murURL=d=>'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GHRSST_L4_MUR_Sea_Surface_Temperature/default/'+d+'/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png';
+let _murDate=new Date(Date.now()-864e5).toISOString().slice(0,10);   // starting guess: yesterday
+const satSSTLayer=L.tileLayer(_murURL(_murDate),
   {maxNativeZoom:7,maxZoom:11,opacity:.82,pane:'oceanPane',attribution:'Satellite SST: NASA GIBS · GHRSST MUR L4'});
+(async function findMurDate(){
+  for(let back=1;back<=6;back++){
+    const d=new Date(Date.now()-back*864e5).toISOString().slice(0,10);
+    try{
+      const r=await fetch(_murURL(d).replace('{z}/{y}/{x}','6/26/15'));   // known-good Gulf tile
+      if(r.ok){ if(d!==_murDate){ _murDate=d; satSSTLayer.setUrl(_murURL(d)); } updateOceanLegend(); return; }
+    }catch(e){}
+  }
+})();
 toggleLayers.push(
   {key:'HYCOM SST · live model',lyr:sstLayer,on:false,legend:1},
   {key:'HYCOM ocean heat · D26',lyr:d26Layer,on:false,legend:1},
@@ -283,7 +295,7 @@ function updateOceanLegend(){
   if(map.hasLayer(sstLayer)) el.innerHTML='<div class="ol-t">Sea-surface temperature</div>'+bar+'<div class="ol-e"><span>'+SST_MIN+'°C</span><span>'+SST_MAX+'°C</span></div>'+tm;
   else if(map.hasLayer(d26Layer)) el.innerHTML='<div class="ol-t">Ocean heat · D26 (26°C isotherm depth = RI fuel)</div>'+bar+'<div class="ol-e"><span>0 m</span><span>'+D26_MAX+'+ m</span></div>'+tm;
   else if(map.hasLayer(curLayer)) el.innerHTML='<div class="ol-t">Surface currents</div><div class="ol-sub">arrow = flow · size/colour = speed · red ≈ Loop Current (&gt;0.8 m/s)</div>'+tm;
-  else if(map.hasLayer(satSSTLayer)) el.innerHTML='<div class="ol-t">Satellite SST · NASA GHRSST MUR L4</div><div class="ol-sub">observed · '+_ydate+' · cooler → warmer (GIBS palette)</div>';
+  else if(map.hasLayer(satSSTLayer)) el.innerHTML='<div class="ol-t">Satellite SST · NASA GHRSST MUR L4</div><div class="ol-sub">observed · '+_murDate+' · cooler → warmer (GIBS palette)</div>';
   else { el.classList.remove('on'); return; }
   el.classList.add('on');
 }

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RapidWatch — Live Event</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--abyss:#050b12;--water:#071420;--panel:#0d1c29;--line:rgba(120,160,180,.16);--line-2:rgba(120,160,180,.3);
+  --ink:#e9eef3;--slate:#c3d0da;--mute:#8ba0b0;--aqua:#46cfd6;--amber:#ff8a3d;--violet:#c98bff;--red:#ff5d6c}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:300;overflow:hidden}
+#map{position:absolute;inset:0;background:#071420}
+.leaflet-container{background:#071420;font-family:"IBM Plex Sans"}
+/* darken the bathymetry base tiles only (custom panes — GOES/radar — are siblings, unaffected) */
+#map .leaflet-tile-pane{filter:brightness(.5) saturate(1.4) contrast(1.04)}
+.panel{position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.95),rgba(6,14,22,.92));
+  border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+/* title + active storms — top-left */
+#ctl{top:14px;left:14px;width:296px;padding:15px 16px 14px;max-height:calc(100% - 28px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#ctl h1{font-family:"Space Grotesk";font-weight:700;font-size:16px;letter-spacing:.03em;margin:0;display:flex;align-items:center;gap:9px}
+#ctl h1 .dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(255,93,108,.16),0 0 14px 2px rgba(255,93,108,.55);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(255,93,108,.05),0 0 20px 4px rgba(255,93,108,.7)}}
+#ctl .sub{font-family:"IBM Plex Mono";font-size:10px;color:var(--mute);letter-spacing:.05em;margin:8px 0 0;line-height:1.5}
+#ctl .lab{font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.15em;color:var(--mute);text-transform:uppercase;margin:14px 0 7px}
+.storm-card{border:1px solid var(--line-2);border-radius:9px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s;background:rgba(255,255,255,.03)}
+.storm-card:hover{border-color:var(--aqua)}
+.storm-card .sc-name{font-family:"Space Grotesk";font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px}
+.storm-card .sc-badge{font-family:"IBM Plex Mono";font-size:9px;font-weight:600;padding:2px 7px;border-radius:5px;letter-spacing:.06em}
+.storm-card .sc-row{display:flex;justify-content:space-between;font-size:11px;color:var(--slate);padding:1.5px 0}
+.storm-card .sc-row b{color:var(--ink);font-weight:500;font-family:"IBM Plex Mono";font-size:10.5px}
+.storm-card .sc-src{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);margin-top:5px;letter-spacing:.04em}
+#no-storm{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--mute);line-height:1.6;padding:8px 2px}
+/* layers — bottom-left */
+#lyrs{bottom:16px;left:14px;width:296px;padding:13px 16px;max-height:46vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#lyrs h3{font-family:"Space Grotesk";font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);margin:0 0 9px;text-transform:uppercase}
+.lyr-row{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;user-select:none}
+.lyr-row input{appearance:none;width:14px;height:14px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;position:relative;flex:none;transition:all .15s}
+.lyr-row input:checked{background:var(--aqua);border-color:var(--aqua)}
+.lyr-row input:checked::after{content:"";position:absolute;left:4px;top:1px;width:3px;height:7px;border:solid #05121a;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.lyr-row span{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--slate)}
+.lyr-row:hover span{color:var(--ink)}
+#lyrs .foot{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);line-height:1.5;border-top:1px solid var(--line);padding-top:8px;margin-top:9px}
+/* radar loop mini-control (inside layers panel, under the radar row) */
+#radar-loop{display:flex;align-items:center;gap:8px;margin:2px 0 3px 22px}
+#radar-loop button{cursor:pointer;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px;
+  background:rgba(70,207,214,.1);border:1px solid rgba(70,207,214,.3);color:var(--aqua)}
+#radar-loop button:hover{background:rgba(70,207,214,.2)}
+#radar-loop .rl-t{font-family:"IBM Plex Mono";font-size:9.5px;color:var(--mute);min-width:56px}
+/* right column: GOES sector loop + data status */
+#rcol{position:absolute;top:14px;right:14px;z-index:1000;width:308px;display:flex;flex-direction:column;gap:10px;max-height:calc(100% - 28px)}
+#rcol .panel{position:relative;top:auto;right:auto}
+#goesbox{padding:12px 13px}
+#goesbox h3,#status h3{font-family:"Space Grotesk";font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);margin:0 0 8px;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
+#goesbox img{width:100%;border-radius:7px;border:1px solid var(--line-2);display:block;background:#03070c;min-height:120px}
+#goesbox .gcap{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);line-height:1.5;margin-top:6px}
+#goesbox .gcap a{color:var(--aqua);text-decoration:none}
+#goesbox .gtog{cursor:pointer;color:var(--mute);font-size:15px;line-height:1;font-weight:400}
+#goesbox .gtog:hover{color:var(--aqua)}
+#goesbox.min img,#goesbox.min .gcap,#goesbox.min .seg{display:none}
+/* segmented selectors (GOES product + sector, radar speed) */
+.seg{display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap}
+.seg button{cursor:pointer;font-family:"IBM Plex Mono";font-size:9.5px;font-weight:600;letter-spacing:.03em;padding:4px 9px;border-radius:6px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line-2);color:var(--slate);transition:all .15s;flex:1;min-width:0}
+.seg button:hover{color:var(--ink);border-color:var(--aqua)}
+.seg button.on{background:rgba(70,207,214,.14);border-color:var(--aqua);color:var(--aqua)}
+/* data status (live diagnostics) */
+#status{padding:12px 13px}
+.st-row{display:flex;align-items:center;gap:8px;padding:2.5px 0}
+.st-dot{width:8px;height:8px;border-radius:50%;flex:none;background:#5f7585}
+.st-dot.ok{background:#3ddc84;box-shadow:0 0 6px rgba(61,220,132,.5)}
+.st-dot.warn{background:#ffd24a;box-shadow:0 0 6px rgba(255,210,74,.5)}
+.st-dot.fail{background:var(--red);box-shadow:0 0 6px rgba(255,93,108,.5)}
+.st-row .st-k{font-family:"IBM Plex Mono";font-size:10px;color:var(--slate);flex:1}
+.st-row .st-v{font-family:"IBM Plex Mono";font-size:9px;color:var(--mute);text-align:right}
+#status .foot{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);border-top:1px solid var(--line);padding-top:7px;margin-top:8px;line-height:1.5}
+/* headline strip — top-center */
+#headline{top:14px;left:50%;transform:translateX(-50%);padding:8px 16px;display:none;text-align:center;max-width:min(560px,60vw)}
+#headline.on{display:block}
+#headline .hl-t{font-family:"Space Grotesk";font-weight:700;font-size:13px;letter-spacing:.04em}
+#headline .hl-s{font-family:"IBM Plex Mono";font-size:9.5px;color:var(--slate);margin-top:3px;letter-spacing:.04em}
+/* popups + map furniture (same scheme as Live Sensor Systems) */
+.leaflet-popup-content-wrapper{background:var(--panel);color:var(--ink);border:1px solid var(--line-2);border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+.leaflet-popup-tip{background:var(--panel);border:1px solid var(--line-2)}
+.leaflet-popup-content{margin:12px 14px;font-size:12.5px;line-height:1.5}
+.gp .gk{font-family:"IBM Plex Mono";font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}
+.gp h4{font-family:"Space Grotesk";font-weight:600;font-size:15px;margin:5px 0 2px}
+.gp .op{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--aqua);margin-bottom:8px}
+.stormnow{width:18px;height:18px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 14px rgba(255,255,255,.6);animation:pulse2 1.6s ease-in-out infinite}
+@keyframes pulse2{50%{transform:scale(1.3);opacity:.6}}
+.ev-tip{background:rgba(13,28,41,.92)!important;border:1px solid var(--line-2)!important;color:var(--ink)!important;
+  font-family:"IBM Plex Mono"!important;font-size:10px!important;font-weight:600;padding:1px 6px!important;border-radius:4px!important;box-shadow:0 2px 8px rgba(0,0,0,.5)!important;white-space:nowrap}
+.ev-tip::before{display:none!important}
+/* the storm label must win any overlap with nearby sensor labels */
+.ev-storm{z-index:1200!important;font-size:10.5px!important;color:#fff!important;border-color:var(--red)!important;background:rgba(20,8,12,.95)!important}
+.leaflet-control-zoom a{background:var(--panel)!important;color:var(--aqua)!important;border-color:var(--line)!important}
+.leaflet-bar{border-color:var(--line)!important;box-shadow:0 2px 16px rgba(0,0,0,.5)!important}
+.rw-north{background:rgba(13,28,41,.85);border:1px solid var(--line);border-radius:8px;padding:4px 9px 5px;text-align:center;line-height:1;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 2px 12px rgba(0,0,0,.5)}
+.rw-north .rw-arrow{font-size:13px;color:var(--amber);line-height:1}
+.rw-north .rw-n{font-family:"IBM Plex Mono";font-size:11px;font-weight:600;color:var(--ink);margin-top:1px}
+.leaflet-control-attribution{background:rgba(5,11,18,.7)!important;color:var(--mute)!important;font-size:9px!important}
+.leaflet-control-attribution a{color:var(--aqua)!important}
+@media(max-width:760px){#ctl,#lyrs{width:220px}#rcol{width:230px}}
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="panel" id="ctl">
+  <h1><span class="dot"></span>LIVE EVENT</h1>
+  <p class="sub">Real-time Gulf tropical-event tracker &mdash; NHC advisories, forecast cones, NEXRAD radar, GOES satellite, and the live sensor network.</p>
+  <div class="lab">Active storms &mdash; Gulf / Atlantic</div>
+  <div id="storms"></div>
+</div>
+
+<div class="panel" id="headline"><div class="hl-t" id="hl-t"></div><div class="hl-s" id="hl-s"></div></div>
+
+<div class="panel" id="lyrs">
+  <h3>Layers</h3>
+  <div id="lrows"></div>
+  <div class="foot">Storms: NOAA/NHC (live + 30-min snapshot fallback). Radar: NEXRAD composite via Iowa State Mesonet. Satellite: NOAA GOES-East via NASA GIBS &amp; NOAA STAR. Buoys: NDBC + NWS. Gliders: IOOS DAC. Floats: Argo. Bathymetry: GEBCO.</div>
+</div>
+
+<div id="rcol">
+  <div class="panel" id="goesbox">
+    <h3>GOES-East live loop <span class="gtog" id="gtog" title="Collapse">&#8211;</span></h3>
+    <div class="seg" id="goes-prod"></div>
+    <div class="seg" id="goes-sect"></div>
+    <img id="goesimg" alt="GOES-East satellite animation">
+    <div class="gcap" id="goescap"></div>
+  </div>
+  <div class="panel" id="status">
+    <h3>Data status</h3>
+    <div id="strows"></div>
+    <div class="foot">Live checks run in this browser at page load &mdash; each feed is probed directly, so a red row means that source is unreachable or stale right now.</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+'use strict';
+/* ══ base map — same scheme as Live Sensor Systems ══ */
+const map=L.map('map',{zoomControl:false,attributionControl:true,minZoom:4,maxZoom:11,worldCopyJump:false}).setView([25.4,-88.0],6);
+map.setMaxBounds([[12,-103],[35,-72]]);
+L.tileLayer.wms('https://wms.gebco.net/mapserv?',
+  {layers:'GEBCO_LATEST',format:'image/png',version:'1.3.0',transparent:false,
+   attribution:'Bathymetry: GEBCO · Storms: NOAA/NHC · Radar: NEXRAD/IEM · Satellite: NOAA GOES · NASA GIBS',maxZoom:11}).addTo(map);
+L.control.zoom({position:'bottomright'}).addTo(map);
+const NorthArrow=L.Control.extend({options:{position:'bottomright'},
+  onAdd:function(){const d=L.DomUtil.create('div','rw-north');
+    d.innerHTML='<div class="rw-arrow">▲</div><div class="rw-n">N</div>';d.title='North (map is north-up)';return d;}});
+map.addControl(new NorthArrow());
+L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140}).addTo(map);
+
+/* Tiles occasionally fail in transit (the server has them; the request just drops). Leaflet
+   leaves those as permanent blank squares, so retry each failed tile a couple of times with a
+   cache-busting suffix before giving up. */
+function retryTiles(layer,tries){
+  const max=tries||2, seen=new WeakMap();
+  layer.on('tileerror',e=>{
+    const t=e.tile; if(!t) return;
+    const n=(seen.get(t)||0)+1; if(n>max) return;
+    seen.set(t,n);
+    const base=t.src.split('#')[0].split('?')[0];
+    setTimeout(()=>{t.src=base+'?r='+n+Math.floor(Math.random()*1e4);},350*n);
+  });
+  return layer;
+}
+
+/* pane stack: bathy 200 < land 250 < GOES 252 < radar 256 < vectors 400 < markers 600 */
+map.createPane('landPane').style.zIndex=250;
+map.createPane('goesPane').style.zIndex=252;
+map.createPane('radarPane').style.zIndex=256;
+/* dark land over the bathymetry — noClip:true or Leaflet's viewport clipping inverts the
+   hemispheric land ring (land fill floods the open ocean at some zooms) */
+fetch('data/geo/ne_50m_land.geojson').then(r=>r.json()).then(land=>{
+  L.geoJSON(land,{pane:'landPane',interactive:false,noClip:true,
+    style:{color:'rgba(70,207,214,.38)',weight:.9,fillColor:'#16242f',fillOpacity:1,noClip:true}}).addTo(map);
+}).catch(()=>{});
+
+/* ══ shared helpers ══ */
+const fmt=(la,lo)=>Math.abs(la).toFixed(2)+'°'+(la>=0?'N':'S')+' '+Math.abs(lo).toFixed(2)+'°'+(lo>=0?'E':'W');
+const COMPASS=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+const compass=d=>d==null?'—':COMPASS[Math.round(d/22.5)%16];
+const _MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const _fmtUTC=ts=>{const d=new Date(ts);return _MO[d.getUTCMonth()]+' '+d.getUTCDate()+' '+String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+' UTC';};
+const agoH=ts=>{const h=(Date.now()-new Date(ts).getTime())/3.6e6;return h<1?Math.round(h*60)+' min':h.toFixed(1)+' h';};
+function pop(kicker,title,sub,body,tags){
+  return '<div class="gp"><div class="gk">'+kicker+'</div><h4>'+title+'</h4>'
+    +(sub?'<div class="op">'+sub+'</div>':'')
+    +'<div style="color:var(--slate);font-size:11.5px;line-height:1.5">'+body+'</div>'
+    +(tags&&tags.length?'<div style="margin-top:7px;display:flex;flex-wrap:wrap;gap:4px">'
+      +tags.map(t=>'<span style="font-family:IBM Plex Mono;font-size:8.5px;padding:2px 6px;border-radius:4px;background:rgba(70,207,214,.1);border:1px solid rgba(70,207,214,.22);color:var(--aqua)">'+t+'</span>').join('')+'</div>':'')
+    +'</div>';
+}
+/* storm classification → colour + label, from max wind (kt) */
+function classOf(kt){
+  if(kt==null)return{c:'#8ba0b0',lab:'—',full:'Tropical cyclone'};
+  if(kt<34)return{c:'#8ba0b0',lab:'TD',full:'Tropical Depression'};
+  if(kt<64)return{c:'#46cfd6',lab:'TS',full:'Tropical Storm'};
+  if(kt<83)return{c:'#ffd24a',lab:'CAT 1',full:'Category 1 Hurricane'};
+  if(kt<96)return{c:'#ffb27a',lab:'CAT 2',full:'Category 2 Hurricane'};
+  if(kt<113)return{c:'#ff8a3d',lab:'CAT 3',full:'Category 3 Hurricane'};
+  if(kt<137)return{c:'#ff5d6c',lab:'CAT 4',full:'Category 4 Hurricane'};
+  return{c:'#ff2d55',lab:'CAT 5',full:'Category 5 Hurricane'};
+}
+
+/* ══ DATA STATUS (live diagnostics) ══ */
+const STATUS={};
+function setStatus(key,state,detail){
+  STATUS[key]={state,detail};
+  const host=document.getElementById('strows');
+  host.innerHTML=Object.keys(STATUS).map(k=>{
+    const s=STATUS[k];
+    return '<div class="st-row"><span class="st-dot '+s.state+'"></span><span class="st-k">'+k+'</span><span class="st-v">'+s.detail+'</span></div>';
+  }).join('');
+}
+/* image-probe: works cross-origin (load/error events need no CORS) */
+function probeImg(key,url,okDetail){
+  setStatus(key,'','checking…');
+  const im=new Image();
+  im.onload=()=>setStatus(key,'ok',okDetail);
+  im.onerror=()=>setStatus(key,'fail','unreachable');
+  im.src=url;
+}
+
+/* ══ NEXRAD composite radar + loop (IEM: current + 5-min-lagged frames) ══ */
+const IEM='https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/';
+const radarNow=retryTiles(L.tileLayer(IEM+'nexrad-n0q-900913/{z}/{x}/{y}.png',{opacity:.8,pane:'radarPane',maxZoom:11}));
+const radarLayer=L.layerGroup([radarNow]);
+const RADAR_LAGS=[50,45,40,35,30,25,20,15,10,5,0];   // minutes ago, oldest → newest
+/* frame dwell in ms — "1×" is the reference pace; slower speeds hold each frame longer */
+const RADAR_SPEEDS=[{lab:'¼×',ms:2600},{lab:'½×',ms:1300},{lab:'1×',ms:650},{lab:'2×',ms:325}];
+let radarSpeed=650;
+let loopLayers=null,loopTimer=null,loopIdx=0;
+function radarTick(){
+  loopLayers.forEach((l,i)=>l.setOpacity(i===loopIdx?.8:0));
+  document.getElementById('rl-t').textContent=RADAR_LAGS[loopIdx]?('−'+RADAR_LAGS[loopIdx]+' min'):'now';
+  loopIdx=(loopIdx+1)%loopLayers.length;
+}
+function radarLoopStart(){
+  if(!map.hasLayer(radarLayer)){document.querySelector('#lrows input[data-key="radar"]').click();}
+  if(!loopLayers){
+    loopLayers=RADAR_LAGS.map(m=>retryTiles(L.tileLayer(IEM+(m?('nexrad-n0q-900913-m'+String(m).padStart(2,'0')+'m'):'nexrad-n0q-900913')+'/{z}/{x}/{y}.png',
+      {opacity:0,pane:'radarPane',maxZoom:11})));
+    loopLayers.forEach(l=>l.addTo(map));
+  }
+  radarNow.setOpacity(0); loopIdx=0;
+  loopTimer=setInterval(radarTick,radarSpeed);
+  document.getElementById('rl-btn').textContent='⏸ stop';
+}
+function radarSetSpeed(ms){
+  radarSpeed=ms;
+  if(loopTimer){clearInterval(loopTimer);loopTimer=setInterval(radarTick,radarSpeed);}   // apply mid-loop
+}
+function radarLoopStop(){
+  if(loopTimer){clearInterval(loopTimer);loopTimer=null;}
+  if(loopLayers) loopLayers.forEach(l=>l.setOpacity(0));
+  radarNow.setOpacity(.8);
+  document.getElementById('rl-btn').textContent='▶ loop';
+  document.getElementById('rl-t').textContent='live';
+}
+setInterval(()=>{if(!loopTimer)radarNow.redraw();},3e5);   // refresh live radar tiles every 5 min
+
+/* ══ GOES satellite tile layers (NASA GIBS, "default" = newest available time) ══ */
+const goesGeo=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/default/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
+  {maxNativeZoom:7,maxZoom:11,opacity:.85,pane:'goesPane'}));
+const goesIR=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_Band13_Clean_Infrared/default/default/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png',
+  {maxNativeZoom:6,maxZoom:11,opacity:.85,pane:'goesPane'}));
+const goesVis=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_Band2_Red_Visible_1km/default/default/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
+  {maxNativeZoom:7,maxZoom:11,opacity:.85,pane:'goesPane'}));
+setInterval(()=>{[goesGeo,goesIR,goesVis].forEach(l=>{if(map.hasLayer(l))l.redraw();});},6e5);   // re-pull ~10 min
+
+/* ══ GOES animation over the whole Gulf, on the main map ══
+   GIBS serves each ABI product on a 10-minute time step, but individual steps are often
+   missing, so candidate frames are probed first and only the ones that return imagery are
+   animated. Frames are built for whichever GOES product is currently displayed. */
+const GOES_PRODUCTS={
+  geocolor:{layer:'GOES-East_ABI_GeoColor',              tms:'GoogleMapsCompatible_Level7',mz:7,lyr:()=>goesGeo,label:'GeoColor'},
+  visible :{layer:'GOES-East_ABI_Band2_Red_Visible_1km', tms:'GoogleMapsCompatible_Level7',mz:7,lyr:()=>goesVis,label:'visible'},
+  ir      :{layer:'GOES-East_ABI_Band13_Clean_Infrared', tms:'GoogleMapsCompatible_Level6',mz:6,lyr:()=>goesIR, label:'clean IR'}};
+const goesTileURL=(p,t)=>'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/'+p.layer+'/default/'+t+'/'+p.tms+'/{z}/{y}/{x}.png';
+const GOES_SPEEDS=[{lab:'¼×',ms:2400},{lab:'½×',ms:1200},{lab:'1×',ms:600},{lab:'2×',ms:300}];
+let goesAnimSpeed=600,goesFrames=null,goesTimer=null,goesIdx=0,goesBuilding=false;
+function goesStamps(n){   /* newest-first 10-min stamps, skipping the ~20 min ingest lag */
+  const out=[],base=new Date(Date.now()-20*6e4);
+  base.setUTCMinutes(Math.floor(base.getUTCMinutes()/10)*10,0,0);
+  for(let i=0;i<n;i++) out.push(new Date(base.getTime()-i*6e5).toISOString().slice(0,16)+':00Z');   // YYYY-MM-DDTHH:MM:00Z
+  return out;
+}
+function activeGoesKey(){
+  for(const k in GOES_PRODUCTS) if(map.hasLayer(GOES_PRODUCTS[k].lyr())) return k;
+  return null;
+}
+function goesFrameProbe(p,t){   /* a single Gulf tile: 200 = frame exists */
+  return new Promise(res=>{const im=new Image();
+    im.onload=()=>res(true);im.onerror=()=>res(false);
+    im.src=goesTileURL(p,t).replace('{z}/{y}/{x}','6/26/15');});
+}
+async function goesAnimStart(){
+  if(goesBuilding)return;
+  let key=activeGoesKey();
+  if(!key){   /* nothing displayed yet — turn GeoColor on so there is something to animate */
+    document.querySelector('#lrows input[data-key="goes-geocolor"]').click();
+    key='geocolor';
+  }
+  const p=GOES_PRODUCTS[key];
+  goesBuilding=true;
+  document.getElementById('ga-t').textContent='loading frames…';
+  goesAnimStop(true);
+  const stamps=goesStamps(14);
+  const okFlags=await Promise.all(stamps.map(t=>goesFrameProbe(p,t)));
+  const good=stamps.filter((t,i)=>okFlags[i]).reverse();   // oldest → newest
+  goesBuilding=false;
+  if(good.length<2){document.getElementById('ga-t').textContent='no frames available';return;}
+  goesFrames=good.map(t=>({t,lyr:retryTiles(L.tileLayer(goesTileURL(p,t),{opacity:0,pane:'goesPane',maxNativeZoom:p.mz,maxZoom:11}))}));
+  goesFrames.forEach(f=>f.lyr.addTo(map));
+  p.lyr().setOpacity(0);   // hide the static layer while its animation plays
+  goesIdx=0;
+  goesTimer=setInterval(goesTick,goesAnimSpeed);
+  document.getElementById('ga-btn').textContent='⏸ stop';
+}
+function goesTick(){
+  goesFrames.forEach((f,i)=>f.lyr.setOpacity(i===goesIdx?.85:0));
+  const d=new Date(goesFrames[goesIdx].t);
+  document.getElementById('ga-t').textContent=String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0')+'Z';
+  goesIdx=(goesIdx+1)%goesFrames.length;
+}
+function goesAnimStop(quiet){
+  if(goesTimer){clearInterval(goesTimer);goesTimer=null;}
+  if(goesFrames){goesFrames.forEach(f=>f.lyr.remove());goesFrames=null;}
+  Object.values(GOES_PRODUCTS).forEach(p=>p.lyr().setOpacity(.85));
+  document.getElementById('ga-btn').textContent='▶ animate';
+  if(!quiet)document.getElementById('ga-t').textContent='static';
+}
+function goesSetSpeed(ms){
+  goesAnimSpeed=ms;
+  if(goesTimer){clearInterval(goesTimer);goesTimer=setInterval(goesTick,goesAnimSpeed);}
+}
+
+/* GOES sector loop panel (NOAA STAR CDN — plain <img>, no CORS needed).
+   Sectors are Gulf-centred: the basin-wide "Tropical Atlantic" view is kept only as the
+   wide-context option. Products: GeoColor (true-colour day / IR-tinted night), Band 2
+   visible (daylight only), Band 13 clean IR (works at night). */
+/* NOTE: the animated-GIF pixel size differs per sector on the NOAA CDN (600x600 / 1000x1000 /
+   900x540). Using one size for all of them 404s on most combinations — the size belongs to the
+   sector, not the product. */
+const GOES_SECT=[
+  {k:'se', lab:'E. GULF',  name:'Eastern Gulf &amp; Florida', size:'600x600'},
+  {k:'mex',lab:'W. GULF',  name:'Western Gulf &amp; Mexico',  size:'1000x1000'},
+  {k:'car',lab:'CARIB',    name:'Caribbean',                  size:'1000x1000'},
+  {k:'taw',lab:'ATLANTIC', name:'Tropical Atlantic (wide)',   size:'900x540'}];
+const GOES_PROD=[
+  {k:'GEOCOLOR',lab:'GEOCOLOR',name:'GeoColor'},
+  {k:'02',      lab:'VISIBLE', name:'Band 2 visible (0.64 µm, daylight only)'},
+  {k:'13',      lab:'IR',      name:'Band 13 clean infrared (10.3 µm, day + night)'}];
+let goesSect='se',goesProd='GEOCOLOR';
+function drawGoesLoop(){
+  const s=GOES_SECT.find(x=>x.k===goesSect),p=GOES_PROD.find(x=>x.k===goesProd);
+  const base='https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/'+goesSect+'/'+goesProd+'/';
+  const bust='?'+Math.floor(Date.now()/6e5);
+  const img=document.getElementById('goesimg');
+  img.onerror=function(){   /* animation missing → fall back to the latest still rather than a broken frame */
+    img.onerror=function(){setStatus('GOES sector loop','fail',s.lab+' '+p.lab+' unavailable');};
+    img.src=base+'latest.jpg'+bust;
+    setStatus('GOES sector loop','warn','still image (no loop)');
+  };
+  img.onload=function(){setStatus('GOES sector loop','ok',s.lab+' · '+p.lab);};
+  img.src=base+'GOES19-'+goesSect.toUpperCase()+'-'+goesProd+'-'+s.size+'.gif'+bust;
+  document.getElementById('goescap').innerHTML='GOES-19 (GOES-East) &middot; '+p.name+' &middot; '+s.name+' &middot; NOAA STAR &middot; '+
+    '<a href="https://www.star.nesdis.noaa.gov/GOES/sector.php?sat=G19&sector='+goesSect+'" target="_blank" rel="noopener">full-size loop &#8599;</a>';
+}
+(function buildGoesControls(){
+  [['goes-prod',GOES_PROD,()=>goesProd,v=>goesProd=v],['goes-sect',GOES_SECT,()=>goesSect,v=>goesSect=v]].forEach(([id,list,get,set])=>{
+    const host=document.getElementById(id);
+    list.forEach(o=>{
+      const b=document.createElement('button');b.textContent=o.lab;b.title=o.name.replace(/&amp;/g,'&');
+      if(o.k===get())b.classList.add('on');
+      b.onclick=()=>{set(o.k);[...host.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');drawGoesLoop();};
+      host.appendChild(b);
+    });
+  });
+  drawGoesLoop();
+})();
+setInterval(drawGoesLoop,6e5);   // pull a fresh loop every 10 min
+document.getElementById('gtog').onclick=function(){
+  const b=document.getElementById('goesbox'); b.classList.toggle('min');
+  this.innerHTML=b.classList.contains('min')?'+':'&#8211;';
+  this.title=b.classList.contains('min')?'Expand':'Collapse';
+};
+
+/* ══ NHC active storms: position, cone, forecast track/points, watches, past track ══ */
+const stormLayer=L.layerGroup(),wwLayer=L.layerGroup(),pastLayer=L.layerGroup();
+const MAPSRV='https://mapservices.weather.noaa.gov/tropical/rest/services/tropical/NHC_tropical_weather/MapServer';
+const WW_STYLE={ /* official NHC watch/warning colours */
+  HWR:{color:'#dc3545',label:'Hurricane Warning'},
+  HWA:{color:'#ff7ab8',label:'Hurricane Watch'},
+  TWR:{color:'#3b82f6',label:'Tropical Storm Warning'},
+  TWA:{color:'#ffd24a',label:'Tropical Storm Watch'}};
+let _mapsrvLayers=null;   // "AT2 Forecast Cone" -> layer id (fetched once)
+async function mapsrvLayerIds(){
+  if(_mapsrvLayers)return _mapsrvLayers;
+  const d=await(await fetch(MAPSRV+'?f=json')).json();
+  _mapsrvLayers={}; (d.layers||[]).forEach(l=>_mapsrvLayers[l.name]=l.id);
+  return _mapsrvLayers;
+}
+/* one storm product: live MapServer first, same-origin snapshot fallback */
+async function stormProduct(bin,sid,layerName,snapshotSuffix){
+  try{
+    const ids=await mapsrvLayerIds();
+    const lid=ids[bin+' '+layerName];
+    if(lid!=null){
+      const g=await(await fetch(MAPSRV+'/'+lid+'/query?where=1%3D1&outFields=*&f=geojson')).json();
+      if(g&&g.features&&g.features.length)return{g,src:'live'};
+    }
+  }catch(e){}
+  try{
+    const r=await fetch('data/nhc/'+sid+'_'+snapshotSuffix+'.geojson');
+    if(r.ok){const g=await r.json();if(g&&g.features&&g.features.length)return{g,src:'snapshot'};}
+  }catch(e){}
+  return null;
+}
+function stormCardHTML(s,cl,srcNote){
+  return '<div class="sc-name"><span class="sc-badge" style="background:'+cl.c+'22;border:1px solid '+cl.c+'66;color:'+cl.c+'">'+cl.lab+'</span>'+s.name.toUpperCase()+'</div>'
+    +'<div class="sc-row" style="margin-top:6px"><span>Max wind</span><b>'+s.intensity+' kt</b></div>'
+    +'<div class="sc-row"><span>Pressure</span><b>'+((s.pressure&&s.pressure<9000)?s.pressure+' mb':'—')+'</b></div>'
+    +'<div class="sc-row"><span>Position</span><b>'+fmt(s.latitudeNumeric,s.longitudeNumeric)+'</b></div>'
+    +'<div class="sc-row"><span>Motion</span><b>'+compass(s.movementDir)+' @ '+s.movementSpeed+' kt</b></div>'
+    +'<div class="sc-row"><span>Advisory</span><b>#'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'—')+' · '+agoH(s.lastUpdate)+' ago</b></div>'
+    +'<div class="sc-src">'+srcNote+'</div>';
+}
+async function loadStorms(){
+  stormLayer.clearLayers();wwLayer.clearLayers();pastLayer.clearLayers();
+  const host=document.getElementById('storms');
+  let storms=[];
+  try{
+    const d=await(await fetch('data/nhc_currentstorms.json?'+Math.floor(Date.now()/3e5))).json();
+    storms=(d.activeStorms||[]).filter(s=>
+      s.longitudeNumeric>-100&&s.longitudeNumeric<-55&&s.latitudeNumeric>8&&s.latitudeNumeric<40);
+    setStatus('NHC advisories',storms.length?'ok':'ok',storms.length+' storm'+(storms.length===1?'':'s')+(storms.length?' · '+agoH(storms[0].lastUpdate)+' ago':''));
+  }catch(e){
+    setStatus('NHC advisories','fail','feed unreachable');
+    host.innerHTML='<div id="no-storm">NHC storm feed unreachable.</div>';return;
+  }
+  if(!storms.length){
+    host.innerHTML='<div id="no-storm">NO ACTIVE STORMS in the Gulf / western Atlantic. This panel populates automatically when NHC opens advisories.</div>';
+    document.getElementById('headline').classList.remove('on');
+    setStatus('Forecast cone','ok','no active storm');return;
+  }
+  host.innerHTML='';
+  let coneSrc=null;
+  for(const s of storms){
+    const sid=s.id.toUpperCase(),bin=(s.binNumber||'').toUpperCase();
+    const cl=classOf(s.intensity);
+    /* current position — pulsing marker */
+    L.marker([s.latitudeNumeric,s.longitudeNumeric],
+      {icon:L.divIcon({className:'',html:'<div class="stormnow" style="background:'+cl.c+'"></div>',iconSize:[18,18],iconAnchor:[9,9]})})
+      /* above the marker: to the right it collides with the glider labels in the eastern Gulf */
+      .bindTooltip(cl.full.toUpperCase()+' '+s.name.toUpperCase(),{permanent:true,direction:'top',offset:[0,-12],className:'ev-tip ev-storm'})
+      .bindPopup(pop('NHC active storm — advisory #'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'?'),s.name,
+        fmt(s.latitudeNumeric,s.longitudeNumeric)+' · '+_fmtUTC(s.lastUpdate),
+        'Max wind <b>'+s.intensity+' kt</b>'+((s.pressure&&s.pressure<9000)?' · central pressure <b>'+s.pressure+' mb</b>':'')
+        +'<br>Motion <b>'+compass(s.movementDir)+'</b> at <b>'+s.movementSpeed+' kt</b>'
+        +'<br><a style="color:var(--aqua)" href="https://www.nhc.noaa.gov/graphics_'+bin.toLowerCase()+'.shtml" target="_blank" rel="noopener">NHC graphics &#8599;</a>',
+        ['live','NHC',cl.lab]))
+      .addTo(stormLayer);
+    /* forecast cone — soft translucent fill + dashed outline */
+    const cone=await stormProduct(bin,sid,'Forecast Cone','5day_pgn');
+    if(cone){coneSrc=coneSrc||cone.src;
+      L.geoJSON(cone.g,{pane:'overlayPane',
+        style:{color:'#c9a8ff',weight:2,dashArray:'8 6',fillColor:'#b18cff',fillOpacity:.16,opacity:.9}})
+        .bindPopup(pop('NHC forecast cone','Cone of uncertainty',s.name+' · advisory #'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'?'),
+          'Probable track area of the storm centre (about 2/3 of historical track errors fall inside the cone). Hazards extend well outside it.',['NHC','120 h']))
+        .addTo(stormLayer);}
+    /* forecast track + points */
+    const trk=await stormProduct(bin,sid,'Forecast Track','5day_lin');
+    if(trk) L.geoJSON(trk.g,{style:{color:'#ff8a3d',weight:2.5,opacity:.95}}).addTo(stormLayer);
+    const pts=await stormProduct(bin,sid,'Forecast Points','5day_pts');
+    if(pts) L.geoJSON(pts.g,{pointToLayer:(f,ll)=>{
+        const p=f.properties||{},pc=classOf(p.maxwind);
+        /* NHC fills unforecast fields with the sentinel 9999 — only the current fix carries a
+           real central pressure. Show nothing rather than printing the sentinel as data. */
+        const num=v=>(v==null||v>=9000||v<0)?null:v;
+        const mslp=num(p.mslp),wind=num(p.maxwind),gust=num(p.gust);
+        const body='Max wind <b>'+(wind!=null?wind+' kt':'—')+'</b>'+(gust!=null?' (gust '+gust+' kt)':'')
+          +(mslp!=null?' · central pressure <b>'+mslp+' mb</b>':'')
+          +'<br>'+fmt(ll.lat,ll.lng)
+          +(mslp==null?'<br><span style="opacity:.6;font-size:.9em">NHC does not forecast central pressure at this hour.</span>':'');
+        return L.circleMarker(ll,{radius:5,color:pc.c,weight:1.8,fillColor:'#050b12',fillOpacity:.92})
+          .bindPopup(pop('NHC forecast · +'+(p.tau||0)+' h',(p.tcdvlp||'Forecast position'),(p.fldatelbl||p.datelbl||''),
+            body,['forecast',pc.lab]));
+      }}).addTo(stormLayer);
+    /* coastal watches / warnings */
+    const ww=await stormProduct(bin,sid,'Watch-Warning','ww');
+    if(ww) L.geoJSON(ww.g,{style:f=>{
+        const st=WW_STYLE[(f.properties||{}).tcww]||{color:'#ffd24a'};
+        return{color:st.color,weight:5,opacity:.92};
+      }}).eachLayer(l=>{
+        const st=WW_STYLE[(l.feature.properties||{}).tcww];
+        l.bindPopup(pop('Coastal watch / warning',(st&&st.label)||l.feature.properties.tcww||'Advisory',s.name,
+          'Issued with advisory #'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'?')+'. See the NHC public advisory for the precise breakpoints.',['NHC','coastal']));
+        l.addTo(wwLayer);
+      });
+    /* past track (dashed history) */
+    const pl=await stormProduct(bin,sid,'Past Track','past_lin');
+    if(pl) L.geoJSON(pl.g,{style:{color:'#8ba0b0',weight:1.8,dashArray:'3 5',opacity:.8}}).addTo(pastLayer);
+    const pp=await stormProduct(bin,sid,'Past Points','past_pts');
+    if(pp) L.geoJSON(pp.g,{pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:2.5,color:'#8ba0b0',weight:1,fillColor:'#8ba0b0',fillOpacity:.7,interactive:false})}).addTo(pastLayer);
+    /* storm card */
+    const card=document.createElement('div');card.className='storm-card';
+    card.innerHTML=stormCardHTML(s,cl,(coneSrc==='live'?'cone/track: live NHC MapServer':coneSrc==='snapshot'?'cone/track: 30-min site snapshot':'cone/track: unavailable'));
+    card.onclick=()=>map.flyTo([s.latitudeNumeric,s.longitudeNumeric],7,{duration:1.1});
+    host.appendChild(card);
+  }
+  setStatus('Forecast cone',coneSrc?'ok':'fail',coneSrc||'missing');
+  /* headline strip = strongest Gulf storm */
+  const top=storms.slice().sort((a,b)=>b.intensity-a.intensity)[0];
+  const tcl=classOf(top.intensity);
+  document.getElementById('hl-t').innerHTML='<span style="color:'+tcl.c+'">'+tcl.full.toUpperCase()+' '+top.name.toUpperCase()+'</span>';
+  document.getElementById('hl-s').textContent=top.intensity+' kt · '+fmt(top.latitudeNumeric,top.longitudeNumeric)+' · moving '+compass(top.movementDir)+' @ '+top.movementSpeed+' kt · adv #'+((top.publicAdvisory&&top.publicAdvisory.advNum)||'?');
+  document.getElementById('headline').classList.add('on');
+}
+loadStorms();
+setInterval(loadStorms,6e5);   // re-check advisories every 10 min
+
+/* ══ sensors: NDBC buoys (live obs), gliders, Argo floats ══ */
+function _ndbcObs(id){
+  const nws=fetch('https://api.weather.gov/stations/'+id+'/observations/latest',{headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}})
+    .then(async r=>{if(!r.ok)throw 0;const p=(await r.json()).properties;if(!p.timestamp)throw 0;
+      /* ts as epoch ms — the NDBC fallback path is numeric, and a string-vs-number compare is
+         always false (NaN), which silently pinned "newest obs" to whichever buoy resolved first */
+      return{wtmp:p.seaSurfaceTemperature?.value,atmp:p.temperature?.value,wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,wdir:p.windDirection?.value,pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,t:_fmtUTC(p.timestamp),ts:Date.parse(p.timestamp)};}).catch(()=>null);
+  const ndbc=fetch('data/ndbc/'+id+'.txt').then(async r=>{if(!r.ok)throw 0;
+      const obs=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];if(obs.length<15)throw 0;
+      const v=x=>x==='MM'?null:+x;
+      const ts=Date.UTC(+obs[0],+obs[1]-1,+obs[2],+obs[3],+obs[4]);
+      return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC',ts};}).catch(()=>null);
+  return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');const f=(x,y)=>x!=null?x:y;
+    return{wtmp:f(a?.wtmp,b?.wtmp),atmp:f(a?.atmp,b?.atmp),wspd:f(a?.wspd,b?.wspd),wdir:f(a?.wdir,b?.wdir),pres:f(a?.pres,b?.pres),t:a?.t||b?.t||'--',ts:a?.ts||b?.ts};});
+}
+const buoyLayer=L.layerGroup();
+let _buoyNewest=null,_buoyOK=0;
+[['42001',25.90,-89.67,'Mid Gulf'],['42002',25.79,-93.67,'West Gulf'],['42036',28.50,-84.52,'West Tampa'],
+ ['42039',28.79,-86.01,'Pensacola'],['42040',29.21,-88.21,'Mobile South'],['42055',22.12,-94.05,'Bay of Campeche']]
+ .forEach(([id,la,lo,loc])=>{
+   const mk=L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#0d1c29',fillOpacity:.9})
+     .bindPopup(pop('NDBC moored buoy','Station '+id,fmt(la,lo)+' · '+loc,'Fixed-point continuous wind, pressure, wave, and SST.',['surface met','waves','SST'])).addTo(buoyLayer);
+   _ndbcObs(id).then(o=>{
+     /* a buoy only counts as reporting if its obs is recent — 42040 has been offline since
+        June and still resolves via the last snapshot; show it as STALE, not live */
+     const fresh=o.ts!=null&&(Date.now()-o.ts)<6*3.6e6;
+     if(fresh)_buoyOK++;
+     if(fresh&&(!_buoyNewest||o.ts>_buoyNewest))_buoyNewest=o.ts;
+     setStatus('NDBC buoys',_buoyOK>=3?'ok':'warn',_buoyOK+'/6 fresh'+(_buoyNewest?' · '+agoH(_buoyNewest)+' ago':''));
+     if(fresh&&o.wtmp!=null) mk.setStyle({fillColor:o.wtmp>=29?'#ff8a3d':o.wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
+     if(!fresh) mk.setStyle({color:'#8ba0b0',fillColor:'#0d1c29'});
+     const lines=[o.wtmp!=null?'SST: <b>'+o.wtmp.toFixed(1)+'°C</b>':'SST: --',o.atmp!=null?'Air: <b>'+o.atmp.toFixed(1)+'°C</b>':'Air: --',o.wspd!=null?'Wind: <b>'+o.wspd+' m/s</b>'+(o.wdir!=null?' @ '+o.wdir+'°':''):'Wind: --',o.pres!=null?'Pressure: <b>'+o.pres+' hPa</b>':'Pres: --','<span style="opacity:.6;font-size:.9em">Obs: '+o.t+'</span>'].join('<br>');
+     const tags=fresh?['live obs','SST','wind']:['STALE — buoy not reporting'];if(fresh&&o.wtmp!=null&&o.wtmp>=29)tags.push('RI-favorable SST');
+     mk.bindPopup(pop(fresh?'NDBC buoy — live':'NDBC buoy — last known obs','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
+   }).catch(()=>{setStatus('NDBC buoys',_buoyOK>=3?'ok':_buoyOK?'warn':'fail',_buoyOK+'/6 fresh');});
+ });
+/* gliders — real tracks + current positions from the 6-h site snapshot (no per-variable colouring here; the Sensors tab has the full tool) */
+const gliderLayer=L.layerGroup();
+fetch('data/gliders/gliders_gulf.geojson').then(r=>r.json()).then(d=>{
+  let newest=null;
+  (d.features||[]).forEach(f=>{
+    const p=f.properties||{};
+    if(p.kind==='track'){
+      L.polyline(f.geometry.coordinates.map(c=>[c[1],c[0]]),{color:p.color||'#46cfd6',weight:2,opacity:.75}).addTo(gliderLayer);
+    }else if(p.kind==='now'){
+      if(p.time&&(!newest||p.time>newest))newest=p.time;
+      L.circleMarker([f.geometry.coordinates[1],f.geometry.coordinates[0]],
+        {radius:6,color:'#fff',weight:2,fillColor:p.color||'#46cfd6',fillOpacity:.95})
+        .bindTooltip(p.id,{permanent:true,direction:'right',offset:[8,0],className:'ev-tip'})
+        .bindPopup(pop('Slocum glider — live',p.id,(p.operator||'')+(p.time?' · fix '+agoH(p.time)+' ago':''),
+          'Autonomous underwater glider profiling the upper ocean. Full profiles, T–S and glider-vs-model analysis are on the <b>Live Sensor Systems</b> tab.',
+          ['IOOS DAC','T/S profiles']))
+        .addTo(gliderLayer);
+    }
+  });
+  setStatus('Gliders',newest?((Date.now()-new Date(newest).getTime())<48*3.6e6?'ok':'warn'):'warn',newest?agoH(newest)+' ago':'no fixes');
+}).catch(()=>setStatus('Gliders','fail','file missing'));
+/* Argo floats (real positions; empty layer if the file is missing — no fake fallback) */
+const argoLayer=L.layerGroup();
+fetch('data/argo/argo_gulf.geojson').then(r=>r.json()).then(d=>{
+  (d.features||[]).forEach(f=>{
+    const p=f.properties,lo=f.geometry.coordinates[0],la=f.geometry.coordinates[1];
+    L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85})
+      .bindPopup(pop('Argo profiling float','Float '+p.platform,fmt(la,lo)+(p.time?' · '+p.time.slice(0,10):''),
+        'Autonomous float diving to ~2000 m every ~10 days for T/S profiles.',['real position','T/S profile']))
+      .addTo(argoLayer);
+  });
+}).catch(()=>{});
+
+/* ══ reference: graticule + cities ══ */
+const grat=L.layerGroup();
+for(let lo=-100;lo<=-75;lo+=5){
+  L.polyline([[15,lo],[31,lo]],{color:'rgba(120,160,180,.14)',weight:.6,interactive:false}).addTo(grat);
+  L.marker([15.4,lo],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font:400 9px IBM Plex Mono;color:#8ba0b0">'+Math.abs(lo)+'°W</span>',iconSize:[0,0]})}).addTo(grat);
+}
+for(let la=18;la<=30;la+=4){
+  L.polyline([[la,-100],[la,-75]],{color:'rgba(120,160,180,.14)',weight:.6,interactive:false}).addTo(grat);
+  L.marker([la,-99.5],{interactive:false,icon:L.divIcon({className:'',html:'<span style="font:400 9px IBM Plex Mono;color:#8ba0b0">'+la+'°N</span>',iconSize:[0,0]})}).addTo(grat);
+}
+const cityLayer=L.layerGroup();
+[['New Orleans',29.95,-90.07],['Houston',29.76,-95.36],['Tampa',27.95,-82.46],['Pensacola',30.42,-87.22],
+ ['Corpus Christi',27.80,-97.40],['Cancún',21.16,-86.85],['Veracruz',19.17,-96.13],['Havana',23.13,-82.38],['Miami',25.76,-80.19]]
+ .forEach(([n,la,lo])=>L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div style="color:#9fb3c0;font:400 10px IBM Plex Mono;white-space:nowrap;text-shadow:0 0 5px #050b12">▪ '+n+'</div>',iconSize:[0,0]})}).addTo(cityLayer));
+
+/* ══ layer toggles ══ */
+const toggleLayers=[
+  {key:'NEXRAD radar · composite',dataKey:'radar',lyr:radarLayer,on:true,loop:true},
+  {key:'Storm · cone / track / forecast',lyr:stormLayer,on:true},
+  {key:'Coastal watches / warnings',lyr:wwLayer,on:true},
+  {key:'Past track',lyr:pastLayer,on:false},
+  {key:'GOES GeoColor · satellite',dataKey:'goes-geocolor',lyr:goesGeo,on:false,goesAnim:true},
+  {key:'GOES visible · Band 2 (day)',dataKey:'goes-visible',lyr:goesVis,on:false},
+  {key:'GOES clean IR · Band 13',dataKey:'goes-ir',lyr:goesIR,on:false},
+  {key:'NDBC buoys · live SST/wind',lyr:buoyLayer,on:true},
+  {key:'Gliders · IOOS DAC',lyr:gliderLayer,on:true},
+  {key:'Argo floats',lyr:argoLayer,on:false},
+  {key:'Graticule',lyr:grat,on:true},
+  {key:'Reference cities',lyr:cityLayer,on:true},
+];
+toggleLayers.forEach(t=>{if(t.on)t.lyr.addTo(map);});
+(function buildToggles(){
+  const host=document.getElementById('lrows');
+  toggleLayers.forEach(t=>{
+    const row=document.createElement('label');row.className='lyr-row';
+    /* autocomplete=off + explicit .checked: without both, Chrome's form-state restoration
+       silently re-applies a previous session's checkbox values, so the panel disagrees with
+       which layers are actually on the map */
+    row.innerHTML='<input type="checkbox" autocomplete="off"'+(t.dataKey?' data-key="'+t.dataKey+'"':'')+'><span>'+t.key+'</span>';
+    row.querySelector('input').checked=!!t.on;
+    row.querySelector('input').addEventListener('change',e=>{
+      if(e.target.checked)t.lyr.addTo(map);
+      else{t.lyr.remove();if(t.loop)radarLoopStop();
+        if(/^goes-/.test(t.dataKey||'')&&goesTimer&&!activeGoesKey())goesAnimStop();}
+    });
+    host.appendChild(row);
+    if(t.loop){
+      const rl=document.createElement('div');rl.id='radar-loop';
+      rl.innerHTML='<button id="rl-btn">▶ loop</button><span class="rl-t" id="rl-t">live</span>';
+      host.appendChild(rl);
+      rl.querySelector('#rl-btn').onclick=()=>{loopTimer?radarLoopStop():radarLoopStart();};
+      /* loop speed — last 50 min of NEXRAD in 5-min frames, slowed or sped as chosen */
+      const sp=document.createElement('div');sp.className='seg';sp.id='radar-speed';
+      RADAR_SPEEDS.forEach(s=>{
+        const b=document.createElement('button');b.textContent=s.lab;b.title='Loop speed '+s.lab;
+        if(s.ms===radarSpeed)b.classList.add('on');
+        b.onclick=()=>{radarSetSpeed(s.ms);[...sp.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};
+        sp.appendChild(b);
+      });
+      host.appendChild(sp);
+    }
+    if(t.goesAnim){   /* animate whichever GOES product is displayed, over the full Gulf view */
+      const ga=document.createElement('div');ga.id='radar-loop';
+      ga.innerHTML='<button id="ga-btn">▶ animate</button><span class="rl-t" id="ga-t">static</span>';
+      host.appendChild(ga);
+      ga.querySelector('#ga-btn').onclick=()=>{goesTimer?goesAnimStop():goesAnimStart();};
+      const gsp=document.createElement('div');gsp.className='seg';gsp.id='goes-speed';
+      GOES_SPEEDS.forEach(s=>{
+        const b=document.createElement('button');b.textContent=s.lab;b.title='Animation speed '+s.lab;
+        if(s.ms===goesAnimSpeed)b.classList.add('on');
+        b.onclick=()=>{goesSetSpeed(s.ms);[...gsp.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};
+        gsp.appendChild(b);
+      });
+      host.appendChild(gsp);
+    }
+  });
+})();
+
+/* ══ remaining live diagnostics (image probes — no CORS needed) ══ */
+probeImg('NEXRAD radar',IEM+'nexrad-n0q-900913/6/15/26.png?'+Date.now(),'tiles serving');
+probeImg('GOES tiles · GIBS','https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/default/GoogleMapsCompatible_Level7/6/22/16.png?'+Date.now(),'latest imagery');
+/* the sector-loop status row is set by drawGoesLoop()'s own load/error handlers */
+</script>
+</body>
+</html>

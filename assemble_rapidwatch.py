@@ -158,6 +158,10 @@ html,body{margin:0;overflow:hidden;height:100%;background:var(--abyss);
 /* RI Model panel: full-bleed iframe of the standalone model-output explorer (own dark theme). */
 #panel-model{overflow:hidden;background:var(--abyss)}
 #panel-model iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
+
+/* Live Event panel: full-bleed iframe of the standalone live tropical-event tracker. */
+#panel-live{overflow:hidden;background:var(--abyss)}
+#panel-live iframe{display:block;width:100%;height:calc(100vh - 50px);border:0}
 """
 
 # ── tab switcher JS ───────────────────────────────────────────────────────────
@@ -223,6 +227,7 @@ html = f"""<!DOCTYPE html>
   <div class="divider"></div>
   <div class="tabs">
     <button class="tab active" data-panel="panel-ri">RI Observatory</button>
+    <button class="tab" data-panel="panel-live">Live Event</button>
     <button class="tab" data-panel="panel-map">Gulf Map</button>
     <button class="tab" data-panel="panel-model">RI Model</button>
     <button class="tab" data-panel="panel-sensors">Live Sensor Systems</button>
@@ -236,6 +241,10 @@ html = f"""<!DOCTYPE html>
 
 <div id="panel-map" class="tab-panel">
 {map_body}
+</div>
+
+<div id="panel-live" class="tab-panel">
+  <iframe src="rapidwatch-live-event.html" title="RapidWatch — Live Event"></iframe>
 </div>
 
 <div id="panel-model" class="tab-panel">
@@ -282,6 +291,8 @@ checks = [
     ('Map panel present',            'id="panel-map"' in v),
     ('Analysis panel present',       'id="panel-analysis"' in v and 'NOAA_RI_observation_report.html' in v),
     ('RI Model panel present',       'id="panel-model"' in v and 'rapidwatch-ri-model.html' in v),
+    ('Live Event panel present',     'id="panel-live"' in v and 'rapidwatch-live-event.html' in v),
+    ('Live Event tab button',        'data-panel="panel-live"' in v),
     ('Analysis report switcher',     'id="analysis-switch"' in v and 'GULF_RI_BASELINE_REPORT.html' in v),
     ('Leaflet L.map call present',   'L.map(' in v),
     ('stormLayers in map JS',        'stormLayers' in v),
