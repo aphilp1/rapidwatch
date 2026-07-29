@@ -37,6 +37,12 @@ SURF_M = 15.0     # "near surface" depth cutoff (m) for track colouring / surfac
 
 _CTX = ssl.create_default_context()
 
+# Generous Gulf-of-Mexico + approaches box. These are hardcoded Gulf missions
+# (see GLIDERS below) — a fix outside this box is a bad GPS row from the DAC
+# feed (observed once for ng1260: a single trailing fix near 144E, 13N —
+# physically impossible for a ~1 kt Slocum glider to reach), not real transit.
+GULF_BBOX = {"lat": (16.0, 31.0), "lon": (-99.0, -78.0)}
+
 def fetch_rows(gid):
     with urllib.request.urlopen(ERDDAP.format(id=gid), timeout=240, context=_CTX) as r:
         text = r.read().decode('utf-8')
@@ -53,6 +59,9 @@ def fetch_rows(gid):
                 return None
         la, lo, dp = fv(row[1]), fv(row[2]), fv(row[3])
         if la is None or lo is None:
+            continue
+        if not (GULF_BBOX["lat"][0] <= la <= GULF_BBOX["lat"][1]
+                and GULF_BBOX["lon"][0] <= lo <= GULF_BBOX["lon"][1]):
             continue
         out.append({"t": row[0], "la": la, "lo": lo, "dp": dp,
                     "temperature": fv(row[4]), "salinity": fv(row[5]),
