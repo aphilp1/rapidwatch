@@ -42,6 +42,12 @@ jobs:
       - name: Pull live glider tracks (IOOS DAC)
         run: python build_gliders.py
 
+      # last line of defense: fails the run (no commit) if a glider/Argo fix
+      # is physically implausible — see qc_check.py for the ng1260 incident
+      # this was written for
+      - name: Sanity-check glider / Argo positions
+        run: python qc_check.py
+
       - name: Commit if changed
         run: |
           git config user.name  "rapidwatch-bot"
