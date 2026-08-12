@@ -127,13 +127,13 @@
       "forecastAdvisory": {
         "advNum": "001",
         "issuance": "2026-08-12T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T14:58:28.202Z",
+        "fileUpdateTime": "2026-08-12T17:43:55.483Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCMCP2.shtml"
       },
       "windSpeedProbabilities": {
         "advNum": "001",
         "issuance": "2026-08-12T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T15:00:44.467Z",
+        "fileUpdateTime": "2026-08-12T17:45:26.204Z",
         "url": "https://www.nhc.noaa.gov/text/HFOPWSCP2.shtml"
       },
       "forecastDiscussion": {
