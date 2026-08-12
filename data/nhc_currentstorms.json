@@ -121,7 +121,7 @@
       "publicAdvisory": {
         "advNum": "001",
         "issuance": "2026-08-12T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T15:06:51.507Z",
+        "fileUpdateTime": "2026-08-12T16:45:14.301Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP2.shtml"
       },
       "forecastAdvisory": {
@@ -145,7 +145,7 @@
       "forecastGraphics": {
         "advNum": "001",
         "issuance": "2026-08-12T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T15:06:51.507Z",
+        "fileUpdateTime": "2026-08-12T16:45:14.301Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp2.shtml"
       },
       "forecastTrack": {
