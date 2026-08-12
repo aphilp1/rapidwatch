@@ -93,7 +93,7 @@
       },
       "windSpeedProbabilitiesGIS": {
         "issuance": "2026-08-12T18:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T21:22:43.951Z",
+        "fileUpdateTime": "2026-08-12T22:11:43.010Z",
         "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp_120hr5km.zip",
         "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp_120hrhalfDeg.zip",
         "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp34knt120hr_5km.kmz",
@@ -197,7 +197,7 @@
       },
       "windSpeedProbabilitiesGIS": {
         "issuance": "2026-08-12T18:00:00.000Z",
-        "fileUpdateTime": "2026-08-12T21:22:43.951Z",
+        "fileUpdateTime": "2026-08-12T22:11:43.010Z",
         "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp_120hr5km.zip",
         "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp_120hrhalfDeg.zip",
         "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081218_wsp34knt120hr_5km.kmz",
