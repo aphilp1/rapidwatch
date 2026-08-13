@@ -316,7 +316,12 @@
       },
       "stormSurgeWatchWarningGIS": null,
       "potentialStormSurgeFloodingGIS": null,
-      "peakSurgeKML": null
+      "peakSurgeKML": {
+        "advNum": "5",
+        "issuance": "2026-08-13T15:00:00.000Z",
+        "fileUpdateTime": "2026-08-13T14:54:07.523Z",
+        "peakSurgeKMLFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_PeakStormSurge_005adv.kml"
+      }
     }
   ]
 }
