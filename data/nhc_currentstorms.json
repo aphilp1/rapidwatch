@@ -92,13 +92,13 @@
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL032026_004adv_most_likely_toa_34.kmz"
       },
       "windSpeedProbabilitiesGIS": {
-        "issuance": "2026-08-13T00:00:00.000Z",
-        "fileUpdateTime": "2026-08-13T03:22:43.880Z",
-        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hr5km.zip",
-        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hrhalfDeg.zip",
-        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp34knt120hr_5km.kmz",
-        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp50knt120hr_5km.kmz",
-        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp64knt120hr_5km.kmz"
+        "issuance": "2026-08-13T06:00:00.000Z",
+        "fileUpdateTime": "2026-08-13T09:22:45.530Z",
+        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hr5km.zip",
+        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hrhalfDeg.zip",
+        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp34knt120hr_5km.kmz",
+        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp50knt120hr_5km.kmz",
+        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp64knt120hr_5km.kmz"
       },
       "stormSurgeWatchWarningGIS": null,
       "potentialStormSurgeFloodingGIS": null,
@@ -196,13 +196,13 @@
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP082026_002adv_most_likely_toa_34.kmz"
       },
       "windSpeedProbabilitiesGIS": {
-        "issuance": "2026-08-13T00:00:00.000Z",
-        "fileUpdateTime": "2026-08-13T03:22:43.880Z",
-        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hr5km.zip",
-        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hrhalfDeg.zip",
-        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp34knt120hr_5km.kmz",
-        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp50knt120hr_5km.kmz",
-        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp64knt120hr_5km.kmz"
+        "issuance": "2026-08-13T06:00:00.000Z",
+        "fileUpdateTime": "2026-08-13T09:22:45.530Z",
+        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hr5km.zip",
+        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hrhalfDeg.zip",
+        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp34knt120hr_5km.kmz",
+        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp50knt120hr_5km.kmz",
+        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp64knt120hr_5km.kmz"
       },
       "stormSurgeWatchWarningGIS": null,
       "potentialStormSurgeFloodingGIS": null,
@@ -300,13 +300,13 @@
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_004adv_most_likely_toa_34.kmz"
       },
       "windSpeedProbabilitiesGIS": {
-        "issuance": "2026-08-13T00:00:00.000Z",
-        "fileUpdateTime": "2026-08-13T03:22:43.880Z",
-        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hr5km.zip",
-        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp_120hrhalfDeg.zip",
-        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp34knt120hr_5km.kmz",
-        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp50knt120hr_5km.kmz",
-        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081300_wsp64knt120hr_5km.kmz"
+        "issuance": "2026-08-13T06:00:00.000Z",
+        "fileUpdateTime": "2026-08-13T09:22:45.530Z",
+        "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hr5km.zip",
+        "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp_120hrhalfDeg.zip",
+        "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp34knt120hr_5km.kmz",
+        "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp50knt120hr_5km.kmz",
+        "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026081306_wsp64knt120hr_5km.kmz"
       },
       "stormSurgeWatchWarningGIS": null,
       "potentialStormSurgeFloodingGIS": null,
