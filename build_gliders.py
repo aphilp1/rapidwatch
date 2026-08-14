@@ -25,11 +25,17 @@ OUT.parent.mkdir(parents=True, exist_ok=True)
 ERDDAP = ("https://gliders.ioos.us/erddap/tabledap/{id}.csv"
           "?time,latitude,longitude,depth,temperature,salinity,density,conductivity")
 
-# The three active Gulf Slocum missions (discovered from the DAC allDatasets catalog).
+# The active Gulf Slocum missions (discovered from the DAC allDatasets catalog,
+# refreshed 2026-08-14 — ng1256/ng1241/ng1238 added, all three reporting within
+# the last few hours as of that check; re-verify against allDatasets periodically,
+# since Navy glider missions start/end without notice).
 GLIDERS = [
     {"id": "ng1260-20260626T0000",     "name": "ng1260",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff8a3d"},
     {"id": "usf-stella-20260626T0000", "name": "stella",    "operator": "Univ. of South Florida",   "color": "#46cfd6"},
     {"id": "unit_541-20260630T0000",   "name": "unit_541",  "operator": "Texas A&M University",      "color": "#c98bff"},
+    {"id": "ng1256-20260713T0000",     "name": "ng1256",   "operator": "US Navy (NAVOCEANO)",      "color": "#5ee68a"},
+    {"id": "ng1241-20260713T0000",     "name": "ng1241",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff6b9d"},
+    {"id": "ng1238-20260713T0000",     "name": "ng1238",   "operator": "US Navy (NAVOCEANO)",      "color": "#ffd166"},
 ]
 VARS   = ["temperature", "salinity", "density", "conductivity"]
 NBINS  = 300      # track vertices (subsample the dense profile stream)

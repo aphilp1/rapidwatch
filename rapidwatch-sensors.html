@@ -149,7 +149,7 @@ L.control.scale({position:'bottomright',metric:true,imperial:true,maxWidth:140})
 map.createPane('landPane').style.zIndex = 250;   // land sits beneath tracks + markers
 // dark-slate land on top of the bathymetry — full coverage so no beige interiors; bathymetry shows only in the ocean
 const _landStyle={pane:'landPane',interactive:false,style:{color:'rgba(70,207,214,.38)',weight:.9,fillColor:'#16242f',fillOpacity:1}};
-fetch('data/geo/ne_50m_land.geojson').then(r=>r.json())
+fetch('data/geo/ne_50m_land.geojson?_ts='+Date.now()).then(r=>r.json())
   .then(land=>{ L.geoJSON(land,_landStyle).addTo(map); })
   .catch(()=>{ L.geoJSON(GULF_LAND,_landStyle).addTo(map); });   // fallback to the inlined clipped Gulf land
 
@@ -185,7 +185,7 @@ function _ndbcObs(id){
   const nws=fetch('https://api.weather.gov/stations/'+id+'/observations/latest',{headers:{'User-Agent':'RapidWatch/1.0 (+https://github.com/aphilp1/rapidwatch)','Accept':'application/geo+json'}})
     .then(async r=>{if(!r.ok)throw 0;const p=(await r.json()).properties;if(!p.timestamp)throw 0;
       return{wtmp:p.seaSurfaceTemperature?.value,atmp:p.temperature?.value,wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,wdir:p.windDirection?.value,pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,t:_fmtUTC(p.timestamp)};}).catch(()=>null);
-  const ndbc=fetch('data/ndbc/'+id+'.txt').then(async r=>{if(!r.ok)throw 0;
+  const ndbc=fetch('data/ndbc/'+id+'.txt?_ts='+Date.now()).then(async r=>{if(!r.ok)throw 0;
       const obs=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];if(obs.length<15)throw 0;
       const v=x=>x==='MM'?null:+x;return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC'};}).catch(()=>null);
   return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');const f=(x,y)=>x!=null?x:y;
@@ -207,7 +207,7 @@ const buoyLayer=L.layerGroup();
 // ARGO profiling floats — REAL positions from the Argo GDAC (build_argo.py -> data/argo/argo_gulf.geojson).
 // No fake/representative fallback: if the file is missing or empty, the layer is simply empty.
 const argoLayer=L.layerGroup();
-fetch('data/argo/argo_gulf.geojson').then(r=>r.json()).then(d=>{
+fetch('data/argo/argo_gulf.geojson?_ts='+Date.now()).then(r=>r.json()).then(d=>{
   (d.features||[]).forEach(f=>{
     const p=f.properties, lo=f.geometry.coordinates[0], la=f.geometry.coordinates[1];
     L.circleMarker([la,lo],{radius:5,color:'#46cfd6',weight:1.5,fillColor:'#06b8c2',fillOpacity:.85})
@@ -266,8 +266,8 @@ function oceanRaster(d,key,colFn){
 const SST_MIN=22,SST_MAX=32,D26_MAX=150;
 const sstCol=v=>{ if(v==null)return[0,0,0,0]; const c=rampArr((v-SST_MIN)/(SST_MAX-SST_MIN)); return [c[0],c[1],c[2],205]; };
 const d26Col=v=>{ if(v==null)return[0,0,0,0]; const c=rampArr(Math.min(1,v/D26_MAX)); return [c[0],c[1],c[2],195]; };
-fetch('data/ocean/hycom_sst.json').then(r=>r.json()).then(d=>{ window._hycomSST=d; oceanRaster(d,'sst',sstCol).addTo(sstLayer); window._oceanTime=d.time_utc; }).catch(()=>{});
-fetch('data/ocean/hycom_d26.json').then(r=>r.json()).then(d=>{ window._hycomD26=d; oceanRaster(d,'d26',d26Col).addTo(d26Layer); }).catch(()=>{});
+fetch('data/ocean/hycom_sst.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{ window._hycomSST=d; oceanRaster(d,'sst',sstCol).addTo(sstLayer); window._oceanTime=d.time_utc; }).catch(()=>{});
+fetch('data/ocean/hycom_d26.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{ window._hycomD26=d; oceanRaster(d,'d26',d26Col).addTo(d26Layer); }).catch(()=>{});
 // sample a HYCOM grid at a lat/lon (nearest valid cell) — for glider-vs-model comparison
 function sampleGrid(d,key,lat,lon){
   if(!d) return null; const lats=d.lats,lons=d.lons,g=d[key];
@@ -278,7 +278,7 @@ function sampleGrid(d,key,lat,lon){
     if(g[r][c]!=null) return g[r][c];
   } return null;
 }
-fetch('data/ocean/hycom_currents.json').then(r=>r.json()).then(d=>{
+fetch('data/ocean/hycom_currents.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{
   const lats=d.lats,lons=d.lons,u=d.u,v=d.v,ny=lats.length,nx=lons.length,step=3;
   for(let r=0;r<ny;r+=step) for(let c=0;c<nx;c+=step){
     const uu=u[r][c],vv=v[r][c]; if(uu==null||vv==null) continue;
@@ -469,7 +469,7 @@ function setDetail(p){ curDetail=p; const d=document.getElementById('detail');
 function closeDetail(){ curDetail=null; document.getElementById('detail').classList.remove('on'); }
 function refreshOpenPopup(){ if(curDetail) setDetail(curDetail); }   // re-render the docked detail for the newly-selected variable
 
-fetch('data/gliders/gliders_gulf.geojson').then(r=>r.json()).then(d=>{
+fetch('data/gliders/gliders_gulf.geojson?_ts='+Date.now()).then(r=>r.json()).then(d=>{
   DATA=d;
   d.features.filter(f=>f.properties.kind==='now').forEach(f=>enabled[f.properties.id]=true);
   buildUI(); redraw();
