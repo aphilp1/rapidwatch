@@ -134,7 +134,7 @@ python -m http.server 8000
 Then open http://localhost:8000/rapidwatch-gulf-ri.html . Serving over localhost
 (rather than `file://`) is what lets the page fetch the `data/` files at runtime.
 
-## Data provenance & honesty notes
+## Data provenance notes
 
 > **Full source manifest:** [`DATA_SOURCES.md`](DATA_SOURCES.md) is the complete
 > geospatial metadata document — every layer's provider, access endpoint / dataset ID,
@@ -153,7 +153,7 @@ Then open http://localhost:8000/rapidwatch-gulf-ri.html . Serving over localhost
   current climatology layers.
 - **Coastline**: Natural Earth 50 m, clipped to the Gulf and simplified.
 - The research memo's citations are verified against primary sources; the D26-vs-RI
-  finding is reported honestly, including its null result on independent skill.
+  finding is reported in full, including its null result on independent skill.
 
 ## Next increments
 

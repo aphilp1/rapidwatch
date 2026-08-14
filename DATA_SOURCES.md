@@ -123,7 +123,7 @@ table because they are illustrative, not sourced.
   `data/ohc/ri_d26_ahead_1p0.csv` (1° ahead). Sweep CSVs are regenerable via
   `python scaled_d26_ri_ahead.py --sweep`.
 - **Built by:** `scaled_d26_ri.py`, `scaled_d26_ri_ahead.py`, `analyze_d26_ri.py`.
-- **Headline result (honest):** at center, D26 adds ~0 independent skill (AUC 0.55, p≈0.07);
+- **Headline result:** at center, D26 adds ~0 independent skill (AUC 0.55, p≈0.07);
   ahead-of-track, AUC rises to 0.64 (p≈1.3e-5) with +0.01–0.02 CV-AUC independent skill —
   i.e. cold-wake sampling masked the signal. Reported with its caveats in the memo §5.7.
 
@@ -227,10 +227,10 @@ credit the original sources when reusing the data.
 The observing-recommendation memo (`NOAA_RI_observation_report.md` / `.html`) cites 20
 **verified** peer-reviewed / NOAA primary sources (DOIs confirmed) — e.g. Kaplan & DeMaria
 (2003), Shay (2000), Scharroo (2005), Jaimes & Shay (2009), DeMaria (1996), Landsea &
-Franklin (2013), Yaukey (2014), Benedetto & Mercer (2020), plus Milton/Michael TCRs.
+Franklin (2013), Yaukey (2014), Benedetto & Trepanier (2020), plus Milton/Michael TCRs.
 **Rule of record:** citations are never invented — each is verified against the primary
-source before use. The D26-vs-RI finding (including its null result on independent skill)
-is reported honestly.
+source before use. The D26-vs-RI finding, including its null result on independent skill,
+is reported in full.
 
 ---
 

@@ -74,7 +74,7 @@ storm is in the path (saildrones + drifters) — then coordinate all three on th
 water column. Aircraft sharpen the inner core on top of that foundation.
 
 *Caveat: this ranking is a defensible synthesis of the literature, not a published OSSE
-result. The honest next step is data-denial / observing-system-impact evidence to
+result. The next step is data-denial / observing-system-impact evidence to
 quantify each tier's leverage on RI skill.*
 
 ---

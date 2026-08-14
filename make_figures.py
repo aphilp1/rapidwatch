@@ -20,6 +20,7 @@ DIR = pathlib.Path(__file__).parent
 FIG = DIR / 'figures'; FIG.mkdir(exist_ok=True)
 CLIM = json.loads((DIR / 'data' / 'ri_climatology.json').read_text())
 ROWS = [r for r in csv.DictReader((DIR / 'data' / 'ohc' / 'ri_d26_samples.csv').open())]
+ROWS_FULL = [r for r in csv.DictReader((DIR / 'data' / 'ri_onset_intensities_full.csv').open())]  # full 1851-2025 population (411 onsets), for fig3 only — ROWS above is the 1994-2025 ocean-reanalysis-era subset (76 storms) used by figs 4-6
 
 plt.rcParams.update({
     'font.family': 'DejaVu Sans', 'font.size': 10,
@@ -89,7 +90,7 @@ def fig2():
 
 # ── Fig 3: onset intensity ────────────────────────────────────────────────────
 def fig3():
-    w = np.array([float(r['wind']) for r in ROWS if r['is_ri'] == '1'])
+    w = np.array([float(r['wind']) for r in ROWS_FULL])
     fig, ax = plt.subplots(figsize=(7, 4.2))
     ax.hist(w, bins=np.arange(20, 130, 10), color=TEAL, edgecolor='#093d42', alpha=.85)
     ax.set_ylim(0, ax.get_ylim()[1] * 1.15)   # headroom for the top callouts

@@ -56,7 +56,8 @@ sup.footnote-ref{font-weight:600;color:var(--accent)}
 .banner .k{font:11px/1 ui-monospace,monospace;letter-spacing:.18em;color:#7fd4da;text-transform:uppercase}
 .banner h1{color:#fff;margin-top:8px}
 .print{position:fixed;top:16px;right:16px;background:var(--accent);color:#fff;border:0;border-radius:8px;
-  padding:9px 16px;font:600 13px sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+  padding:9px 16px;font:600 13px sans-serif;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.18);
+  text-decoration:none;display:inline-block}
 @media print{.print{display:none}body{background:#fff}.doc{padding:0}h2{break-before:auto}}
 """
 
@@ -64,7 +65,7 @@ PAGE = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Understanding Hurricane Rapid Intensification Dynamics — RapidWatch</title>
 <style>{CSS}</style></head><body>
-<button class="print" onclick="window.print()">Save / Print as PDF</button>
+<a class="print" href="NOAA_RI_observation_report.pdf" download>Download PDF</a>
 <div class="doc">
 <div class="banner"><div class="k">RapidWatch · independent analysis · not for distribution</div></div>
 {html_body}

@@ -3285,7 +3285,7 @@ if(window.innerWidth<=680) setLeg(true);
      (3) the observed RI climatology core/watch boxes (data/ri_climatology.json — where RI begins).
    Gated by ONE registry toggle ("★ Live RI Nowcast", default OFF) exactly like the Historical
    Explorer: checking it adds riNowcastLayer, which reveals the panel; unchecking hides both.
-   HONESTY: buoy SST is a nearby fixed-point measurement, NOT storm-core SST; the probability is
+   NOTE: buoy SST is a nearby fixed-point measurement, NOT storm-core SST; the probability is
    the 1851–2025 historical base rate at that location (climatological), NOT a forecast. */
 (function(){
   /* ── tunables (kept explicit so the scoring is transparent) ── */
@@ -3397,7 +3397,7 @@ if(window.innerWidth<=680) setLeg(true);
   }
   pullLive();
 
-  /* ── nearest buoy that is actually reporting SST (dead sensors are skipped, honestly labeled) ── */
+  /* ── nearest buoy that is actually reporting SST (dead sensors are skipped, clearly labeled) ── */
   function nearestReporting(la,lo){
     let best=null,bd=Infinity;
     buoyObs.forEach(b=>{ if(b.wtmp==null) return;
