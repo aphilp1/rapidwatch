@@ -4,32 +4,32 @@
       "id": "ep082026",
       "binNumber": "EP3",
       "name": "Hernan",
-      "classification": "TD",
-      "intensity": "30",
-      "pressure": "1006",
-      "latitude": "16.1N",
-      "longitude": "134.9W",
-      "latitudeNumeric": 16.1,
-      "longitudeNumeric": -134.9,
+      "classification": "PTC",
+      "intensity": "25",
+      "pressure": "1009",
+      "latitude": "15.8N",
+      "longitude": "135.9W",
+      "latitudeNumeric": 15.8,
+      "longitudeNumeric": -135.9,
       "movementDir": 270,
       "movementSpeed": 12,
-      "lastUpdate": "2026-08-15T15:00:00.000Z",
+      "lastUpdate": "2026-08-15T21:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "011",
-        "issuance": "2026-08-15T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-15T14:32:06.937Z",
+        "advNum": "012",
+        "issuance": "2026-08-15T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-15T20:41:35.614Z",
         "url": "https://www.nhc.noaa.gov/text/MIATCPEP3.shtml"
       },
       "forecastAdvisory": {
-        "advNum": "011",
-        "issuance": "2026-08-15T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-15T14:31:36.824Z",
+        "advNum": "012",
+        "issuance": "2026-08-15T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-15T20:41:21.267Z",
         "url": "https://www.nhc.noaa.gov/text/MIATCMEP3.shtml"
       },
       "windSpeedProbabilities": {
-        "advNum": "011",
-        "issuance": "2026-08-15T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-15T14:32:40.214Z",
+        "advNum": "012",
+        "issuance": "2026-08-15T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-15T20:41:45.107Z",
         "url": "https://www.nhc.noaa.gov/text/MIAPWSEP3.shtml"
       },
       "forecastDiscussion": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/MIATCDEP3.shtml"
       },
       "forecastGraphics": {
-        "advNum": "011",
-        "issuance": "2026-08-15T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-15T14:32:06.937Z",
+        "advNum": "012",
+        "issuance": "2026-08-15T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-15T20:41:35.614Z",
         "url": "https://www.nhc.noaa.gov/graphics_ep3.shtml"
       },
       "forecastTrack": {
