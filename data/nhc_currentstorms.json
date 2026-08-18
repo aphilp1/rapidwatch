@@ -5,19 +5,19 @@
       "binNumber": "CP2",
       "name": "Lala",
       "classification": "HU",
-      "intensity": "75",
-      "pressure": "981",
-      "latitude": "20.5N",
-      "longitude": "167.2W",
-      "latitudeNumeric": 20.5,
-      "longitudeNumeric": -167.2,
+      "intensity": "85",
+      "pressure": "974",
+      "latitude": "20.4N",
+      "longitude": "167.7W",
+      "latitudeNumeric": 20.4,
+      "longitudeNumeric": -167.7,
       "movementDir": 275,
-      "movementSpeed": 9,
-      "lastUpdate": "2026-08-18T15:00:00.000Z",
+      "movementSpeed": 10,
+      "lastUpdate": "2026-08-18T18:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:38:47.492Z",
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:22.797Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP2.shtml"
       },
       "forecastAdvisory": {
@@ -39,49 +39,49 @@
         "url": "https://www.nhc.noaa.gov/text/HFOTCDCP2.shtml"
       },
       "forecastGraphics": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:38:47.492Z",
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:22.797Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp2.shtml"
       },
       "forecastTrack": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:11.757Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025adv_TRACK.kmz"
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:15.513Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025Aadv_TRACK.kmz"
       },
       "windWatchesWarnings": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:13.966Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025adv_WW.kmz"
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:17.341Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025Aadv_WW.kmz"
       },
       "trackCone": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:05.112Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025adv_CONE.kmz"
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:13.499Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_025A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_025Aadv_CONE.kmz"
       },
       "initialWindExtent": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:47.677Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_fcst_025.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_initialradii_025adv.kmz"
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:45.183Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_fcst_025A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_initialradii_025Aadv.kmz"
       },
       "forecastWindRadiiGIS": {
-        "advNum": "025",
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:43.376Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_fcst_025.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_forecastradii_025adv.kmz"
+        "advNum": "025a",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:41.408Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_fcst_025A.zip",
+        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_forecastradii_025Aadv.kmz"
       },
       "bestTrackGIS": {
-        "issuance": "2026-08-18T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-18T14:40:24.727Z",
+        "issuance": "2026-08-18T18:00:00.000Z",
+        "fileUpdateTime": "2026-08-18T17:33:27.259Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/best_track/cp012026_best_track.zip",
         "kmzFile": "https://www.nhc.noaa.gov/gis/best_track/cp012026_best_track.kmz"
       },
