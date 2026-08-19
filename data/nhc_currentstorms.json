@@ -5,19 +5,19 @@
       "binNumber": "CP2",
       "name": "Lala",
       "classification": "HU",
-      "intensity": "105",
-      "pressure": "955",
-      "latitude": "22.2N",
-      "longitude": "171.0W",
-      "latitudeNumeric": 22.2,
-      "longitudeNumeric": -171,
+      "intensity": "100",
+      "pressure": "959",
+      "latitude": "22.5N",
+      "longitude": "171.5W",
+      "latitudeNumeric": 22.5,
+      "longitudeNumeric": -171.5,
       "movementDir": 315,
-      "movementSpeed": 9,
-      "lastUpdate": "2026-08-19T21:00:00.000Z",
+      "movementSpeed": 12,
+      "lastUpdate": "2026-08-20T00:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "030",
-        "issuance": "2026-08-19T21:00:00.000Z",
-        "fileUpdateTime": "2026-08-19T20:34:31.866Z",
+        "advNum": "030a",
+        "issuance": "2026-08-20T00:00:00.000Z",
+        "fileUpdateTime": "2026-08-19T23:39:38.065Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP2.shtml"
       },
       "forecastAdvisory": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/HFOTCDCP2.shtml"
       },
       "forecastGraphics": {
-        "advNum": "030",
-        "issuance": "2026-08-19T21:00:00.000Z",
-        "fileUpdateTime": "2026-08-19T20:34:31.866Z",
+        "advNum": "030a",
+        "issuance": "2026-08-20T00:00:00.000Z",
+        "fileUpdateTime": "2026-08-19T23:39:38.065Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp2.shtml"
       },
       "forecastTrack": {
