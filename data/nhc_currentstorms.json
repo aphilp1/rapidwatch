@@ -6,30 +6,30 @@
       "name": "Lala",
       "classification": "HU",
       "intensity": "85",
-      "pressure": "971",
-      "latitude": "26.9N",
-      "longitude": "171.2W",
-      "latitudeNumeric": 26.9,
-      "longitudeNumeric": -171.2,
+      "pressure": "970",
+      "latitude": "27.6N",
+      "longitude": "170.8W",
+      "latitudeNumeric": 27.6,
+      "longitudeNumeric": -170.8,
       "movementDir": 30,
-      "movementSpeed": 12,
-      "lastUpdate": "2026-08-21T12:00:00.000Z",
+      "movementSpeed": 13,
+      "lastUpdate": "2026-08-21T15:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "036a",
-        "issuance": "2026-08-21T12:00:00.000Z",
-        "fileUpdateTime": "2026-08-21T11:54:54.436Z",
+        "advNum": "037",
+        "issuance": "2026-08-21T15:00:00.000Z",
+        "fileUpdateTime": "2026-08-21T14:13:27.263Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP2.shtml"
       },
       "forecastAdvisory": {
-        "advNum": "036",
-        "issuance": "2026-08-21T09:00:00.000Z",
-        "fileUpdateTime": "2026-08-21T08:51:54.693Z",
+        "advNum": "037",
+        "issuance": "2026-08-21T15:00:00.000Z",
+        "fileUpdateTime": "2026-08-21T14:16:24.340Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCMCP2.shtml"
       },
       "windSpeedProbabilities": {
-        "advNum": "036",
-        "issuance": "2026-08-21T09:00:00.000Z",
-        "fileUpdateTime": "2026-08-21T08:52:24.901Z",
+        "advNum": "037",
+        "issuance": "2026-08-21T15:00:00.000Z",
+        "fileUpdateTime": "2026-08-21T14:16:54.626Z",
         "url": "https://www.nhc.noaa.gov/text/HFOPWSCP2.shtml"
       },
       "forecastDiscussion": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/HFOTCDCP2.shtml"
       },
       "forecastGraphics": {
-        "advNum": "036a",
-        "issuance": "2026-08-21T12:00:00.000Z",
-        "fileUpdateTime": "2026-08-21T11:54:54.436Z",
+        "advNum": "037",
+        "issuance": "2026-08-21T15:00:00.000Z",
+        "fileUpdateTime": "2026-08-21T14:13:27.263Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp2.shtml"
       },
       "forecastTrack": {
