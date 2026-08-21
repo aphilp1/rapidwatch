@@ -51,13 +51,7 @@
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_037.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_037adv_TRACK.kmz"
       },
-      "windWatchesWarnings": {
-        "advNum": "036a",
-        "issuance": "2026-08-21T12:00:00.000Z",
-        "fileUpdateTime": "2026-08-21T11:55:17.688Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/cp012026_5day_037.zip",
-        "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/CP012026_036Aadv_WW.kmz"
-      },
+      "windWatchesWarnings": null,
       "trackCone": {
         "advNum": "037",
         "issuance": "2026-08-21T15:00:00.000Z",
