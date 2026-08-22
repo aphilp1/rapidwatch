@@ -5,31 +5,31 @@
       "binNumber": "CP2",
       "name": "Lala",
       "classification": "HU",
-      "intensity": "70",
-      "pressure": "979",
-      "latitude": "30.5N",
-      "longitude": "172.4W",
-      "latitudeNumeric": 30.5,
-      "longitudeNumeric": -172.4,
-      "movementDir": 310,
-      "movementSpeed": 10,
-      "lastUpdate": "2026-08-22T15:00:00.000Z",
+      "intensity": "65",
+      "pressure": "981",
+      "latitude": "31.0N",
+      "longitude": "172.7W",
+      "latitudeNumeric": 31,
+      "longitudeNumeric": -172.7,
+      "movementDir": 305,
+      "movementSpeed": 7,
+      "lastUpdate": "2026-08-22T21:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "041",
-        "issuance": "2026-08-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-22T14:33:11.546Z",
+        "advNum": "042",
+        "issuance": "2026-08-22T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-22T20:33:16.304Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP2.shtml"
       },
       "forecastAdvisory": {
-        "advNum": "041",
-        "issuance": "2026-08-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-22T14:32:41.128Z",
+        "advNum": "042",
+        "issuance": "2026-08-22T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-22T20:32:45.272Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCMCP2.shtml"
       },
       "windSpeedProbabilities": {
-        "advNum": "041",
-        "issuance": "2026-08-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-22T14:33:44.368Z",
+        "advNum": "042",
+        "issuance": "2026-08-22T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-22T20:33:44.799Z",
         "url": "https://www.nhc.noaa.gov/text/HFOPWSCP2.shtml"
       },
       "forecastDiscussion": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/HFOTCDCP2.shtml"
       },
       "forecastGraphics": {
-        "advNum": "041",
-        "issuance": "2026-08-22T15:00:00.000Z",
-        "fileUpdateTime": "2026-08-22T14:33:11.546Z",
+        "advNum": "042",
+        "issuance": "2026-08-22T21:00:00.000Z",
+        "fileUpdateTime": "2026-08-22T20:33:16.304Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp2.shtml"
       },
       "forecastTrack": {
