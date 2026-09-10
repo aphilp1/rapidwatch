@@ -26,12 +26,16 @@ ERDDAP = ("https://gliders.ioos.us/erddap/tabledap/{id}.csv"
           "?time,latitude,longitude,depth,temperature,salinity,density,conductivity")
 
 # The active Gulf Slocum missions (discovered from the DAC allDatasets catalog,
-# refreshed 2026-08-14 — ng1256/ng1241/ng1238 added, all three reporting within
-# the last few hours as of that check; re-verify against allDatasets periodically,
-# since Navy glider missions start/end without notice).
+# refreshed 2026-09-09 — usf-stella-20260626T0000 ended 2026-07-08 with no
+# successor mission from that glider; replaced with usf-sam-20260908T0000, USF's
+# currently active Gulf mission (started 2026-09-08, reporting same day), so the
+# "Live Sensor Systems" card stops showing a 2-month-old fix labeled as "now".
+# Re-verify against allDatasets periodically, since missions start/end without
+# notice (this is the second time a hardcoded ID has gone stale — see the
+# 2026-08-14 fix for ng1256/ng1241/ng1238).
 GLIDERS = [
     {"id": "ng1260-20260626T0000",     "name": "ng1260",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff8a3d"},
-    {"id": "usf-stella-20260626T0000", "name": "stella",    "operator": "Univ. of South Florida",   "color": "#46cfd6"},
+    {"id": "usf-sam-20260908T0000",    "name": "sam",       "operator": "Univ. of South Florida",   "color": "#46cfd6"},
     {"id": "unit_541-20260630T0000",   "name": "unit_541",  "operator": "Texas A&M University",      "color": "#c98bff"},
     {"id": "ng1256-20260713T0000",     "name": "ng1256",   "operator": "US Navy (NAVOCEANO)",      "color": "#5ee68a"},
     {"id": "ng1241-20260713T0000",     "name": "ng1241",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff6b9d"},
