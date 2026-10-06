@@ -1065,21 +1065,21 @@ STORMS.forEach(s=>{
 /* RI FACTOR CONVERGENCE MARKERS — peak intensity location for each storm */
 const CONV=[
   {name:'Katrina',year:2005,lat:26.3,lon:-88.6,kt:150,cat:'Cat 5',color:'#ff7a3d',
-   date:'Aug 28 1800Z',d26:125,sst:30.0,shear:6,
+   date:'Aug 28 1800Z',d26:82,sst:30.0,shear:6,
    note:'Crossed a Loop Current warm-core ring at maximum depth — the benchmark Gulf RI event.',
-   change:'75 → 150 kt (+75 kt / 18 h)'},
+   change:'100 → 150 kt (+50 kt / 24 h)'},
   {name:'Rita',year:2005,lat:24.7,lon:-87.3,kt:155,cat:'Cat 5',color:'#ffb13d',
-   date:'Sep 22 0300Z',d26:90,sst:29.5,shear:8,
+   date:'Sep 22 0300Z',d26:67,sst:29.5,shear:8,
    note:'Same path as Katrina three weeks later — eddy partially recovered, LC corridor still lethal.',
-   change:'60 → 155 kt (+95 kt / 42 h)'},
+   change:'85 → 145 kt (+60 kt / 24 h)'},
   {name:'Helene',year:2024,lat:28.7,lon:-84.3,kt:120,cat:'Cat 4',color:'#46cfd6',
-   date:'Sep 27 0000Z',d26:55,sst:30.2,shear:10,
-   note:'Shallow D26 offset by 20+ kt forward speed — outran its own cold wake into landfall.',
-   change:'70 → 120 kt (+50 kt / 15 h)'},
+   date:'Sep 27 0000Z',d26:104,sst:30.2,shear:10,
+   note:'Deepest measured warm layer of the four, well above the Gulf median that day; 20+ kt forward speed also limited cold-wake upwelling.',
+   change:'70 → 120 kt (+50 kt / 24 h)'},
   {name:'Milton',year:2024,lat:21.8,lon:-90.9,kt:155,cat:'Cat 5',color:'#e85ad6',
-   date:'Oct 07 2000Z',d26:135,sst:30.8,shear:6,
-   note:'Record-tier Gulf RI. Bay of Campeche: deepest warm water, hottest SST, near-zero shear — all three factors at maximum.',
-   change:'35 → 155 kt (+120 kt / 26 h)'},
+   date:'Oct 07 2000Z',d26:52,sst:30.8,shear:6,
+   note:'Record-tier Gulf RI, and the exception: warm layer only ~52 m, below the Gulf median. Record SST and near-zero shear did the work, not deep ocean heat.',
+   change:'70 → 150 kt (+80 kt / 24 h)'},
 ];
 const convLayer=L.layerGroup();
 CONV.forEach(c=>{
