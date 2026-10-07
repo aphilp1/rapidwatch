@@ -1,0 +1,99 @@
+000
+WTNT34 KNHC 070852
+TCPAT4
+ 
+BULLETIN
+Tropical Storm Isaias Advisory Number   3
+NWS National Hurricane Center Miami FL       AL092026
+400 AM CDT Wed Oct 07 2026
+ 
+...DEPRESSION BECOMES TROPICAL STORM ISAIAS...
+...FORECAST TO RAPIDLY STRENGTHEN OVER THE NEXT COUPLE OF DAYS...
+ 
+ 
+SUMMARY OF 400 AM CDT...0900 UTC...INFORMATION
+----------------------------------------------
+LOCATION...22.0N 94.1W
+ABOUT 285 MI...460 KM W OF PROGRESO MEXICO
+ABOUT 580 MI...935 KM SW OF THE MOUTH OF THE MISSISSIPPI RIVER
+MAXIMUM SUSTAINED WINDS...40 MPH...65 KM/H
+PRESENT MOVEMENT...ENE OR 75 DEGREES AT 8 MPH...13 KM/H
+MINIMUM CENTRAL PRESSURE...1004 MB...29.65 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+There are no coastal watches or warnings in effect.
+ 
+Interests in the Yucatan Peninsula of Mexico and the U.S. northern
+Gulf Coast should closely monitor the progress of this system.
+ 
+Hurricane Watches will likely be required for a portion of the U.S.
+northern Gulf coast later today.
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 400 AM CDT (0900 UTC), the center of Tropical Storm Isaias was 
+located near latitude 22.0 North, longitude 94.1 West. Isaias is 
+moving toward the east-northeast near 8 mph (13 km/h). A continued 
+east-northeastward motion is expected today, followed by a turn 
+toward the northeast and north on Thursday and Friday. On the 
+forecast track, Isaias is expected to pass to the north of the 
+Yucatan Peninsula on Thursday and approach the U.S. northern Gulf 
+Coast on Friday.
+ 
+Maximum sustained winds have increased to near 40 mph (65 km/h) with
+higher gusts. Rapid strengthening is forecast over the next day or
+two, and Isaias is expected to become a hurricane by Thursday.
+ 
+Tropical-storm-force winds extend outward up to 45 miles (75 km)
+from the center.
+ 
+The estimated minimum central pressure is 1004 mb (29.65 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+Key messages for Isaias can be found in the Tropical Cyclone
+Discussion under AWIPS header MIATCDAT4 and WMO header WTNT44 KNHC.
+ 
+RAINFALL: Isaias is expected to produce rainfall amounts of 2 to 4 
+inches through Thursday across coastal portions of the Bay of 
+Campeche with isolated higher amounts possible in the states of 
+Campeche and western Yucatan.
+
+From Friday through the weekend, Isaias is expected to produce 
+rainfall amounts of 3 to 6 inches, with localized totals up to 10 
+inches, across the northern U.S. Gulf Coast extending from far 
+southeastern Louisiana to the Florida Panhandle. Rainfall amounts of 
+1 to 3 inches, with localized amounts up to 5 inches, are possible 
+across much of the Southeast as far north as the Tennessee Valley 
+and the Carolinas. Flash and urban flooding, along with isolated 
+river flooding, will be possible.
+ 
+For a complete depiction of forecast rainfall associated with 
+Isaias, please see the National Weather Service Storm Total Rainfall 
+Graphic available at <a href='https://www.hurricanes.gov/graphics_at4.shtml?rainqpf'>hurricanes.gov/graphics_at4.shtml?rainqpf</a> and 
+the Flash Flood Risk graphic at 
+<a href='https://www.hurricanes.gov/graphics_at4.shtml?ero.'>hurricanes.gov/graphics_at4.shtml?ero.</a>
+ 
+WIND: Gusty winds are possible in portions of the Yucatan Peninsula
+on Thursday.
+ 
+SURF: Swells are expected to affect the western and northern
+portions of the Yucatan Peninsula beginning on Thursday and spread
+northward toward the Gulf Coast late this week. These swells are
+likely to cause life-threatening surf and rip current conditions.
+Please consult products from your local weather office.
+ 
+A depiction of rip current risk for the United States can be found
+at: <a href='https://www.hurricanes.gov/graphics_at4.shtml?ripCurrents'>hurricanes.gov/graphics_at4.shtml?ripCurrents</a>
+ 
+ 
+NEXT ADVISORY
+-------------
+Next complete advisory at 1000 AM CDT.
+ 
+$$
+Forecaster Papin

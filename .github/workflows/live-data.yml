@@ -28,12 +28,18 @@ jobs:
       - name: Fetch NDBC + NHC snapshots
         run: python build_live_data.py
 
+      # archive everything about each active Atlantic storm (advisories, GIS per advisory,
+      # SHIPS text, recon, environment under the center) -> data/storms/<ID>/  (track_storm.py)
+      - name: Archive active storms
+        run: python track_storm.py
+
       - name: Commit if changed
         run: |
           git config user.name  "rapidwatch-bot"
           git config user.email "aphilp1@users.noreply.github.com"
           git add data/ndbc data/nhc_currentstorms.json
           if [ -d data/nhc ]; then git add data/nhc; fi   # only exists when storms are active
+          if [ -d data/storms ]; then git add data/storms; fi
           if git diff --cached --quiet; then
             echo "No data changes this run."
           else
