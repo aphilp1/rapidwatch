@@ -1,0 +1,27 @@
+
+570 
+URNT12 KWBC 071711
+VORTEX DATA MESSAGE  AL092026
+A. 07/16:47:51Z
+B. 22.47 deg N 093.52 deg W
+C. 700 MB 3052 m
+D. 997 mb
+E. 250 deg 3 kt
+F. NA
+G. NA
+H. NA
+I. NA
+J. 126 deg 40 kt
+K. 035 deg 21 nm 16:42:46Z
+L. NA
+M. NA
+N. 304 deg 46 kt
+O. 209 deg 9 nm 16:49:56Z
+P. 11 C / 3046 m
+Q. 14 C / 3049 m
+R. 10 C / NA
+S. 1345 / 7
+T. 0.01 / 3 nm
+U. NOAA3 0309A ISAIAS OB 04
+MAX FL WIND 46 KT 209 / 9 NM 16:49:56Z
+
