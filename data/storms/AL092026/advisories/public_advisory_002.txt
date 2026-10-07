@@ -1,0 +1,91 @@
+ZCZC MIATCPAT4 ALL
+TTAA00 KNHC DDHHMM
+ 
+BULLETIN
+Tropical Depression Nine Advisory Number   2
+NWS National Hurricane Center Miami FL       AL092026
+1000 PM CDT Tue Oct 06 2026
+ 
+...TROPICAL DEPRESSION FORECAST TO QUICKLY STRENGTHEN...
+ 
+ 
+SUMMARY OF 1000 PM CDT...0300 UTC...INFORMATION
+-----------------------------------------------
+LOCATION...22.1N 95.0W
+ABOUT 345 MI...555 KM W OF PROGRESO MEXICO
+ABOUT 605 MI...975 KM SW OF THE MOUTH OF THE MISSISSIPPI RIVER
+MAXIMUM SUSTAINED WINDS...35 MPH...55 KM/H
+PRESENT MOVEMENT...E OR 80 DEGREES AT 5 MPH...7 KM/H
+MINIMUM CENTRAL PRESSURE...1005 MB...29.68 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+There are no coastal watches or warnings in effect.
+ 
+Interests in the Yucatan Peninsula of Mexico and the U.S. northern
+Gulf Coast should closely monitor the progress of this system.
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 1000 PM CDT (0300 UTC), the center of Tropical Depression Nine 
+was located near latitude 22.1 North, longitude 95.0 West. The 
+depression is moving toward the east near 5 mph (7 km/h). An 
+east-northwestward motion is expected on Wednesday, followed by a 
+turn toward the northeast and north on Thursday and Friday. On the 
+forecast track, the depression is expected to pass to the north of 
+the Yucatan Peninsula on Thursday and approach the U.S. northern 
+Gulf Coast on Friday.
+ 
+Maximum sustained winds are near 35 mph (55 km/h) with higher gusts. 
+Steady strengthening is forecast, and the depression is expected to 
+become a tropical storm early Wednesday and a hurricane on Thursday.
+ 
+The estimated minimum central pressure is 1005 mb (29.68 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+Key messages for Tropical Depression Nine can be found in the
+Tropical Cyclone Discussion under AWIPS header MIATCDAT4 and WMO
+header WTNT44 KNHC.
+ 
+RAINFALL: Tropical Depression Nine is expected to produce rainfall
+amounts of 2 to 4 inches through Thursday across coastal portions of
+the Bay of Campeche with isolated higher amounts possible in the
+states of Campeche and western Yucatan.
+ 
+From Friday through the weekend, the system is expected to produce
+rainfall amounts of 3 to 6 inches, with localized totals up to 10
+inches, across the central U.S. Gulf Coast extending from
+southeastern Louisiana to the Florida Panhandle. Flash and urban
+flooding, along with isolated river flooding, will be possible.
+ 
+For a complete depiction of forecast rainfall associated with
+Tropical Depression Nine, please see the National Weather Service
+Storm Total Rainfall Graphic available at
+hurricanes.gov/graphics_at4.shtml?rainqpf and the Flash Flood Risk
+graphic at hurricanes.gov/graphics_at4.shtml?ero.
+ 
+WIND: Gusty winds are possible in portions of the Yucatan Peninsula
+on Thursday.
+ 
+SURF: Swells are expected to affect the western and northern
+portions of the Yucatan Peninsula beginning on Thursday and spread
+northward toward the Gulf Coast late this week. These swells are
+likely to cause life-threatening surf and rip current conditions.
+Please consult products from your local weather office.
+ 
+A depiction of rip current risk for the United States can be found
+at: hurricanes.gov/graphics_at4.shtml?ripCurrents
+ 
+ 
+NEXT ADVISORY
+-------------
+Next complete advisory at 400 AM CDT.
+ 
+$$
+Forecaster Reinhart
+ 
+NNNN

@@ -154,6 +154,43 @@ def archive_storm(s, layers, run_ts):
         except Exception as e:
             added.append(f"gis {suffix} (failed: {type(e).__name__})")
 
+    # 3b. Backfill from NHC's archives, so a skipped run (GitHub delays the cron) loses nothing:
+    #     every text product ever issued for the storm, every per-advisory GIS zip, and the
+    #     ATCF working best track (b-deck) + model guidance (a-deck).
+    year = sid[-4:]
+    try:
+        idx = get(f"https://www.nhc.noaa.gov/archive/{year}/{name.upper()}.shtml").decode("utf-8", "replace")
+        prodmap = {"public": "public_advisory", "fstadv": "forecast_advisory", "discus": "discussion", "wndprb": "wind_probabilities"}
+        for rel, prod, n in sorted(set(re.findall(rf'href="(/archive/{year}/al{num}/al{num}{year}\.(public|fstadv|discus|wndprb)\.(\d{{3}}[a-z]?)\.shtml)"', idx, re.I))):
+            target = root / "advisories" / f"{prodmap[prod.lower()]}_{n.upper()}.txt"
+            if target.exists():
+                continue
+            try:
+                write_new(target, strip_html(get("https://www.nhc.noaa.gov" + rel)).encode())
+                added.append(f"backfill {prodmap[prod.lower()]} #{n}")
+            except Exception:
+                pass
+    except Exception as e:
+        added.append(f"archive index (failed: {type(e).__name__})")
+    try:
+        idx = get("https://www.nhc.noaa.gov/gis/forecast/archive/").decode("utf-8", "replace")
+        for fn in sorted(set(re.findall(rf'href="(al{num}{year}_(?:5day|fcst)_\d{{3}}[A-Za-z]?\.zip)"', idx, re.I))):
+            target = root / "gis" / fn
+            if not target.exists():
+                try:
+                    write_new(target, get(f"https://www.nhc.noaa.gov/gis/forecast/archive/{fn}", timeout=90))
+                    added.append(f"gis zip {fn}")
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    for sub, fn in (("btk", f"bal{num}{year}.dat"), ("aid_public", f"aal{num}{year}.dat.gz")):
+        try:
+            if write_new(root / "atcf" / fn, get(f"https://ftp.nhc.noaa.gov/atcf/{sub}/{fn}", timeout=90)):
+                added.append(f"atcf {fn}")
+        except Exception:
+            pass
+
     # 4. SHIPS text files
     try:
         idx = get("https://ftp.nhc.noaa.gov/atcf/stext/").decode("utf-8", "replace")
