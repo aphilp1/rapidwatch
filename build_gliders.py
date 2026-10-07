@@ -35,7 +35,9 @@ ERDDAP = ("https://gliders.ioos.us/erddap/tabledap/{id}.csv"
 # 2026-08-14 fix for ng1256/ng1241/ng1238).
 GLIDERS = [
     {"id": "ng1260-20260626T0000",     "name": "ng1260",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff8a3d"},
-    {"id": "usf-sam-20260908T0000",    "name": "sam",       "operator": "Univ. of South Florida",   "color": "#46cfd6"},
+    # 2026-10-06 (third stale-ID incident): usf-sam-20260908T0000 went silent 2026-09-20; replaced with
+    # sg677-20260921T0000, a Univ. of Southern Mississippi Seaglider (N Gulf off MS/AL, reporting daily). Not a Slocum.
+    {"id": "sg677-20260921T0000",      "name": "sg677",     "operator": "Univ. of Southern Mississippi", "color": "#46cfd6"},
     {"id": "unit_541-20260630T0000",   "name": "unit_541",  "operator": "Texas A&M University",      "color": "#c98bff"},
     {"id": "ng1256-20260713T0000",     "name": "ng1256",   "operator": "US Navy (NAVOCEANO)",      "color": "#5ee68a"},
     {"id": "ng1241-20260713T0000",     "name": "ng1241",   "operator": "US Navy (NAVOCEANO)",      "color": "#ff6b9d"},

@@ -98,7 +98,7 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 
 <div class="panel" id="ctl">
   <h1><span class="dot"></span>LIVE SENSOR SYSTEMS</h1>
-  <p class="sub">Active Slocum ocean gliders in the Gulf &mdash; live profiles from the IOOS National Glider DAC.</p>
+  <p class="sub">Active ocean gliders in the Gulf &mdash; live profiles from the IOOS National Glider DAC.</p>
   <div class="lab">Colour tracks by</div>
   <div class="vars" id="vars"></div>
   <div id="cbar">
@@ -494,7 +494,7 @@ function popupHTML(p){
   const ago=Math.round((Date.now()-t.getTime())/3.6e6);
   let rows='';
   for(const v in VARS) rows+=`<div class="row"><span>${VARS[v].label}</span><b>${s[v]!=null?VARS[v].fmt(s[v]):'–'}</b></div>`;
-  return `<div class="gp"><div class="gk">Live Slocum glider</div>
+  return `<div class="gp"><div class="gk">Live glider</div>
     <h4>${p.id}</h4><div class="op">${p.operator}</div>
     <div class="row"><span>Latest fix</span><b>${isNaN(ago)?'–':ago+' h ago'}</b></div>
     <div class="row"><span>Max dive depth</span><b>${p.maxDepth!=null?p.maxDepth+' m':'–'}</b></div>
