@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-08 15:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-08 16:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-08 15:44Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 15 (first 2026-10-07 12:33Z, latest 2026-10-08 13:38Z).
+- **Aircraft fixes archived:** 16 (first 2026-10-07 12:33Z, latest 2026-10-08 15:09Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -61,6 +61,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 07:29Z | 23.18N 91.40W | 983 mb | OPEN SE C17 | 52 kt 095 deg 11 nm 07:31:52Z | NOAA2 0609A ISAIAS |
 | 2026-10-08 11:56Z | 23.40N 90.58W | 978 mb | CLOSED C15 | 78 kt 137 deg 19 nm 12:01:30Z | AF305 0709A ISAIAS |
 | 2026-10-08 13:38Z | 23.58N 90.36W | 979 mb | OPEN SW C12 | 62 kt 227 deg 28 nm 13:48:00Z | AF305 0709A ISAIAS |
+| 2026-10-08 15:09Z | 23.66N 90.21W | 976 mb | OPEN SW C30 | 74 kt 313 deg 10 nm 15:12:30Z | AF305 0709A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
