@@ -113,11 +113,11 @@
         "kmlFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL092026_WatchWarningSS_006adv.kml"
       },
       "potentialStormSurgeFloodingGIS": {
-        "advNum": "5",
-        "issuance": "2026-10-07T21:00:00.000Z",
-        "fileUpdateTime": "2026-10-07T21:53:32.681Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_05_inundation.zip",
-        "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_05_tidalmask.zip"
+        "advNum": "6",
+        "issuance": "2026-10-08T03:00:00.000Z",
+        "fileUpdateTime": "2026-10-08T04:01:02.836Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_06_inundation.zip",
+        "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_06_tidalmask.zip"
       },
       "peakSurgeKML": {
         "advNum": "6",
