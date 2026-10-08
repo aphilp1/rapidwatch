@@ -6,18 +6,18 @@
       "name": "Isaias",
       "classification": "HU",
       "intensity": "65",
-      "pressure": "982",
-      "latitude": "22.9N",
-      "longitude": "91.9W",
-      "latitudeNumeric": 22.9,
-      "longitudeNumeric": -91.9,
+      "pressure": "981",
+      "latitude": "23.1N",
+      "longitude": "91.7W",
+      "latitudeNumeric": 23.1,
+      "longitudeNumeric": -91.7,
       "movementDir": 70,
       "movementSpeed": 9,
-      "lastUpdate": "2026-10-08T03:30:00.000Z",
+      "lastUpdate": "2026-10-08T06:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "006",
-        "issuance": "2026-10-08T03:00:00.000Z",
-        "fileUpdateTime": "2026-10-08T02:51:10.809Z",
+        "advNum": "006a",
+        "issuance": "2026-10-08T06:00:00.000Z",
+        "fileUpdateTime": "2026-10-08T05:41:13.830Z",
         "url": "https://www.nhc.noaa.gov/text/MIATCPAT4.shtml"
       },
       "forecastAdvisory": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/MIATCDAT4.shtml"
       },
       "forecastGraphics": {
-        "advNum": "006",
-        "issuance": "2026-10-08T03:00:00.000Z",
-        "fileUpdateTime": "2026-10-08T02:51:10.809Z",
+        "advNum": "006a",
+        "issuance": "2026-10-08T06:00:00.000Z",
+        "fileUpdateTime": "2026-10-08T05:41:13.830Z",
         "url": "https://www.nhc.noaa.gov/graphics_at4.shtml"
       },
       "forecastTrack": {
