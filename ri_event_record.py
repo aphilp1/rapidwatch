@@ -138,8 +138,18 @@ def sample(grid, key, la, lo):
     return g[ri][ci]
 
 
-def hycom_for(t, la, lo, snaps):
-    """SST/D26/current under (la,lo) from the HYCOM snapshot whose model time is nearest t."""
+def hycom_for(t, la, lo, snaps, prior=None):
+    """SST/D26/current under (la,lo) from the HYCOM snapshot whose model time is nearest t.
+    On a shallow clone (GitHub Actions) there is no history: keep the values a previous full-history
+    run already wrote for this fix (prior), and sample the current grid only for fixes newer than it."""
+    if prior and prior.get("hycom_time"):
+        try:
+            pt = datetime.datetime.strptime(prior["hycom_time"], "%Y-%m-%d %HZ").replace(tzinfo=datetime.timezone.utc)
+            if abs((pt - t).total_seconds()) <= 12 * 3600 and (not snaps or len(snaps) <= 1):
+                return {k: (float(prior[k]) if prior.get(k) not in (None, "") else None) if k != "hycom_time" else prior[k]
+                        for k in ("hycom_time", "hycom_sst_c", "hycom_d26_m", "hycom_current_ms")}
+        except Exception:
+            pass
     best = None
     for ctime, sha in snaps:
         g = grid_at(sha, "hycom_d26.json")
@@ -229,6 +239,11 @@ def main(sid):
     argo = json.loads((DATA / "argo" / "argo_gulf.geojson").read_text()) if (DATA / "argo" / "argo_gulf.geojson").exists() else {"features": []}
     gliders = json.loads((DATA / "gliders" / "gliders_gulf.geojson").read_text()) if (DATA / "gliders" / "gliders_gulf.geojson").exists() else {"features": []}
 
+    prior_rows = {}
+    if (root / "ri_timeline.csv").exists():
+        with open(root / "ri_timeline.csv", newline="", encoding="utf-8") as fh:
+            prior_rows = {r["time_utc"]: r for r in csv.DictReader(fh)}
+
     # 24-h change, RI flags, onset
     by_t = {f["time"]: f for f in fixes}
     rows = []
@@ -251,7 +266,7 @@ def main(sid):
             r.update({k: v for k, v in s.items() if k not in ("ships_time", "vmax")})
             r["our_rii_30kt24h_pct"] = our_rii(coef, s)
             r["our_rii_25kt24h_pct"] = our_rii(coef, s, "25")
-        r.update(hycom_for(f["time"], f["lat"], f["lon"], snaps))
+        r.update(hycom_for(f["time"], f["lat"], f["lon"], snaps, prior_rows.get(r["time_utc"])))
         na = nearest_point(argo["features"], f["lat"], f["lon"], want_profile=True)
         ng = nearest_point(gliders["features"], f["lat"], f["lon"], kind="now")
         r.update({"argo_id": na[1]["platform"] if na else "", "argo_km": round(na[0]) if na else "", "argo_date": na[1]["time"][:10] if na else "",
