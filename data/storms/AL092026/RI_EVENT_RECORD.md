@@ -1,12 +1,12 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-08 11:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-08 12:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
 - **RI window opens:** 2026-10-07 00Z at 21.7N 95.3W, 30 kt 1006 mb (TD); +30 kt over the following 24 h.
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
-- **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.6W, 70 kt 981 mb.
+- **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
 - **Aircraft fixes archived:** 13 (first 2026-10-07 12:33Z, latest 2026-10-08 07:29Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
@@ -40,6 +40,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-07 18Z | 50 | 20 | 30.8 | 40 | 45 | 14 | 70 | 120 | 53 | 8 | 90 | 29.2% | 15.0% | 24.4% |
 | 2026-10-08 00Z | 60 | 30 | 30.6 | 42 | 48 | 19 | 69 | 111 | 78 | 8 | 86 | 36.2% | 32.0% | 23.9% |
 | 2026-10-08 06Z | 70 | 35 | 30.5 | 45 | 48 | 23 | 65 | 101 | 84 | 8 | 89 | 32.1% | 24.0% | 16.0% |
+| 2026-10-08 12Z | 70 | 30 | 29.6 | 28 | 46 | 17 | 63 | 92 | 68 | 9 | 99 | 15.5% | 32.0% | 8.6% |
 
 ## 4. Aircraft center fixes
 

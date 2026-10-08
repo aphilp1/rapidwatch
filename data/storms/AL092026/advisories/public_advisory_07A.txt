@@ -1,0 +1,184 @@
+000
+WTNT34 KNHC 081154
+TCPAT4
+ 
+BULLETIN
+Hurricane Isaias Intermediate Advisory Number 7A
+NWS National Hurricane Center Miami FL       AL092026
+700 AM CDT Thu Oct 08 2026
+ 
+...HURRICANE HUNTERS CURRENTLY INVESTIGATING ISAIAS...
+...PREPARATIONS TO PROTECT LIFE AND PROPERTY FROM STORM SURGE AND
+DAMAGING WINDS ALONG THE WARNING AREA OF THE GULF COAST SHOULD BE
+RUSHED TO COMPLETION TODAY...
+ 
+ 
+SUMMARY OF 700 AM CDT...1200 UTC...INFORMATION
+----------------------------------------------
+LOCATION...23.7N 90.6W
+ABOUT 175 MI...280 KM NNW OF PROGRESO MEXICO
+ABOUT 385 MI...620 KM SSW OF THE MOUTH OF THE MISSISSIPPI RIVER
+MAXIMUM SUSTAINED WINDS...80 MPH...130 KM/H
+PRESENT MOVEMENT...ENE OR 60 DEGREES AT 9 MPH...15 KM/H
+MINIMUM CENTRAL PRESSURE...975 MB...28.80 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+CHANGES WITH THIS ADVISORY:
+ 
+None.
+ 
+SUMMARY OF WATCHES AND WARNINGS IN EFFECT:
+ 
+A Storm Surge Warning is in effect for...
+* Mouth of the Mississippi River to the Steinhatchee River, FL
+ 
+A Hurricane Warning is in effect for...
+* Ocean Springs, MS to the Bay/Gulf County Line, FL
+ 
+A Tropical Storm Warning is in effect for...
+* Jefferson/Plaquemines Parish Line, LA to west of Ocean Springs, MS
+* East of Bay/Gulf County Line to Aucilla River, FL
+ 
+A Storm Surge Watch is in effect for...
+* Steinhatchee River to Yankeetown, FL
+ 
+A Storm Surge Warning means there is a danger of life-threatening
+inundation, from rising water moving inland from the coastline,
+during the next 36 hours in the indicated locations. For a depiction
+of areas at risk, please see the National Weather Service Storm
+Surge Watch/Warning Graphic, available at <a href='https://www.hurricanes.gov'>hurricanes.gov</a>. This is a
+life-threatening situation. Persons located within these areas
+should take all necessary actions to protect life and property from
+rising water and the potential for other dangerous conditions.
+Promptly follow evacuation and other instructions from local
+officials.
+ 
+A Hurricane Warning means that hurricane conditions are expected
+somewhere within the warning area. A warning is typically issued 36
+hours before the anticipated first occurrence of
+tropical-storm-force winds, conditions that make outside
+preparations difficult or dangerous. Preparations to protect life
+and property should be rushed to completion.
+ 
+A Tropical Storm Warning means that tropical storm conditions are
+expected somewhere within the warning area within 36 hours.
+ 
+A Storm Surge Watch means there is a possibility of life-
+threatening inundation, from rising water moving inland from the
+coastline, in the indicated locations during the next 48 hours. For
+a depiction of areas at risk, please see the National Weather
+Service Storm Surge Watch/Warning Graphic, available at
+<a href='https://www.hurricanes.gov'>hurricanes.gov</a>.
+ 
+Interests in the Yucatan Peninsula of Mexico and elsewhere along the
+U.S. northern Gulf Coast should closely monitor the progress of this
+system.
+ 
+For storm information specific to your area, including possible
+inland watches and warnings, please monitor products issued by your
+local National Weather Service forecast office.
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 700 AM CDT (1200 UTC), the center of Hurricane Isaias was located
+near latitude 23.7 North, longitude 90.6 West.  Isaias is moving
+toward the east-northeast near 9 mph (15 km/h).  A turn toward the 
+northeast is expected later today followed by a turn northward on 
+Friday. On the forecast track, Isaias is expected to pass to the 
+north of the Yucatan Peninsula later today and make landfall along 
+the U.S. northern Gulf Coast within the warning area late Friday or 
+early Saturday.
+ 
+Maximum sustained winds are near 80 mph (130 km/h) with higher
+gusts.  Additional strengthening is expected through early Friday, 
+and Isaias should remain a dangerous hurricane as it approaches the 
+northern Gulf Coast Friday night.
+ 
+Hurricane-force winds extend outward up to 15 miles (30 km) from
+the center and tropical-storm-force winds extend outward up to 90
+miles (150 km).
+ 
+The estimated minimum central pressure is 975 mb (28.80 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+Key messages for Isaias can be found in the Tropical Cyclone
+Discussion under AWIPS header MIATCDAT4 and WMO header WTNT44 KNHC.
+ 
+STORM SURGE: The combination of a dangerous storm surge and the
+tide will cause normally dry areas near the coast to be flooded by
+rising waters moving inland from the shoreline. The water could
+reach the following heights above ground somewhere in the indicated
+areas if the peak surge occurs at the time of high tide...
+ 
+Ocean Springs, MS to Indian Pass, FL...5-7 ft
+Mobile Bay...5-7 ft
+Mouth of the Mississippi River, LA to Ocean Springs, MS...3-5 ft
+Indian Pass, FL to Steinhatchee River, FL...4-6 ft
+Steinhatchee River, FL to Yankeetown, FL...2-4 ft
+Lake Pontchartrain...1-3 ft
+ 
+The deepest water will occur along the immediate coast near and to
+the east of the landfall location, where the surge will be
+accompanied by large and dangerous waves. Surge-related flooding
+depends on the relative timing of the surge and the tidal cycle, and
+can vary greatly over short distances. For information specific to
+your area, please see products issued by your local National Weather
+Service forecast office.
+ 
+For a complete depiction of areas at risk of storm surge inundation,
+please see the National Weather Service Peak Storm Surge Graphic,
+available at <a href='https://www.hurricanes.gov/graphics_at4.shtml?peakSurge.'>hurricanes.gov/graphics_at4.shtml?peakSurge.</a>
+ 
+WIND: Hurricane conditions are expected within the Hurricane Warning
+area Friday night into early Saturday, with tropical storm
+conditions beginning on Friday. Tropical storm conditions are
+expected in the warning areas on Friday and Friday night.
+ 
+Gusty winds are possible in portions of the Yucatan Peninsula today.
+ 
+RAINFALL: Isaias is expected to produce rainfall amounts of 1 to 3
+inches through today across coastal portions of the eastern Bay
+of Campeche with isolated higher amounts possible in the states of
+Campeche and western Yucatan.
+ 
+From Friday through the weekend, the system is expected to produce
+rainfall amounts of 3 to 7 inches, with localized totals up to 10
+inches, across the central U.S. Gulf Coast extending from far
+southeastern Louisiana to the Florida Panhandle. Rainfall amounts of
+1 to 3 inches, with localized amounts up to 5 inches, are possible
+across much of the Southeast as far north as the Tennessee Valley
+and the Carolinas. Flash and urban flooding, along with isolated
+river flooding, will be possible.
+ 
+For a complete depiction of forecast rainfall associated with
+Isaias, please see the National Weather Service Storm Total Rainfall
+Graphic available at <a href='https://www.hurricanes.gov/graphics_at4.shtml?rainqpf'>hurricanes.gov/graphics_at4.shtml?rainqpf</a> and
+the Flash Flood Risk graphic at
+<a href='https://www.hurricanes.gov/graphics_at4.shtml?ero'>hurricanes.gov/graphics_at4.shtml?ero</a>
+ 
+TORNADOES: Isolated tornadoes will be possible Friday night in
+coastal areas of Alabama and the Florida Panhandle and far
+southwestern Georgia. The tornado threat will continue Saturday for
+eastern Alabama, Georgia and northern Florida.
+ 
+SURF: Swells will affect the western and northern portions of the
+Yucatan Peninsula beginning later today and spread northward toward
+the Gulf Coast on Friday. These swells are likely to cause
+life-threatening surf and rip current conditions. Please consult
+products from your local weather office.
+ 
+A depiction of rip current risk for the United States can be found
+at: <a href='https://www.hurricanes.gov/graphics_at4.shtml?ripCurrents'>hurricanes.gov/graphics_at4.shtml?ripCurrents</a>
+ 
+ 
+NEXT ADVISORY
+-------------
+Next complete advisory at 1000 AM CDT.
+ 
+$$
+Forecaster Pasch
