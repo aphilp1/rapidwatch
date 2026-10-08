@@ -33,8 +33,9 @@ MAPSRV = ("https://mapservices.weather.noaa.gov/tropical/rest/services/"
           "tropical/NHC_tropical_weather/MapServer")
 NHC_KINDS = {"Forecast Cone": "cone", "Forecast Track": "track", "Forecast Points": "points",
              "Watch-Warning": "ww", "Past Track": "past_track", "Past Points": "past_points"}
-TEXT_PRODUCTS = {"TCP": "public_advisory", "TCM": "forecast_advisory", "TCD": "discussion", "PWS": "wind_probabilities"}
-RECON_DIRS = ["AHONT1", "REPNT2", "URNT12"]       # HDOB, vortex data message, vortex data message (alt header)
+TEXT_PRODUCTS = {"TCP": "public_advisory", "TCM": "forecast_advisory", "TCD": "discussion", "PWS": "wind_probabilities",
+                 "TCU": "tropical_cyclone_update"}   # TCU = the between-advisory product NHC used to upgrade Isaias to a hurricane
+RECON_DIRS = ["AHONT1", "REPNT2", "REPNT3", "REPNT1"]   # HDOB, vortex data message, dropsonde (TEMP DROP), RECCO
 
 
 def get(url, timeout=40):
@@ -131,10 +132,15 @@ def archive_storm(s, layers, run_ts):
         if name.upper() not in txt.upper()[:600]:
             continue                                   # product slot belongs to another storm
         m = re.search(r"(?:Advisory|Discussion|Probabilities) Number\s+(\d+[A-Z]?)", txt, re.I)
+        if prod == "TCU":                                  # updates carry no number: name by WMO issue time (ddhhmm)
+            m = re.search(r"^WTNT6\d KNHC (\d{6})", txt, re.M)
         n = m.group(1) if m else "x"
         if prod == "TCP":
             adv = n
-        if write_new(root / "advisories" / f"{label}_{n.zfill(3)}.txt", txt.encode()):
+        target = root / "advisories" / f"{label}_{n.zfill(3)}.txt"
+        if target.exists() and sha(target.read_bytes()) != sha(txt.encode()):
+            target = root / "advisories" / f"{label}_{n.zfill(3)}_reissued_{run_ts}.txt"   # keep every version, never overwrite
+        if write_new(target, txt.encode()):
             added.append(f"{label} #{n}")
 
     # 3. GIS layers per advisory
@@ -233,11 +239,19 @@ def archive_storm(s, layers, run_ts):
     gl = load_json(DATA / "gliders" / "gliders_gulf.geojson") or {"features": []}
     na = nearest(argo["features"], la, lo, want_profile=True)
     ng = nearest([f for f in gl["features"] if f["properties"].get("kind") == "now"], la, lo)
-    ships_rii = ""
+    ships_rii, our_rii, ships_cycle = "", "", ""
     try:
-        latest = sorted((root / "ships").glob("*_ships.txt"))[-1].read_text(errors="replace")
+        latest_p = sorted((root / "ships").glob("*_ships.txt"))[-1]
+        latest = latest_p.read_text(errors="replace")
+        ships_cycle = latest_p.name[:8]
         m = re.search(r"SHIPS Prob RI for 30kt/ 24hr RI threshold=\s*(\d+)%", latest)
         ships_rii = m.group(1) if m else ""
+        # our rebuilt SHIPS-RII (gulf-ri-model baseline) on the same cycle's 0-h predictors
+        import ri_event_record as rer
+        coef = json.loads((DATA / "ri_model" / "live_rii_coefficients.json").read_text())
+        sp = rer.parse_ships(latest_p)
+        v = rer.our_rii(coef, sp)
+        our_rii = "" if v is None else v
     except Exception:
         pass
     row = {"run_utc": run_ts, "advisory": adv, "update": s.get("lastUpdate"), "class": s.get("classification"),
@@ -250,19 +264,31 @@ def archive_storm(s, layers, run_ts):
            "argo_date": na[1]["time"][:10] if na else "", "argo_d26_m": na[1].get("d26") if na else "",
            "argo_surf_c": (na[1].get("surface") or {}).get("temperature") if na else "",
            "glider_id": ng[1]["id"] if ng else "", "glider_km": round(ng[0]) if ng else "",
-           "ships_rii_30kt24h_pct": ships_rii}
+           "ships_cycle": ships_cycle, "ships_rii_30kt24h_pct": ships_rii, "our_rii_30kt24h_pct": our_rii}
     envp = root / "environment.csv"
-    new = not envp.exists()
-    with open(envp, "a", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=list(row.keys()))
-        if new:
+    old_rows = []
+    if envp.exists():
+        with open(envp, newline="", encoding="utf-8") as f:
+            rd = csv.DictReader(f)
+            old_rows = list(rd)
+            same_header = rd.fieldnames == list(row.keys())
+    else:
+        same_header = False
+    if same_header:
+        with open(envp, "a", newline="", encoding="utf-8") as f:
+            csv.DictWriter(f, fieldnames=list(row.keys())).writerow(row)
+    else:   # columns changed: rewrite the file with the new header, keeping every old row
+        with open(envp, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=list(row.keys()), extrasaction="ignore")
             w.writeheader()
-        w.writerow(row)
+            for r in old_rows:
+                w.writerow({k: r.get(k, "") for k in row.keys()})
+            w.writerow(row)
 
     # 7. Log line
     line = (f"- {run_ts} UTC · adv {adv} · {s.get('classification')} {name} {s.get('intensity')} kt "
             f"{s.get('pressure')} mb at {la:.1f}N {abs(lo):.1f}W moving {s.get('movementDir')}° @ {s.get('movementSpeed')} kt · "
-            f"HYCOM SST {row['hycom_sst_c']} °C D26 {row['hycom_d26_m']} m · SHIPS-RII 30kt/24h {ships_rii or '–'}% · "
+            f"HYCOM SST {row['hycom_sst_c']} °C D26 {row['hycom_d26_m']} m · SHIPS-RII 30kt/24h {ships_rii or '–'}% (ours {our_rii if our_rii != '' else '–'}%) · "
             f"new: {', '.join(added) if added else 'nothing'}\n")
     logp = root / "LOG.md"
     if not logp.exists():
@@ -270,6 +296,12 @@ def archive_storm(s, layers, run_ts):
     with open(logp, "a", encoding="utf-8") as f:
         f.write(line)
     print(line.strip())
+    # 8. Regenerate the RI record (timeline, aircraft fixes, markdown) from the archive
+    try:
+        import ri_event_record as rer
+        rer.main(sid)
+    except Exception as e:
+        print(f"  RI record not rebuilt: {type(e).__name__}: {e}")
     return added
 
 
