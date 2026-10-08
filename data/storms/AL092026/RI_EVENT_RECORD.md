@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-08 22:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-08 23:09Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -40,7 +40,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-07 18Z | 50 | 20 | 30.8 | 40 | 45 | 14 | 70 | 120 | 53 | 8 | 90 | 29.2% | 15.0% | 24.4% |
 | 2026-10-08 00Z | 60 | 30 | 30.6 | 42 | 48 | 19 | 69 | 111 | 78 | 8 | 86 | 36.2% | 32.0% | 23.9% |
 | 2026-10-08 06Z | 70 | 35 | 30.5 | 45 | 48 | 23 | 65 | 101 | 84 | 8 | 89 | 32.1% | 24.0% | 16.0% |
-| 2026-10-08 12Z | 70 | 30 | 29.6 | 28 | 46 | 17 | 63 | 92 | 68 | 9 | 99 | 15.5% | 32.0% | 8.6% |
+| 2026-10-08 12Z | 70 | 30 | 29.6 | 28 | 45 | 17 | 63 | 92 | 68 | 9 | 99 | 15.5% | 32.0% | 8.6% |
 | 2026-10-08 18Z | 85 | 35 | 29.3 | 27 | 39 | 14 | 61 | 82 | 96 | 10 | 93 | 10.4% | 11.0% | 6.9% |
 
 ## 4. Aircraft center fixes
@@ -99,6 +99,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 > The intensity forecast up to landfall is somewhat challenging. On the one hand, the hurricane should move over waters of high oceanic heat content and within a fairly moist air mass through tomorrow. On the other hand, the SHIPS model input parameters show a significant increase in vertical wind shear, particularly when Isais nears the coast. Regarding, the shorter-term intensity forecast, a recent WSFM microwave satellite image at 37 GHz frequency shows a closed ring around the eye. This is typically a harbinger of rapid intensification. The 12-hour forecast does show a relatively large increase in strength, but in view of the expected stronger shear in 24-36 hours, some decrease in intensity is indicated as Isaias approaches the coast. Regardless, Isaias is expected to remain a dangerous hurricane through landfall, and gusty winds are expected well inland after landfall given the anticipated expansion of the wind field and accelerating forward speed of the storm.
 
 **Discussion 009** (400 PM CDT Thu Oct 08 2026)
+> The intensity forecast remains somewhat problematic. The hurricane will be passing over Gulf waters of high oceanic heat content during the next day or so. In fact, the projected track of Isais shows it passing near a warm eddy overnight. However, the vertical wind shear, which is already significant, is expected to increase substantially during the next 36 hours. The current thinking is that the shear will not offset the conducive oceanic conditions until 12-24 hours, so further strengthening is anticipated overnight. The official intensity forecast is at the high end of the model guidance, but in consideration of the expected stronger wind shear in 24-36 hours, some decrease in intensity is indicated as Isaias approaches the coast. Regardless, Isaias is expected to remain a dangerous hurricane through landfall, and strong gusty winds are expected well inland after the center crosses the coast.
+
+**Discussion 20261008T2306** (400 PM CDT Thu Oct 08 2026)
 > The intensity forecast remains somewhat problematic. The hurricane will be passing over Gulf waters of high oceanic heat content during the next day or so. In fact, the projected track of Isais shows it passing near a warm eddy overnight. However, the vertical wind shear, which is already significant, is expected to increase substantially during the next 36 hours. The current thinking is that the shear will not offset the conducive oceanic conditions until 12-24 hours, so further strengthening is anticipated overnight. The official intensity forecast is at the high end of the model guidance, but in consideration of the expected stronger wind shear in 24-36 hours, some decrease in intensity is indicated as Isaias approaches the coast. Regardless, Isaias is expected to remain a dangerous hurricane through landfall, and strong gusty winds are expected well inland after the center crosses the coast.
 
 ## 6. Sources in this folder

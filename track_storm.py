@@ -17,6 +17,11 @@ Archive root: data/storms/<STORMID>/
                                   from the NHC recon archive since the storm started
   environment.csv                 one row per run: center fix + HYCOM SST/D26/current under the
                                   center + nearest Argo float / glider (from this repo's data)
+  sensors/                        EVERY sensor along the track, every run (sweep_sensors.py):
+                                  all NDBC stations in a 300 km corridor (full observation rows
+                                  since the storm began), all Argo floats + gliders in the corridor
+                                  with profiles, HYCOM at every track point, MUR satellite SST,
+                                  SENSOR_LOG.md
   LOG.md                          one line per run, newest last
 
 Sources (all public): nhc.noaa.gov CurrentStorms.json, text/refresh products, NOAA IDP
@@ -284,6 +289,13 @@ def archive_storm(s, layers, run_ts):
             for r in old_rows:
                 w.writerow({k: r.get(k, "") for k in row.keys()})
             w.writerow(row)
+
+    # 6b. Every sensor along the track (NDBC stations, Argo, gliders, HYCOM, MUR SST) -> sensors/ (sweep_sensors.py)
+    try:
+        import sweep_sensors
+        added.append(sweep_sensors.run(sid, s, root, run_ts))
+    except Exception as e:
+        added.append(f"sensor sweep FAILED: {type(e).__name__}: {e}")
 
     # 7. Log line
     line = (f"- {run_ts} UTC · adv {adv} · {s.get('classification')} {name} {s.get('intensity')} kt "
