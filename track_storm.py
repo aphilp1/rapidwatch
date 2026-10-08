@@ -60,7 +60,8 @@ def sha(b):
 def write_new(path, data):
     """Write only if the content differs from the newest file with the same stem. Returns True if written."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    if path.exists() and sha(path.read_bytes()) == sha(data):
+    # compare with CR stripped: a Windows checkout (autocrlf) must not make every file look re-issued
+    if path.exists() and sha(path.read_bytes().replace(b"\r", b"")) == sha(data.replace(b"\r", b"")):
         return False
     path.write_bytes(data)
     return True
