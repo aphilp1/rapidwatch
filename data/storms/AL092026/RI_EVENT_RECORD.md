@@ -1,13 +1,14 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-08 05:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-08 06:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
 - **RI window opens:** 2026-10-07 00Z at 21.7N 95.3W, 30 kt 1006 mb (TD); +30 kt over the following 24 h.
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
+- **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.6W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 10 (first 2026-10-07 12:33Z, latest 2026-10-08 04:34Z).
+- **Aircraft fixes archived:** 11 (first 2026-10-07 12:33Z, latest 2026-10-08 05:07Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -16,6 +17,7 @@ Generated 2026-10-08 05:44Z from the archive in this folder by ri_event_record.p
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | RI window opens | 2026-10-07 00Z | 30 kt | 1006 mb | 30.9 °C | 56 | 29.67 °C | 48 m | 13 / 207° | 74% | 139 | 49 | 13.0% | 3.0% | 19.6% |
 | Definition met | 2026-10-08 00Z | 60 kt | 988 mb | 30.6 °C | 42 | 30.44 °C | 48 m | 19 / 226° | 69% | 111 | 78 | 36.2% | 32.0% | 23.9% |
+| First hurricane fix | 2026-10-08 06Z | 70 kt | 981 mb | 30.5 °C | 45 | 29.75 °C | 48 m | 23 / 248° | 65% | 101 | 84 | 32.1% | 24.0% | 16.0% |
 
 SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻¹) are the 0-h values in NHC's operational SHIPS file for that cycle. HYCOM values are this site's 1/12° model snapshot nearest the fix time, sampled at the fix. Our RII is the gulf-ri-model rebuild of SHIPS-RII (logistic, six predictors) applied to the same 0-h values.
 
@@ -37,6 +39,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-07 12Z | 40 | 15 | 30.9 | 34 | 49 | 13 | 74 | 135 | 46 | 6 | 97 | 18.6% | 17.0% | 15.8% |
 | 2026-10-07 18Z | 50 | 20 | 30.8 | 40 | 45 | 14 | 70 | 120 | 53 | 8 | 90 | 29.2% | 15.0% | 24.4% |
 | 2026-10-08 00Z | 60 | 30 | 30.6 | 42 | 48 | 19 | 69 | 111 | 78 | 8 | 86 | 36.2% | 32.0% | 23.9% |
+| 2026-10-08 06Z | 70 | 35 | 30.5 | 45 | 48 | 23 | 65 | 101 | 84 | 8 | 89 | 32.1% | 24.0% | 16.0% |
 
 ## 4. Aircraft center fixes
 
@@ -52,6 +55,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 01:13Z | 22.82N 92.07W | 989 mb | OPEN SW C7 | 50 kt 229 deg 14 nm 01:17:00Z | AF301 0509A ISAIAS |
 | 2026-10-08 02:48Z | 22.91N 91.87W | 982 mb | NA | 57 kt 238 deg 7 nm 02:53:00Z | AF301 0509A ISAIAS |
 | 2026-10-08 04:34Z | 23.07N 91.71W | 985 mb | NA | 70 kt 038 deg 22 nm 04:41:30Z | AF301 0509A ISAIAS |
+| 2026-10-08 05:07Z | 23.05N 91.68W | 983 mb | OPEN SE C30 | 63 kt 220 deg 15 nm 05:11:06Z | NOAA2 0609A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
