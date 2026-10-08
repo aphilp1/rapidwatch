@@ -104,10 +104,23 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 .leaflet-control-attribution{background:rgba(5,11,18,.7)!important;color:var(--mute)!important;font-size:9px!important}
 .leaflet-control-attribution a{color:var(--aqua)!important}
 @media(max-width:760px){#ctl,#lyrs{width:220px}#rcol{width:230px}}
+/* ocean layers (ported from Live Sensor Systems) */
+.gp .row{display:flex;justify-content:space-between;gap:14px;padding:2px 0;color:var(--slate);font-size:12px}
+#ocean-legend{top:66px;left:50%;transform:translateX(-50%);min-width:220px;max-width:340px;padding:9px 14px 8px;display:none;text-align:center}
+#ocean-legend.on{display:block}
+#ocean-legend .ol-t{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.05em;color:var(--slate);margin-bottom:6px}
+#ocean-legend .ol-bar{height:10px;border-radius:3px;border:1px solid var(--line-2)}
+#ocean-legend .ol-e{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:9px;color:var(--slate);margin-top:3px}
+#ocean-legend .ol-sub{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);line-height:1.45;margin-top:4px}
+#map.probe.leaflet-grab{cursor:crosshair}
+body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
+.zone-tip{background:rgba(5,11,18,.82);border:1px solid #e74c3c;color:#ff9b91;border-radius:6px;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;letter-spacing:.08em;padding:3px 8px;white-space:nowrap;box-shadow:0 0 8px rgba(0,0,0,.5)}
+.zone-tip::before{display:none}
 </style>
 </head>
 <body>
 <div id="map"></div>
+<div class="panel" id="ocean-legend"></div>
 
 <div class="panel" id="ctl">
   <h1><span class="dot"></span>LIVE EVENT</h1>
@@ -125,6 +138,15 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 </div>
 
 <div id="rcol">
+  <div class="panel" id="export" style="position:static;padding:9px 13px;display:none"><!-- hidden 2026-10-08: export works but status text is unpolished and radar is missing from captures; re-enable when fixed -->
+    <div class="seg" id="export-seg" style="margin:0;align-items:center">
+      <span style="font-family:'Space Grotesk';font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);text-transform:uppercase;margin-right:6px">Export view</span>
+      <button id="exp-png" title="Download a PNG image of exactly what is on screen">PNG</button>
+      <button id="exp-pdf" title="Download a one-page PDF of exactly what is on screen">PDF</button>
+      <button id="exp-html" title="Download a self-contained HTML snapshot (image + storm, layers, data status)">HTML</button>
+      <span id="exp-status" style="font-family:IBM Plex Mono;font-size:9px;color:var(--mute)"></span>
+    </div>
+  </div>
   <div class="panel" id="goesbox">
     <h3>GOES-East live loop <span class="gtog" id="gtog" title="Collapse">&#8211;</span></h3>
     <div class="seg" id="goes-prod"></div>
@@ -611,14 +633,159 @@ const cityLayer=L.layerGroup();
  .forEach(([n,la,lo])=>L.marker([la,lo],{interactive:false,icon:L.divIcon({className:'',html:'<div style="color:#9fb3c0;font:400 10px IBM Plex Mono;white-space:nowrap;text-shadow:0 0 5px #050b12">▪ '+n+'</div>',iconSize:[0,0]})}).addTo(cityLayer));
 
 /* ══ layer toggles ══ */
+/* ══ RI ONSET CORE + OCEAN LAYERS (added 2026-10-08 during Hurricane Isaias) ═══════════════
+   Zone A boxes from the Gulf Map / Field Observation Report; HYCOM SST, D26 and surface
+   currents from data/ocean (6-h Action); satellite SST = NASA GIBS GHRSST MUR with the real
+   GIBS colormap. Everything here is additive and guarded: if any part fails, the rest of the
+   page is untouched. */
+let zoneLayer=L.layerGroup(), sstLayer=L.layerGroup(), d26Layer=L.layerGroup(), curLayer=L.layerGroup(), satSSTLayer=null;
+let _murDate=new Date(Date.now()-864e5).toISOString().slice(0,10);
+try{
+  map.createPane('oceanPane').style.zIndex=245;   // over bathymetry tiles (200), under land (250), GOES (252), radar (256)
+  map.createPane('curPane').style.zIndex=247;
+  /* ── Zone A: RI onset core (PRIMARY) + expanded watch box ── */
+  const ZA='#e74c3c';
+  L.rectangle([[20.1,-95.1],[23.4,-84.4]],{color:ZA,weight:1.2,fillColor:ZA,fillOpacity:.04,dashArray:'5,5',interactive:true})
+    .bindPopup(pop('RI watch zone · expanded','Zone A — elevated watch box','20.1–23.4°N · 84.4–95.1°W',
+      'P(RI onset | fix) ≈ 14.6%, a 1.95× basin lift over 1851–2025 (Field Observation Report, Analysis tab). Takes in the Yucatán Channel intrusion.',['1.95× lift'])).addTo(zoneLayer);
+  L.rectangle([[20.9,-93.9],[22.9,-91.6]],{color:ZA,weight:2.2,fillColor:ZA,fillOpacity:.14})
+    .bindPopup(pop('RI watch zone · PRIMARY','Zone A — Bay of Campeche onset core','20.9–22.9°N · 91.6–93.9°W',
+      'Where Gulf rapid intensification most often <b>begins</b>: P(RI onset | fix) 23.1%, a <b>3.1× basin lift</b> (best-track climatology 1851–2025). Isaias opened its RI window inside this box on 2026-10-07 00Z.',['3.1× lift','onset core']))
+    .bindTooltip('ZONE A · RI ONSET CORE',{permanent:true,direction:'center',className:'zone-tip'}).addTo(zoneLayer);
+  L.circleMarker([21.6,-92.9],{radius:4,color:ZA,weight:2,fillColor:ZA,fillOpacity:.9})
+    .bindPopup(pop('RI watch zone','Peak RI-onset density cell','21.6°N · 92.9°W','The single densest RI-onset cell in the 1851–2025 record.',['peak density'])).addTo(zoneLayer);
+
+  /* ── colour ramp + HYCOM rasters (same code path as the Live Sensor Systems tab) ── */
+  const STOPS=[[13,40,120],[20,120,200],[40,200,180],[150,220,90],[250,200,50],[240,90,45]];
+  const rampArr=t=>{ t=Math.max(0,Math.min(1,t)); const x=t*(STOPS.length-1); const i=Math.floor(x), f=x-i; const a=STOPS[i], b=STOPS[Math.min(i+1,STOPS.length-1)]; return [0,1,2].map(k=>Math.round(a[k]+(b[k]-a[k])*f)); };
+  const ramp=t=>{ const c=rampArr(t); return 'rgb('+c[0]+','+c[1]+','+c[2]+')'; };
+  const SST_MIN=22,SST_MAX=32,D26_MAX=150;
+  const sstCol=v=>{ if(v==null)return[0,0,0,0]; const c=rampArr((v-SST_MIN)/(SST_MAX-SST_MIN)); return [c[0],c[1],c[2],205]; };
+  const d26Col=v=>{ if(v==null)return[0,0,0,0]; const c=rampArr(Math.min(1,v/D26_MAX)); return [c[0],c[1],c[2],195]; };
+  function oceanRaster(d,key,colFn){
+    const lats=d.lats,lons=d.lons,g=d[key],ny=lats.length,nx=lons.length,asc=lats[0]<lats[ny-1];
+    const cvs=document.createElement('canvas'); cvs.width=nx; cvs.height=ny;
+    const ctx=cvs.getContext('2d'), im=ctx.createImageData(nx,ny);
+    for(let row=0;row<ny;row++){ const dr=asc?(ny-1-row):row;
+      for(let cx=0;cx<nx;cx++){ const c=colFn(g[dr][cx]),p=(row*nx+cx)*4;
+        let a=c[3]; const edge=Math.min(row,ny-1-row,cx,nx-1-cx); if(edge<2&&a>0) a=Math.round(a*(edge+1)/3);
+        im.data[p]=c[0];im.data[p+1]=c[1];im.data[p+2]=c[2];im.data[p+3]=a; } }
+    ctx.putImageData(im,0,0);
+    const sw=[Math.min(lats[0],lats[ny-1]),Math.min(lons[0],lons[nx-1])], ne=[Math.max(lats[0],lats[ny-1]),Math.max(lons[0],lons[nx-1])];
+    return L.imageOverlay(cvs.toDataURL(),[sw,ne],{opacity:.72,interactive:false,pane:'oceanPane'});
+  }
+  fetch('data/ocean/hycom_sst.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{ window._hycomSST=d; oceanRaster(d,'sst',sstCol).addTo(sstLayer); window._oceanTime=d.time_utc; updateOceanLegend(); }).catch(()=>{});
+  fetch('data/ocean/hycom_d26.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{ window._hycomD26=d; oceanRaster(d,'d26',d26Col).addTo(d26Layer); }).catch(()=>{});
+  const CUR_CLASSES=[[0.8,'#ff5d6c','Loop Current / eddy core'],[0.45,'#ffb27a','strong'],[0.22,'#ffe08a','moderate'],[0,'#7fd4dd','weak']];
+  const curClass=sp=>{ for(const c of CUR_CLASSES) if(sp>=c[0]) return c; return CUR_CLASSES[3]; };
+  const compass=deg=>['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'][Math.round(deg/22.5)%16];
+  function curText(uu,vv,short){
+    const sp=Math.hypot(uu,vv), kt=sp*1.9438, dir=((Math.atan2(uu,vv)*180/Math.PI)+360)%360, cls=curClass(sp);
+    if(short) return '<b>'+sp.toFixed(2)+' m/s</b> ('+kt.toFixed(1)+' kt) toward '+compass(dir)+' '+Math.round(dir)+'°';
+    const row=(a,b)=>'<div class="row"><span>'+a+'</span><b>'+b+'</b></div>';
+    return row('Speed',sp.toFixed(2)+' m/s · '+kt.toFixed(1)+' kt')+row('Direction (toward)',compass(dir)+' · '+Math.round(dir)+'°')+row('Class','<span style="color:'+cls[1]+'">■</span> '+cls[2]);
+  }
+  fetch('data/ocean/hycom_currents.json?_ts='+Date.now()).then(r=>r.json()).then(d=>{ window._hycomCur=d;
+    const lats=d.lats,lons=d.lons,u=d.u,v=d.v,ny=lats.length,nx=lons.length,step=3;
+    for(let r=0;r<ny;r+=step) for(let c=0;c<nx;c+=step){
+      const uu=u[r][c],vv=v[r][c]; if(uu==null||vv==null) continue;
+      const sp=Math.hypot(uu,vv); if(sp<0.06) continue;
+      const col=curClass(sp)[1], ang=(Math.atan2(-vv,uu)*180/Math.PI).toFixed(0), sz=+(8+Math.min(sp,1.6)*7).toFixed(1), box=Math.round(sz*1.3);
+      const mk=L.marker([lats[r],lons[c]],{pane:'curPane',icon:L.divIcon({className:'cur-arrow',html:'<div style="transform:rotate('+ang+'deg);color:'+col+';font-size:'+sz+'px;line-height:'+box+'px;text-align:center;text-shadow:0 0 3px #050b12;cursor:pointer">➤</div>',iconSize:[box,box],iconAnchor:[box/2,box/2]})});
+      mk.bindTooltip(()=>curText(uu,vv,true),{direction:'top',offset:[0,-box/2],opacity:1});
+      mk.bindPopup(()=>pop('HYCOM surface current · this cell',fmt(lats[r],lons[c]),'',curText(uu,vv,false)+(window._oceanTime?'<div style="font-size:10px;color:var(--mute);margin-top:6px">HYCOM ESPC · '+window._oceanTime.slice(0,16)+' UTC · 0 m · direction = where the water is going</div>':''),null),{maxWidth:240});
+      mk.addTo(curLayer);
+    }
+  }).catch(()=>{});
+
+  /* ── satellite SST: NASA GIBS GHRSST MUR, real colormap, click decodes the tile pixel ── */
+  const MUR_CM=[[43,0,26,-99,0.0],[45,0,28,0.0,0.15],[48,0,31,0.15,0.3],[51,0,34,0.3,0.45],[53,0,36,0.45,0.6],[56,0,39,0.6,0.75],[59,0,43,0.75,0.9],[63,1,46,0.9,1.05],[66,1,50,1.05,1.2],[69,1,53,1.2,1.35],[72,1,57,1.35,1.5],[75,2,61,1.5,1.65],[78,2,65,1.65,1.8],[81,2,69,1.8,1.95],[85,2,73,1.95,2.1],[88,2,77,2.1,2.25],[91,3,81,2.25,2.4],[95,3,85,2.4,2.55],[98,3,89,2.55,2.7],[101,3,93,2.7,2.85],[105,4,97,2.85,3.0],[108,4,102,3.0,3.15],[112,5,106,3.15,3.3],[115,5,110,3.3,3.45],[118,6,113,3.45,3.6],[120,6,115,3.6,3.75],[121,6,117,3.75,3.9],[122,6,119,3.9,4.05],[121,6,119,4.05,4.2],[120,7,119,4.2,4.35],[117,7,117,4.35,4.5],[114,7,116,4.5,4.65],[111,7,114,4.65,4.8],[107,8,112,4.8,4.95],[103,8,110,4.95,5.1],[98,8,108,5.1,5.25],[94,8,105,5.25,5.4],[90,9,103,5.4,5.55],[86,9,101,5.55,5.7],[81,9,99,5.7,5.85],[77,9,97,5.85,6.0],[73,10,94,6.0,6.15],[69,10,92,6.15,6.3],[65,10,90,6.3,6.45],[61,10,88,6.45,6.6],[57,10,86,6.6,6.75],[53,11,84,6.75,6.9],[48,11,81,6.9,7.05],[44,11,79,7.05,7.2],[40,11,77,7.2,7.35],[37,12,76,7.35,7.5],[34,13,75,7.5,7.65],[32,14,75,7.65,7.8],[30,16,77,7.8,7.95],[30,18,78,7.95,8.1],[30,20,81,8.1,8.25],[30,22,84,8.25,8.4],[30,24,87,8.4,8.55],[30,26,90,8.55,8.7],[31,28,93,8.7,8.85],[30,30,96,8.85,9.0],[30,33,99,9.0,9.15],[31,35,102,9.15,9.3],[31,37,105,9.3,9.45],[31,39,108,9.45,9.6],[31,42,112,9.6,9.75],[31,44,115,9.75,9.9],[31,46,118,9.9,10.05],[31,48,121,10.05,10.2],[31,50,124,10.2,10.35],[31,53,127,10.35,10.5],[31,55,130,10.5,10.65],[32,57,133,10.65,10.8],[32,59,136,10.8,10.95],[32,61,139,10.95,11.1],[32,64,142,11.1,11.25],[32,66,145,11.25,11.4],[32,68,148,11.4,11.55],[32,70,151,11.55,11.7],[33,73,155,11.7,11.85],[33,75,158,11.85,12.0],[33,78,161,12.0,12.15],[33,81,164,12.15,12.3],[34,84,167,12.3,12.45],[34,87,170,12.45,12.6],[35,90,173,12.6,12.75],[35,93,176,12.75,12.9],[36,96,179,12.9,13.05],[36,100,182,13.05,13.2],[37,103,185,13.2,13.35],[37,106,187,13.35,13.5],[38,110,190,13.5,13.65],[38,113,194,13.65,13.8],[39,117,197,13.8,13.95],[40,120,200,13.95,14.1],[40,123,203,14.1,14.25],[41,127,206,14.25,14.4],[41,130,209,14.4,14.55],[42,133,212,14.55,14.7],[42,136,215,14.7,14.85],[42,139,218,14.85,15.0],[43,142,221,15.0,15.15],[43,146,224,15.15,15.3],[44,149,227,15.3,15.45],[44,152,230,15.45,15.6],[45,156,233,15.6,15.75],[46,159,236,15.75,15.9],[46,163,239,15.9,16.05],[47,166,242,16.05,16.2],[48,170,245,16.2,16.35],[48,172,244,16.35,16.5],[47,173,240,16.5,16.65],[46,174,232,16.65,16.8],[45,174,222,16.8,16.95],[43,173,208,16.95,17.1],[41,171,191,17.1,17.25],[39,168,171,17.25,17.4],[37,166,152,17.4,17.55],[35,164,133,17.55,17.7],[32,163,113,17.7,17.85],[30,163,93,17.85,18.0],[27,165,72,18.0,18.15],[25,167,53,18.15,18.3],[26,170,37,18.3,18.45],[28,175,23,18.45,18.6],[32,179,13,18.6,18.75],[38,183,6,18.75,18.9],[45,187,1,18.9,19.05],[55,190,0,19.05,19.2],[66,194,0,19.2,19.35],[76,197,0,19.35,19.5],[87,201,0,19.5,19.65],[98,204,0,19.65,19.8],[109,207,0,19.8,19.95],[120,211,0,19.95,20.1],[131,215,0,20.1,20.25],[142,218,0,20.25,20.4],[153,222,0,20.4,20.55],[165,225,0,20.55,20.7],[176,229,0,20.7,20.85],[187,232,0,20.85,21.0],[197,236,0,21.0,21.15],[208,239,0,21.15,21.3],[219,243,0,21.3,21.45],[229,246,0,21.45,21.6],[237,247,0,21.6,21.75],[243,247,0,21.75,21.9],[248,245,0,21.9,22.05],[252,243,0,22.05,22.2],[254,239,0,22.2,22.35],[255,234,0,22.35,22.5],[255,228,0,22.5,22.65],[255,223,0,22.65,22.8],[255,217,0,22.8,22.95],[255,212,0,22.95,23.1],[255,206,0,23.1,23.25],[255,201,0,23.25,23.4],[255,196,0,23.4,23.55],[255,191,0,23.55,23.7],[255,185,0,23.7,23.85],[255,180,0,23.85,24.0],[255,175,0,24.0,24.15],[255,170,0,24.15,24.3],[255,164,0,24.3,24.45],[255,159,0,24.45,24.6],[255,153,0,24.6,24.75],[255,148,0,24.75,24.9],[255,142,0,24.9,25.05],[255,137,0,25.05,25.2],[255,131,0,25.2,25.35],[254,126,0,25.35,25.5],[253,122,0,25.5,25.65],[252,117,0,25.65,25.8],[251,113,0,25.8,25.95],[250,109,0,25.95,26.1],[248,106,0,26.1,26.25],[246,102,0,26.25,26.4],[244,98,0,26.4,26.55],[242,95,0,26.55,26.7],[240,91,0,26.7,26.85],[238,87,0,26.85,27.0],[236,83,0,27.0,27.15],[234,80,0,27.15,27.3],[232,76,0,27.3,27.45],[230,73,0,27.45,27.6],[228,69,0,27.6,27.75],[226,66,0,27.75,27.9],[224,62,0,27.9,28.05],[222,59,0,28.05,28.2],[220,55,0,28.2,28.35],[218,51,0,28.35,28.5],[216,48,0,28.5,28.65],[213,45,0,28.65,28.8],[210,42,0,28.8,28.95],[206,39,0,28.95,29.1],[202,37,0,29.1,29.25],[197,34,0,29.25,29.4],[192,32,0,29.4,29.55],[187,31,0,29.55,29.7],[181,29,0,29.7,29.85],[176,27,0,29.85,30.0],[171,25,0,30.0,30.15],[166,23,0,30.15,30.3],[161,21,0,30.3,30.45],[156,20,0,30.45,30.6],[151,18,0,30.6,30.75],[145,16,0,30.75,30.9],[140,14,0,30.9,31.05],[135,12,0,31.05,31.2],[130,10,0,31.2,31.35],[124,8,0,31.35,31.5],[120,7,0,31.5,31.65],[115,5,0,31.65,31.8],[110,3,0,31.8,32.0],[107,2,0,32.0,99]];
+  const murCMColor=v=>{ for(const e of MUR_CM) if(v>=e[3]&&v<e[4]) return 'rgb('+e[0]+','+e[1]+','+e[2]+')'; return null; };
+  const murCMLookup=(r,g,b)=>{ let best=null,bd=1e9; for(const e of MUR_CM){ const d=(e[0]-r)**2+(e[1]-g)**2+(e[2]-b)**2; if(d<bd){bd=d;best=e;} if(d===0) break; } return bd<=48?best:null; };
+  const murGradient=()=>{ const st=[]; for(let v=0;v<=32;v+=1){ const c=murCMColor(v+0.01); if(c) st.push(c+' '+(v/32*100).toFixed(1)+'%'); } return 'linear-gradient(90deg,'+st.join(',')+')'; };
+  const _murURL=d=>'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GHRSST_L4_MUR_Sea_Surface_Temperature/default/'+d+'/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png';
+  satSSTLayer=L.tileLayer(_murURL(_murDate),{maxNativeZoom:7,maxZoom:11,opacity:.82,pane:'oceanPane',attribution:'Satellite SST: NASA GIBS · GHRSST MUR L4'});
+  (async function findMurDate(){   // GIBS publishes MUR 1–3 days behind; probe backward until a Gulf tile answers
+    for(let back=1;back<=6;back++){
+      const d=new Date(Date.now()-back*864e5).toISOString().slice(0,10);
+      const ok=await new Promise(res=>{ const im=new Image(); im.onload=()=>res(true); im.onerror=()=>res(false); im.src=_murURL(d).replace('{z}/{y}/{x}','6/26/15'); });
+      if(ok){ _murDate=d; satSSTLayer.setUrl(_murURL(d)); updateOceanLegend(); break; }
+    }
+  })();
+  function murValueAt(latlng,cb){
+    try{
+      const z=Math.min(map.getZoom(),7), pt=map.project(latlng,z), tx=Math.floor(pt.x/256), ty=Math.floor(pt.y/256), px=Math.floor(pt.x-tx*256), py=Math.floor(pt.y-ty*256);
+      const img=new Image(); img.crossOrigin='anonymous';
+      img.onload=()=>{ try{ const c=document.createElement('canvas'); c.width=c.height=256; const x=c.getContext('2d'); x.drawImage(img,0,0);
+          const d=x.getImageData(px,py,1,1).data; if(d[3]<128){ cb({none:true}); return; }
+          const e=murCMLookup(d[0],d[1],d[2]); cb(e?{lo:e[3],hi:e[4]}:{unknown:true}); }catch(err){ cb({error:true}); } };
+      img.onerror=()=>cb({error:true}); img.src=_murURL(_murDate).replace('{z}',z).replace('{y}',ty).replace('{x}',tx);
+    }catch(err){ cb({error:true}); }
+  }
+
+  /* ── legend + crosshair cursor, driven by layer add/remove events (no edits to the toggle builder) ── */
+  function sampleCell(d,key,lat,lon){
+    if(!d) return null; const lats=d.lats,lons=d.lons,g=d[key];
+    const la0=Math.min(lats[0],lats[lats.length-1]),la1=Math.max(lats[0],lats[lats.length-1]), lo0=Math.min(lons[0],lons[lons.length-1]),lo1=Math.max(lons[0],lons[lons.length-1]);
+    const dla=Math.abs(lats[1]-lats[0]),dlo=Math.abs(lons[1]-lons[0]);
+    if(lat<la0-dla/2||lat>la1+dla/2||lon<lo0-dlo/2||lon>lo1+dlo/2) return undefined;
+    let ri=0,rb=1e9; for(let i=0;i<lats.length;i++){const x=Math.abs(lats[i]-lat); if(x<rb){rb=x;ri=i;}}
+    let ci=0,cb=1e9; for(let i=0;i<lons.length;i++){const x=Math.abs(lons[i]-lon); if(x<cb){cb=x;ci=i;}}
+    return g[ri][ci];
+  }
+  function updateOceanLegend(){
+    const el=document.getElementById('ocean-legend'); if(!el) return;
+    const onSST=map.hasLayer(sstLayer), onD26=map.hasLayer(d26Layer), onCur=map.hasLayer(curLayer), onSat=satSSTLayer&&map.hasLayer(satSSTLayer);
+    document.getElementById('map').classList.toggle('probe',onSST||onD26||onCur||onSat);
+    const bar='<div class="ol-bar" style="background:linear-gradient(90deg,'+[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1].map(ramp).join(',')+')"></div>';
+    const tm=window._oceanTime?'<div class="ol-sub">HYCOM ESPC · '+window._oceanTime.slice(0,16)+' UTC · click the map for values</div>':'';
+    if(onSST) el.innerHTML='<div class="ol-t">HYCOM sea-surface temperature · 0 m</div>'+bar+'<div class="ol-e"><span>'+SST_MIN+'°C</span><span>'+SST_MAX+'°C</span></div>'+tm;
+    else if(onD26) el.innerHTML='<div class="ol-t">HYCOM ocean heat · D26 (26 °C isotherm depth = RI fuel)</div>'+bar+'<div class="ol-e"><span>0 m</span><span>'+D26_MAX+'+ m</span></div>'+tm;
+    else if(onCur) el.innerHTML='<div class="ol-t">Surface currents · HYCOM, 0 m</div>'
+    +'<div class="ol-sub" style="margin-bottom:4px">Each arrow is one model cell. It points where the water is going; longer and warmer-coloured = faster. Cells under 0.06 m/s are not drawn.</div>'
+    +[[0.8,null],[0.45,0.8],[0.22,0.45],[0.06,0.22]].map(([a,b])=>{ const c=curClass(a); return '<div style="display:flex;align-items:center;gap:7px;font-size:10.5px;color:var(--slate);padding:1px 0"><span style="color:'+c[1]+';font-size:'+(8+Math.min((b||1.2),1.6)*7)+'px;line-height:1">➤</span><span>'+(b?a+'–'+b:'≥ '+a)+' m/s · '+(b?(a*1.9438).toFixed(1)+'–'+(b*1.9438).toFixed(1):'≥ '+(a*1.9438).toFixed(1))+' kt · '+c[2]+'</span></div>'; }).join('')
+    +'<div class="ol-sub" style="margin-top:4px">Hover an arrow for speed and direction; click it, or anywhere on the water, for the full readout.</div>'+tm;
+    else if(onSat) el.innerHTML='<div class="ol-t">Satellite SST · NASA GHRSST MUR L4 (observed)</div><div class="ol-bar" style="background:'+murGradient()+'"></div>'
+      +'<div style="position:relative;height:12px;font-family:IBM Plex Mono;font-size:9px;color:var(--slate)">'+[0,8,16,24,28,32].map(v=>'<span style="position:absolute;left:'+(v/32*100)+'%;transform:translateX(-'+(v===0?0:v===32?100:50)+'%)">'+v+'°</span>').join('')+'</div>'
+      +'<div class="ol-sub">'+_murDate+' · 1 km blended satellite analysis · NASA GIBS palette, 0.15 °C steps · click the water for the temperature</div>';
+    else { el.classList.remove('on'); return; }
+    el.classList.add('on');
+  }
+  map.on('layeradd layerremove',e=>{ if([sstLayer,d26Layer,curLayer,satSSTLayer].includes(e.layer)) setTimeout(updateOceanLegend,0); });
+
+  /* ── click the water for the model / satellite value at that point ── */
+  map.on('click',e=>{
+    const tgt=e.originalEvent&&e.originalEvent.target;
+    if(tgt&&tgt.closest&&tgt.closest('.leaflet-interactive,.leaflet-marker-icon,.leaflet-popup,.panel')) return;
+    const onSST=map.hasLayer(sstLayer), onD26=map.hasLayer(d26Layer), onCur=map.hasLayer(curLayer), onSat=satSSTLayer&&map.hasLayer(satSSTLayer);
+    if(!(onSST||onD26||onCur||onSat)) return;
+    const la=e.latlng.lat, lo=e.latlng.lng, row=(lab,val)=>'<div class="row"><span>'+lab+'</span><b>'+val+'</b></div>';
+    const txt=(v,f)=>v===undefined?'outside model grid':v==null?'no data (land)':f(v);
+    let body='';
+    if(onSST){ const v=sampleCell(window._hycomSST,'sst',la,lo); body+=row('Sea-surface temp',txt(v,x=>x.toFixed(2)+' °C')); }
+    if(onD26){ const v=sampleCell(window._hycomD26,'d26',la,lo); body+=row('D26 · 26 °C depth',txt(v,x=>Math.round(x)+' m')); }
+    if(onCur){ const g=window._hycomCur, u=sampleCell(g,'u',la,lo), v=sampleCell(g,'v',la,lo); body+=row('Surface current',(u!=null&&v!=null)?curText(u,v,true):(u===undefined?'outside model grid':'no data (land)')); }
+    if(onSat) body+=row('Satellite SST (MUR '+_murDate+')','<span id="mur-val">reading tile…</span>');
+    const tm=window._oceanTime&&(onSST||onD26||onCur)?'<div style="font-size:10px;color:var(--mute);margin-top:6px">HYCOM ESPC · '+window._oceanTime.slice(0,16)+' UTC · nearest grid cell</div>':'';
+    L.popup({maxWidth:240}).setLatLng(e.latlng).setContent(pop(onSat&&!(onSST||onD26||onCur)?'Observed value at point':'Value at point',fmt(la,lo),'',body+tm,null)).openOn(map);
+    if(onSat) murValueAt(e.latlng,res=>{ const s=document.getElementById('mur-val'); if(!s) return;
+      s.textContent=res.none?'no data (land)':res.error?'tile could not be read':res.unknown?'colour not in palette':(res.lo<=-99?'< '+res.hi.toFixed(2):res.hi>=99?'≥ '+res.lo.toFixed(2):res.lo.toFixed(2)+'–'+res.hi.toFixed(2))+' °C'; });
+  });
+}catch(err){ console.warn('ocean/zone layers not available:', err); }
+
 const toggleLayers=[
   {key:'NEXRAD radar · composite',dataKey:'radar',lyr:radarLayer,on:true,loop:true},
   {key:'Storm · cone / track / forecast',lyr:stormLayer,on:true},
   {key:'Coastal watches / warnings',lyr:wwLayer,on:true},
   {key:'Past track',lyr:pastLayer,on:false},
+  {key:'RI onset core · Bay of Campeche (Zone A)',lyr:zoneLayer,on:true},
   {key:'GOES GeoColor · satellite',dataKey:'goes-geocolor',lyr:goesGeo,on:false,goesAnim:true},
   {key:'GOES visible · Band 2 (day)',dataKey:'goes-visible',lyr:goesVis,on:false},
   {key:'GOES clean IR · Band 13',dataKey:'goes-ir',lyr:goesIR,on:false},
+  {key:'HYCOM SST · live model',lyr:sstLayer,on:false},
+  {key:'HYCOM ocean heat · D26',lyr:d26Layer,on:false},
+  {key:'HYCOM surface currents',lyr:curLayer,on:false},
+  {key:'Satellite SST · GHRSST MUR (obs)',lyr:satSSTLayer||L.layerGroup(),on:false},
   {key:'NDBC buoys · live SST/wind',lyr:buoyLayer,on:true},
   {key:'Gliders · IOOS DAC',lyr:gliderLayer,on:true},
   {key:'Argo floats',lyr:argoLayer,on:false},
@@ -677,6 +844,128 @@ toggleLayers.forEach(t=>{if(t.on)t.lyr.addTo(map);});
 probeImg('NEXRAD radar',IEM+'nexrad-n0q-900913/6/15/26.png?'+Date.now(),'tiles serving');
 probeImg('GOES tiles · GIBS','https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_GeoColor/default/default/GoogleMapsCompatible_Level7/6/22/16.png?'+Date.now(),'latest imagery');
 /* the sector-loop status row is set by drawGoesLoop()'s own load/error handlers */
+
+/* ══ EXPORT THIS VIEW — PNG / PDF / HTML snapshot of exactly what is on screen (added 2026-10-08) ══
+   html2canvas renders a copy of the live DOM in the browser (no prompt); every tile host used here
+   sends Access-Control-Allow-Origin: *, so tiles are captured. See prepClone for the three fixes it
+   needs on this page. Libraries are fetched from cdnjs only on first click. All guarded. */
+(function(){
+  try{
+    const $=id=>document.getElementById(id);
+    const st=msg=>{ const s=$('exp-status'); if(s) s.textContent=msg; };
+    const loadScript=src=>new Promise((res,rej)=>{ if(document.querySelector('script[src="'+src+'"]')) return res(); const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('could not load '+src)); document.head.appendChild(s); });
+    const JSPDF='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    const stamp=()=>{ const d=new Date(); return d.toISOString().slice(0,16).replace('T','_').replace(':','')+'Z'; };
+    const stormTag=()=>{ const h=($('hl-t')||{}).textContent||''; const m=h.match(/([A-Z][A-Za-z]+)\s*$/); return m?m[1]:'Gulf'; };
+    const meta=()=>({
+      time_utc:new Date().toISOString().replace('T',' ').slice(0,19)+' UTC',
+      headline:(($('hl-t')||{}).textContent||'')+(($('hl-s')||{}).textContent?' — '+$('hl-s').textContent:''),
+      layers:[...document.querySelectorAll('#lrows .lyr-row')].filter(r=>r.querySelector('input').checked).map(r=>r.innerText.trim()),
+      status:[...document.querySelectorAll('#strows .st-row')].map(r=>r.innerText.replace(/\s+/g,' ').trim()),
+      page:location.href.split('?')[0]
+    });
+    const H2C='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    /* Fixes applied to the capture COPY of the page (the live page is untouched):
+       1. the custom Layers checkboxes make html2canvas throw "unexpected EOF" — swap them for plain boxes;
+       2. Leaflet positions panes/tiles/markers with translate3d, which html2canvas mis-places — flatten
+          pure translations into left/top;
+       3. the basemap darkening is a CSS filter, which html2canvas ignores — add an equivalent dark overlay. */
+    /* Capture = two layers composited (the StormWatch snapshot approach for tiles):
+         1. basemap tiles are fetched with CORS straight from the HTTP cache and drawn onto the canvas
+            through the page's own darkening filter (html2canvas ignores CSS filters);
+         2. everything else — radar/GOES/ocean overlays, cone, tracks, markers, labels, panels, legends,
+            popups — is rendered by html2canvas on a copy of the page with the basemap hidden.
+       Fixes applied to the copy only: the custom Layers checkboxes (they make html2canvas throw) are
+       swapped for plain boxes, and Leaflet's translate3d positioning is flattened into left/top. */
+    const BASE_FILTER='brightness(.5) saturate(1.4) contrast(1.04)';
+    function prepClone(clone){
+      clone.querySelectorAll('.lyr-row input').forEach(i=>{ const b=clone.createElement('span');
+        b.style.cssText='display:inline-block;width:14px;height:14px;border:1.5px solid #1d3346;border-radius:4px;flex:none;box-sizing:border-box;background:'+(i.checked?'#46cfd6':'transparent'); i.replaceWith(b); });
+      const win=clone.defaultView;
+      clone.querySelectorAll('.leaflet-map-pane, .leaflet-map-pane *').forEach(el=>{
+        const cs=win.getComputedStyle(el), m=cs.transform; if(!m||m==='none') return;
+        const a=m.match(/^matrix\(([^)]+)\)/); if(!a) return; const p=a[1].split(',').map(Number);
+        if(p[0]!==1||p[3]!==1||p[1]||p[2]) return;
+        el.style.transform='none'; el.style.left=((parseFloat(cs.left)||0)+p[4])+'px'; el.style.top=((parseFloat(cs.top)||0)+p[5])+'px';
+      });
+      const tp=clone.querySelector('#map .leaflet-tile-pane'); if(tp) tp.style.display='none';     // basemap drawn separately
+      const mp=clone.getElementById('map'); if(mp){ mp.style.background='transparent'; } 
+      clone.querySelectorAll('.leaflet-container').forEach(el=>{ el.style.background='transparent'; });
+      clone.body.style.background='transparent'; clone.documentElement.style.background='transparent';   // else the copy paints over the basemap
+      const ex=clone.getElementById('export'); if(ex) ex.style.display='none';
+    }
+    async function basemapTiles(){   // [{bmp, x, y, w, h}] for every loaded basemap tile on screen
+      const out=[]; const mr=document.getElementById('map').getBoundingClientRect();
+      await Promise.all([...document.querySelectorAll('#map .leaflet-tile-pane img.leaflet-tile')].map(async im=>{
+        if(!im.complete||!im.naturalWidth) return; const r=im.getBoundingClientRect();
+        if(r.width<1||r.right<mr.left||r.left>mr.right||r.bottom<mr.top||r.top>mr.bottom) return;
+        try{ const res=await fetch(im.currentSrc||im.src,{mode:'cors'}); if(!res.ok) return; const bmp=await createImageBitmap(await res.blob()); out.push({bmp,x:r.left,y:r.top,w:r.width,h:r.height}); }catch(e){}
+      }));
+      return out;
+    }
+    async function capture(){
+      st('capturing… (~10 s)');
+      await loadScript(H2C);
+      const w=window.innerWidth,h=window.innerHeight;
+      const tiles=await basemapTiles();
+      const top=await html2canvas(document.body,{useCORS:true,allowTaint:false,backgroundColor:null,scale:1,logging:false,
+        width:w,height:h,windowWidth:w,windowHeight:h,x:0,y:0,scrollX:0,scrollY:0,imageTimeout:15000,onclone:prepClone});
+      const c=document.createElement('canvas'); c.width=w; c.height=h; const x=c.getContext('2d');
+      x.fillStyle='#071420'; x.fillRect(0,0,w,h);
+      const mr=document.getElementById('map').getBoundingClientRect();
+      x.save(); x.beginPath(); x.rect(mr.left,mr.top,mr.width,mr.height); x.clip(); x.filter=BASE_FILTER;
+      for(const t of tiles){ try{ x.drawImage(t.bmp,t.x,t.y,t.w,t.h); }catch(e){} }
+      x.restore();
+      x.drawImage(top,0,0);
+      return c;
+    }
+    const download=(blob,name)=>{
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>a.remove(),1000);
+      const s=$('exp-status'); if(s){ s.innerHTML='<a href="'+url+'" download="'+name+'" style="color:var(--aqua);text-decoration:none;font-weight:600" title="'+name+'">&#8595; save '+name.split('.').pop().toUpperCase()+'</a> <span style="color:var(--mute)">(click if it did not download)</span>'; }
+      setTimeout(()=>URL.revokeObjectURL(url),10*60*1000);
+    };
+    const base=()=>'RapidWatch_LiveEvent_'+stormTag()+'_'+stamp();
+    /* on-page preview of the captured image: right-click → "Save image as…" always works, even when
+       Chrome has blocked the site's automatic downloads */
+    function preview(canvas,name){
+      let ov=$('exp-preview'); if(ov) ov.remove();
+      ov=document.createElement('div'); ov.id='exp-preview';
+      ov.style.cssText='position:fixed;inset:0;z-index:5000;background:rgba(2,6,10,.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:18px';
+      const bar=document.createElement('div'); bar.style.cssText='font-family:IBM Plex Mono;font-size:11px;color:#cdd9e1;display:flex;gap:16px;align-items:center';
+      bar.innerHTML='<span>'+name+'</span><span style="color:#8ba0b0">right-click the image → Save image as…</span><button id="exp-close" style="cursor:pointer;font-family:IBM Plex Mono;font-size:11px;font-weight:600;padding:4px 12px;border-radius:6px;background:rgba(70,207,214,.14);border:1px solid #46cfd6;color:#46cfd6">close</button>';
+      const im=document.createElement('img'); im.src=canvas.toDataURL('image/png'); im.alt=name; im.style.cssText='max-width:96vw;max-height:84vh;border:1px solid #1d3346;box-shadow:0 0 30px #000';
+      ov.appendChild(bar); ov.appendChild(im); document.body.appendChild(ov);
+      $('exp-close').onclick=()=>ov.remove(); ov.addEventListener('click',e=>{ if(e.target===ov) ov.remove(); });
+    }
+    async function exportPNG(){
+      try{ const c=await capture(); c.toBlob(b=>{ download(b,base()+'.png'); preview(c,base()+'.png'); },'image/png'); }
+      catch(e){ st('PNG failed: '+e.message); }
+    }
+    async function exportPDF(){
+      try{ const c=await capture(); await loadScript(JSPDF);
+        const m=meta(), W=c.width, Hh=c.height, strip=46;
+        const pdf=new jspdf.jsPDF({orientation:W>=Hh?'landscape':'portrait',unit:'px',format:[W,Hh+strip],hotfixes:['px_scaling']});
+        pdf.setFillColor(5,11,18); pdf.rect(0,0,W,Hh+strip,'F');
+        pdf.addImage(c.toDataURL('image/png'),'PNG',0,0,W,Hh);
+        pdf.setTextColor(205,217,225); pdf.setFontSize(11); pdf.text('RapidWatch — Live Event · '+m.time_utc+' · '+m.headline,12,Hh+18,{maxWidth:W-24});
+        pdf.setFontSize(9); pdf.setTextColor(139,160,176); pdf.text('Layers on: '+m.layers.join(' · '),12,Hh+34,{maxWidth:W-24});
+        download(pdf.output('blob'),base()+'.pdf');
+      }catch(e){ st('PDF failed: '+e.message); }
+    }
+    async function exportHTML(){
+      try{ const c=await capture(); const m=meta(); const esc=s=>String(s).replace(/[&<>]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[x]));
+        const html='<!doctype html><html lang="en"><head><meta charset="utf-8"><title>RapidWatch Live Event snapshot · '+esc(m.time_utc)+'</title>'
+          +'<style>body{margin:0;background:#050b12;color:#cdd9e1;font-family:"IBM Plex Mono",Consolas,monospace;font-size:12px}header{padding:14px 18px;border-bottom:1px solid #1d3346}h1{font-size:15px;margin:0 0 4px;color:#fff}img{display:block;max-width:100%;height:auto}table{border-collapse:collapse;margin:10px 18px}td{padding:3px 10px 3px 0;vertical-align:top;color:#8ba0b0}td:first-child{color:#46cfd6;white-space:nowrap}</style></head><body>'
+          +'<header><h1>RapidWatch — Live Event snapshot</h1><div>'+esc(m.time_utc)+' · '+esc(m.headline)+'</div></header>'
+          +'<img src="'+c.toDataURL('image/png')+'" alt="Live Event view at '+esc(m.time_utc)+'">'
+          +'<table><tr><td>Layers on</td><td>'+m.layers.map(esc).join('<br>')+'</td></tr><tr><td>Data status</td><td>'+m.status.map(esc).join('<br>')+'</td></tr><tr><td>Source page</td><td>'+esc(m.page)+'</td></tr></table></body></html>';
+        download(new Blob([html],{type:'text/html'}),base()+'.html');
+      }catch(e){ st('HTML failed: '+e.message); }
+    }
+    $('exp-png').onclick=exportPNG; $('exp-pdf').onclick=exportPDF; $('exp-html').onclick=exportHTML;
+  }catch(err){ console.warn('export control not available:',err); }
+})();
 </script>
 </body>
 </html>
