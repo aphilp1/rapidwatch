@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-08 06:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-08 07:34Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-08 06:44Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.6W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 11 (first 2026-10-07 12:33Z, latest 2026-10-08 05:07Z).
+- **Aircraft fixes archived:** 12 (first 2026-10-07 12:33Z, latest 2026-10-08 06:24Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -56,6 +56,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 02:48Z | 22.91N 91.87W | 982 mb | NA | 57 kt 238 deg 7 nm 02:53:00Z | AF301 0509A ISAIAS |
 | 2026-10-08 04:34Z | 23.07N 91.71W | 985 mb | NA | 70 kt 038 deg 22 nm 04:41:30Z | AF301 0509A ISAIAS |
 | 2026-10-08 05:07Z | 23.05N 91.68W | 983 mb | OPEN SE C30 | 63 kt 220 deg 15 nm 05:11:06Z | NOAA2 0609A ISAIAS |
+| 2026-10-08 06:24Z | 23.13N 91.59W | 984 mb | OPEN SE E01/31/18 | 58 kt 323 deg 13 nm 06:27:16Z | NOAA2 0609A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
