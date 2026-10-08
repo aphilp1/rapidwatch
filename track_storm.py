@@ -298,6 +298,13 @@ def archive_storm(s, layers, run_ts):
     except Exception as e:
         added.append(f"sensor sweep FAILED: {type(e).__name__}: {e}")
 
+    # 6c. Entire path since NHC first tracked it -> track_full.geojson + TRACK.md (build_track.py)
+    try:
+        import build_track
+        added.append(build_track.build(sid, root, name))
+    except Exception as e:
+        added.append(f"track build FAILED: {type(e).__name__}: {e}")
+
     # 7. Log line
     line = (f"- {run_ts} UTC · adv {adv} · {s.get('classification')} {name} {s.get('intensity')} kt "
             f"{s.get('pressure')} mb at {la:.1f}N {abs(lo):.1f}W moving {s.get('movementDir')}° @ {s.get('movementSpeed')} kt · "
