@@ -415,7 +415,7 @@ document.getElementById('gtog').onclick=function(){
 };
 
 /* ══ NHC active storms: position, cone, forecast track/points, watches, past track ══ */
-const stormLayer=L.layerGroup(),wwLayer=L.layerGroup(),pastLayer=L.layerGroup();
+const stormLayer=L.layerGroup(),wwLayer=L.layerGroup(),pastLayer=L.layerGroup(),fullTrackLayer=L.layerGroup(),aircraftLayer=L.layerGroup();
 const MAPSRV='https://mapservices.weather.noaa.gov/tropical/rest/services/tropical/NHC_tropical_weather/MapServer';
 const WW_STYLE={ /* official NHC watch/warning colours */
   HWR:{color:'#dc3545',label:'Hurricane Warning'},
@@ -452,10 +452,15 @@ function stormCardHTML(s,cl,srcNote){
     +'<div class="sc-row"><span>Position</span><b>'+fmt(s.latitudeNumeric,s.longitudeNumeric)+'</b></div>'
     +'<div class="sc-row"><span>Motion</span><b>'+compass(s.movementDir)+' @ '+s.movementSpeed+' kt</b></div>'
     +'<div class="sc-row"><span>Advisory</span><b>#'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'—')+' · '+agoH(s.lastUpdate)+' ago</b></div>'
-    +'<div class="sc-src">'+srcNote+'</div>';
+    +'<div class="sc-src">'+srcNote+'</div>'
+    +'<div class="sc-src" style="margin-top:4px">Archive (rebuilt hourly): '
+    +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/blob/master/data/storms/'+s.id.toUpperCase()+'/TRACK.md" target="_blank" rel="noopener">full track</a> · '
+    +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/blob/master/data/storms/'+s.id.toUpperCase()+'/sensors/SENSOR_LOG.md" target="_blank" rel="noopener">every sensor along the track</a> · '
+    +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/blob/master/data/storms/'+s.id.toUpperCase()+'/RI_EVENT_RECORD.md" target="_blank" rel="noopener">RI record</a> · '
+    +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/tree/master/data/storms/'+s.id.toUpperCase()+'/recon" target="_blank" rel="noopener">Hurricane Hunter messages</a></div>';
 }
 async function loadStorms(){
-  stormLayer.clearLayers();wwLayer.clearLayers();pastLayer.clearLayers();
+  stormLayer.clearLayers();wwLayer.clearLayers();pastLayer.clearLayers();fullTrackLayer.clearLayers();aircraftLayer.clearLayers();
   const host=document.getElementById('storms');
   let storms=[];
   try{
@@ -531,6 +536,51 @@ async function loadStorms(){
     if(pl) L.geoJSON(pl.g,{style:{color:'#8ba0b0',weight:1.8,dashArray:'3 5',opacity:.8}}).addTo(pastLayer);
     const pp=await stormProduct(bin,sid,'Past Points','past_pts');
     if(pp) L.geoJSON(pp.g,{pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:2.5,color:'#8ba0b0',weight:1,fillColor:'#8ba0b0',fillOpacity:.7,interactive:false})}).addTo(pastLayer);
+    /* full track: NHC best track from the first time NHC carried the system (this site's hourly archive) */
+    try{
+      const r=await fetch('data/storms/'+sid+'/track_full.geojson?'+Math.floor(Date.now()/3e5));
+      if(r.ok){
+        const g=await r.json();
+        const pts=g.features.filter(f=>f.properties.kind==='best_track_point');
+        const ll=f=>[f.geometry.coordinates[1],f.geometry.coordinates[0]];
+        for(let i=1;i<pts.length;i++){
+          L.polyline([ll(pts[i-1]),ll(pts[i])],{color:'#0b1016',weight:6,opacity:.55,interactive:false}).addTo(fullTrackLayer);
+          L.polyline([ll(pts[i-1]),ll(pts[i])],{color:classOf(pts[i].properties.vmax_kt).c,weight:3,opacity:.95,interactive:false}).addTo(fullTrackLayer);
+        }
+        pts.forEach(f=>{
+          const p=f.properties,k=classOf(p.vmax_kt);
+          const m=L.circleMarker(ll(f),{radius:p.time_utc.slice(11,13)==='00'||p.time_utc.slice(11,13)==='12'?4.5:3,color:'#0b1016',weight:1,fillColor:k.c,fillOpacity:1})
+            .bindPopup(pop('NHC best track · '+p.type_name,p.time_utc.replace('T',' '),s.name,
+              fmt(p.lat,p.lon)+'<br>Max wind <b>'+p.vmax_kt+' kt</b>'+(p.mslp_mb?' · pressure <b>'+p.mslp_mb+' mb</b>':'')
+              +(p.speed_kt!==''?'<br>Moved <b>'+p.leg_km+' km</b> since previous fix (<b>'+p.speed_kt+' kt</b>)':'')
+              +'<br><span style="opacity:.7">ATCF b-deck, 6-hourly fix as archived by this site</span>',['NHC','best track',k.lab]));
+          /* one tooltip per marker: a second bindTooltip() leaves the permanent one closed */
+          if(p.first) m.bindTooltip('NHC FIRST TRACKED · '+p.time_utc.slice(5,13).replace('T',' ')+'Z · '+p.type_name.toUpperCase(),{permanent:true,direction:'bottom',offset:[0,6],className:'ev-tip'});
+          else m.bindTooltip(p.time_utc.slice(5,13).replace('T',' ')+'Z · '+p.type+' '+p.vmax_kt+' kt',{direction:'top',offset:[0,-4],className:'ev-tip'});
+          m.addTo(fullTrackLayer);
+          if(p.first) m.openTooltip();
+        });
+        /* connect the last 6-hourly fix to the current advisory position so the track reaches the storm marker */
+        if(pts.length){
+          const last=ll(pts[pts.length-1]),now=[s.latitudeNumeric,s.longitudeNumeric];
+          if(Math.abs(last[0]-now[0])>1e-6||Math.abs(last[1]-now[1])>1e-6){
+            L.polyline([last,now],{color:'#0b1016',weight:6,opacity:.55,interactive:false}).addTo(fullTrackLayer);
+            L.polyline([last,now],{color:classOf(s.intensity).c,weight:3,opacity:.95,dashArray:'6 5',interactive:false})
+              .bindTooltip('Last best-track fix → current advisory position',{sticky:true,className:'ev-tip'}).addTo(fullTrackLayer);
+          }
+        }
+        g.features.filter(f=>f.properties.kind==='aircraft_fix').forEach(f=>{
+          const p=f.properties;
+          L.circleMarker(ll(f),{radius:3,color:'#0b1016',weight:1,fillColor:'#ffffff',fillOpacity:.95})
+            .bindTooltip('AIRCRAFT FIX · '+p.time_utc.slice(5)+' · '+p.min_slp_mb+' mb',{direction:'top',offset:[0,-4],className:'ev-tip'})
+            .bindPopup(pop('Hurricane Hunter center fix',p.time_utc,p.mission,fmt(f.geometry.coordinates[1],f.geometry.coordinates[0])
+              +'<br>Min SLP <b>'+p.min_slp_mb+' mb</b> · max 700 mb flight-level wind <b>'+p.max_fl_wind_kt+' kt</b>'+(p.eye&&p.eye!=='NA'?' · eye '+p.eye:'')
+              +'<br><span style="opacity:.7">Vortex data message (REPNT2) as archived by this site</span>',['recon','vortex message']))
+            .addTo(aircraftLayer);
+        });
+        if(pts.length) console.log('full track:',pts.length,'best-track fixes from',pts[0].properties.time_utc);
+      }
+    }catch(e){ console.warn('full track not available:',e); }
     /* storm card */
     const card=document.createElement('div');card.className='storm-card';
     card.innerHTML=stormCardHTML(s,cl,(coneSrc==='live'?'cone/track: live NHC MapServer':coneSrc==='snapshot'?'cone/track: 30-min site snapshot':'cone/track: unavailable'));
@@ -778,6 +828,8 @@ const toggleLayers=[
   {key:'Storm · cone / track / forecast',lyr:stormLayer,on:true},
   {key:'Coastal watches / warnings',lyr:wwLayer,on:true},
   {key:'Past track',lyr:pastLayer,on:false},
+  {key:'Full track · NHC best track since first tracked',lyr:fullTrackLayer,on:true},
+  {key:'Aircraft center fixes · Hurricane Hunters',lyr:aircraftLayer,on:false},
   {key:'RI onset core · Bay of Campeche (Zone A)',lyr:zoneLayer,on:true},
   {key:'GOES GeoColor · satellite',dataKey:'goes-geocolor',lyr:goesGeo,on:false,goesAnim:true},
   {key:'GOES visible · Band 2 (day)',dataKey:'goes-visible',lyr:goesVis,on:false},
