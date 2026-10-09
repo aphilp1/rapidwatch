@@ -350,3 +350,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - ppta1 Perdido Pass, AL · 131 km from center · 2026-10-09T20:00Z · wind ° 11.8 m/s gust  · pres 1003.5 hPa · air 24.8 °C · water 25.2 °C · wave  m
   - pclf1 8729840 - Pensacola, FL · 135 km from center · 2026-10-09T20:54Z · wind 20° 10.3 m/s gust 16.5 · pres 1002.9 hPa · air 21.2 °C · water 26.4 °C · wave  m
 
+## 20261009T2244 UTC · center 29.5N 86.9W · HU 100 kt · forecast file adv013_points.geojson
+- Track points: 21 best-track + center + 5 forecast. Corridor stations: 102 (66 reporting standard met). New NDBC observation rows merged: 439.
+- Argo floats in corridor: 24 (0 new profiles, 0 profile files written). Gliders in corridor: 3 (0 new reports, 0 profile files written).
+- HYCOM sampled at 27 track points; MUR satellite SST returned at 2 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - 42028 C24 - FLRACEP nWFS Buoy, 58m isobath · 71 km from center · 2026-10-09T21:35Z · wind 120° 23.0 m/s gust 30.0 · pres 991.5 hPa · air 26.1 °C · water  °C · wave  m
+  - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 88 km from center · 2026-10-09T22:20Z · wind 350° 22.0 m/s gust 28.0 · pres 996.9 hPa · air 22.9 °C · water 27.9 °C · wave 4.9 m
+  - kvoa Viosca Knoll 786 / Petronius (Chevron) · 91 km from center · 2026-10-09T04:20Z · wind ° 1.5 m/s gust  · pres  hPa · air 26 °C · water  °C · wave  m
+  - pclf1 8729840 - Pensacola, FL · 105 km from center · 2026-10-09T22:00Z · wind °  m/s gust  · pres 1000.2 hPa · air  °C · water 26.6 °C · wave  m
+  - ppta1 Perdido Pass, AL · 107 km from center · 2026-10-09T21:00Z · wind ° 15.4 m/s gust  · pres 1002.0 hPa · air 24.2 °C · water 25.2 °C · wave  m
+  - 42039 PENSACOLA - 115NM SSE of Pensacola, FL · 118 km from center · 2026-10-09T22:10Z · wind 200° 17.0 m/s gust 21.0 · pres 998.9 hPa · air 27.1 °C · water  °C · wave  m
+

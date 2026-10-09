@@ -1,0 +1,29 @@
+000
+WTNT64 KNHC 092204 CCA
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update...Corrected
+NWS National Hurricane Center Miami FL       AL092026
+500 PM CDT Fri Oct 09 2026
+
+Corrected for reference point distances
+
+...WIND GUSTS APPROACHING HURRICANE FORCE ALONG THE NORTHERN GULF 
+COAST...
+...5 PM CDT POSITION UPDATE...
+
+A wind gust to 72 mph (116 km/h) was recently recorded at Orange 
+Beach, Alabama. A wind gust to 69 mph (111 km/h) was recently 
+recorded at NOAA buoy 42012 off the coast of Pensacola, Florida. 
+ 
+SUMMARY OF 500 PM CDT...2200 UTC...INFORMATION
+----------------------------------------------
+LOCATION...29.5N 86.9W
+ABOUT 70 MI...110 KM SSE OF PENSACOLA FLORIDA
+ABOUT 105 MI...175 KM SE OF MOBILE ALABAMA
+MAXIMUM SUSTAINED WINDS...115 MPH...185 KM/H
+PRESENT MOVEMENT...N OR 10 DEGREES AT 17 MPH...28 KM/H
+MINIMUM CENTRAL PRESSURE...958 MB...28.29 INCHES
+ 
+$$
+Forecaster Adams/Cangialosi

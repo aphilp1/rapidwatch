@@ -6,14 +6,14 @@
       "name": "Isaias",
       "classification": "HU",
       "intensity": "100",
-      "pressure": "959",
-      "latitude": "29.2N",
-      "longitude": "87.0W",
-      "latitudeNumeric": 29.2,
-      "longitudeNumeric": -87,
+      "pressure": "958",
+      "latitude": "29.5N",
+      "longitude": "86.9W",
+      "latitudeNumeric": 29.5,
+      "longitudeNumeric": -86.9,
       "movementDir": 10,
       "movementSpeed": 17,
-      "lastUpdate": "2026-10-09T21:00:00.000Z",
+      "lastUpdate": "2026-10-09T22:00:00.000Z",
       "publicAdvisory": {
         "advNum": "013",
         "issuance": "2026-10-09T21:00:00.000Z",
@@ -113,11 +113,11 @@
         "kmlFile": "https://www.nhc.noaa.gov/storm_graphics/api/AL092026_WatchWarningSS_013adv.kml"
       },
       "potentialStormSurgeFloodingGIS": {
-        "advNum": "12",
-        "issuance": "2026-10-09T15:00:00.000Z",
-        "fileUpdateTime": "2026-10-09T15:53:04.578Z",
-        "zipFile": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_12_inundation.zip",
-        "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_12_tidalmask.zip"
+        "advNum": "13",
+        "issuance": "2026-10-09T21:00:00.000Z",
+        "fileUpdateTime": "2026-10-09T22:02:52.062Z",
+        "zipFile": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_13_inundation.zip",
+        "zipFileTidalMask": "https://www.nhc.noaa.gov/gis/inundation/forecasts/AL0926_13_tidalmask.zip"
       },
       "peakSurgeKML": {
         "advNum": "13",
