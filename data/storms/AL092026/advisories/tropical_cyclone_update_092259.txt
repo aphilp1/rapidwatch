@@ -1,0 +1,28 @@
+000
+WTNT64 KNHC 092259
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update
+NWS National Hurricane Center Miami FL       AL092026
+600 PM CDT Fri Oct 09 2026
+
+...EYEWALL OF ISAIAS APPROACHING THE COAST...
+...EXTREME WIND WARNING ISSUED FOR PORTIONS OF THE WESTERN FLORIDA 
+PANHANDLE...
+
+A wind gust to 81 mph (130 km/h) was recently reported at NDBC 
+Buoy 42028, located in the Gulf of America northeast of the center 
+of Isaias. A wind gust to 75 mph (121 km/h) was recently reported 
+near Perdido Bay at a WeatherFlow station.
+ 
+SUMMARY OF 600 PM CDT...2300 UTC...INFORMATION
+----------------------------------------------
+LOCATION...29.8N 86.8W
+ABOUT 55 MI...90 KM SSE OF PENSACOLA FLORIDA
+ABOUT 100 MI...160 KM SE OF MOBILE ALABAMA
+MAXIMUM SUSTAINED WINDS...115 MPH...185 KM/H
+PRESENT MOVEMENT...N OR 10 DEGREES AT 18 MPH...29 KM/H
+MINIMUM CENTRAL PRESSURE...960 MB...28.35 INCHES
+ 
+$$
+Forecaster Mahoney/Cangialosi/Reinhart
