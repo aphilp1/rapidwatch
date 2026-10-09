@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bal092026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-10-04T18:00Z at 22.0N 96.5W as a disturbance (15 kt).
-- **Latest fix:** 2026-10-08T18:00Z at 24.0N 89.8W, hurricane 85 kt 977 mb.
-- **Fixes:** 17 spanning 96 h; distance along the track 796 km (430 nmi).
+- **Latest fix:** 2026-10-09T00:00Z at 24.8N 88.8W, hurricane 85 kt 973 mb.
+- **Fixes:** 18 spanning 102 h; distance along the track 932 km (503 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -23,8 +23,9 @@ Source: NHC best track (ATCF b-deck atcf/bal092026.dat) as archived here; regene
 | 2026-10-07T18:00Z | 22.5N | 93.3W | TS | 50 | 995 | 70 | 6.3 |
 | 2026-10-08T00:00Z | 22.7N | 92.3W | TS | 60 | 988 | 105 | 9.5 |
 | 2026-10-08T06:00Z | 23.1N | 91.5W | HU | 70 | 981 | 93 | 8.4 |
-| 2026-10-08T12:00Z | 23.4N | 90.6W | HU | 70 | 976 | 98 | 8.8 |
-| 2026-10-08T18:00Z | 24.0N | 89.8W | HU | 85 | 977 | 105 | 9.5 |
+| 2026-10-08T12:00Z | 23.4N | 90.6W | HU | 75 | 976 | 98 | 8.8 |
+| 2026-10-08T18:00Z | 23.9N | 89.8W | HU | 85 | 977 | 99 | 8.9 |
+| 2026-10-09T00:00Z | 24.8N | 88.8W | HU | 85 | 973 | 142 | 12.8 |
 
 Latest NHC forecast points (adv009_points.geojson):
 
