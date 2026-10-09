@@ -27,11 +27,11 @@ Source: NHC best track (ATCF b-deck atcf/bal092026.dat) as archived here; regene
 | 2026-10-08T18:00Z | 23.9N | 89.8W | HU | 85 | 977 | 99 | 8.9 |
 | 2026-10-09T00:00Z | 24.8N | 88.8W | HU | 85 | 973 | 142 | 12.8 |
 
-Latest NHC forecast points (adv010_points.geojson):
+Latest NHC forecast points (adv10A_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 09/0000 | 25.4N | 88.4W | 90 |
+| +0 h | 09/0300 | 25.8N | 88.4W | 90 |
 | +12 h | 09/1200 | 27.1N | 87.6W | 100 |
 | +24 h | 10/0000 | 29.9N | 87.1W | 85 |
 | +36 h | 10/1200 | 32.2N | 87.3W | 45 |
