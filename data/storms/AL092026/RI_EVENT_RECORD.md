@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 20:45Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 21:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -130,6 +130,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 012** (1000 AM CDT Fri Oct 09 2026)
 > Strong deep-layer shear has definitely increased as forecast, with various analyses now showing 30-40 kt out of the southwest. However, the shear vector is nearly aligned with the storm's motion, which limits its adverse effects, and upper-level divergence is also increasing over the hurricane. This setup has likely allowed the hurricane to intensify this morning, and the hurricane regional models (HAFS-A, HAFS-B, and HWRF), as well as the statistical-dynamical models (SHIPS and LGEM), all suggest that Isaias could maintain major hurricane intensity up until its landfall this evening. Therefore, the NHC official forecast depicts Isaias with 100-kt winds just offshore the western Florida Panhandle this evening. Weakening will occur after landfall, but sustained hurricane-force winds will likely occur near and along Isaias's track up to 100 miles inland from the coast into southern Alabama, and gusts to hurricane force could extend even farther north into central Alabama. Isaias is likely to lose its tropical characteristics by 36 hours when it is over northern Alabama.
+
+**Discussion 013** (400 PM CDT Fri Oct 09 2026)
+> Deep-layer shear from the southwest has increased to 30-40 kt, and the hurricane's structure is responding accordingly. WSR-88D radar data shows that the structure is becoming increasingly asymmetric, with very intense convection mainly confined to the northern eyewall. Tail Doppler radar data from the NOAA P-3 has also shown that the circulation is becoming tilted with height. That said, some impressive winds were measured at flight-level--136 kt by the Air Force Reserve at 10,000 feet and 126 kt by NOAA at 8,000 ft. While these winds themselves would normally support a higher intensity, several dropsondes released in the eyewall showed that there is a sharp drop-off of winds at the ocean surface, with layer-averaging suggesting a surface intensity of 90-95 kt. In addition, recent Doppler radar data from Mobile show winds of 100-110 kt at about 10,000 feet in the northern eyewall. Combining all this data together, the maximum surface winds appear to be around 100 kt, although it's very likely that Isaias will be a gustier-than-normal hurricane when it makes landfall.
 
 ## 6. Sources in this folder
 
