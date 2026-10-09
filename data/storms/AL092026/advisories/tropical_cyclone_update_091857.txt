@@ -1,0 +1,29 @@
+165 
+WTNT64 KNHC 091857
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update
+NWS National Hurricane Center Miami FL       AL092026
+200 PM CDT Fri Oct 09 2026
+
+...2 PM CDT POSITION UPDATE...
+...TROPICAL STORM CONDITIONS BEGINNING TO SPREAD ONSHORE ALONG THE 
+NORTHERN GULF COAST...
+
+The estimated minimum pressure based on the latest data from a NOAA 
+Hurricane Hunter Aircraft is 959 mb (28.32 inches).
+
+A wind gust to 43 mph (69 km/h) was recently reported at 
+Apalachicola, Florida. 
+ 
+SUMMARY OF 200 PM CDT...1900 UTC...INFORMATION
+----------------------------------------------
+LOCATION...28.7N 87.1W
+ABOUT 125 MI...200 KM S OF PENSACOLA FLORIDA
+ABOUT 140 MI...225 KM S OF MOBILE ALABAMA
+MAXIMUM SUSTAINED WINDS...120 MPH...195 KM/H
+PRESENT MOVEMENT...NNE OR 15 DEGREES AT 17 MPH...28 KM/H
+MINIMUM CENTRAL PRESSURE...959 MB...28.32 INCHES
+ 
+$$
+Forecaster Brown
