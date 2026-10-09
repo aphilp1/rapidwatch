@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 04:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 05:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-09 04:44Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 20 (first 2026-10-07 12:33Z, latest 2026-10-08 18:24Z).
+- **Aircraft fixes archived:** 22 (first 2026-10-07 12:33Z, latest 2026-10-09 04:53Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -68,6 +68,8 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 16:39Z | 23.74N 90.08W | 976 mb | OPEN S-SW C26 | 69 kt 048 deg 21 nm 16:45:30Z | AF305 0709A ISAIAS |
 | 2026-10-08 17:17Z | 23.85N 89.90W | 978 mb | NA | 57 kt 330 deg 25 nm 17:23:38Z | NOAA3 0809A ISAIAS |
 | 2026-10-08 18:24Z | 23.95N 89.76W | 976 mb | CLOSED C35 | 71 kt 088 deg 25 nm 18:30:26Z | NOAA3 0809A ISAIAS |
+| 2026-10-09 04:35Z | 25.60N 88.55W | 973 mb | CLOSED C20 | 78 kt 213 deg 12 nm 04:38:09Z | NOAA3 1109A ISAIAS |
+| 2026-10-09 04:53Z | 25.68N 88.53W | 973 mb | OPEN SE C30 | 94 kt 117 deg 13 nm 04:59:00Z | AF307 1009A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
