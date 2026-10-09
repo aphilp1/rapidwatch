@@ -45,7 +45,7 @@ ptbm6,"8741003 - Petit Bois Island, Port of Pascagoula, MS",30.213,-88.505,fixed
 42028,"C24 - FLRACEP nWFS Buoy, 58m isobath",29.745,-86.227,buoy,COMPS (University of South Florida),IOOS Partners,y,n,y,102,596,txt ocean
 frma1,"8734383 - Fort Morgan, AL",30.234,-87.994,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,71,598,txt
 dila1,"8735180 - Dauphin Island, AL ",30.25,-88.075,fixed,NOS,NOS/CO-OPS,y,n,n,79,599,txt
-dpha1,"Dauphin Island Sea Lab, AL",30.251,-88.078,fixed,Dauphin Island Sea Lab,IOOS Partners,y,n,n,79,599,txt
+dpha1,"Dauphin Island Sea Lab, AL",30.251,-88.078,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,79,599,txt
 kata1,"Katrina Cut, AL",30.258,-88.213,fixed,Dauphin Island Sea Lab,IOOS Partners,y,n,n,92,599,txt
 crta1,"Cedar Point, AL",30.308,-88.14,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,86,605,
 wycm6,"8747437 - Bay Waveland Yacht Club, MS",30.326,-89.326,fixed,NOS,NOS/CO-OPS,y,n,n,200,606,txt
