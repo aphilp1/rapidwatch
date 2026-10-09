@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 08:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 09:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-09 08:44Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 24 (first 2026-10-07 12:33Z, latest 2026-10-09 06:25Z).
+- **Aircraft fixes archived:** 25 (first 2026-10-07 12:33Z, latest 2026-10-09 08:32Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -73,6 +73,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-09 04:53Z | 25.68N 88.53W | 973 mb | OPEN SE C30 | 94 kt 117 deg 13 nm 04:59:00Z | AF307 1009A ISAIAS |
 | 2026-10-09 05:35Z | 25.72N 88.47W | 972 mb | CLOSED C23 | 85 kt 315 deg 14 nm 05:39:26Z | NOAA3 1109A ISAIAS |
 | 2026-10-09 06:25Z | 25.85N 88.37W | 970 mb | CLOSED C25 | 73 kt 295 deg 14 nm 06:36:00Z | AF307 1009A ISAIAS |
+| 2026-10-09 08:32Z | 26.26N 88.05W | 964 mb | OPEN NE C24 | 107 kt 090 deg 17 nm 08:37:30Z | AF309 1209A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -110,6 +111,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 010** (1000 PM CDT Thu Oct 08 2026)
 > The satellite presentation of Isaias has improved over the past few hours. Infrared cloud top temperatures have cooled within the expanding central dense overcast, and recent images show a warm spot that could be an emerging eye. A series of earlier passive microwave images showed the mid-level eyewall was open to the southwest, and a comparison of the AMSR3 89- and 37-GHz channels indicated the vortex was slightly tilted with height due to continued southwesterly shear. The stronger Tail Doppler Radar winds noted from the previous mission indicated the satellite intensity estimates are likely running too low, and based on the improved structure of the hurricane, the initial intensity is raised to 90 kt. Air Force and NOAA Hurricane Hunter aircraft are scheduled to collect data in Isaias overnight.
 > High oceanic heat content and strong upper-level divergence could allow for additional strengthening overnight while the shear vector is still oriented in the direction of storm motion. A majority of Google DeepMind ensemble members show Isaias briefly reaching major hurricane status early Friday (along with some of the hurricane regional models), and this is now reflected in the NHC forecast. This strengthening should be short lived as southwesterly shear from the aforementioned trough will increase considerably on Friday and cause some weakening before landfall. Nonetheless, Isaias will be a dangerous hurricane with significant storm surge, damaging winds, and flooding rains when it reaches the northern Gulf Coast. During this time, the wind field is also predicted to grow due to the trough interaction, and some of these impacts will extend well away from the center. After landfall, gusty winds are expected to reach well inland over portions of the southeastern United States.
+
+**Discussion 011** (400 AM CDT Fri Oct 09 2026)
+> Isaias has intensified overnight. NOAA and Air Force Reserve Hurricane Hunter data showed that the maximum flight-level winds have increased up to 107 kt, with a better-defined eye and a shrinking eyewall. These changes are also present on satellite imagery, with a more symmetric presentation along with a warming eye/cooling eyewall. The available data suggest a current intensity of 95 kt for this advisory.
+> Isaias will likely become a major hurricane soon with the improving satellite imagery, and it could continue to intensify for the next 12 hours or so while it moves over very warm and deep water. However, a large increase in shear is anticipated before landfall, which will probably cause some weakening to occur. This is a tenuous spot because it would only take about a 6h delay in the onset of the shear to bring a stronger hurricane than expected onshore. The new forecast explicitly is a bit higher than the last one, but our best forecast at this time is for a high-end category 2 intensity at landfall, which is about the same as before. Regardless of its exact wind speed at landfall, Isaias will be a dangerous hurricane with significant storm surge, damaging winds, and flooding rains. The wind field is also predicted to grow due to a trough interaction, and some of these impacts will extend well away from the center. After landfall, gusty winds are expected to reach well inland over portions of the southeastern United States.
 
 ## 6. Sources in this folder
 
