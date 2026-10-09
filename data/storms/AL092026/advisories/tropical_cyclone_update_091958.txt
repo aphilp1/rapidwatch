@@ -1,0 +1,26 @@
+440 
+WTNT64 KNHC 091958
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update
+NWS National Hurricane Center Miami FL       AL092026
+300 PM CDT Fri Oct 09 2026
+
+...3 PM CDT POSITION UPDATE...
+...CONDITIONS RAPIDLY DETERIORATING ALONG THE NORTHERN GULF COAST...
+
+A wind gust to 56 mph (90 km/h) was recently reported at NOAA buoy 
+42012. A wind gust to 47 mph (76 km/h) was recently reported at 
+Navarre Beach, Florida.
+ 
+SUMMARY OF 300 PM CDT...2000 UTC...INFORMATION
+----------------------------------------------
+LOCATION...29.0N 87.1W
+ABOUT 90 MI...145 KM S OF PENSACOLA FLORIDA
+ABOUT 115 MI...185 KM SSE OF MOBILE ALABAMA
+MAXIMUM SUSTAINED WINDS...120 MPH...195 KM/H
+PRESENT MOVEMENT...N OR 010 DEGREES AT 17 MPH...28 KM/H
+MINIMUM CENTRAL PRESSURE...959 MB...28.32 INCHES
+ 
+$$
+Forecaster Adams/Reinhart/Bookbinder

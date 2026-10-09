@@ -326,3 +326,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 157 km from center · 2026-10-09T19:00Z · wind 10° 19.0 m/s gust 25.0 · pres 1004.5 hPa · air 23.4 °C · water 28.0 °C · wave  m
   - 42027 C23 - FLRACEP nWFS Buoy, 45m isobath · 179 km from center · 2026-10-09T18:35Z · wind 130° 17.0 m/s gust 21.0 · pres 1004.1 hPa · air 26.3 °C · water 28.7 °C · wave  m
 
+## 20261009T2044 UTC · center 29.0N 87.1W · HU 105 kt · forecast file adv12A_points.geojson
+- Track points: 21 best-track + center + 6 forecast. Corridor stations: 122 (81 reporting standard met). New NDBC observation rows merged: 598.
+- Argo floats in corridor: 24 (0 new profiles, 0 profile files written). Gliders in corridor: 3 (0 new reports, 0 profile files written).
+- HYCOM sampled at 28 track points; MUR satellite SST returned at 3 of 7 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - kvoa Viosca Knoll 786 / Petronius (Chevron) · 71 km from center · 2026-10-09T04:20Z · wind ° 1.5 m/s gust  · pres  hPa · air 26 °C · water  °C · wave  m
+  - 42039 PENSACOLA - 115NM SSE of Pensacola, FL · 108 km from center · 2026-10-09T20:10Z · wind 150° 21.0 m/s gust 26.0 · pres 996.4 hPa · air 27.5 °C · water  °C · wave 8.2 m
+  - 42028 C24 - FLRACEP nWFS Buoy, 58m isobath · 118 km from center · 2026-10-09T19:35Z · wind 80° 19.0 m/s gust 25.0 · pres 1000.2 hPa · air 24.7 °C · water 28.5 °C · wave  m
+  - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 126 km from center · 2026-10-09T20:20Z · wind 10° 22.0 m/s gust 28.0 · pres 1000.5 hPa · air 23.8 °C · water 28.0 °C · wave 3.9 m
+  - kikt Mississippi Canyon 474 / Na Kika FPU (BP) · 128 km from center · 2026-10-07T16:35Z · wind 40° 7.7 m/s gust  · pres  hPa · air 27 °C · water  °C · wave  m
+  - ppta1 Perdido Pass, AL · 149 km from center · 2026-10-09T19:00Z · wind ° 11.3 m/s gust  · pres 1006.9 hPa · air 24.5 °C · water 25.2 °C · wave  m
+
