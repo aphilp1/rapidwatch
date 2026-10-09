@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 00:33Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 00:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -42,7 +42,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 06Z | 70 | 35 | 30.5 | 45 | 48 | 23 | 65 | 101 | 84 | 8 | 89 | 32.1% | 24.0% | 16.0% |
 | 2026-10-08 12Z | 75 | 35 | 29.6 | 28 | 45 | 17 | 63 | 92 | 68 | 9 | 99 | 15.5% | 32.0% | 8.6% |
 | 2026-10-08 18Z | 85 | 35 | 29.3 | 27 | 39 | 14 | 61 | 82 | 96 | 10 | 93 | 10.4% | 11.0% | 6.9% |
-| 2026-10-09 00Z | 85 | 25 | – | – | 29 | – | – | – | – | – | – | – | – | – |
+| 2026-10-09 00Z | 85 | 25 | 29.2 | 6 | 29 | 17 | 57 | 71 | 68 | 12 | 77 | 0.0% | 1.0% | 4.9% |
 
 ## 4. Aircraft center fixes
 
