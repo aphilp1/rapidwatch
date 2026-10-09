@@ -1,128 +1,127 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-kipn,Mississippi Canyon 920 / Independence Hub (Anadarko / Enterprise),28.085,-87.986,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,74,80,
-kikt,Mississippi Canyon 474 / Na Kika FPU (BP),28.521,-88.289,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,114,127,txt
-42039,"PENSACOLA - 115NM SSE of Pensacola, FL",28.768,-86.024,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,96,150,txt spec
-kvoa,Viosca Knoll 786 / Petronius (Chevron),29.229,-87.781,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,82,158,txt
-42040,"LUKE OFFSHORE TEST PLATFORM - 63 NM South of Dauphin Island, AL",29.207,-88.237,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,125,177,
-kvky,Main Pass 289C (Apache Corp.),29.248,-88.441,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,145,193,
-cgcl1,Cognac,28.791,-89.056,fixed,Shell Oil,IOOS Partners,n,n,n,193,207,
-kmis,MP 140B  AWOS (Apache Corp),29.296,-88.842,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,185,223,
-42027,"C23 - FLRACEP nWFS Buoy, 45m isobath",29.045,-85.305,buoy,COMPS (University of South Florida),IOOS Partners,y,n,y,158,225,txt ocean
-42028,"C24 - FLRACEP nWFS Buoy, 58m isobath",29.745,-86.227,buoy,COMPS (University of South Florida),IOOS Partners,y,n,y,55,226,txt ocean
-42354,"Chandeleur Island SE, LA (279)",29.579,-88.645,buoy,SCRIPPS,IOOS Partners,y,y,n,173,234,txt spec
-42012,"ORANGE BEACH - 44 NM SE of Mobile, AL",30.061,-87.547,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,66,243,txt spec
-pstl1,"8760922 - Pilot's Station East, SW Pass, LA",28.932,-89.407,fixed,NOS,NOS/CO-OPS,y,n,n,230,244,txt
-burl1,"Southwest Pass, LA",28.906,-89.429,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,231,245,txt cwind
-wdel1,Shell West Delta 143,28.662,-89.551,fixed,Shell Oil,IOOS Partners,n,n,n,237,245,
-pill1,"8760721 - Pilottown, LA",29.179,-89.259,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,221,246,txt
-42031,"West End CP, AL",30.09,-88.212,buoy,Dauphin Island Sea Lab,IOOS Partners,n,n,n,129,263,
-42357,DISL Sofar Spotter,30.092,-88.212,other,Dauphin Island Sea Lab,IOOS Partners,y,n,n,129,263,txt spec
-kdlp,West Delta 27A (AngloSuisse Offshore Partners),29.121,-89.547,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,247,266,
-kmdj,Mississippi Canyon 311A (Apache Corp),28.643,-89.794,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,260,267,
-ppta1,"Perdido Pass, AL",30.279,-87.556,fixed,Dauphin Island Sea Lab,IOOS Partners,y,n,n,65,267,txt
-42084,"Southwest Pass Entrance W, LA (256)",28.988,-89.649,buoy,SCRIPPS,IOOS Partners,y,y,n,254,268,txt spec
-42003,"East GULF - 208 NM West of Naples, FL",25.925,-85.616,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,229,270,
-frma1,"8734383 - Fort Morgan, AL",30.234,-87.994,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,107,271,txt
-42036,"WEST TAMPA  - 112 NM WNW of Tampa, FL",28.5,-84.505,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,247,272,txt spec
-42067,USM-R1,30.05,-88.583,buoy,USM,IOOS Partners,n,n,n,165,274,
-dila1,"8735180 - Dauphin Island, AL ",30.25,-88.075,fixed,NOS,NOS/CO-OPS,y,n,n,114,275,txt
-dpha1,"Dauphin Island Sea Lab, AL",30.251,-88.078,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,115,275,txt
-bsca1,"Bon Secour, AL",30.329,-87.829,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,90,277,txt
-pclf1,"8729840 - Pensacola, FL",30.404,-87.211,fixed,NOS,NOS/CO-OPS,y,n,n,31,278,txt
-kata1,"Katrina Cut, AL",30.258,-88.213,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,127,280,txt
-crta1,"Cedar Point, AL",30.308,-88.14,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,120,283,
-sgof1,"Tyndall AFB Tower C (N4), FL",29.408,-84.858,fixed,NDBC,NDBC Meteorological/Ocean,n,n,n,188,283,
-wkqa1,"Fish River, Weeks Bay Reserve, AL",30.417,-87.823,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,88,286,ocean
-adbf1,"Dry Bar, Apalachicola Reserve, FL",29.675,-85.058,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,166,287,ocean
-pcbf1,"8729210 - Panama City Beach, FL",30.213,-85.88,fixed,NOS,NOS/CO-OPS,y,n,n,93,287,txt
-ptbm6,"8741003 - Petit Bois Island, Port of Pascagoula, MS",30.213,-88.505,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,155,287,txt
-wkxa1,"Safe Harbor Met Station, Weeks Bay Reserve, AL",30.421,-87.828,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,89,287,txt
-katp,Green Canyon 787 / Atlantis (BP),27.195,-90.027,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,218,290,txt
-pacf1,"8729108 - Panama City, FL",30.15,-85.664,fixed,NOS,NOS/CO-OPS,y,n,n,113,291,txt
-efla1,"8734536 - E Range Front Light Visibility, AL",30.429,-88.01,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,106,292,txt
-mbla1,"Middle Bay Lighthouse, AL",30.437,-88.011,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,106,293,
-42099,"Offshore St. Petersburg, FL (144)",27.352,-84.275,buoy,SCRIPPS,IOOS Partners,y,n,n,294,295,txt spec
-apcf1,"8728690 - Apalachicola, FL",29.724,-84.98,fixed,NOS,NOS/CO-OPS,y,n,n,173,296,txt
-lopl1,"Louisiana Offshore Oil Port, LA",28.885,-90.025,oilrig,Louisiana Offshore Oil Port,IOOS Partners,n,n,n,287,297,
-gdxm6,"Crooked Bayou, Grand Bay Reserve, MS",30.359,-88.42,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,146,298,txt
-gdqm6,"Bangs Lake, Grand Bay Reserve, MS",30.357,-88.463,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,150,299,ocean
-gbcm6,"Bayou Cumbest, Grand Bay Reserve, MS",30.384,-88.436,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,147,301,ocean
-gbhm6,"Bayou Heron, Grand Bay Reserve, MS",30.418,-88.405,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,143,303,ocean
-grbl1,"Grand Isle Blocks, LA / CSI09",29.101,-89.978,fixed,LSU CSI,IOOS Partners,n,n,n,288,303,
-mbpa1,"8736163 - Middle Bay Port, Mobile Bay, AL",30.527,-88.086,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,112,304,txt
-pnlm6,"8741533 - Pascagoula NOAA Lab, MS",30.368,-88.563,fixed,NOS,NOS/CO-OPS,y,n,n,159,305,txt
-apxf1,"East Bay, Apalachicola Reserve, FL",29.769,-84.881,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,183,307,txt
-apqf1,"East Bay Bottom, Apalachicola Reserve, FL",29.786,-84.875,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,184,309,ocean
-gisl1,"8761724 - Grand Isle, LA",29.265,-89.958,fixed,NOS,NOS/CO-OPS,y,n,n,290,309,txt
-42409,"GULF OF AMERICA - 247 NM South of New Orleans, LA",25.797,-89.288,dart,NDBC,Tsunami,n,n,n,78,312,
-mhpa1,"Meaher Park, AL",30.667,-87.936,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,96,316,txt
-mcga1,"8736897 - Coast Guard Sector Mobile, AL",30.649,-88.058,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,108,317,txt
-ptoa1,"8737005 - Pinto Island, AL",30.671,-88.031,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,105,318,txt
-kgry,Green Canyon 338 / Front Runner (Murphy E&amp;P),27.625,-90.441,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,278,320,txt
-42066,USM-R2,30.216,-89.183,buoy,USM,IOOS Partners,n,n,n,220,322,
-obla1,"8737048 - Mobile State Docks, AL",30.705,-88.04,fixed,NOS,NOS/CO-OPS,y,n,n,106,322,txt
-kxpy,Port Fourchon Heliport (Era Helicopters),29.123,-90.202,fixed,Federal Aviation Administration,Marine METAR,n,n,n,310,323,
-ptfl1,"8762075 - Port Fourchon, LA",29.114,-90.199,fixed,NOS,NOS/CO-OPS,y,n,n,309,323,txt
-shbl1,"8761305 - Shell Beach, LA",29.868,-89.673,fixed,NOS,NOS/CO-OPS,y,n,n,270,325,txt
-42001,"MID GULF - 180 nm South of Southwest Pass, LA",25.922,-89.638,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,116,327,txt spec
-spll1,"South Timbalier Block 52, LA / CSI06",28.867,-90.483,fixed,LSU CSI,IOOS Partners,n,n,n,330,339,txt
-wycm6,"8747437 - Bay Waveland Yacht Club, MS",30.326,-89.326,fixed,NOS,NOS/CO-OPS,y,n,n,232,340,txt
-42022,"C12 - WFS Central Buoy, 50m Isobath",27.505,-83.741,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,342,343,txt ocean
-ksqe,Ship Shoal 354 (Fieldwood Energy),28.083,-90.819,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,336,356,
-trbl1,"Terrebonne Bay, LA",29.187,-90.608,fixed,LUMCON,IOOS Partners,n,n,n,350,362,
-carl1,"8761955 - Carrollton, LA ",29.933,-90.135,fixed,NOS,NOS/CO-OPS,n,n,n,313,364,txt
-nwcl1,"8761927 - New Canal Station, LA",30.027,-90.113,fixed,NOS,NOS/CO-OPS,y,n,n,310,369,txt
-luml1,"LUMCON Marine Center, LA",29.255,-90.664,fixed,LUMCON,IOOS Partners,n,n,n,357,370,
-bygl1,"8762482 - West Bank 1, Bayou Gauche, LA",29.789,-90.42,fixed,NOS,NOS/CO-OPS,y,n,n,342,377,txt
-kspr,Ship Shoal 178 (Apache Corp),28.599,-91.206,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,393,400,txt
-ktnf1,"Keaton Beach, FL",29.819,-83.593,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,306,411,txt
-42098,"Egmont Channel Entrance, FL (214)",27.59,-82.931,buoy,Greater Tampa Bay Marine Advisory Council-PORTS,IOOS Partners,y,y,n,418,422,txt spec
-42097,"Pulley Ridge, FL (226)",25.704,-83.654,buoy,U.S. Army Corps of Engineers,IOOS Partners,n,n,n,414,428,
-keir,Eugene Island 215 (McMoRan Oil &amp; Gas),28.634,-91.489,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,421,428,
-42013,"C10 - WFS Central Buoy, 25m Isobath",27.173,-82.924,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,428,429,txt ocean
+kipn,Mississippi Canyon 920 / Independence Hub (Anadarko / Enterprise),28.085,-87.986,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,71,78,
+kikt,Mississippi Canyon 474 / Na Kika FPU (BP),28.521,-88.289,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,113,112,txt
+kvoa,Viosca Knoll 786 / Petronius (Chevron),29.229,-87.781,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,82,128,txt
+42039,"PENSACOLA - 115NM SSE of Pensacola, FL",28.768,-86.024,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,96,131,txt spec
+42040,"LUKE OFFSHORE TEST PLATFORM - 63 NM South of Dauphin Island, AL",29.207,-88.237,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,125,151,
+kvky,Main Pass 289C (Apache Corp.),29.248,-88.441,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,145,168,
+cgcl1,Cognac,28.791,-89.056,fixed,Shell Oil,IOOS Partners,n,n,n,193,193,
+42028,"C24 - FLRACEP nWFS Buoy, 58m isobath",29.745,-86.227,buoy,COMPS (University of South Florida),IOOS Partners,y,n,y,55,196,txt ocean
+kmis,MP 140B  AWOS (Apache Corp),29.296,-88.842,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,185,201,
+42027,"C23 - FLRACEP nWFS Buoy, 45m isobath",29.045,-85.305,buoy,COMPS (University of South Florida),IOOS Partners,y,n,y,158,207,txt ocean
+42354,"Chandeleur Island SE, LA (279)",29.579,-88.645,buoy,SCRIPPS,IOOS Partners,y,y,n,173,208,txt spec
+42012,"ORANGE BEACH - 44 NM SE of Mobile, AL",30.061,-87.547,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,66,210,txt spec
+pill1,"8760721 - Pilottown, LA",29.179,-89.259,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,221,228,txt
+pstl1,"8760922 - Pilot's Station East, SW Pass, LA",28.932,-89.407,fixed,NOS,NOS/CO-OPS,y,n,n,230,230,txt
+burl1,"Southwest Pass, LA",28.906,-89.429,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,231,231,txt cwind
+42031,"West End CP, AL",30.09,-88.212,buoy,Dauphin Island Sea Lab,IOOS Partners,n,n,n,129,232,
+42357,DISL Sofar Spotter,30.092,-88.212,other,Dauphin Island Sea Lab,IOOS Partners,y,n,n,129,232,txt spec
+ppta1,"Perdido Pass, AL",30.279,-87.556,fixed,Dauphin Island Sea Lab,IOOS Partners,y,n,n,65,234,txt
+wdel1,Shell West Delta 143,28.662,-89.551,fixed,Shell Oil,IOOS Partners,n,n,n,236,236,
+frma1,"8734383 - Fort Morgan, AL",30.234,-87.994,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,107,239,txt
+dila1,"8735180 - Dauphin Island, AL ",30.25,-88.075,fixed,NOS,NOS/CO-OPS,y,n,n,114,243,txt
+dpha1,"Dauphin Island Sea Lab, AL",30.251,-88.078,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,115,243,txt
+bsca1,"Bon Secour, AL",30.329,-87.829,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,90,244,txt
+pclf1,"8729840 - Pensacola, FL",30.404,-87.211,fixed,NOS,NOS/CO-OPS,y,n,n,31,245,txt
+42067,USM-R1,30.05,-88.583,buoy,USM,IOOS Partners,n,n,n,165,246,
+kata1,"Katrina Cut, AL",30.258,-88.213,fixed,Dauphin Island Sea Lab,IOOS Partners,y,n,n,127,249,txt
+kdlp,West Delta 27A (AngloSuisse Offshore Partners),29.121,-89.547,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,247,251,
+crta1,"Cedar Point, AL",30.308,-88.14,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,120,252,
+wkqa1,"Fish River, Weeks Bay Reserve, AL",30.417,-87.823,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,88,254,ocean
+wkxa1,"Safe Harbor Met Station, Weeks Bay Reserve, AL",30.421,-87.828,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,89,254,txt
+42084,"Southwest Pass Entrance W, LA (256)",28.988,-89.649,buoy,SCRIPPS,IOOS Partners,y,y,n,254,255,txt spec
+ptbm6,"8741003 - Petit Bois Island, Port of Pascagoula, MS",30.213,-88.505,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,155,257,txt
+kmdj,Mississippi Canyon 311A (Apache Corp),28.643,-89.794,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,259,258,
+pcbf1,"8729210 - Panama City Beach, FL",30.213,-85.88,fixed,NOS,NOS/CO-OPS,y,n,n,93,258,txt
+efla1,"8734536 - E Range Front Light Visibility, AL",30.429,-88.01,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,106,260,txt
+mbla1,"Middle Bay Lighthouse, AL",30.437,-88.011,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,106,261,
+pacf1,"8729108 - Panama City, FL",30.15,-85.664,fixed,NOS,NOS/CO-OPS,y,n,n,113,263,txt
+adbf1,"Dry Bar, Apalachicola Reserve, FL",29.675,-85.058,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,166,265,ocean
+sgof1,"Tyndall AFB Tower C (N4), FL",29.408,-84.858,fixed,NDBC,NDBC Meteorological/Ocean,n,n,n,188,265,
+42036,"WEST TAMPA  - 112 NM WNW of Tampa, FL",28.5,-84.505,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,247,266,txt spec
+gdxm6,"Crooked Bayou, Grand Bay Reserve, MS",30.359,-88.42,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,146,268,txt
+gdqm6,"Bangs Lake, Grand Bay Reserve, MS",30.357,-88.463,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,150,269,ocean
+gbcm6,"Bayou Cumbest, Grand Bay Reserve, MS",30.384,-88.436,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,147,271,ocean
+gbhm6,"Bayou Heron, Grand Bay Reserve, MS",30.418,-88.405,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,143,273,ocean
+mbpa1,"8736163 - Middle Bay Port, Mobile Bay, AL",30.527,-88.086,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,112,273,txt
+apcf1,"8728690 - Apalachicola, FL",29.724,-84.98,fixed,NOS,NOS/CO-OPS,y,n,n,173,275,txt
+pnlm6,"8741533 - Pascagoula NOAA Lab, MS",30.368,-88.563,fixed,NOS,NOS/CO-OPS,y,n,n,159,275,txt
+mhpa1,"Meaher Park, AL",30.667,-87.936,fixed,Dauphin Island Sea Lab,IOOS Partners,n,n,n,96,283,txt
+apxf1,"East Bay, Apalachicola Reserve, FL",29.769,-84.881,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,183,285,txt
+mcga1,"8736897 - Coast Guard Sector Mobile, AL",30.649,-88.058,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,108,285,txt
+lopl1,"Louisiana Offshore Oil Port, LA",28.885,-90.025,oilrig,Louisiana Offshore Oil Port,IOOS Partners,n,n,n,287,286,
+ptoa1,"8737005 - Pinto Island, AL",30.671,-88.031,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,105,286,txt
+apqf1,"East Bay Bottom, Apalachicola Reserve, FL",29.786,-84.875,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,184,287,ocean
+grbl1,"Grand Isle Blocks, LA / CSI09",29.101,-89.978,fixed,LSU CSI,IOOS Partners,n,n,n,288,289,
+obla1,"8737048 - Mobile State Docks, AL",30.705,-88.04,fixed,NOS,NOS/CO-OPS,y,n,n,106,290,txt
+gisl1,"8761724 - Grand Isle, LA",29.265,-89.958,fixed,NOS,NOS/CO-OPS,y,n,n,290,294,txt
+42066,USM-R2,30.216,-89.183,buoy,USM,IOOS Partners,n,n,n,220,295,
+42003,"East GULF - 208 NM West of Naples, FL",25.925,-85.616,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,229,298,
+katp,Green Canyon 787 / Atlantis (BP),27.195,-90.027,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,218,300,txt
+42099,"Offshore St. Petersburg, FL (144)",27.352,-84.275,buoy,SCRIPPS,IOOS Partners,y,n,n,296,303,txt spec
+shbl1,"8761305 - Shell Beach, LA",29.868,-89.673,fixed,NOS,NOS/CO-OPS,y,n,n,270,304,txt
+kxpy,Port Fourchon Heliport (Era Helicopters),29.123,-90.202,fixed,Federal Aviation Administration,Marine METAR,n,n,n,310,310,
+ptfl1,"8762075 - Port Fourchon, LA",29.114,-90.199,fixed,NOS,NOS/CO-OPS,y,n,n,309,310,txt
+wycm6,"8747437 - Bay Waveland Yacht Club, MS",30.326,-89.326,fixed,NOS,NOS/CO-OPS,y,n,n,232,314,txt
+kgry,Green Canyon 338 / Front Runner (Murphy E&amp;P),27.625,-90.441,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,278,325,txt
+spll1,"South Timbalier Block 52, LA / CSI06",28.867,-90.483,fixed,LSU CSI,IOOS Partners,n,n,n,330,329,txt
+42409,"GULF OF AMERICA - 247 NM South of New Orleans, LA",25.797,-89.288,dart,NDBC,Tsunami,n,n,n,78,338,
+carl1,"8761955 - Carrollton, LA ",29.933,-90.135,fixed,NOS,NOS/CO-OPS,n,n,n,313,344,txt
+nwcl1,"8761927 - New Canal Station, LA",30.027,-90.113,fixed,NOS,NOS/CO-OPS,y,n,n,310,348,txt
+42022,"C12 - WFS Central Buoy, 50m Isobath",27.505,-83.741,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,343,349,txt ocean
+42001,"MID GULF - 180 nm South of Southwest Pass, LA",25.922,-89.638,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,116,350,txt spec
+trbl1,"Terrebonne Bay, LA",29.187,-90.608,fixed,LUMCON,IOOS Partners,n,n,n,350,350,
+ksqe,Ship Shoal 354 (Fieldwood Energy),28.083,-90.819,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,336,355,
+luml1,"LUMCON Marine Center, LA",29.255,-90.664,fixed,LUMCON,IOOS Partners,n,n,n,357,358,
+bygl1,"8762482 - West Bank 1, Bayou Gauche, LA",29.789,-90.42,fixed,NOS,NOS/CO-OPS,y,n,n,342,360,txt
+kspr,Ship Shoal 178 (Apache Corp),28.599,-91.206,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,390,394,txt
+ktnf1,"Keaton Beach, FL",29.819,-83.593,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,306,394,txt
+cdrf1,"Cedar Key, FL",29.136,-83.029,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,365,420,txt
+ckyf1,"8727520 - Cedar Key, FL",29.134,-83.031,fixed,NOS,NOS/CO-OPS,y,n,n,364,420,txt
+keir,Eugene Island 215 (McMoRan Oil &amp; Gas),28.634,-91.489,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,418,422,
+42098,"Egmont Channel Entrance, FL (214)",27.59,-82.931,buoy,Greater Tampa Bay Marine Advisory Council-PORTS,IOOS Partners,y,y,n,418,425,txt spec
+tesl1,"8764044 - Tesoro Marine Terminal, Berwick, Atchafalaya River, LA",29.668,-91.237,fixed,NOS,NOS/CO-OPS,y,n,n,421,425,txt
+amrl1,"8764227 - LAWMA, Amerada Pass, LA",29.45,-91.338,fixed,NOS,NOS/CO-OPS,y,n,n,426,426,txt
+einl1,"8764314 - North of Eugene Island, LA",29.373,-91.384,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,428,428,txt
 cwbf1,"8726724 - Clearwater Beach, FL",27.978,-82.832,fixed,NOS,NOS/CO-OPS,y,n,n,418,429,txt
-cdrf1,"Cedar Key, FL",29.136,-83.029,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,365,430,txt
-ckyf1,"8727520 - Cedar Key, FL",29.134,-83.031,fixed,NOS,NOS/CO-OPS,y,n,n,364,430,txt
-amrl1,"8764227 - LAWMA, Amerada Pass, LA",29.45,-91.338,fixed,NOS,NOS/CO-OPS,y,n,n,426,439,txt
-einl1,"8764314 - North of Eugene Island, LA",29.373,-91.384,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,428,440,txt
-tesl1,"8764044 - Tesoro Marine Terminal, Berwick, Atchafalaya River, LA",29.668,-91.237,fixed,NOS,NOS/CO-OPS,y,n,n,421,440,txt
-arpf1,"APK - Aripeka, FL",28.433,-82.667,fixed,COMPS (University of South Florida),IOOS Partners,n,n,n,418,448,txt
-sapf1,"8726520 - St. Petersburg, Tampa Bay, FL",27.761,-82.627,fixed,NOS,NOS/CO-OPS,y,n,n,443,450,txt
-mtbf1,"8726412 - Middle Tampa Bay, FL",27.661,-82.594,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,448,454,txt
-optf1,"8726607 - Old Port Tampa, FL",27.858,-82.553,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,448,457,txt
-pmaf1,"8726384 - Port Manatee, FL",27.638,-82.562,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,452,457,txt
-42023,"C13 - WFS South Buoy, 50m Isobath",26.01,-83.086,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,451,459,txt ocean
-cdcf1,8726504 - Cut D Channel Inbound Rear Range,27.754,-82.514,fixed,NOAA NOS PORTS,NOS/CO-OPS,n,n,n,454,461,
-skcf1,"8726671 - Sparkman Channel Entrance, FL",27.921,-82.445,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,456,467,txt
-tpaf1,"8726694 - TPA Cruise Terminal 2, Tampa, FL",27.933,-82.433,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,457,468,txt
+42013,"C10 - WFS Central Buoy, 25m Isobath",27.173,-82.924,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,429,436,txt ocean
+arpf1,"APK - Aripeka, FL",28.433,-82.667,fixed,COMPS (University of South Florida),IOOS Partners,n,n,n,418,444,txt
+42097,"Pulley Ridge, FL (226)",25.704,-83.654,buoy,U.S. Army Corps of Engineers,IOOS Partners,n,n,n,414,448,
+sapf1,"8726520 - St. Petersburg, Tampa Bay, FL",27.761,-82.627,fixed,NOS,NOS/CO-OPS,y,n,n,443,452,txt
+mtbf1,"8726412 - Middle Tampa Bay, FL",27.661,-82.594,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,448,456,txt
+optf1,"8726607 - Old Port Tampa, FL",27.858,-82.553,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,448,458,txt
+pmaf1,"8726384 - Port Manatee, FL",27.638,-82.562,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,452,460,txt
+cdcf1,8726504 - Cut D Channel Inbound Rear Range,27.754,-82.514,fixed,NOAA NOS PORTS,NOS/CO-OPS,n,n,n,454,463,
+kscf,South Marsh 268A (Apache Corp),29.116,-91.871,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,468,467,
+skcf1,"8726671 - Sparkman Channel Entrance, FL",27.921,-82.445,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,456,468,txt
+tpaf1,"8726694 - TPA Cruise Terminal 2, Tampa, FL",27.933,-82.433,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,457,469,txt
 tshf1,"8726679  - East Bay Causeway, FL",27.929,-82.426,fixed,NOAA NOS PORTS,NOS/CO-OPS,n,n,n,458,469,
 ebef1,"8726674 - East Bay, FL",27.923,-82.421,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,459,470,txt
-kghb,Garden Banks 172 / Salsa (Shell E &amp; P),27.84,-91.988,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,422,471,txt
-kscf,South Marsh 268A (Apache Corp),29.116,-91.871,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,468,476,
-venf1,"Venice, FL",27.072,-82.453,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,475,477,txt
-42026,"C22 - Loop Current Pressure Point Buoy, 70m Isobath",25.171,-83.475,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,454,479,txt ocean
-kvqt,Vermillon 331A  (ERT / Helix),28.27,-92.264,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,470,498,
-kgbk,Garden Banks 783 / Magnolia TLP (W&amp;T Offshore),27.204,-92.203,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,409,499,txt
-42055,"BAY OF CAMPECHE - 214 NM NE of Veracruz, MX",22.14,-94.112,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,3,946,txt spec
-lmbv4,"La Mancha Beach, Mexico",19.594,-96.379,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,259,1313,
-verv4,"Veracruz Harbor, MX",19.204,-96.113,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,289,1326,
-sacv4,"Sacrifice Island, Mexico",19.174,-96.093,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,292,1327,
-owmo1,"Western Reserve, Old Woman Creek Reserve, OH",41.247,-82.454,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,270,1546,txt
-owdo1,"Darrow Road, Old Woman Creek Reserve, OH",41.365,-82.505,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,284,1557,ocean
-owwo1,"Railroad, Old Woman Creek Reserve, OH",41.373,-82.513,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,285,1558,ocean
-owxo1,"Old Woman Creek, Old Woman Creek Reserve, OH",41.378,-82.508,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,285,1558,txt
-owqo1,"Lower Estuary, Old Woman Creek Reserve, OH",41.382,-82.514,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,286,1559,ocean
-owso1,"State Road 6, Old Woman Creek Reserve, OH",41.383,-82.514,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,286,1559,ocean
-45203,Huron Buoy,41.393,-82.512,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,287,1560,txt spec
-hhlo1,"Huron Harbor Light, OH",41.401,-82.545,fixed,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,y,n,n,289,1560,txt
-vrmo1,"Vermilion River at Lake Erie, OH",41.428,-82.364,other,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,y,n,n,285,1567,txt
-loro1,"Lorain Harbor, OH",41.481,-82.195,fixed,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,n,n,n,284,1577,
-45204,Sheffield Buoy,41.508,-82.115,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,285,1582,txt spec
-45196,"Rocky River, OH",41.521,-81.88,buoy,Limno Tech,IOOS Partners,y,n,y,280,1590,txt spec ocean
-45205,Edgewater Beach Buoy,41.501,-81.748,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,274,1591,txt spec
-45176,"Cleveland Intake Crib Buoy, OH",41.55,-81.765,buoy,Limno Tech,IOOS Partners,y,n,y,280,1596,txt spec ocean
-cndo1,"9063063 - Cleveland, OH",41.542,-81.637,fixed,NOS,NOS/CO-OPS,y,n,n,277,1599,txt
-45206,Euclid Beach Buoy,41.585,-81.583,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,281,1605,txt spec
-45197,"Euclid, OH",41.619,-81.617,buoy,Limno Tech,IOOS Partners,y,n,y,285,1608,txt spec ocean
-45207,Mentor Harbor Buoy,41.731,-81.367,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,294,1626,txt spec
-faio1,"9063053 - Fairport, OH",41.764,-81.281,fixed,NOS,NOS/CO-OPS,y,n,n,297,1632,txt
+kghb,Garden Banks 172 / Salsa (Shell E &amp; P),27.84,-91.988,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,422,472,txt
+42023,"C13 - WFS South Buoy, 50m Isobath",26.01,-83.086,buoy,COMPS (University of South Florida),IOOS Partners,y,y,y,451,474,txt ocean
+venf1,"Venice, FL",27.072,-82.453,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,476,484,txt
+mrsl1,"Marsh Island, LA / CSI03",29.441,-92.061,fixed,LSU CSI,IOOS Partners,n,n,n,494,493,
+kvqt,Vermillon 331A  (ERT / Helix),28.27,-92.264,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,470,496,
+42055,"BAY OF CAMPECHE - 214 NM NE of Veracruz, MX",22.14,-94.112,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,3,968,txt spec
+lmbv4,"La Mancha Beach, Mexico",19.594,-96.379,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,259,1336,
+verv4,"Veracruz Harbor, MX",19.204,-96.113,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,289,1350,
+sacv4,"Sacrifice Island, Mexico",19.174,-96.093,fixed,EPA &amp; Mexican Government Cooperative Program,International Partners,n,n,n,292,1351,
+owmo1,"Western Reserve, Old Woman Creek Reserve, OH",41.247,-82.454,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,270,1514,txt
+owdo1,"Darrow Road, Old Woman Creek Reserve, OH",41.365,-82.505,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,284,1525,ocean
+owwo1,"Railroad, Old Woman Creek Reserve, OH",41.373,-82.513,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,285,1525,ocean
+owqo1,"Lower Estuary, Old Woman Creek Reserve, OH",41.382,-82.514,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,286,1526,ocean
+owso1,"State Road 6, Old Woman Creek Reserve, OH",41.383,-82.514,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,286,1526,ocean
+owxo1,"Old Woman Creek, Old Woman Creek Reserve, OH",41.378,-82.508,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,285,1526,txt
+45203,Huron Buoy,41.393,-82.512,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,287,1528,txt spec
+hhlo1,"Huron Harbor Light, OH",41.401,-82.545,fixed,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,y,n,n,289,1528,txt
+vrmo1,"Vermilion River at Lake Erie, OH",41.428,-82.364,other,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,y,n,n,285,1535,txt
+loro1,"Lorain Harbor, OH",41.481,-82.195,fixed,"NWS WFO Cleveland, OH (CLE)",IOOS Partners,n,n,n,284,1545,
+45204,Sheffield Buoy,41.508,-82.115,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,285,1550,txt spec
+45196,"Rocky River, OH",41.521,-81.88,buoy,Limno Tech,IOOS Partners,y,n,y,280,1558,txt spec ocean
+45205,Edgewater Beach Buoy,41.501,-81.748,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,274,1560,txt spec
+45176,"Cleveland Intake Crib Buoy, OH",41.55,-81.765,buoy,Limno Tech,IOOS Partners,y,n,y,280,1564,txt spec ocean
+cndo1,"9063063 - Cleveland, OH",41.542,-81.637,fixed,NOS,NOS/CO-OPS,y,n,n,277,1567,txt
+45206,Euclid Beach Buoy,41.585,-81.583,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,281,1573,txt spec
+45197,"Euclid, OH",41.619,-81.617,buoy,Limno Tech,IOOS Partners,y,n,y,285,1576,txt spec ocean
+45207,Mentor Harbor Buoy,41.731,-81.367,buoy,Cleveland Water Alliance,IOOS Partners,y,n,n,294,1595,txt spec
+faio1,"9063053 - Fairport, OH",41.764,-81.281,fixed,NOS,NOS/CO-OPS,y,n,n,297,1601,txt
