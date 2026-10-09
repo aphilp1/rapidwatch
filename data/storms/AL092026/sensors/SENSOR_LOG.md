@@ -218,3 +218,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 42039 PENSACOLA - 115NM SSE of Pensacola, FL · 250 km from center · 2026-10-09T12:10Z · wind 70° 10.0 m/s gust 12.0 · pres 1008.1 hPa · air 24.9 °C · water  °C · wave 2.8 m
   - burl1 Southwest Pass, LA · 278 km from center · 2026-10-09T12:00Z · wind 60° 17.0 m/s gust 19.0 · pres 1006.5 hPa · air 26.5 °C · water  °C · wave  m
 
+## 20261009T1344 UTC · center 27.0N 87.6W · HU 105 kt · forecast file adv11A_points.geojson
+- Track points: 20 best-track + center + 6 forecast. Corridor stations: 96 (61 reporting standard met). New NDBC observation rows merged: 409.
+- Argo floats in corridor: 27 (4 new profiles, 4 profile files written). Gliders in corridor: 4 (4 new reports, 4 profile files written).
+- HYCOM sampled at 27 track points; MUR satellite SST returned at 3 of 7 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - kikt Mississippi Canyon 474 / Na Kika FPU (BP) · 182 km from center · 2026-10-07T16:35Z · wind 40° 7.7 m/s gust  · pres  hPa · air 27 °C · water  °C · wave  m
+  - 42001 MID GULF - 180 nm South of Southwest Pass, LA · 236 km from center · 2026-10-09T13:10Z · wind 330° 6.0 m/s gust 9.0 · pres 1006.2 hPa · air 28.3 °C · water 29.5 °C · wave 4.3 m
+  - katp Green Canyon 787 / Atlantis (BP) · 241 km from center · 2026-10-09T13:15Z · wind 360° 10.3 m/s gust 12.9 · pres  hPa · air 27 °C · water  °C · wave  m
+  - kvoa Viosca Knoll 786 / Petronius (Chevron) · 248 km from center · 2026-10-09T04:20Z · wind ° 1.5 m/s gust  · pres  hPa · air 26 °C · water  °C · wave  m
+  - 42039 PENSACOLA - 115NM SSE of Pensacola, FL · 250 km from center · 2026-10-09T13:10Z · wind 80° 14.0 m/s gust 18.0 · pres 1005.9 hPa · air 24.8 °C · water  °C · wave 3.0 m
+  - burl1 Southwest Pass, LA · 278 km from center · 2026-10-09T13:00Z · wind 50° 19.0 m/s gust 21.6 · pres 1006.4 hPa · air 26.4 °C · water  °C · wave  m
+

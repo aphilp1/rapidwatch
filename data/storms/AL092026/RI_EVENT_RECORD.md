@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 12:45Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 13:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-09 12:45Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 27 (first 2026-10-07 12:33Z, latest 2026-10-09 10:58Z).
+- **Aircraft fixes archived:** 28 (first 2026-10-07 12:33Z, latest 2026-10-09 12:00Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -44,7 +44,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-08 18Z | 80 | 30 | 29.3 | 27 | 39 | 14 | 61 | 82 | 96 | 10 | 93 | 10.4% | 11.0% | 6.9% |
 | 2026-10-09 00Z | 85 | 25 | 29.2 | 6 | 29 | 17 | 57 | 71 | 68 | 12 | 77 | 0.0% | 1.0% | 4.9% |
 | 2026-10-09 06Z | 90 | 20 | 29.7 | 32 | 63 | 26 | 51 | 75 | 64 | 13 | 86 | 0.0% | 0.0% | 2.8% |
-| 2026-10-09 12Z | 105 | 30 | – | – | 54 | – | – | – | – | – | – | – | – | – |
+| 2026-10-09 12Z | 105 | 30 | 29.7 | 43 | 54 | 30 | 50 | 60 | 72 | 13 | 83 | 0.0% | 0.0% | 4.0% |
 
 ## 4. Aircraft center fixes
 
@@ -77,6 +77,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-09 08:32Z | 26.26N 88.05W | 964 mb | OPEN NE C24 | 107 kt 090 deg 17 nm 08:37:30Z | AF309 1209A ISAIAS |
 | 2026-10-09 09:40Z | 26.50N 87.88W | 962 mb | NE OPEN C24 | 89 kt 205 deg 15 nm 09:46:30Z | AF309 1209A ISAIAS |
 | 2026-10-09 10:58Z | 26.76N 87.76W | 959 mb | OPEN SE C20 | 92 kt 301 deg 9 nm 11:01:00Z | AF309 1209A ISAIAS |
+| 2026-10-09 12:00Z | 27.00N 87.63W | 960 mb | OPEN SW C20 | 120 kt 096 deg 21 nm 12:06:00Z | AF309 1209A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
