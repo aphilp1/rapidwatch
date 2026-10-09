@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-09 23:21Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-09 23:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -8,7 +8,7 @@ Generated 2026-10-09 23:21Z from the archive in this folder by ri_event_record.p
 - **Definition met:** 2026-10-08 00Z at 22.7N 92.3W, 60 kt 988 mb (TS); +30 kt over the previous 24 h.
 - **First hurricane fix (≥64 kt):** 2026-10-08 06Z at 23.1N 91.5W, 70 kt 981 mb.
 - **NHC upgrade to hurricane:** advisory 006 at 2026-10-08 03:30Z, 65 kt 982 mb at 22.9N 91.9W.
-- **Aircraft fixes archived:** 36 (first 2026-10-07 12:33Z, latest 2026-10-09 20:48Z).
+- **Aircraft fixes archived:** 37 (first 2026-10-07 12:33Z, latest 2026-10-09 22:47Z).
 - **Aircraft fix in hand at the upgrade:** 2026-10-08 02:48Z at 22.91N 91.87W, 982 mb, max 700 mb flight-level wind 57 kt at 238 deg 7 nm 02:53:00Z (AF301 0509A ISAIAS).
 
 ## 2. Measurements at the key moments
@@ -87,6 +87,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-09 18:29Z | 28.59N 87.11W | 958 mb | NA | 117 kt 150 deg 11 nm 18:31:59Z | NOAA3 1309A ISAIAS |
 | 2026-10-09 18:42Z | 28.70N 87.11W | 958 mb | OPEN E C26 | 115 kt 194 deg 11 nm 18:46:00Z | AF301 1409A ISAIAS |
 | 2026-10-09 20:48Z | 29.26N 86.98W | 959 mb | OPEN SE C20 | 110 kt 330 deg 15 nm 20:52:30Z | AF301 1409A ISAIAS |
+| 2026-10-09 22:47Z | 29.79N 86.76W | 972 mb | OPEN SE C14 | 73 kt 185 deg 33 nm 23:05:30Z | AF301 1409A ISAIAS |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
