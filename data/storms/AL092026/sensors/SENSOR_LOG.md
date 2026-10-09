@@ -158,3 +158,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - burl1 Southwest Pass, LA · 360 km from center · 2026-10-09T07:00Z · wind 70° 16.0 m/s gust 17.0 · pres 1007.9 hPa · air 27.0 °C · water  °C · wave  m
   - pstl1 8760922 - Pilot's Station East, SW Pass, LA · 362 km from center · 2026-10-09T07:00Z · wind 70° 14.9 m/s gust 17.5 · pres 1008.3 hPa · air 27.4 °C · water 27.2 °C · wave  m
 
+## 20261009T0844 UTC · center 25.8N 88.4W · HU 90 kt · forecast file adv10A_points.geojson
+- Track points: 19 best-track + center + 7 forecast. Corridor stations: 87 (53 reporting standard met). New NDBC observation rows merged: 203.
+- Argo floats in corridor: 30 (0 new profiles, 0 profile files written). Gliders in corridor: 4 (0 new reports, 0 profile files written).
+- HYCOM sampled at 27 track points; MUR satellite SST returned at 4 of 8 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - 42001 MID GULF - 180 nm South of Southwest Pass, LA · 125 km from center · 2026-10-09T07:50Z · wind 20° 15.0 m/s gust 21.0 · pres 1001.1 hPa · air 27.7 °C · water 29.7 °C · wave 5.7 m
+  - katp Green Canyon 787 / Atlantis (BP) · 224 km from center · 2026-10-09T07:55Z · wind 50° 16.5 m/s gust 20.1 · pres  hPa · air 27 °C · water  °C · wave  m
+  - kgry Green Canyon 338 / Front Runner (Murphy E&amp;P) · 287 km from center · 2026-10-07T08:00Z · wind °  m/s gust  · pres  hPa · air  °C · water  °C · wave  m
+  - kikt Mississippi Canyon 474 / Na Kika FPU (BP) · 303 km from center · 2026-10-07T16:35Z · wind 40° 7.7 m/s gust  · pres  hPa · air 27 °C · water  °C · wave  m
+  - burl1 Southwest Pass, LA · 360 km from center · 2026-10-09T08:00Z · wind 60° 12.4 m/s gust 13.4 · pres 1007.6 hPa · air 27.3 °C · water  °C · wave  m
+  - pstl1 8760922 - Pilot's Station East, SW Pass, LA · 362 km from center · 2026-10-09T07:42Z · wind 60° 14.4 m/s gust 18.0 · pres 1008.0 hPa · air  °C · water 27.2 °C · wave  m
+
