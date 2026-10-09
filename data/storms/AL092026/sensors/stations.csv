@@ -1,6 +1,6 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-42409,"GULF OF AMERICA - 247 NM South of New Orleans, LA",25.797,-89.288,dart,NDBC,Tsunami,n,n,n,84,89,
-42001,"MID GULF - 180 nm South of Southwest Pass, LA",25.922,-89.638,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,121,125,txt spec
+42409,"GULF OF AMERICA - 247 NM South of New Orleans, LA",25.797,-89.288,dart,NDBC,Tsunami,n,n,n,78,89,
+42001,"MID GULF - 180 nm South of Southwest Pass, LA",25.922,-89.638,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,116,125,txt spec
 katp,Green Canyon 787 / Atlantis (BP),27.195,-90.027,oilrig,Federal Aviation Administration,Marine METAR,y,n,n,216,224,txt
 kipn,Mississippi Canyon 920 / Independence Hub (Anadarko / Enterprise),28.085,-87.986,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,54,257,
 42003,"East GULF - 208 NM West of Naples, FL",25.925,-85.616,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,233,279,
