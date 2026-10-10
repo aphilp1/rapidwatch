@@ -458,3 +458,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 42028 C24 - FLRACEP nWFS Buoy, 58m isobath · 120 km from center · 2026-10-09T21:35Z · wind 120° 23.0 m/s gust 30.0 · pres 991.5 hPa · air 26.1 °C · water  °C · wave  m
   - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 130 km from center · 2026-10-10T04:20Z · wind 340° 15.0 m/s gust 20.0 · pres 1005.7 hPa · air 22.5 °C · water 27.7 °C · wave 2.6 m
 
+## 20261010T0844 UTC · center 31.5N 86.5W · PTC 55 kt · forecast file adv014_points.geojson
+- Track points: 23 best-track + center + 5 forecast. Corridor stations: 94 (62 reporting standard met). New NDBC observation rows merged: 1543.
+- Argo floats in corridor: 23 (1 new profiles, 1 profile files written). Gliders in corridor: 3 (3 new reports, 3 profile files written).
+- HYCOM sampled at 29 track points; MUR satellite SST returned at 0 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pclf1 8729840 - Pensacola, FL · 139 km from center · 2026-10-10T07:30Z · wind 330° 2.6 m/s gust 7.2 · pres 1006.4 hPa · air 18.9 °C · water 25.5 °C · wave  m
+  - pcbf1 8729210 - Panama City Beach, FL · 155 km from center · 2026-10-10T07:30Z · wind 230° 13.4 m/s gust 14.9 · pres 1006.8 hPa · air 23.5 °C · water 26.0 °C · wave  m
+  - mhpa1 Meaher Park, AL · 165 km from center · 2026-09-29T23:00Z · wind ° 5.7 m/s gust  · pres 1015.1 hPa · air 29.4 °C · water  °C · wave  m
+  - ppta1 Perdido Pass, AL · 169 km from center · 2026-10-10T06:00Z · wind ° 7.2 m/s gust  · pres 1006.9 hPa · air 22.5 °C · water 25.4 °C · wave  m
+  - pacf1 8729108 - Panama City, FL · 170 km from center · 2026-10-10T07:30Z · wind 230° 11.3 m/s gust 13.4 · pres  hPa · air  °C · water 25.9 °C · wave  m
+  - obla1 8737048 - Mobile State Docks, AL · 171 km from center · 2026-10-10T07:30Z · wind °  m/s gust  · pres 1008.0 hPa · air 18.7 °C · water 26.2 °C · wave  m
+
