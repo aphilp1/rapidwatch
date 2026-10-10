@@ -57,7 +57,7 @@ chds1,"Strom Thurmond Dam, SC",33.661,-82.199,fixed,"NWS WFO Columbia, SC (CAE)"
 burl1,"Southwest Pass, LA",28.906,-89.429,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,230,444,txt cwind
 bygl1,"8762482 - West Bank 1, Bayou Gauche, LA",29.789,-90.42,fixed,NOS,NOS/CO-OPS,y,n,n,347,448,txt
 gisl1,"8761724 - Grand Isle, LA",29.265,-89.958,fixed,NOS,NOS/CO-OPS,y,n,n,289,449,txt
-42084,"Southwest Pass Entrance W, LA (256)",28.988,-89.649,buoy,SCRIPPS,IOOS Partners,y,y,n,253,451,txt spec
+42084,"Southwest Pass Entrance W, LA (256)",28.988,-89.649,buoy,SCRIPPS,IOOS Partners,y,n,n,253,451,txt spec
 kipn,Mississippi Canyon 920 / Independence Hub (Anadarko / Enterprise),28.085,-87.986,oilrig,Federal Aviation Administration,Marine METAR,n,n,n,70,458,
 cdrf1,"Cedar Key, FL",29.136,-83.029,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,360,460,txt
 ckyf1,"8727520 - Cedar Key, FL",29.134,-83.031,fixed,NOS,NOS/CO-OPS,y,n,n,360,460,txt
