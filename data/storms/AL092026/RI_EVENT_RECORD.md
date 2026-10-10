@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-10 08:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-10 11:59Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -141,6 +141,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 014** (1000 PM CDT Fri Oct 09 2026)
 > Isaias made landfall as a 90-kt hurricane at 0130 UTC near Destin, Florida. Since that time, the radar structure of the storm has continued to degrade as strong vertical wind shear disrupts the circulation. However, Eglin AFB (KEVX) radar data and surface observations indicate damaging, gusty winds are persisting in the residual northern eyewall and in a band wrapping around the western side of the circulation. Now that the system is farther inland and losing organization, the initial intensity is lowered to 80 kt for this advisory.
 > Isaias is rapidly losing tropical characteristics, and it is forecast to become post-tropical within the next 12 h while it continues moving quickly northward through Alabama. Although the sustained surface winds associated with Isaias will quickly weaken now that the storm is inland, damaging wind gusts associated with the system are expected to extend well inland through Saturday, especially in areas of higher terrain. Because of this, the gust factors in the forecast have been slightly increased during the first 24 h. A turn toward the northeast is forecast later this weekend, bringing the center of the system into the Tennessee Valley before it dissipates.
+
+**Discussion 015** (400 AM CDT Sat Oct 10 2026)
+> Isaias has very rapidly weakened over Alabama and has transitioned into a post-tropical cyclone. Satellite images show that all deep convection has been scoured well northward away from the low-level center, with a warm front extending eastward from the former tropical cyclone. Thus this is the last advisory on Isaias, with an initial intensity of 30 kt set from surface observations.
 
 ## 6. Sources in this folder
 

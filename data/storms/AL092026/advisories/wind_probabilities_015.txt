@@ -1,0 +1,74 @@
+000
+FONT14 KNHC 100844
+PWSAT4
+                                                                    
+POST-TROPICAL CYCLONE ISAIAS WIND SPEED PROBABILITIES NUMBER  15    
+NWS NATIONAL HURRICANE CENTER MIAMI FL       AL092026               
+0900 UTC SAT OCT 10 2026                                            
+                                                                    
+AT 0900Z THE CENTER OF POST-TROPICAL CYCLONE ISAIAS WAS LOCATED NEAR
+LATITUDE 32.0 NORTH...LONGITUDE 86.5 WEST WITH MAXIMUM SUSTAINED    
+WINDS NEAR 30 KTS...35 MPH...55 KM/H.                               
+                                                                    
+Z INDICATES COORDINATED UNIVERSAL TIME (GREENWICH)                  
+   ATLANTIC STANDARD TIME (AST)...SUBTRACT 4 HOURS FROM Z TIME      
+   EASTERN  DAYLIGHT TIME (EDT)...SUBTRACT 4 HOURS FROM Z TIME      
+   CENTRAL  DAYLIGHT TIME (CDT)...SUBTRACT 5 HOURS FROM Z TIME      
+                                                                    
+WIND SPEED PROBABILITY TABLE FOR SPECIFIC LOCATIONS                 
+                                                                    
+CHANCES OF SUSTAINED (1-MINUTE AVERAGE) WIND SPEEDS OF AT LEAST     
+   ...34 KT (39 MPH... 63 KM/H)...                                  
+   ...50 KT (58 MPH... 93 KM/H)...                                  
+   ...64 KT (74 MPH...119 KM/H)...                                  
+FOR LOCATIONS AND TIME PERIODS DURING THE NEXT 5 DAYS               
+                                                                    
+PROBABILITIES FOR LOCATIONS ARE GIVEN AS OP(CP) WHERE               
+    OP  IS THE PROBABILITY OF THE EVENT BEGINNING DURING            
+        AN INDIVIDUAL TIME PERIOD (ONSET PROBABILITY)               
+   (CP) IS THE PROBABILITY OF THE EVENT OCCURRING BETWEEN           
+        06Z SAT AND THE FORECAST HOUR (CUMULATIVE PROBABILITY)      
+                                                                    
+PROBABILITIES ARE GIVEN IN PERCENT                                  
+X INDICATES PROBABILITIES LESS THAN 1 PERCENT                       
+PROBABILITIES FOR 34 KT AND 50 KT ARE SHOWN AT A GIVEN LOCATION WHEN
+THE 5-DAY CUMULATIVE PROBABILITY IS AT LEAST 3 PERCENT.             
+PROBABILITIES FOR 34...50...64 KT SHOWN WHEN THE 5-DAY              
+64-KT CUMULATIVE PROBABILITY IS AT LEAST 1 PERCENT.                 
+                                                                    
+                                                                    
+  - - - - WIND SPEED PROBABILITIES FOR SELECTED LOCATIONS - - - -   
+                                                                    
+               FROM    FROM    FROM    FROM    FROM    FROM    FROM 
+  TIME       06Z SAT 18Z SAT 06Z SUN 18Z SUN 06Z MON 06Z TUE 06Z WED
+PERIODS         TO      TO      TO      TO      TO      TO      TO  
+             18Z SAT 06Z SUN 18Z SUN 06Z MON 06Z TUE 06Z WED 06Z THU
+                                                                    
+FORECAST HOUR    (12)   (24)    (36)    (48)    (72)    (96)   (120)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+LOCATION       KT                                                   
+                                                                    
+TALLAHASSEE FL 34 24   X(24)   X(24)   X(24)   X(24)   X(24)   X(24)
+ 
+APALACHICOLA   34  4   X( 4)   X( 4)   X( 4)   X( 4)   X( 4)   X( 4)
+ 
+PANAMA CITY FL 34 96   X(96)   X(96)   X(96)   X(96)   X(96)   X(96)
+ 
+DESTIN EXEC AP 34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+ALBANY GA      34 94   X(94)   X(94)   X(94)   X(94)   X(94)   X(94)
+ 
+COLUMBUS GA    34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+DOTHAN AL      34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+BIRMINGHAM AL  34 77   X(77)   X(77)   X(77)   X(77)   X(77)   X(77)
+ 
+MONTGOMERY AL  34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+WHITING FLD FL 34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+PENSACOLA FL   34 98   X(98)   X(98)   X(98)   X(98)   X(98)   X(98)
+ 
+$$                                                                  
+FORECASTER BLAKE
