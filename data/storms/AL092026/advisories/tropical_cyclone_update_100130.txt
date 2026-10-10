@@ -1,0 +1,40 @@
+000
+WTNT64 KNHC 100130
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update
+NWS National Hurricane Center Miami FL       AL092026
+830 PM CDT Fri Oct 09 2026
+
+...ISAIAS MAKES LANDFALL NEAR DESTIN FLORIDA...
+...LIFE-THREATENING STORM SURGE IMPACTING THE GULF COAST AS 
+DANGEROUS HURRICANE CONDITIONS AND FLASH FLOODING SPREAD INLAND...
+
+NWS Doppler Radar data indicate that Hurricane Isaias made landfall 
+near Destin, Florida, around 830 PM CDT (0130 UTC) with maximum 
+sustained winds of 105 mph (165 km/h). The estimated minimum central 
+pressure is 971 mb (28.67 inches).
+
+A NOAA National Ocean Service water level gauge in Panama City 
+Beach, Florida, recently reported a water level of 5.6 feet above 
+mean higher high water, which is an approximation of inundation in 
+that area. 
+
+A wind gust to 116 mph (187 km/h) with a sustained wind of 91 mph 
+(146 km/h) was recently reported at a WeatherFlow station near Santa 
+Rosa Sound, Florida. A wind gust to 100 mph (161 km/h) with a 
+sustained wind of 63 mph (101 km/h) was recently reported at a 
+WeatherSTEM station near Pensacola, Florida. 
+
+ 
+SUMMARY OF 830 PM CDT...0130 UTC...INFORMATION
+----------------------------------------------
+LOCATION...30.4N 86.5W
+ABOUT 40 MI...65 KM E OF PENSACOLA FLORIDA
+ABOUT 50 MI...80 KM WNW OF PANAMA CITY FLORIDA
+MAXIMUM SUSTAINED WINDS...105 MPH...165 KM/H
+PRESENT MOVEMENT...N OR 10 DEGREES AT 19 MPH...31 KM/H
+MINIMUM CENTRAL PRESSURE...971 MB...28.67 INCHES
+ 
+$$
+Forecaster Mahoney/Camposano/Reinhart/Cangialosi
