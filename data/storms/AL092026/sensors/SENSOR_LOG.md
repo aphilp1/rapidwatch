@@ -422,3 +422,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - ppta1 Perdido Pass, AL · 114 km from center · 2026-10-10T00:00Z · wind ° 13.9 m/s gust  · pres 999.8 hPa · air 24.8 °C · water 24.4 °C · wave  m
   - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 120 km from center · 2026-10-10T01:50Z · wind 340° 16.0 m/s gust 20.0 · pres 1002.6 hPa · air 23.5 °C · water 27.8 °C · wave 3.9 m
 
+## 20261010T0244 UTC · center 30.5N 86.4W · HU 85 kt · forecast file adv13A_points.geojson
+- Track points: 22 best-track + center + 5 forecast. Corridor stations: 109 (76 reporting standard met). New NDBC observation rows merged: 114.
+- Argo floats in corridor: 23 (0 new profiles, 0 profile files written). Gliders in corridor: 3 (0 new reports, 0 profile files written).
+- HYCOM sampled at 28 track points; MUR satellite SST returned at 1 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pcbf1 8729210 - Panama City Beach, FL · 59 km from center · 2026-10-10T01:54Z · wind 150° 27.8 m/s gust 33.5 · pres 995.7 hPa · air 26.6 °C · water 27.1 °C · wave  m
+  - pclf1 8729840 - Pensacola, FL · 78 km from center · 2026-10-10T01:54Z · wind 360° 8.8 m/s gust 15.4 · pres 1000.7 hPa · air 20.7 °C · water 25.7 °C · wave  m
+  - pacf1 8729108 - Panama City, FL · 81 km from center · 2026-10-10T01:54Z · wind 160° 20.6 m/s gust 25.7 · pres  hPa · air  °C · water 25.8 °C · wave  m
+  - 42028 C24 - FLRACEP nWFS Buoy, 58m isobath · 86 km from center · 2026-10-09T21:35Z · wind 120° 23.0 m/s gust 30.0 · pres 991.5 hPa · air 26.1 °C · water  °C · wave  m
+  - ppta1 Perdido Pass, AL · 114 km from center · 2026-10-10T01:00Z · wind ° 10.3 m/s gust  · pres 1001.7 hPa · air 24.7 °C · water 24.3 °C · wave  m
+  - 42012 ORANGE BEACH - 44 NM SE of Mobile, AL · 120 km from center · 2026-10-10T02:10Z · wind 340° 14.0 m/s gust 19.0 · pres 1004.4 hPa · air 23.7 °C · water 27.8 °C · wave 3.8 m
+
