@@ -542,3 +542,6 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - pclf1 8729840 - Pensacola, FL · 269 km from center · 2026-10-10T15:00Z · wind 340° 3.1 m/s gust 4.1 · pres 1012.3 hPa · air 20.7 °C · water 25.3 °C · wave  m
   - mbpa1 8736163 - Middle Bay Port, Mobile Bay, AL · 281 km from center · 2026-10-10T14:54Z · wind °  m/s gust  · pres  hPa · air 20.9 °C · water  °C · wave  m
 
+
+## 20261010T1626 UTC · CLOSE-OUT BACKFILL (backfill_sensors.py)
+- Re-fetched the NDBC 45-day files for all 140 station files on disk regardless of corridor, merged every row since 2026-10-04T00:00Z: 5507 new rows in 119 files. Retried 45 stations NDBC had 404'd: 0 now have a file, 45 still absent.
