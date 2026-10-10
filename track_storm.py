@@ -331,6 +331,12 @@ def main(only=None):
     storms = [s for s in cs.get("activeStorms", []) if str(s.get("id", "")).upper().startswith("AL")]
     if only:
         storms = [s for s in storms if str(s.get("id", "")).upper() == only.upper()]
+    # A storm whose folder holds a STOPPED marker is no longer recorded (Alex closed the record).
+    # Delete data/storms/<ID>/STOPPED to resume.
+    stopped = [s for s in storms if (DATA / "storms" / str(s.get("id", "")).upper() / "STOPPED").exists()]
+    for s in stopped:
+        print(f"{str(s.get('id','')).upper()}: recording STOPPED (marker file present), skipping")
+    storms = [s for s in storms if s not in stopped]
     if not storms:
         print("no matching active Atlantic storm"); return
     svc = json.loads(get(f"{MAPSRV}?f=json"))
