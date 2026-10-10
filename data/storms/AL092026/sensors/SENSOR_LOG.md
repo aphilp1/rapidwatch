@@ -482,3 +482,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - ptoa1 8737005 - Pinto Island, AL · 207 km from center · 2026-10-10T11:00Z · wind °  m/s gust  · pres  hPa · air 19.0 °C · water  °C · wave  m
   - mcga1 8736897 - Coast Guard Sector Mobile, AL · 211 km from center · 2026-10-10T11:18Z · wind 300° 3.1 m/s gust 4.6 · pres 1010.6 hPa · air  °C · water 24.9 °C · wave  m
 
+## 20261010T1244 UTC · center 32.0N 86.5W · PTC 30 kt · forecast file adv014_points.geojson
+- Track points: 23 best-track + center + 5 forecast. Corridor stations: 85 (55 reporting standard met). New NDBC observation rows merged: 252.
+- Argo floats in corridor: 23 (0 new profiles, 0 profile files written). Gliders in corridor: 3 (0 new reports, 0 profile files written).
+- HYCOM sampled at 29 track points; MUR satellite SST returned at 0 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pclf1 8729840 - Pensacola, FL · 190 km from center · 2026-10-10T11:54Z · wind 280° 2.6 m/s gust 4.1 · pres 1010.0 hPa · air 18.2 °C · water 25.3 °C · wave  m
+  - mhpa1 Meaher Park, AL · 201 km from center · 2026-09-29T23:00Z · wind ° 5.7 m/s gust  · pres 1015.1 hPa · air 29.4 °C · water  °C · wave  m
+  - obla1 8737048 - Mobile State Docks, AL · 205 km from center · 2026-10-10T11:54Z · wind °  m/s gust  · pres 1010.4 hPa · air 18.6 °C · water 25.5 °C · wave  m
+  - pcbf1 8729210 - Panama City Beach, FL · 207 km from center · 2026-10-10T11:54Z · wind 240° 8.8 m/s gust 10.3 · pres 1010.1 hPa · air 23.3 °C · water 25.7 °C · wave  m
+  - ptoa1 8737005 - Pinto Island, AL · 207 km from center · 2026-10-10T12:00Z · wind °  m/s gust  · pres  hPa · air 19.2 °C · water  °C · wave  m
+  - mcga1 8736897 - Coast Guard Sector Mobile, AL · 211 km from center · 2026-10-10T11:48Z · wind 300° 3.6 m/s gust 4.6 · pres 1011.0 hPa · air  °C · water  °C · wave  m
+

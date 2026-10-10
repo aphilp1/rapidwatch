@@ -162,41 +162,41 @@
       "forecastTrack": {
         "advNum": "053a",
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:51:58.280Z",
+        "fileUpdateTime": "2026-10-10T12:03:21.115Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep182026_5day_053A.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP182026_053Aadv_TRACK.kmz"
       },
       "windWatchesWarnings": {
         "advNum": "053a",
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:51:59.878Z",
+        "fileUpdateTime": "2026-10-10T12:03:22.519Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep182026_5day_053A.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP182026_053Aadv_WW.kmz"
       },
       "trackCone": {
         "advNum": "053a",
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:51:56.641Z",
+        "fileUpdateTime": "2026-10-10T12:03:19.500Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep182026_5day_053A.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP182026_053Aadv_CONE.kmz"
       },
       "initialWindExtent": {
         "advNum": "053a",
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:52:23.915Z",
+        "fileUpdateTime": "2026-10-10T12:03:46.478Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep182026_fcst_053A.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP182026_initialradii_053Aadv.kmz"
       },
       "forecastWindRadiiGIS": {
         "advNum": "053a",
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:52:20.695Z",
+        "fileUpdateTime": "2026-10-10T12:03:43.414Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep182026_fcst_053A.zip",
         "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP182026_forecastradii_053Aadv.kmz"
       },
       "bestTrackGIS": {
         "issuance": "2026-10-10T12:00:00.000Z",
-        "fileUpdateTime": "2026-10-10T11:52:08.607Z",
+        "fileUpdateTime": "2026-10-10T12:03:30.784Z",
         "zipFile": "https://www.nhc.noaa.gov/gis/best_track/ep182026_best_track.zip",
         "kmzFile": "https://www.nhc.noaa.gov/gis/best_track/ep182026_best_track.kmz"
       },
