@@ -1,0 +1,38 @@
+000
+WTNT64 KNHC 100208 CCB
+TCUAT4
+ 
+Hurricane Isaias Tropical Cyclone Update...Corrected
+NWS National Hurricane Center Miami FL       AL092026
+900 PM CDT Fri Oct 09 2026
+
+Corrected the initial intensity to 100 mph
+
+...LIFE-THREATENING STORM SURGE IMPACTING THE GULF COAST AS 
+DANGEROUS HURRICANE CONDITIONS AND FLASH FLOODING SPREAD INLAND...
+...900 PM CDT POSITION UPDATE...
+
+NWS Doppler Radar data and surface observations indicate that 
+Hurricane Isaias now has maximum sustained winds of 100 mph (160 
+km/h) and an estimated minimum central pressure of 978 mb (28.88 
+inches).
+
+A NOAA National Ocean Service station in Panama City Beach, Florida, 
+recently reported a wind gust to 83 mph (134 km/h) and a sustained 
+wind of 72 mph (116 km/h).
+
+This will be the final hourly position update for Isaias. The next 
+full forecast advisory for Isaias will be issued at 1000 PM CDT 
+(0300 UTC).
+ 
+SUMMARY OF 900 PM CDT...0200 UTC...INFORMATION
+----------------------------------------------
+LOCATION...30.5N 86.4W
+ABOUT 50 MI...80 KM E OF PENSACOLA FLORIDA
+ABOUT 50 MI...80 KM WNW OF PANAMA CITY FLORIDA
+MAXIMUM SUSTAINED WINDS...100 MPH...160 KM/H
+PRESENT MOVEMENT...N OR 10 DEGREES AT 19 MPH...31 KM/H
+MINIMUM CENTRAL PRESSURE...978 MB...28.88 INCHES
+ 
+$$
+Forecaster Mahoney/Camposano/Reinhart/Cangialosi
