@@ -1,0 +1,85 @@
+000
+FONT14 KNHC 100245
+PWSAT4
+                                                                    
+HURRICANE ISAIAS WIND SPEED PROBABILITIES NUMBER  14                
+NWS NATIONAL HURRICANE CENTER MIAMI FL       AL092026               
+0300 UTC SAT OCT 10 2026                                            
+                                                                    
+AT 0300Z THE CENTER OF HURRICANE ISAIAS WAS LOCATED NEAR LATITUDE   
+30.8 NORTH...LONGITUDE 86.5 WEST WITH MAXIMUM SUSTAINED WINDS NEAR  
+80 KTS...90 MPH...150 KM/H.                                         
+                                                                    
+Z INDICATES COORDINATED UNIVERSAL TIME (GREENWICH)                  
+   ATLANTIC STANDARD TIME (AST)...SUBTRACT 4 HOURS FROM Z TIME      
+   EASTERN  DAYLIGHT TIME (EDT)...SUBTRACT 4 HOURS FROM Z TIME      
+   CENTRAL  DAYLIGHT TIME (CDT)...SUBTRACT 5 HOURS FROM Z TIME      
+                                                                    
+WIND SPEED PROBABILITY TABLE FOR SPECIFIC LOCATIONS                 
+                                                                    
+CHANCES OF SUSTAINED (1-MINUTE AVERAGE) WIND SPEEDS OF AT LEAST     
+   ...34 KT (39 MPH... 63 KM/H)...                                  
+   ...50 KT (58 MPH... 93 KM/H)...                                  
+   ...64 KT (74 MPH...119 KM/H)...                                  
+FOR LOCATIONS AND TIME PERIODS DURING THE NEXT 5 DAYS               
+                                                                    
+PROBABILITIES FOR LOCATIONS ARE GIVEN AS OP(CP) WHERE               
+    OP  IS THE PROBABILITY OF THE EVENT BEGINNING DURING            
+        AN INDIVIDUAL TIME PERIOD (ONSET PROBABILITY)               
+   (CP) IS THE PROBABILITY OF THE EVENT OCCURRING BETWEEN           
+        00Z SAT AND THE FORECAST HOUR (CUMULATIVE PROBABILITY)      
+                                                                    
+PROBABILITIES ARE GIVEN IN PERCENT                                  
+X INDICATES PROBABILITIES LESS THAN 1 PERCENT                       
+PROBABILITIES FOR 34 KT AND 50 KT ARE SHOWN AT A GIVEN LOCATION WHEN
+THE 5-DAY CUMULATIVE PROBABILITY IS AT LEAST 3 PERCENT.             
+PROBABILITIES FOR 34...50...64 KT SHOWN WHEN THE 5-DAY              
+64-KT CUMULATIVE PROBABILITY IS AT LEAST 1 PERCENT.                 
+                                                                    
+                                                                    
+  - - - - WIND SPEED PROBABILITIES FOR SELECTED LOCATIONS - - - -   
+                                                                    
+               FROM    FROM    FROM    FROM    FROM    FROM    FROM 
+  TIME       00Z SAT 12Z SAT 00Z SUN 12Z SUN 00Z MON 00Z TUE 00Z WED
+PERIODS         TO      TO      TO      TO      TO      TO      TO  
+             12Z SAT 00Z SUN 12Z SUN 00Z MON 00Z TUE 00Z WED 00Z THU
+                                                                    
+FORECAST HOUR    (12)   (24)    (36)    (48)    (72)    (96)   (120)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+LOCATION       KT                                                   
+                                                                    
+APALACHICOLA   34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+GFAM 290N 850W 34 86   X(86)   X(86)   X(86)   X(86)   X(86)   X(86)
+ 
+PANAMA CITY FL 34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+PANAMA CITY FL 50 72   X(72)   X(72)   X(72)   X(72)   X(72)   X(72)
+ 
+DESTIN EXEC AP 34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+DESTIN EXEC AP 50 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+DESTIN EXEC AP 64 97   X(97)   X(97)   X(97)   X(97)   X(97)   X(97)
+ 
+COLUMBUS GA    34  8   X( 8)   X( 8)   X( 8)   X( 8)   X( 8)   X( 8)
+ 
+DOTHAN AL      34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+DOTHAN AL      50  3   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+BIRMINGHAM AL  34 28  19(47)   X(47)   X(47)   X(47)   X(47)   X(47)
+ 
+MONTGOMERY AL  34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+MONTGOMERY AL  50 38   X(38)   X(38)   X(38)   X(38)   X(38)   X(38)
+ 
+WHITING FLD FL 34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+WHITING FLD FL 50 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+WHITING FLD FL 64 14   X(14)   X(14)   X(14)   X(14)   X(14)   X(14)
+ 
+PENSACOLA FL   34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+PENSACOLA FL   50 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+PENSACOLA FL   64  3   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+GFAM 290N 870W 34 96   X(96)   X(96)   X(96)   X(96)   X(96)   X(96)
+ 
+MOBILE AL      34  8   X( 8)   X( 8)   X( 8)   X( 8)   X( 8)   X( 8)
+ 
+$$                                                                  
+FORECASTER REINHART

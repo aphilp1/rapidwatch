@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-10 02:45Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-10 03:45Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -136,6 +136,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 013** (400 PM CDT Fri Oct 09 2026)
 > Deep-layer shear from the southwest has increased to 30-40 kt, and the hurricane's structure is responding accordingly. WSR-88D radar data shows that the structure is becoming increasingly asymmetric, with very intense convection mainly confined to the northern eyewall. Tail Doppler radar data from the NOAA P-3 has also shown that the circulation is becoming tilted with height. That said, some impressive winds were measured at flight-level--136 kt by the Air Force Reserve at 10,000 feet and 126 kt by NOAA at 8,000 ft. While these winds themselves would normally support a higher intensity, several dropsondes released in the eyewall showed that there is a sharp drop-off of winds at the ocean surface, with layer-averaging suggesting a surface intensity of 90-95 kt. In addition, recent Doppler radar data from Mobile show winds of 100-110 kt at about 10,000 feet in the northern eyewall. Combining all this data together, the maximum surface winds appear to be around 100 kt, although it's very likely that Isaias will be a gustier-than-normal hurricane when it makes landfall.
+
+**Discussion 014** (1000 PM CDT Fri Oct 09 2026)
+> Isaias made landfall as a 90-kt hurricane at 0130 UTC near Destin, Florida. Since that time, the radar structure of the storm has continued to degrade as strong vertical wind shear disrupts the circulation. However, Eglin AFB (KEVX) radar data and surface observations indicate damaging, gusty winds are persisting in the residual northern eyewall and in a band wrapping around the western side of the circulation. Now that the system is farther inland and losing organization, the initial intensity is lowered to 80 kt for this advisory.
+> Isaias is rapidly losing tropical characteristics, and it is forecast to become post-tropical within the next 12 h while it continues moving quickly northward through Alabama. Although the sustained surface winds associated with Isaias will quickly weaken now that the storm is inland, damaging wind gusts associated with the system are expected to extend well inland through Saturday, especially in areas of higher terrain. Because of this, the gust factors in the forecast have been slightly increased during the first 24 h. A turn toward the northeast is forecast later this weekend, bringing the center of the system into the Tennessee Valley before it dissipates.
 
 ## 6. Sources in this folder
 

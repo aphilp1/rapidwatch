@@ -1,0 +1,173 @@
+000
+WTNT34 KNHC 100245
+TCPAT4
+ 
+BULLETIN
+Hurricane Isaias Advisory Number  14
+NWS National Hurricane Center Miami FL       AL092026
+1000 PM CDT Fri Oct 09 2026
+ 
+...ISAIAS MOVING OVER THE WESTERN FLORIDA PANHANDLE...
+...DAMAGING WINDS AND FLASH FLOODING THREAT SPREADS INLAND...
+ 
+ 
+SUMMARY OF 1000 PM CDT...0300 UTC...INFORMATION
+-----------------------------------------------
+LOCATION...30.8N 86.5W
+ABOUT 45 MI...75 KM ENE OF PENSACOLA FLORIDA
+ABOUT 65 MI...100 KM NW OF PANAMA CITY FLORIDA
+MAXIMUM SUSTAINED WINDS...90 MPH...150 KM/H
+PRESENT MOVEMENT...N OR 5 DEGREES AT 20 MPH...31 KM/H
+MINIMUM CENTRAL PRESSURE...982 MB...29.00 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+CHANGES WITH THIS ADVISORY:
+ 
+The Hurricane Warning west of the Mississippi/Alabama border has
+been discontinued.
+ 
+The Tropical Storm Warning west of Ocean Springs, MS, has been
+discontinued.
+ 
+The Storm Surge Warning west of Dauphin Island, AL, has been
+discontinued.
+ 
+The Storm Surge Watch east of Suwannee River, FL has been
+discontinued.
+ 
+SUMMARY OF WATCHES AND WARNINGS IN EFFECT:
+ 
+A Storm Surge Warning is in effect for...
+* Dauphin Island, AL to the Suwannee River
+ 
+A Hurricane Warning is in effect for...
+* Mississippi/Alabama border to the Bay/Gulf County Line, FL
+ 
+A Tropical Storm Warning is in effect for...
+* East of Bay/Gulf County Line to Aucilla River, FL
+ 
+A Storm Surge Warning means there is a danger of life-threatening
+inundation, from rising water moving inland from the coastline. For
+a depiction of areas at risk, please see the National Weather
+Service Storm Surge Watch/Warning Graphic, available at
+<a href='https://www.hurricanes.gov'>hurricanes.gov</a>. This is a life-threatening situation. Persons
+located within these areas should take all necessary actions to
+protect life and property from rising water and the potential for
+other dangerous conditions. Promptly follow evacuation and other
+instructions from local officials.
+ 
+A Hurricane Warning means that hurricane conditions are expected
+somewhere within the warning area.
+ 
+A Tropical Storm Warning means that tropical storm conditions are
+expected somewhere within the warning area.
+ 
+For storm information specific to your area, including possible
+inland watches and warnings, please monitor products issued by your
+local National Weather Service forecast office.
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 1000 PM CDT (0300 UTC), the center of Hurricane Isaias was 
+located near latitude 30.8 North, longitude 86.5 West. Isaias is 
+moving toward the north near 20 mph (31 km/h), and this general 
+motion is expected to continue through Saturday. A motion toward the 
+north-northeast or northeast is forecast on Sunday. On the forecast 
+track, Isaias is expected to move across Alabama and into the 
+Tennessee Valley Saturday and Sunday.
+ 
+Maximum sustained winds have decreased to near 90 mph (150 km/h)
+with higher gusts. Continued weakening is expected, but Isaias is
+expected to continue producing gusty winds well inland through
+Saturday even after it becomes post-tropical.
+ 
+Hurricane-force winds extend outward up to 35 miles (55 km) from the
+center and tropical-storm-force winds extend outward up to 160 miles
+(260 km).
+ 
+The estimated minimum central pressure is 982 mb (29.00 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+Key messages for Isaias can be found in the Tropical Cyclone
+Discussion under AWIPS header MIATCDAT4 and WMO header WTNT44 KNHC.
+ 
+STORM SURGE: The combination of a dangerous storm surge and the
+tide will cause normally dry areas near the coast to be flooded by
+rising waters moving inland from the shoreline. The water could
+reach the following heights above ground somewhere in the indicated
+areas if the peak surge occurs at the time of high tide...
+ 
+Dauphin Island, AL to Aucilla River, FL...3-5 ft
+Aucilla River, FL to Suwannee River, FL...2-4 ft
+Mobile Bay...2-4 ft
+Suwannee River, FL to Yankeetown, FL...1-3 ft
+Mouth of the Mississippi River, LA to Dauphin Island, AL...1-3 ft
+Lake Pontchartrain...1-3 ft
+ 
+The deepest water will occur along the immediate coast in areas of
+onshore winds, where the surge will be accompanied by large and
+dangerous waves. Surge-related flooding depends on the relative
+timing of the surge and the tidal cycle, and can vary greatly over
+short distances. For information specific to your area, please see
+products issued by your local National Weather Service forecast
+office.
+ 
+For a complete depiction of areas at risk of storm surge inundation,
+please see the National Weather Service Peak Storm Surge Graphic,
+available at <a href='https://www.hurricanes.gov/graphics_at4.shtml?peakSurge.'>hurricanes.gov/graphics_at4.shtml?peakSurge.</a>
+ 
+WIND: Hurricane conditions, particularly in gusts, are expected
+through early Saturday within the Hurricane Warning area.
+Hurricane-force winds are expected to spread inland as far as 100
+miles from the coast into southern Alabama. Tropical storm
+conditions are ongoing in the tropical storm warning area.
+ 
+RAINFALL: From Friday through the weekend, Isaias is expected to
+produce rainfall amounts of 4 to 8 inches across southern Alabama,
+the Florida Panhandle and Big Bend, and southwest Georgia. Localized
+totals up to 15 inches are possible, particularly within banding
+across the Florida Panhandle and Big Bend.
+ 
+Across much of the remainder of the Southeast, rainfall amounts of 2
+to 5 inches are expected.  Localized higher amounts up to 10 inches
+are possible, especially across the Southern Appalachians and
+coastal Carolinas.
+ 
+Flash, urban, and river flooding is possible across the region, with
+considerable impacts likely across much of southern Alabama and the
+Florida Panhandle into southwestern Georgia. Considerable flash
+flooding and landslides are also possible across the Southern
+Appalachians.
+ 
+For a complete depiction of forecast rainfall associated with
+Isaias, please see the National Weather Service Storm Total Rainfall
+Graphic available at
+<a href='https://www.hurricanes.gov/graphics_at4.shtml?rainqpf'>hurricanes.gov/graphics_at4.shtml?rainqpf</a> and the Flash Flood Risk
+graphic at <a href='https://www.hurricanes.gov/graphics_at4.shtml?ero.'>hurricanes.gov/graphics_at4.shtml?ero.</a>
+ 
+TORNADOES: A risk for tornadoes will persist tonight across the
+Florida Panhandle and north Florida into southern Georgia. The
+tornado threat will continue Saturday across parts of the Florida
+Panhandle, Georgia, and the Carolinas.
+ 
+SURF: Swells from Isaias are affecting much of the Gulf coasts of
+the United States, Mexico, and western Cuba. These swells are
+likely to cause life-threatening surf and rip current conditions.
+Please consult products from your local weather office.
+ 
+A depiction of rip current risk for the United States can be found
+at: <a href='https://www.hurricanes.gov/graphics_at4.shtml?ripCurrents'>hurricanes.gov/graphics_at4.shtml?ripCurrents</a>
+ 
+ 
+NEXT ADVISORY
+-------------
+Next intermediate advisory at 100 AM CDT.
+Next complete advisory at 400 AM CDT.
+ 
+$$
+Forecaster Reinhart
