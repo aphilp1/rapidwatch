@@ -1,0 +1,101 @@
+000
+WTNT34 KWNH 101534
+TCPAT4
+ 
+BULLETIN
+Post-Tropical Cyclone Isaias Advisory Number  16
+NWS Weather Prediction Center College Park MD   AL092026
+1000 AM CDT Sat Oct 10 2026
+ 
+...FLASH FLOODING RISK CONTINUES WITH ISAIAS...
+
+
+SUMMARY OF 1000 AM CDT...1500 UTC...INFORMATION
+-----------------------------------------------
+LOCATION...32.8N 86.8W
+ABOUT 50 MI...80 KM S OF BIRMINGHAM ALABAMA
+MAXIMUM SUSTAINED WINDS...35 MPH...55 KM/H
+PRESENT MOVEMENT...NNW OR 335 DEGREES AT 10 MPH...17 KM/H
+MINIMUM CENTRAL PRESSURE...1006 MB...29.71 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+SUMMARY OF WATCHES AND WARNINGS IN EFFECT:
+ 
+Flood Watches are in effect for...
+* Portions of the Southeast United States
+* Southern Appalachians
+
+High Wind Warning is in effect for...
+* Northeast Alabama, northern Georgia, southern Appalachians
+
+Wind Advisory is in effect for...
+* Much of the remainder of the Southeast United States
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 1000 AM CDT (1500 UTC), the center of Post-Tropical Cyclone
+Isaias was located near latitude 32.8 North, longitude 86.8 West.
+The post-tropical cyclone is moving toward the north-northwest near
+10 mph (17 km/h) and this motion is expected to continue today, 
+with a turn to the northeast tonight into Sunday.
+ 
+Maximum sustained winds are near 35 mph (55 km/h) with higher 
+gusts, especially in areas of elevated terrain. Wind gusts may 
+increase during the day today, with weakening speeds expected 
+tonight into Sunday.
+ 
+The estimated minimum central pressure is 1006 mb (29.71 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+Key messages for Isaias can be found in the Tropical Cyclone
+Discussion under AWIPS header MIATCDAT4 and WMO header WTNT44 KNHC.
+ 
+RAINFALL: Rainfall totals of 3 to 6 inches with localized maximum
+amounts of 10 inches are possible across the Southern Appalachians
+from northeast Georgia into the western Carolinas and from the upper
+coast of South Carolina into eastern North Carolina.   Additional
+rainfall totals of 1 to 2 inches possible across the remainder of
+the Southeast into northern Florida.
+ 
+Flash, urban, and river flooding is possible across the region, with
+considerable impacts, including landslides, possible across the
+southern Appalachians. Significant river flooding across the western
+Florida Panhandle will crest today through Sunday.
+ 
+For a complete depiction of forecast rainfall associated with
+Isaias, please see the National Weather Service Storm Total Rainfall
+Graphic available at
+<a href='https://www.hurricanes.gov/graphics_at4.shtml?rainqpf'>hurricanes.gov/graphics_at4.shtml?rainqpf</a> and the Flash Flood Risk
+graphic at <a href='https://www.hurricanes.gov/graphics_at4.shtml?ero.'>hurricanes.gov/graphics_at4.shtml?ero.</a>
+ 
+TORNADOES: A couple of tornadoes are possible today across eastern
+Georgia and the Carolinas.
+ 
+WIND: Strong wind gusts continue to pose a threat across the
+southeastern United States today, including Georgia, the southern
+Appalachians, and extending west through much of central and
+northern Alabama, Mississippi, and Tennessee. Scattered power
+outages and downed trees and powerlines may occur, with the risk
+highest in elevated terrain.
+ 
+SURF: Swells from Isaias will continue to affect much of the
+Gulf coasts of the United States, Mexico, and western Cuba this
+weekend. These swells are likely to cause life-threatening surf and
+rip current conditions. Please consult products from your local
+weather office.
+ 
+A depiction of rip current risk for the United States can be found
+at: <a href='https://www.hurricanes.gov/graphics_at4.shtml?ripCurrents'>hurricanes.gov/graphics_at4.shtml?ripCurrents</a>
+ 
+ 
+NEXT ADVISORY
+-------------
+Next complete advisory at 400 PM CDT.
+ 
+$$
+Forecaster Chenard

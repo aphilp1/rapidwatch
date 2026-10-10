@@ -1,6 +1,6 @@
 # Isaias (AL092026) — rapid-intensification record
 
-Generated 2026-10-10 14:51Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-10 15:44Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -48,6 +48,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-09 18Z | 105 | 25 | 29.0 | 8 | 40 | 41 | 52 | 48 | 90 | 14 | 91 | 0.0% | 0.0% | 0.8% |
 | 2026-10-10 00Z | 95 | 10 | 28.0 | 2 | 30 | 51 | 53 | 43 | 117 | 15 | 96 | 0.0% | 0.0% | 0.0% |
 | 2026-10-10 06Z | 45 | -45 | 26.7 | 2 | – | 59 | 52 | 77 | 103 | 13 | 11 | 0.0% | 0.0% | 0.0% |
+| 2026-10-10 12Z | 30 | -75 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 4. Aircraft center fixes
 
@@ -144,6 +145,8 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 015** (400 AM CDT Sat Oct 10 2026)
 > Isaias has very rapidly weakened over Alabama and has transitioned into a post-tropical cyclone. Satellite images show that all deep convection has been scoured well northward away from the low-level center, with a warm front extending eastward from the former tropical cyclone. Thus this is the last advisory on Isaias, with an initial intensity of 30 kt set from surface observations.
+
+**Discussion 016** (1000 AM CDT Sat Oct 10 2026)
 
 ## 6. Sources in this folder
 
