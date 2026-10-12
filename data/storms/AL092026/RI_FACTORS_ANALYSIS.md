@@ -62,7 +62,7 @@ This is the point where Isaias departs from the Katrina and Rita template and re
 |---|---|
 | SHIPS ocean heat content | 54 to 56 kJ/cm² at the window opening, 34 to 42 kJ/cm² during the climb |
 | HYCOM D26 (this site, nearest 6 h snapshot) | 42 to 49 m along the track |
-| Argo float 2904010, 10 km from the center at 12Z Oct 7 (profile of Sep 27) | D26 69 m, mixed layer 50 m, surface 31.0 °C |
+| Argo float 2904010 at 22.29N 93.91W, 10 km from the 12Z Oct 7 best-track fix and 9 km from the track line (profile of Sep 27, ten days before the center passed; by its next profile at 18:24Z Oct 7, about 3 h after passage, the float had drifted to 22.52N 93.65W, 19 km from the track: D26 60 m, surface 30.5 °C) | D26 69 m, mixed layer 50 m, surface 31.0 °C |
 
 The Field Observation Report's full-record Gulf median D26 is about 44 m, so Isaias intensified over a
 warm layer near or slightly above the median, with ocean heat content below the 80 kJ/cm² level the
@@ -106,11 +106,15 @@ landfall.
 
 ### 2.7 Motion: slow, east-northeast, over the warm pool
 
-Forward speed was 2 to 8 kt, east-northeast. Slow motion over a thin warm layer normally risks a
-self-induced cold wake. Isaias did not show one in the data in hand: HYCOM surface temperature under
-the center went 29.3, 29.7, 30.2, 29.9, 29.6, 30.4 °C across the snapshots, with no step down. The
-Bay of Campeche warm pool is broad, so an 8 kt storm keeps finding fresh 30 °C water ahead of it. The
-ocean response will be clearer when the post-storm HYCOM and satellite SST fields are archived.
+Forward speed was 4 to 10 kt, east-northeast, on the best-track legs of the first period (00Z Oct 7 to
+00Z Oct 8; 2 to 3 kt was the pre-onset drift of Oct 5 and 6). Slow motion over a thin warm layer normally
+risks a self-induced cold wake. While the storm was over the water, HYCOM surface temperature under the
+center read 29.3, 29.7, 30.2, 29.9, 29.6, 30.4 °C across the snapshots, with no step down, so no wake
+was visible in real time. The post-storm fields do show one (hycom_grids/, 12Z Oct 10 minus 06Z Oct 7):
+cooling of 1.2 to 1.5 °C under the track from 92.3W to 91.5W (the RI-met and hurricane points), 0.7 to
+1.0 °C from 93.3W to 89.0W, 0.0 to 0.3 °C west of 93.9W, with a grid maximum of 1.9 °C about 60 km south
+of the track near 22.2N 92.1W. The wake formed behind the center; the Bay of Campeche warm pool is broad,
+so an 8 kt storm kept finding fresh 30 °C water ahead of it.
 
 ### 2.8 Climatology: the right place in the right month, starting weak
 
@@ -134,7 +138,7 @@ Three observations:
 
 1. **Every probabilistic tool put RI at a minority probability when the window opened** (13% official,
    20% ours, 2 to 3% DTOPS), and the event happened. That is the expected behavior of a well-calibrated
-   index for a 6.5% base-rate event: a 2 to 3 times climatological signal is a flag, not a prediction.
+   index for a 6.6% base-rate event (30 kt in 24 h, all-basin 1982 to 2023, 8,806 forecasts from 538 storms, data/ri_model/ri_model_outputs.json; the Gulf-only rate from HURDAT2 is 5.1% for 1851 to 2025 and 6.6% for 1982 to 2023): a 2 to 3 times climatological signal is a flag, not a prediction.
    NHC's human forecast at advisory 3 (+30 kt in 24 h) was stronger than any of the statistical tools.
 2. **The SHIPS deterministic forecast under-forecast the first 24 h by 6 to 10 kt** and then caught up
    once persistence and the shrinking storm size fed in.
@@ -157,6 +161,6 @@ two seasons that the Bay of Campeche has produced it.
 
 1. Final best track (reanalysis may move the RI window or the hurricane time).
 2. NHC tropical cyclone report, for the official intensity reasoning and recon summary.
-3. Post-storm HYCOM and satellite SST fields, to measure the cold wake along the track.
+3. Satellite SST fields, to check the HYCOM cold wake along the track against observations (the HYCOM grids are now in hycom_grids/).
 4. Peak intensity and whether the forecast 95 kt and the pre-landfall shear increase verified.
 5. The full dropsonde set (66 archived so far), especially the eye sondes of 02:30 to 03:10Z Oct 8.
