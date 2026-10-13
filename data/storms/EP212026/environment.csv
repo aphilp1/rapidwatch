@@ -1,0 +1,2 @@
+run_utc,advisory,update,class,lat,lon,vmax_kt,mslp_mb,motion,hycom_time,hycom_sst_c,hycom_d26_m,hycom_current_ms,argo_id,argo_km,argo_date,argo_d26_m,argo_surf_c,glider_id,glider_km,ships_cycle,ships_rii_30kt24h_pct,our_rii_30kt24h_pct
+20261013T1536,?,2026-10-13T15:00:00.000Z,TD,9.8,-96.5,30,1006,305@10,2026-10-13 15:00:00,,,,1902883,1189,2026-09-29,46.9,30.829,ng1256,1861,,,
