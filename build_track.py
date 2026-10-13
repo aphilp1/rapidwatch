@@ -108,7 +108,7 @@ def build(sid, root, name=""):
 
 
 def main(only=None):
-    for root in sorted((DATA / "storms").glob("AL*")):
+    for root in sorted(p for b in ("AL", "EP", "CP") for p in (DATA / "storms").glob(b + "*")):
         if only and root.name.upper() != only.upper():
             continue
         print(root.name, build(root.name, root))

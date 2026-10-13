@@ -27,7 +27,7 @@ Archive root: data/storms/<STORMID>/
 Sources (all public): nhc.noaa.gov CurrentStorms.json, text/refresh products, NOAA IDP
 MapServer (same as build_live_data.py), ftp.nhc.noaa.gov/atcf/stext, nhc.noaa.gov/archive/recon.
 
-Run:  python track_storm.py AL092026        (or no arg = every active Atlantic storm)
+Run:  python track_storm.py AL092026        (or no arg = every active storm, Atlantic + Eastern/Central Pacific)
 """
 import csv, datetime, hashlib, json, math, pathlib, re, sys, urllib.request
 
@@ -328,7 +328,7 @@ def archive_storm(s, layers, run_ts):
 def main(only=None):
     run_ts = utcnow().strftime("%Y%m%dT%H%M")
     cs = json.loads(get("https://www.nhc.noaa.gov/CurrentStorms.json"))
-    storms = [s for s in cs.get("activeStorms", []) if str(s.get("id", "")).upper().startswith("AL")]
+    storms = [s for s in cs.get("activeStorms", []) if str(s.get("id", "")).upper().startswith(("AL", "EP", "CP"))]  # all three NHC areas (2026-10-11)
     if only:
         storms = [s for s in storms if str(s.get("id", "")).upper() == only.upper()]
     # A storm whose folder holds a STOPPED marker is no longer recorded (Alex closed the record).
@@ -338,7 +338,7 @@ def main(only=None):
         print(f"{str(s.get('id','')).upper()}: recording STOPPED (marker file present), skipping")
     storms = [s for s in storms if s not in stopped]
     if not storms:
-        print("no matching active Atlantic storm"); return
+        print("no matching active storm (AL/EP/CP)"); return
     svc = json.loads(get(f"{MAPSRV}?f=json"))
     layers = {l["name"]: l["id"] for l in svc.get("layers", [])}
     for s in storms:

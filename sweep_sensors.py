@@ -425,11 +425,11 @@ def run(sid, s, root, run_ts=None):
 
 def main(only=None):
     cs = json.loads(get("https://www.nhc.noaa.gov/CurrentStorms.json"))
-    storms = [s for s in cs.get("activeStorms", []) if str(s.get("id", "")).upper().startswith("AL")]
+    storms = [s for s in cs.get("activeStorms", []) if str(s.get("id", "")).upper().startswith(("AL", "EP", "CP"))]  # all three NHC areas (2026-10-11)
     if only:
         storms = [s for s in storms if str(s.get("id", "")).upper() == only.upper()]
     if not storms:
-        print("no matching active Atlantic storm"); return
+        print("no matching active storm (AL/EP/CP)"); return
     for s in storms:
         sid = str(s["id"]).upper()
         root = DATA / "storms" / sid

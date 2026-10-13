@@ -19,7 +19,7 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 .panel{position:absolute;z-index:1000;background:linear-gradient(180deg,rgba(13,28,41,.95),rgba(6,14,22,.92));
   border:1px solid var(--line);border-radius:12px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 40px rgba(0,0,0,.5)}
 /* title + active storms — top-left */
-#ctl{top:14px;left:14px;width:296px;padding:15px 16px 14px;max-height:calc(100% - 28px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#ctl{top:14px;left:14px;width:296px;padding:15px 16px 14px;max-height:calc(100% - 36vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
 #ctl h1{font-family:"Space Grotesk";font-weight:700;font-size:16px;letter-spacing:.03em;margin:0;display:flex;align-items:center;gap:9px}
 #ctl h1 .dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(255,93,108,.16),0 0 14px 2px rgba(255,93,108,.55);animation:pulse 3s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 0 5px rgba(255,93,108,.05),0 0 20px 4px rgba(255,93,108,.7)}}
@@ -33,9 +33,32 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 .storm-card .sc-row b{color:var(--ink);font-weight:500;font-family:"IBM Plex Mono";font-size:10.5px}
 .storm-card .sc-src{font-family:"IBM Plex Mono";font-size:8.5px;color:var(--mute);margin-top:5px;letter-spacing:.04em}
 #no-storm{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--mute);line-height:1.6;padding:8px 2px}
+/* queue: one section per NHC area of responsibility */
+.area-h{font-family:"IBM Plex Mono";font-size:9.5px;letter-spacing:.15em;color:var(--slate);text-transform:uppercase;margin:14px 0 7px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:4px}
+.area-h .area-n{font-size:9px;color:var(--mute);letter-spacing:.05em;text-transform:none}
+.area-none{font-family:"IBM Plex Mono";font-size:10px;color:var(--mute);padding:2px 2px 4px}
+.q-row{display:flex;align-items:center;gap:7px;padding:5px 8px;margin-bottom:4px;border:1px solid var(--line);border-radius:7px;cursor:pointer;background:rgba(255,255,255,.02);transition:border-color .15s,background .15s}
+.q-row:hover{border-color:var(--aqua)}
+.q-row.sel{border-color:var(--aqua);background:rgba(70,207,214,.08)}
+.q-row .sc-badge{flex:none;min-width:34px;text-align:center}
+.q-row .q-name{font-family:"Space Grotesk";font-weight:600;font-size:12.5px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.q-row .q-kt{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--ink);font-weight:500;flex:none}
+.q-row .q-age{font-family:"IBM Plex Mono";font-size:9px;color:var(--mute);flex:none;min-width:38px;text-align:right}
+.q-row.dist{border-style:dashed}
+#detail .storm-card{cursor:default;margin-bottom:0}
+#detail .storm-card:hover{border-color:var(--line-2)}
+.storm-card.dist{border-style:dashed}
+.storm-card.dist .sc-badge{letter-spacing:.02em}
+.storm-card .sc-prob{display:flex;gap:6px;margin-top:6px}
+.storm-card .sc-prob span{flex:1;text-align:center;font-family:"IBM Plex Mono";font-size:9.5px;padding:3px 4px;border-radius:5px;border:1px solid var(--line-2);color:var(--slate)}
+.storm-card .sc-prob span b{display:block;font-size:12px;color:var(--ink);font-weight:600}
+#fitall{cursor:pointer;font-family:"IBM Plex Mono";font-size:9px;font-weight:600;padding:2px 7px;border-radius:5px;background:rgba(70,207,214,.1);border:1px solid rgba(70,207,214,.3);color:var(--aqua);margin-left:8px}
+#fitall:hover{background:rgba(70,207,214,.2)}
+.dist-x{font-family:"Space Grotesk";font-weight:700;font-size:18px;line-height:18px;text-align:center;color:#fff;text-shadow:0 0 6px #000,0 0 2px #000}
+.leaflet-tooltip.ev-dist{color:#ffd24a!important;border-color:#ffd24a!important}
 /* layers — bottom-left */
-#lyrs{bottom:16px;left:14px;width:296px;padding:13px 16px;max-height:46vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
-#lyrs h3{font-family:"Space Grotesk";font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);margin:0 0 9px;text-transform:uppercase}
+#lyrs{bottom:16px;left:14px;width:296px;padding:13px 16px;max-height:36vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+#lyrs h3{font-family:"Space Grotesk";font-weight:600;font-size:11px;letter-spacing:.05em;color:var(--slate);margin:0 0 9px;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between}
 .lyr-row{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;user-select:none}
 .lyr-row input{appearance:none;width:14px;height:14px;border:1.5px solid var(--line-2);border-radius:4px;cursor:pointer;position:relative;flex:none;transition:all .15s}
 .lyr-row input:checked{background:var(--aqua);border-color:var(--aqua)}
@@ -116,6 +139,12 @@ html,body{margin:0;height:100%;background:var(--abyss);color:var(--ink);font-fam
 body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 .zone-tip{background:rgba(5,11,18,.82);border:1px solid #e74c3c;color:#ff9b91;border-radius:6px;font-family:"IBM Plex Mono";font-size:10px;font-weight:600;letter-spacing:.08em;padding:3px 8px;white-space:nowrap;box-shadow:0 0 8px rgba(0,0,0,.5)}
 .zone-tip::before{display:none}
+
+.pcollapse{cursor:pointer;margin-left:auto;flex:none;font-family:"IBM Plex Mono";font-size:13px;line-height:1;color:var(--mute);background:none;border:1px solid var(--line-2);border-radius:5px;padding:1px 6px}
+.pcollapse:hover{color:var(--aqua);border-color:var(--aqua)}
+.pdrag{cursor:move;user-select:none;-webkit-user-select:none;touch-action:none}
+.pcollapsed>*:not(.pdrag){display:none!important}
+.pcollapsed{max-height:none!important}
 </style>
 </head>
 <body>
@@ -123,10 +152,11 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 <div class="panel" id="ocean-legend"></div>
 
 <div class="panel" id="ctl">
-  <h1><span class="dot"></span>LIVE EVENT</h1>
-  <p class="sub">Real-time Gulf tropical-event tracker &mdash; NHC advisories, forecast cones, NEXRAD radar, GOES satellite, and the live sensor network.</p>
-  <div class="lab">Active storms &mdash; Gulf / Atlantic</div>
+  <h1><span class="dot"></span>LIVE EVENT<button id="fitall" title="Zoom to every active system in all three areas">FIT ALL</button></h1>
+  <p class="sub">Real-time tropical-event tracker for the three NHC areas of responsibility &mdash; advisories, forecast cones, 7-day outlook areas, NEXRAD radar, GOES satellite, and the live sensor network.</p>
   <div id="storms"></div>
+  <div class="lab" id="detail-lab" style="display:none">Selected system</div>
+  <div id="detail"></div>
 </div>
 
 <div class="panel" id="headline"><div class="hl-t" id="hl-t"></div><div class="hl-s" id="hl-s"></div></div>
@@ -134,7 +164,7 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 <div class="panel" id="lyrs">
   <h3>Layers</h3>
   <div id="lrows"></div>
-  <div class="foot">Storms: NOAA/NHC (live + 30-min snapshot fallback). Radar: NEXRAD composite via Iowa State Mesonet. Satellite: NOAA GOES-East via NASA GIBS &amp; NOAA STAR. Buoys: NDBC + NWS. Gliders: IOOS DAC. Floats: Argo. Bathymetry: GEBCO.</div>
+  <div class="foot">Storms: NOAA/NHC (live + 30-min snapshot fallback). Radar: NEXRAD composite via Iowa State Mesonet. Satellite: NOAA GOES-East / GOES-West via NASA GIBS &amp; NOAA STAR. Outlook areas: NHC Graphical Tropical Weather Outlook. Buoys: NDBC + NWS. Gliders: IOOS DAC. Floats: Argo. Bathymetry: GEBCO.</div>
 </div>
 
 <div id="rcol">
@@ -148,10 +178,11 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
     </div>
   </div>
   <div class="panel" id="goesbox">
-    <h3>GOES-East live loop <span class="gtog" id="gtog" title="Collapse">&#8211;</span></h3>
+    <h3><span id="goes-title">GOES-East live loop</span> <span class="gtog" id="gtog" title="Collapse">&#8211;</span></h3>
+    <div class="seg" id="goes-sat"></div>
     <div class="seg" id="goes-prod"></div>
     <div class="seg" id="goes-sect"></div>
-    <img id="goesimg" alt="GOES-East satellite animation">
+    <img id="goesimg" alt="GOES satellite animation">
     <div class="gcap" id="goescap"></div>
   </div>
   <div class="panel" id="status">
@@ -165,8 +196,10 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 <script>
 'use strict';
 /* ══ base map — same scheme as Live Sensor Systems ══ */
-const map=L.map('map',{zoomControl:false,attributionControl:true,minZoom:4,maxZoom:11,worldCopyJump:false}).setView([25.4,-88.0],6);
-map.setMaxBounds([[12,-103],[35,-72]]);
+/* extent = the three NHC areas of responsibility (Atlantic incl. Gulf/Caribbean, Eastern Pacific,
+   Central Pacific). Opens on the Gulf; the first storm load re-fits to every active system. */
+const map=L.map('map',{zoomControl:false,attributionControl:true,minZoom:3,maxZoom:11,worldCopyJump:false}).setView([25.4,-88.0],6);
+map.setMaxBounds([[-15,-190],[62,10]]);
 L.tileLayer.wms('https://wms.gebco.net/mapserv?',
   {layers:'GEBCO_LATEST',format:'image/png',version:'1.3.0',transparent:false,
    attribution:'Bathymetry: GEBCO · Storms: NOAA/NHC · Radar: NEXRAD/IEM · Satellite: NOAA GOES · NASA GIBS',maxZoom:11}).addTo(map);
@@ -219,6 +252,24 @@ function pop(kicker,title,sub,body,tags){
     +'</div>';
 }
 /* storm classification → colour + label, from max wind (kt) */
+/* NHC CurrentStorms classification codes → label. PTC is NHC's code for "Post-Tropical
+   Cyclone" (Isaias advisory 16 header, 2026-10-11). Hurricanes take the Saffir-Simpson
+   category from max wind. */
+const NHC_CLASS={TD:'Tropical Depression',TS:'Tropical Storm',HU:'Hurricane',STD:'Subtropical Depression',
+  STS:'Subtropical Storm',PTC:'Post-Tropical Cyclone',PC:'Post-Tropical Cyclone',SD:'Subtropical Depression',SS:'Subtropical Storm'};
+function classOfStorm(s){
+  const k=classOf(s.intensity),code=String(s.classification||'').toUpperCase();
+  if(code==='HU'||!NHC_CLASS[code])return k;
+  if(code==='TS'||code==='TD')return k;
+  return{c:k.c,lab:code,full:NHC_CLASS[code]};
+}
+/* NHC areas of responsibility. Outlook features carry basin "Atlantic" | "Pacific"; the Pacific
+   outlook is split Eastern / Central at 140°W (CPHC area begins at 140°W). */
+const AREAS=[
+  {k:'AL',lab:'Atlantic',note:'Gulf · Caribbean · Atlantic',test:(id,lon)=>id.startsWith('AL')},
+  {k:'EP',lab:'Eastern Pacific',note:'to 140°W',test:(id,lon)=>id.startsWith('EP')||(id===''&&lon>-140)},
+  {k:'CP',lab:'Central Pacific',note:'140°W to the dateline',test:(id,lon)=>id.startsWith('CP')||(id===''&&lon<=-140)}];
+function areaOf(id,lon){id=(id||'').toUpperCase();return (AREAS.find(a=>a.test(id,lon))||AREAS[0]).k;}
 function classOf(kt){
   if(kt==null)return{c:'#8ba0b0',lab:'—',full:'Tropical cyclone'};
   if(kt<34)return{c:'#8ba0b0',lab:'TD',full:'Tropical Depression'};
@@ -292,6 +343,8 @@ const goesGeo=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3
   {maxNativeZoom:7,maxZoom:11,opacity:.85,pane:'goesPane'}));
 const goesIR=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_Band13_Clean_Infrared/default/default/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png',
   {maxNativeZoom:6,maxZoom:11,opacity:.85,pane:'goesPane'}));
+const goesWestGeo=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-West_ABI_GeoColor/default/default/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
+  {maxNativeZoom:7,maxZoom:11,opacity:.85,pane:'goesPane'}));
 const goesVis=retryTiles(L.tileLayer('https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GOES-East_ABI_Band2_Red_Visible_1km/default/default/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
   {maxNativeZoom:7,maxZoom:11,opacity:.85,pane:'goesPane'}));
 setInterval(()=>{[goesGeo,goesIR,goesVis].forEach(l=>{if(map.hasLayer(l))l.redraw();});},6e5);   // re-pull ~10 min
@@ -370,19 +423,28 @@ function goesSetSpeed(ms){
 /* NOTE: the animated-GIF pixel size differs per sector on the NOAA CDN (600x600 / 1000x1000 /
    900x540). Using one size for all of them 404s on most combinations — the size belongs to the
    sector, not the product. */
-const GOES_SECT=[
-  {k:'se', lab:'E. GULF',  name:'Eastern Gulf &amp; Florida', size:'600x600'},
-  {k:'mex',lab:'W. GULF',  name:'Western Gulf &amp; Mexico',  size:'1000x1000'},
-  {k:'car',lab:'CARIB',    name:'Caribbean',                  size:'1000x1000'},
-  {k:'taw',lab:'ATLANTIC', name:'Tropical Atlantic (wide)',   size:'900x540'}];
+const GOES_SATS=[
+  {k:'GOES19',lab:'EAST',name:'GOES-19 (GOES-East)',star:'G19',sect:[
+    {k:'se', lab:'E. GULF',  name:'Eastern Gulf &amp; Florida', size:'600x600'},
+    {k:'mex',lab:'W. GULF',  name:'Western Gulf &amp; Mexico',  size:'1000x1000'},
+    {k:'car',lab:'CARIB',    name:'Caribbean',                  size:'1000x1000'},
+    {k:'taw',lab:'ATLANTIC', name:'Tropical Atlantic (wide)',   size:'900x540'}]},
+  {k:'GOES18',lab:'WEST',name:'GOES-18 (GOES-West)',star:'G18',sect:[
+    {k:'eep',lab:'E. PACIFIC',name:'Eastern Pacific',            size:'900x540'},
+    {k:'tpw',lab:'TROP. PAC',name:'Tropical Pacific (wide)',     size:'900x540'},
+    {k:'hi', lab:'HAWAII',   name:'Hawaii',                      size:'600x600'}]}];
+let goesSat='GOES19';
+const GOES_SECT=GOES_SATS[0].sect;
 const GOES_PROD=[
   {k:'GEOCOLOR',lab:'GEOCOLOR',name:'GeoColor'},
   {k:'02',      lab:'VISIBLE', name:'Band 2 visible (0.64 µm, daylight only)'},
   {k:'13',      lab:'IR',      name:'Band 13 clean infrared (10.3 µm, day + night)'}];
 let goesSect='se',goesProd='GEOCOLOR';
 function drawGoesLoop(){
-  const s=GOES_SECT.find(x=>x.k===goesSect),p=GOES_PROD.find(x=>x.k===goesProd);
-  const base='https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/'+goesSect+'/'+goesProd+'/';
+  const sat=GOES_SATS.find(x=>x.k===goesSat);
+  const s=sat.sect.find(x=>x.k===goesSect)||sat.sect[0],p=GOES_PROD.find(x=>x.k===goesProd);
+  goesSect=s.k;
+  const base='https://cdn.star.nesdis.noaa.gov/'+goesSat+'/ABI/SECTOR/'+goesSect+'/'+goesProd+'/';
   const bust='?'+Math.floor(Date.now()/6e5);
   const img=document.getElementById('goesimg');
   img.onerror=function(){   /* animation missing → fall back to the latest still rather than a broken frame */
@@ -391,12 +453,24 @@ function drawGoesLoop(){
     setStatus('GOES sector loop','warn','still image (no loop)');
   };
   img.onload=function(){setStatus('GOES sector loop','ok',s.lab+' · '+p.lab);};
-  img.src=base+'GOES19-'+goesSect.toUpperCase()+'-'+goesProd+'-'+s.size+'.gif'+bust;
-  document.getElementById('goescap').innerHTML='GOES-19 (GOES-East) &middot; '+p.name+' &middot; '+s.name+' &middot; NOAA STAR &middot; '+
-    '<a href="https://www.star.nesdis.noaa.gov/GOES/sector.php?sat=G19&sector='+goesSect+'" target="_blank" rel="noopener">full-size loop &#8599;</a>';
+  img.src=base+goesSat+'-'+goesSect.toUpperCase()+'-'+goesProd+'-'+s.size+'.gif'+bust;
+  document.getElementById('goescap').innerHTML=sat.name+' &middot; '+p.name+' &middot; '+s.name+' &middot; NOAA STAR &middot; '+
+    '<a href="https://www.star.nesdis.noaa.gov/GOES/sector.php?sat='+sat.star+'&sector='+goesSect+'" target="_blank" rel="noopener">full-size loop &#8599;</a>';
+  document.getElementById('goes-title').textContent=(goesSat==='GOES18'?'GOES-West':'GOES-East')+' live loop';
+}
+function buildGoesSectors(){
+  const host=document.getElementById('goes-sect'),sat=GOES_SATS.find(x=>x.k===goesSat);
+  host.innerHTML='';
+  sat.sect.forEach(o=>{
+    const b=document.createElement('button');b.textContent=o.lab;b.title=o.name.replace(/&amp;/g,'&');
+    if(o.k===goesSect)b.classList.add('on');
+    b.onclick=()=>{goesSect=o.k;[...host.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');drawGoesLoop();};
+    host.appendChild(b);
+  });
 }
 (function buildGoesControls(){
-  [['goes-prod',GOES_PROD,()=>goesProd,v=>goesProd=v],['goes-sect',GOES_SECT,()=>goesSect,v=>goesSect=v]].forEach(([id,list,get,set])=>{
+  [['goes-sat',GOES_SATS,()=>goesSat,v=>{goesSat=v;goesSect=GOES_SATS.find(x=>x.k===v).sect[0].k;buildGoesSectors();}],
+   ['goes-prod',GOES_PROD,()=>goesProd,v=>goesProd=v]].forEach(([id,list,get,set])=>{
     const host=document.getElementById(id);
     list.forEach(o=>{
       const b=document.createElement('button');b.textContent=o.lab;b.title=o.name.replace(/&amp;/g,'&');
@@ -405,6 +479,7 @@ function drawGoesLoop(){
       host.appendChild(b);
     });
   });
+  buildGoesSectors();
   drawGoesLoop();
 })();
 setInterval(drawGoesLoop,6e5);   // pull a fresh loop every 10 min
@@ -459,34 +534,105 @@ function stormCardHTML(s,cl,srcNote){
     +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/blob/master/data/storms/'+s.id.toUpperCase()+'/RI_EVENT_RECORD.md" target="_blank" rel="noopener">RI record</a> · '
     +'<a style="color:var(--aqua)" href="https://github.com/aphilp1/rapidwatch/tree/master/data/storms/'+s.id.toUpperCase()+'/recon" target="_blank" rel="noopener">Hurricane Hunter messages</a></div>';
 }
+/* ── NHC Graphical Tropical Weather Outlook (disturbances): live MapServer, snapshot fallback ── */
+const outlookLayer=L.layerGroup();
+const RISK_COL={Low:'#ffd24a',Medium:'#ff8a3d',High:'#ff5d6c'};
+async function outlookProduct(layerName,snap){
+  try{
+    const ids=await mapsrvLayerIds();const lid=ids[layerName];
+    if(lid!=null){const g=await(await fetch(MAPSRV+'/'+lid+'/query?where=1%3D1&outFields=*&f=geojson')).json();
+      if(g&&g.features)return{g,src:'live'};}
+  }catch(e){}
+  try{const r=await fetch('data/nhc/'+snap+'.geojson?'+Math.floor(Date.now()/3e5));
+    if(r.ok){const g=await r.json();if(g&&g.features)return{g,src:'snapshot'};}}catch(e){}
+  return null;
+}
+async function loadOutlook(){
+  outlookLayer.clearLayers();
+  const [pts7,areas,motion,pts2]=await Promise.all([
+    outlookProduct('Seven-Day: Current Location','two_7day_pts'),
+    outlookProduct('Seven-Day: Potential Development Region','two_7day_areas'),
+    outlookProduct('Seven-Day: Development Motion','two_7day_motion'),
+    outlookProduct('Two-Day: Current Location','two_2day_pts')]);
+  if(!pts7){setStatus('NHC outlook','fail','unreachable');return[];}
+  /* number disturbances per area in NHC feature order (the outlook text numbers them the same way) */
+  const counts={AL:0,EP:0,CP:0},list=[];
+  (pts7.g.features||[]).forEach(f=>{
+    const p=f.properties||{},lon=f.geometry.coordinates[0],lat=f.geometry.coordinates[1];
+    const area=p.basin==='Atlantic'?'AL':areaOf('',lon);
+    counts[area]++;
+    list.push({area,n:counts[area],lat,lon,p2:p.prob2day||'—',p7:p.prob7day||'—',r2:p.risk2day||'',r7:p.risk7day||'',
+      issued:p.idp_filedate?_fmtUTC(p.idp_filedate):'',basin:p.basin});
+  });
+  const findD=f=>{const p=f.properties||{};return list.find(d=>d.basin===p.basin&&d.p7===(p.prob7day||'—')&&d.p2===(p.prob2day||'—'))||null;};
+  if(areas) L.geoJSON(areas.g,{pane:'overlayPane',style:f=>{const c=RISK_COL[(f.properties||{}).risk7day]||'#ffd24a';
+      return{color:c,weight:1.6,dashArray:'5 5',fillColor:c,fillOpacity:.13,opacity:.85};},
+    onEachFeature:(f,l)=>{const d=findD(f),p=f.properties||{};
+      l.bindPopup(pop('NHC 7-day outlook · potential development region',d?'Disturbance '+d.n:'Disturbance',p.basin+' basin',
+        'Formation chance <b>'+(p.prob2day||'—')+'</b> in 48 h · <b>'+(p.prob7day||'—')+'</b> in 7 days ('+(p.risk7day||'')+' risk).'
+        +'<br><span style="opacity:.7">Area where a tropical cyclone could form, NHC Graphical Tropical Weather Outlook'+(p.idp_filedate?' · '+_fmtUTC(p.idp_filedate):'')+'</span>',['NHC','outlook',p.risk7day||'']));}
+  }).addTo(outlookLayer);
+  if(motion) L.geoJSON(motion.g,{style:f=>({color:RISK_COL[(f.properties||{}).risk7day]||'#ffd24a',weight:2,opacity:.9,dashArray:'2 6'}),
+    onEachFeature:(f,l)=>l.bindTooltip('Expected motion over the outlook period',{sticky:true,className:'ev-tip'})}).addTo(outlookLayer);
+  list.forEach(d=>{
+    const c=RISK_COL[d.r7]||'#ffd24a';
+    L.marker([d.lat,d.lon],{icon:L.divIcon({className:'',html:'<div class="dist-x" style="color:'+c+'">&#10006;</div>',iconSize:[18,18],iconAnchor:[9,9]})})
+      .bindTooltip('DISTURBANCE '+d.n+' · 7-DAY '+d.p7,{permanent:true,direction:'top',offset:[0,-10],className:'ev-tip ev-dist'})
+      .bindPopup(pop('NHC outlook · current location','Disturbance '+d.n,AREAS.find(a=>a.k===d.area).lab+' · '+fmt(d.lat,d.lon),
+        'Formation chance <b>'+d.p2+'</b> in 48 h ('+d.r2+') · <b>'+d.p7+'</b> in 7 days ('+d.r7+').'
+        +'<br><span style="opacity:.7">NHC Graphical Tropical Weather Outlook'+(d.issued?' · issued '+d.issued:'')+'</span>'
+        +'<br><a style="color:var(--aqua)" href="https://www.nhc.noaa.gov/gtwo.php?basin='+(d.area==='AL'?'atlc':d.area==='CP'?'cpac':'epac')+'" target="_blank" rel="noopener">NHC outlook &#8599;</a>',['NHC','outlook',d.r7]))
+      .addTo(outlookLayer);
+  });
+  setStatus('NHC outlook','ok',list.length+' disturbance'+(list.length===1?'':'s')+' · '+pts7.src);
+  return list;
+}
+function distCardHTML(d){
+  const c=RISK_COL[d.r7]||'#ffd24a';
+  return '<div class="sc-name"><span class="sc-badge" style="background:'+c+'22;border:1px solid '+c+'66;color:'+c+'">OUTLOOK</span>DISTURBANCE '+d.n+'</div>'
+    +'<div class="sc-prob"><span>48 h<b>'+d.p2+'</b>'+d.r2+'</span><span>7 day<b>'+d.p7+'</b>'+d.r7+'</span></div>'
+    +'<div class="sc-row" style="margin-top:4px"><span>Position</span><b>'+fmt(d.lat,d.lon)+'</b></div>'
+    +'<div class="sc-src">NHC Graphical Tropical Weather Outlook'+(d.issued?' · '+d.issued:'')+'</div>';
+}
+let _firstStormLoad=true,_selected=null,_details={};
+/* queue row click: show that system's detail card and fly to it */
+function selectSystem(key,fly){
+  const d=_details[key];const lab=document.getElementById('detail-lab'),host=document.getElementById('detail');
+  document.querySelectorAll('.q-row').forEach(r=>r.classList.toggle('sel',r.dataset.key===key));
+  if(!d){lab.style.display='none';host.innerHTML='';return;}
+  _selected=key;lab.style.display='';host.innerHTML=d.html;
+  if(fly)map.flyTo(d.ll,d.z,{duration:1.1});
+}
 async function loadStorms(){
   stormLayer.clearLayers();wwLayer.clearLayers();pastLayer.clearLayers();fullTrackLayer.clearLayers();aircraftLayer.clearLayers();
-  const host=document.getElementById('storms');
+  const host=document.getElementById('storms');_details={};
   let storms=[];
   try{
     const d=await(await fetch('data/nhc_currentstorms.json?'+Math.floor(Date.now()/3e5))).json();
-    storms=(d.activeStorms||[]).filter(s=>
-      s.longitudeNumeric>-100&&s.longitudeNumeric<-55&&s.latitudeNumeric>8&&s.latitudeNumeric<40);
-    setStatus('NHC advisories',storms.length?'ok':'ok',storms.length+' storm'+(storms.length===1?'':'s')+(storms.length?' · '+agoH(storms[0].lastUpdate)+' ago':''));
+    storms=(d.activeStorms||[]).filter(s=>s.latitudeNumeric!=null&&s.longitudeNumeric!=null)
+      .sort((a,b)=>(b.intensity||0)-(a.intensity||0));
+    setStatus('NHC advisories','ok',storms.length+' storm'+(storms.length===1?'':'s')+(storms.length?' · '+agoH(storms[0].lastUpdate)+' ago':''));
   }catch(e){
     setStatus('NHC advisories','fail','feed unreachable');
     host.innerHTML='<div id="no-storm">NHC storm feed unreachable.</div>';return;
   }
+  /* queue skeleton: one section per NHC area, storms first then outlook disturbances */
+  host.innerHTML=AREAS.map(a=>'<div class="area-h"><span>'+a.lab+'</span><span class="area-n">'+a.note+'</span></div><div id="area-'+a.k+'"></div>').join('');
+  const dists=await loadOutlook();
   if(!storms.length){
-    host.innerHTML='<div id="no-storm">NO ACTIVE STORMS in the Gulf / western Atlantic. This panel populates automatically when NHC opens advisories.</div>';
     document.getElementById('headline').classList.remove('on');
-    setStatus('Forecast cone','ok','no active storm');return;
+    setStatus('Forecast cone','ok','no active storm');
   }
-  host.innerHTML='';
   let coneSrc=null;
   for(const s of storms){
     const sid=s.id.toUpperCase(),bin=(s.binNumber||'').toUpperCase();
-    const cl=classOf(s.intensity);
+    const cl=classOfStorm(s);
     /* current position — pulsing marker */
     L.marker([s.latitudeNumeric,s.longitudeNumeric],
       {icon:L.divIcon({className:'',html:'<div class="stormnow" style="background:'+cl.c+'"></div>',iconSize:[18,18],iconAnchor:[9,9]})})
       /* above the marker: to the right it collides with the glider labels in the eastern Gulf */
       .bindTooltip(cl.full.toUpperCase()+' '+s.name.toUpperCase(),{permanent:true,direction:'top',offset:[0,-12],className:'ev-tip ev-storm'})
+      /* (label text = NHC classification; colour = max wind) */
       .bindPopup(pop('NHC active storm — advisory #'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'?'),s.name,
         fmt(s.latitudeNumeric,s.longitudeNumeric)+' · '+_fmtUTC(s.lastUpdate),
         'Max wind <b>'+s.intensity+' kt</b>'+((s.pressure&&s.pressure<9000)?' · central pressure <b>'+s.pressure+' mb</b>':'')
@@ -550,13 +696,14 @@ async function loadStorms(){
         pts.forEach(f=>{
           const p=f.properties,k=classOf(p.vmax_kt);
           const m=L.circleMarker(ll(f),{radius:p.time_utc.slice(11,13)==='00'||p.time_utc.slice(11,13)==='12'?4.5:3,color:'#0b1016',weight:1,fillColor:k.c,fillOpacity:1})
-            .bindPopup(pop('NHC best track · '+p.type_name,p.time_utc.replace('T',' '),s.name,
+            .bindPopup(pop('NHC best track · '+(p.vmax_kt>=64?k.full:p.type_name),p.time_utc.replace('T',' '),s.name,
               fmt(p.lat,p.lon)+'<br>Max wind <b>'+p.vmax_kt+' kt</b>'+(p.mslp_mb?' · pressure <b>'+p.mslp_mb+' mb</b>':'')
+              +(p.vmax_kt>=64?' · <b>'+k.lab+'</b> (Saffir-Simpson)':'')
               +(p.speed_kt!==''?'<br>Moved <b>'+p.leg_km+' km</b> since previous fix (<b>'+p.speed_kt+' kt</b>)':'')
               +'<br><span style="opacity:.7">ATCF b-deck, 6-hourly fix as archived by this site</span>',['NHC','best track',k.lab]));
           /* one tooltip per marker: a second bindTooltip() leaves the permanent one closed */
           if(p.first) m.bindTooltip('NHC FIRST TRACKED · '+p.time_utc.slice(5,13).replace('T',' ')+'Z · '+p.type_name.toUpperCase(),{permanent:true,direction:'bottom',offset:[0,6],className:'ev-tip'});
-          else m.bindTooltip(p.time_utc.slice(5,13).replace('T',' ')+'Z · '+p.type+' '+p.vmax_kt+' kt',{direction:'top',offset:[0,-4],className:'ev-tip'});
+          else m.bindTooltip(p.time_utc.slice(5,13).replace('T',' ')+'Z · '+(p.vmax_kt>=64?k.lab:p.type)+' · '+p.vmax_kt+' kt',{direction:'top',offset:[0,-4],className:'ev-tip'});
           m.addTo(fullTrackLayer);
           if(p.first) m.openTooltip();
         });
@@ -579,19 +726,61 @@ async function loadStorms(){
             .addTo(aircraftLayer);
         });
         if(pts.length) console.log('full track:',pts.length,'best-track fixes from',pts[0].properties.time_utc);
+      }else if(pp&&pp.g&&pp.g.features&&pp.g.features.length){
+        /* no site archive for this storm (e.g. a Pacific system): draw NHC's own past points, coloured by intensity */
+        const q=pp.g.features.slice().sort((a,b)=>(a.properties.dtg||0)-(b.properties.dtg||0));
+        const ll2=f=>[f.geometry.coordinates[1],f.geometry.coordinates[0]];
+        for(let i=1;i<q.length;i++){
+          L.polyline([ll2(q[i-1]),ll2(q[i])],{color:'#0b1016',weight:6,opacity:.55,interactive:false}).addTo(fullTrackLayer);
+          L.polyline([ll2(q[i-1]),ll2(q[i])],{color:classOf(q[i].properties.intensity).c,weight:3,opacity:.95,interactive:false}).addTo(fullTrackLayer);
+        }
+        q.forEach(f=>{const p2=f.properties,k=classOf(p2.intensity),t=String(p2.dtg||'');
+          L.circleMarker(ll2(f),{radius:3.5,color:'#0b1016',weight:1,fillColor:k.c,fillOpacity:1})
+            .bindTooltip(t.slice(4,6)+'-'+t.slice(6,8)+' '+t.slice(8,10)+'Z · '+k.lab+' · '+p2.intensity+' kt',{direction:'top',offset:[0,-4],className:'ev-tip'})
+            .bindPopup(pop('NHC past track · '+(p2.stormtype||''),t.slice(0,4)+'-'+t.slice(4,6)+'-'+t.slice(6,8)+' '+t.slice(8,10)+'Z',s.name,
+              fmt(p2.lat,p2.lon)+'<br>Max wind <b>'+p2.intensity+' kt</b>'+(p2.mslp?' · pressure <b>'+p2.mslp+' mb</b>':'')
+              +'<br><span style="opacity:.7">NHC past points (no site archive for this storm)</span>',['NHC','past track']))
+            .addTo(fullTrackLayer);});
       }
     }catch(e){ console.warn('full track not available:',e); }
     /* storm card */
-    const card=document.createElement('div');card.className='storm-card';
-    card.innerHTML=stormCardHTML(s,cl,(coneSrc==='live'?'cone/track: live NHC MapServer':coneSrc==='snapshot'?'cone/track: 30-min site snapshot':'cone/track: unavailable'));
-    card.onclick=()=>map.flyTo([s.latitudeNumeric,s.longitudeNumeric],7,{duration:1.1});
-    host.appendChild(card);
+    const key='S:'+sid;
+    _details[key]={html:'<div class="storm-card">'+stormCardHTML(s,cl,(cone||trk?'cone/track: live NHC MapServer':'cone/track: none issued (NHC)'))+'</div>',ll:[s.latitudeNumeric,s.longitudeNumeric],z:6};
+    const row=document.createElement('div');row.className='q-row';row.dataset.key=key;
+    row.innerHTML='<span class="sc-badge" style="background:'+cl.c+'22;border:1px solid '+cl.c+'66;color:'+cl.c+'">'+cl.lab+'</span>'
+      +'<span class="q-name" title="'+cl.full+' '+s.name+'">'+s.name.toUpperCase()+'</span><span class="q-kt">'+s.intensity+' kt</span><span class="q-age">'+agoH(s.lastUpdate)+'</span>';
+    row.onclick=()=>selectSystem(key,true);
+    document.getElementById('area-'+areaOf(sid,s.longitudeNumeric)).appendChild(row);
   }
-  setStatus('Forecast cone',coneSrc?'ok':'fail',coneSrc||'missing');
-  /* headline strip = strongest Gulf storm */
-  const top=storms.slice().sort((a,b)=>b.intensity-a.intensity)[0];
-  const tcl=classOf(top.intensity);
-  document.getElementById('hl-t').innerHTML='<span style="color:'+tcl.c+'">'+tcl.full.toUpperCase()+' '+top.name.toUpperCase()+'</span>';
+  /* outlook disturbances into their area sections; then "none" notes for empty areas */
+  dists.forEach(d=>{
+    const key='D:'+d.area+d.n,c=RISK_COL[d.r7]||'#ffd24a';
+    _details[key]={html:'<div class="storm-card dist">'+distCardHTML(d)+'</div>',ll:[d.lat,d.lon],z:5};
+    const row=document.createElement('div');row.className='q-row dist';row.dataset.key=key;
+    row.innerHTML='<span class="sc-badge" style="background:'+c+'22;border:1px solid '+c+'66;color:'+c+'">TWO</span>'
+      +'<span class="q-name" title="NHC Tropical Weather Outlook disturbance">DISTURBANCE '+d.n+'</span><span class="q-kt">'+d.p7+' · 7 d</span><span class="q-age">'+d.r7.toLowerCase()+'</span>';
+    row.onclick=()=>selectSystem(key,true);
+    document.getElementById('area-'+d.area).appendChild(row);
+  });
+  /* keep the selection across the 10-min refresh; default = strongest storm, else first disturbance */
+  if(!_details[_selected]) _selected=storms.length?'S:'+storms[0].id.toUpperCase():(dists.length?'D:'+dists[0].area+dists[0].n:null);
+  selectSystem(_selected,false);
+  AREAS.forEach(a=>{const el=document.getElementById('area-'+a.k);
+    if(!el.children.length)el.innerHTML='<div class="area-none">No active systems · NHC</div>';});
+  if(storms.length) setStatus('Forecast cone',coneSrc?'ok':'warn',coneSrc||'none issued');
+  /* fit every active system once, on the first load (later refreshes must not move the map) */
+  const allPts=storms.map(s=>[s.latitudeNumeric,s.longitudeNumeric]).concat(dists.map(d=>[d.lat,d.lon]));
+  if(_firstStormLoad&&allPts.length){_firstStormLoad=false;
+    map.fitBounds(L.latLngBounds(allPts).pad(0.25),{maxZoom:6,animate:false,paddingTopLeft:[330,60],paddingBottomRight:[330,40]});}
+  const fitBtn=document.getElementById('fitall');
+  /* animate:false — a CSS-transition zoom never completes in a hidden tab (Chrome), so fits snap */
+  if(fitBtn)fitBtn.onclick=()=>{if(allPts.length)map.fitBounds(L.latLngBounds(allPts).pad(0.25),{maxZoom:6,animate:false,paddingTopLeft:[330,60],paddingBottomRight:[330,40]});};
+  if(!storms.length)return;
+  /* headline strip = strongest active storm in any area */
+  const top=storms[0];
+  const tcl=classOfStorm(top),tarea=AREAS.find(a=>a.k===areaOf(top.id,top.longitudeNumeric));
+  document.getElementById('hl-t').innerHTML='<span style="color:'+tcl.c+'">'+tcl.full.toUpperCase()+' '+top.name.toUpperCase()+'</span>'
+    +'<span style="font-family:IBM Plex Mono;font-size:9px;color:var(--mute);margin-left:10px;letter-spacing:.08em">'+tarea.lab.toUpperCase()+'</span>';
   document.getElementById('hl-s').textContent=top.intensity+' kt · '+fmt(top.latitudeNumeric,top.longitudeNumeric)+' · moving '+compass(top.movementDir)+' @ '+top.movementSpeed+' kt · adv #'+((top.publicAdvisory&&top.publicAdvisory.advNum)||'?');
   document.getElementById('headline').classList.add('on');
 }
@@ -826,14 +1015,16 @@ try{
 const toggleLayers=[
   {key:'NEXRAD radar · composite',dataKey:'radar',lyr:radarLayer,on:true,loop:true},
   {key:'Storm · cone / track / forecast',lyr:stormLayer,on:true},
+  {key:'NHC outlook · 7-day development areas',lyr:outlookLayer,on:true},
   {key:'Coastal watches / warnings',lyr:wwLayer,on:true},
-  {key:'Past track',lyr:pastLayer,on:false},
+  {key:'Past track',lyr:pastLayer,on:true},
   {key:'Full track · NHC best track since first tracked',lyr:fullTrackLayer,on:true},
   {key:'Aircraft center fixes · Hurricane Hunters',lyr:aircraftLayer,on:false},
   {key:'RI onset core · Bay of Campeche (Zone A)',lyr:zoneLayer,on:true},
   {key:'GOES GeoColor · satellite',dataKey:'goes-geocolor',lyr:goesGeo,on:false,goesAnim:true},
   {key:'GOES visible · Band 2 (day)',dataKey:'goes-visible',lyr:goesVis,on:false},
   {key:'GOES clean IR · Band 13',dataKey:'goes-ir',lyr:goesIR,on:false},
+  {key:'GOES-West GeoColor · Pacific (static)',lyr:goesWestGeo,on:false},
   {key:'HYCOM SST · live model',lyr:sstLayer,on:false},
   {key:'HYCOM ocean heat · D26',lyr:d26Layer,on:false},
   {key:'HYCOM surface currents',lyr:curLayer,on:false},
@@ -1017,6 +1208,51 @@ probeImg('GOES tiles · GIBS','https://gibs.earthdata.nasa.gov/wmts/epsg3857/bes
     }
     $('exp-png').onclick=exportPNG; $('exp-pdf').onclick=exportPDF; $('exp-html').onclick=exportHTML;
   }catch(err){ console.warn('export control not available:',err); }
+})();
+
+/* ══ movable + collapsible panels (position and collapsed state remembered in this browser) ══ */
+(function(){
+  const LS='rw-live-panels-v1';let saved={};
+  try{saved=JSON.parse(localStorage.getItem(LS)||'{}');}catch(e){}
+  const keep=()=>{try{localStorage.setItem(LS,JSON.stringify(saved));}catch(e){}};
+  let zTop=1100;
+  function setup(el,opt){
+    const id=el.id,handle=opt.handle?el.querySelector(opt.handle):el;if(!handle)return;
+    handle.classList.add('pdrag');
+    if(opt.collapse!==false){
+      let btn=opt.btn?el.querySelector(opt.btn):null;
+      if(!btn){btn=document.createElement('button');btn.className='pcollapse';btn.type='button';btn.textContent='–';btn.title='Collapse';handle.appendChild(btn);}
+      const apply=c=>{el.classList.toggle('pcollapsed',c);if(!opt.btn){btn.textContent=c?'+':'–';btn.title=c?'Expand':'Collapse';}
+        handle.classList.toggle('pdrag',true);};
+      btn.addEventListener('pointerdown',e=>e.stopPropagation());
+      btn.addEventListener('click',e=>{e.stopPropagation();const c=!el.classList.contains('pcollapsed');apply(c);(saved[id]=saved[id]||{}).c=c;keep();
+        if(opt.btn){/* goes box has its own collapse; keep it in sync */}});
+      if(!opt.btn&&saved[id]&&saved[id].c)apply(true);
+    }
+    const place=(x,y)=>{const r=el.getBoundingClientRect(),W=innerWidth,H=innerHeight;
+      x=Math.max(4,Math.min(x,W-Math.min(r.width,W-8)-4));y=Math.max(4,Math.min(y,H-40));
+      el.style.position='fixed';el.style.left=x+'px';el.style.top=y+'px';el.style.right='auto';el.style.bottom='auto';el.style.transform='none';el.style.margin='0';};
+    handle.addEventListener('pointerdown',e=>{
+      if(e.button!==0||e.target.closest('button,a,input,select'))return;
+      const r=el.getBoundingClientRect();el.style.width=r.width+'px';
+      place(r.left,r.top);el.style.zIndex=String(++zTop);
+      const dx=e.clientX-r.left,dy=e.clientY-r.top;
+      handle.setPointerCapture(e.pointerId);
+      const mv=ev=>place(ev.clientX-dx,ev.clientY-dy);
+      const up=()=>{handle.removeEventListener('pointermove',mv);handle.removeEventListener('pointerup',up);handle.removeEventListener('pointercancel',up);
+        const b=el.getBoundingClientRect();(saved[id]=saved[id]||{}).x=b.left;saved[id].y=b.top;keep();};
+      handle.addEventListener('pointermove',mv);handle.addEventListener('pointerup',up);handle.addEventListener('pointercancel',up);
+      e.preventDefault();
+    });
+    if(saved[id]&&saved[id].x!=null){const r0=el.getBoundingClientRect();el.style.width=r0.width+'px';place(saved[id].x,saved[id].y);}
+  }
+  [['ctl',{handle:'h1'}],['lyrs',{handle:'h3'}],['status',{handle:'h3'}],['goesbox',{handle:'h3',btn:'#gtog'}],
+   ['headline',{handle:'.hl-t'}],['ocean-legend',{collapse:false}]].forEach(([id,o])=>{
+    const el=document.getElementById(id);if(el){try{setup(el,o);}catch(e){console.warn('panel setup',id,e);}}});
+  /* keep panels reachable after a window resize */
+  addEventListener('resize',()=>document.querySelectorAll('#ctl,#lyrs,#status,#goesbox,#headline,#ocean-legend').forEach(el=>{
+    if(el.style.position!=='fixed')return;const r=el.getBoundingClientRect();
+    if(r.right>innerWidth||r.bottom>innerHeight)el.style.left=Math.max(4,Math.min(r.left,innerWidth-r.width-4))+'px',el.style.top=Math.max(4,Math.min(r.top,innerHeight-60))+'px';}));
 })();
 </script>
 </body>

@@ -109,6 +109,25 @@ def main():
                 except Exception as e:
                     kept.append(f"nhc/{sid}_{suffix} ({type(e).__name__})")
         print(f"  NHC active storms: {len(storms)}")
+        # Graphical Tropical Weather Outlook (disturbances, all basins) -> data/nhc/two_*.geojson
+        TWO_KINDS = {"Two-Day: Current Location": "two_2day_pts",
+                     "Seven-Day: Current Location": "two_7day_pts",
+                     "Seven-Day: Potential Development Region": "two_7day_areas",
+                     "Seven-Day: Development Motion": "two_7day_motion"}
+        if not layers:
+            svc = json.loads(get(f"{MAPSRV}?f=json"))
+            layers = {l["name"]: l["id"] for l in svc.get("layers", [])}
+        for lname, fname in TWO_KINDS.items():
+            lid = layers.get(lname)
+            if lid is None:
+                kept.append(f"nhc/{fname} (no layer)"); continue
+            try:
+                g = get(f"{MAPSRV}/{lid}/query?where=1%3D1&outFields=*&f=geojson")
+                gj = json.loads(g)
+                if "features" in gj and save_if_ok(DATA / "nhc" / f"{fname}.geojson", g, 2):
+                    ok.append(f"nhc/{fname} ({len(gj['features'])})")
+            except Exception as e:
+                kept.append(f"nhc/{fname} ({type(e).__name__})")
     except Exception as e:
         kept.append(f"nhc_currentstorms ({type(e).__name__})")
 

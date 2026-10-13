@@ -38,7 +38,7 @@ def main():
             if arc in seen or not p.is_file():
                 return
             z.write(p, arc); seen.add(arc); n += 1
-        for root in (RW / "data" / "storms", RW / "data" / "ri_model", RW / "reviews", GRM / "results", GRM / "docs", GRM / "src"):
+        for root in (RW / "data" / "storms", RW / "data" / "ri_model", RW / "reviews", RW / "reports", GRM / "results", GRM / "docs", GRM / "src"):
             if root.exists():
                 for p in root.rglob("*"):
                     add(p, str(p.relative_to(DOCS)))
