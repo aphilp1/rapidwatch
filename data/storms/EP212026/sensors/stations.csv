@@ -1,3 +1,3 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-43301,8N 95W,8.0,-95.0,tao,NDBC,TAO,,,,332,333,
-43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.927,-100.012,dart,NDBC,Tsunami,n,n,n,160,385,
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.927,-100.012,dart,NDBC,Tsunami,n,n,n,161,330,
+43301,8N 95W,8.0,-95.0,tao,NDBC,TAO,,,,417,418,
