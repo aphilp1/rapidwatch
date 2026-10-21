@@ -1,0 +1,112 @@
+000
+FONT15 KNHC 212046
+PWSAT5
+                                                                    
+SUBTROPICAL STORM JOSEPHINE WIND SPEED PROBABILITIES NUMBER   1     
+NWS NATIONAL HURRICANE CENTER MIAMI FL       AL102026               
+2100 UTC WED OCT 21 2026                                            
+                                                                    
+AT 2100Z THE CENTER OF SUBTROPICAL STORM JOSEPHINE WAS LOCATED NEAR 
+LATITUDE 37.4 NORTH...LONGITUDE 69.5 WEST WITH MAXIMUM SUSTAINED    
+WINDS NEAR 55 KTS...65 MPH...100 KM/H.                              
+                                                                    
+Z INDICATES COORDINATED UNIVERSAL TIME (GREENWICH)                  
+   ATLANTIC STANDARD TIME (AST)...SUBTRACT 4 HOURS FROM Z TIME      
+   EASTERN  DAYLIGHT TIME (EDT)...SUBTRACT 4 HOURS FROM Z TIME      
+   CENTRAL  DAYLIGHT TIME (CDT)...SUBTRACT 5 HOURS FROM Z TIME      
+                                                                    
+WIND SPEED PROBABILITY TABLE FOR SPECIFIC LOCATIONS                 
+                                                                    
+CHANCES OF SUSTAINED (1-MINUTE AVERAGE) WIND SPEEDS OF AT LEAST     
+   ...34 KT (39 MPH... 63 KM/H)...                                  
+   ...50 KT (58 MPH... 93 KM/H)...                                  
+   ...64 KT (74 MPH...119 KM/H)...                                  
+FOR LOCATIONS AND TIME PERIODS DURING THE NEXT 5 DAYS               
+                                                                    
+PROBABILITIES FOR LOCATIONS ARE GIVEN AS OP(CP) WHERE               
+    OP  IS THE PROBABILITY OF THE EVENT BEGINNING DURING            
+        AN INDIVIDUAL TIME PERIOD (ONSET PROBABILITY)               
+   (CP) IS THE PROBABILITY OF THE EVENT OCCURRING BETWEEN           
+        18Z WED AND THE FORECAST HOUR (CUMULATIVE PROBABILITY)      
+                                                                    
+PROBABILITIES ARE GIVEN IN PERCENT                                  
+X INDICATES PROBABILITIES LESS THAN 1 PERCENT                       
+PROBABILITIES FOR 34 KT AND 50 KT ARE SHOWN AT A GIVEN LOCATION WHEN
+THE 5-DAY CUMULATIVE PROBABILITY IS AT LEAST 3 PERCENT.             
+PROBABILITIES FOR 34...50...64 KT SHOWN WHEN THE 5-DAY              
+64-KT CUMULATIVE PROBABILITY IS AT LEAST 1 PERCENT.                 
+                                                                    
+                                                                    
+  - - - - WIND SPEED PROBABILITIES FOR SELECTED LOCATIONS - - - -   
+                                                                    
+               FROM    FROM    FROM    FROM    FROM    FROM    FROM 
+  TIME       18Z WED 06Z THU 18Z THU 06Z FRI 18Z FRI 18Z SAT 18Z SUN
+PERIODS         TO      TO      TO      TO      TO      TO      TO  
+             06Z THU 18Z THU 06Z FRI 18Z FRI 18Z SAT 18Z SUN 18Z MON
+                                                                    
+FORECAST HOUR    (12)   (24)    (36)    (48)    (72)    (96)   (120)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+LOCATION       KT                                                   
+                                                                    
+HIBERNIA OILFD 34  X   X( X)   X( X)   4( 4)  22(26)   2(28)   X(28)
+HIBERNIA OILFD 50  X   X( X)   X( X)   X( X)   2( 2)   1( 3)   X( 3)
+ 
+CAPE RACE NFLD 34  X   X( X)   2( 2)  32(34)  23(57)   X(57)   X(57)
+CAPE RACE NFLD 50  X   X( X)   X( X)   X( X)   7( 7)   X( 7)   X( 7)
+CAPE RACE NFLD 64  X   X( X)   X( X)   X( X)   2( 2)   X( 2)   X( 2)
+ 
+ILE ST PIERRE  34  X   X( X)   8( 8)  41(49)   7(56)   X(56)   X(56)
+ILE ST PIERRE  50  X   X( X)   X( X)   1( 1)   2( 3)   X( 3)   X( 3)
+ 
+BURGEO NFLD    34  X   X( X)   5( 5)  21(26)   6(32)   X(32)   X(32)
+ 
+PTX BASQUES    34  X   X( X)   7( 7)  13(20)   4(24)   X(24)   X(24)
+ 
+EDDY POINT NS  34  X   2( 2)  48(50)   8(58)   1(59)   X(59)   X(59)
+ 
+SYDNEY NS      34  X   X( X)  30(30)  17(47)   1(48)   X(48)   X(48)
+ 
+SABLE ISLAND   34  X   6( 6)  82(88)   4(92)   X(92)   X(92)   X(92)
+SABLE ISLAND   50  X   X( X)   2( 2)  34(36)   X(36)   X(36)   X(36)
+SABLE ISLAND   64  X   X( X)   X( X)   6( 6)   X( 6)   X( 6)   X( 6)
+ 
+HALIFAX NS     34  X   4( 4)  41(45)   X(45)   X(45)   X(45)   X(45)
+ 
+YARMOUTH NS    34  X  42(42)  12(54)   X(54)   X(54)   X(54)   X(54)
+ 
+MONCTON NB     34  X   X( X)   3( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+ST JOHN NB     34  X   7( 7)   8(15)   X(15)   X(15)   X(15)   X(15)
+ 
+EASTPORT ME    34  X  10(10)   3(13)   1(14)   X(14)   X(14)   X(14)
+ 
+BAR HARBOR ME  34  X   3( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+WORCESTER MA   34  2   1( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+BOSTON MA      34  4   3( 7)   X( 7)   X( 7)   X( 7)   X( 7)   X( 7)
+ 
+HYANNIS MA     34 63   3(66)   X(66)   X(66)   X(66)   X(66)   X(66)
+ 
+NANTUCKET MA   34 99   X(99)   X(99)   X(99)   X(99)   X(99)   X(99)
+ 
+PROVIDENCE RI  34 48   2(50)   X(50)   X(50)   X(50)   X(50)   X(50)
+ 
+NEW HAVEN CT   34  3   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+NEW LONDON CT  34 15   1(16)   X(16)   X(16)   X(16)   X(16)   X(16)
+ 
+MONTAUK POINT  34 63   X(63)   X(63)   X(63)   X(63)   X(63)   X(63)
+ 
+ISLIP NY       34  5   X( 5)   X( 5)   X( 5)   X( 5)   X( 5)   X( 5)
+ 
+NYC JFK AIRPRT 34 10   X(10)   X(10)   X(10)   X(10)   X(10)   X(10)
+ 
+CAPE HENLOPEN  34  3   1( 4)   X( 4)   X( 4)   X( 4)   X( 4)   X( 4)
+ 
+OCEAN CITY MD  34  3   1( 4)   X( 4)   X( 4)   X( 4)   X( 4)   X( 4)
+ 
+WALLOPS CDA    34  2   1( 3)   X( 3)   X( 3)   X( 3)   X( 3)   X( 3)
+ 
+$$                                                                  
+FORECASTER BLAKE
