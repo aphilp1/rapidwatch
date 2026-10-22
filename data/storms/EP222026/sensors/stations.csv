@@ -1,3 +1,3 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.927,-100.012,dart,NDBC,Tsunami,n,n,n,212,212,
-43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",14.779,-106.324,dart,NDBC,Tsunami,n,n,n,138,770,
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.927,-100.012,dart,NDBC,Tsunami,n,n,n,174,174,
+43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",14.779,-106.324,dart,NDBC,Tsunami,n,n,n,236,808,

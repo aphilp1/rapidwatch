@@ -1,0 +1,65 @@
+000
+WTNT45 KNHC 221436
+TCDAT5
+ 
+Subtropical Storm Josephine Discussion Number   4
+NWS National Hurricane Center Miami FL       AL102026
+1100 AM AST Thu Oct 22 2026
+
+Satellite imagery this morning indicates that an area of convection 
+has developed to the north of the center of Josephine, although the 
+convective curvature is less than it was last night.  Just- received 
+scatterometer data suggests the convective cluster is near or just 
+west of a developing frontal boundary. Satellite intensity estimates 
+have changed little since the previous advisory, and the 
+scatterometer shows winds near 50 kt west of the center. The initial 
+intensity remains 55 kt based on a subtropical cyclone intensity 
+estimate from TAFB and the possibility of the scatterometer 
+undersampling the maximum wind.
+
+The initial motion is northeastward or 040/10 kt.  GOES RGB airmass 
+imagery shows a mid- to upper-level trough extending from eastern 
+Canada southwestward into the northeastern US, and Josephine should 
+accelerate northeastward during the next 12-24 h as this trough 
+amplifies and approaches the cyclone. After 24 h or so, Josephine 
+should turn more eastward as it becomes embedded in the mid- 
+latitude westerlies. On the forecast track, the center of Josephine 
+will move away from the New England states today and pass south of 
+Nova Scotia and Newfoundland tonight and Saturday. The guidance is 
+again tightly clustered, and the new forecast track is similar to 
+the previous forecast.
+
+The interaction between Josephine and the aforementioned trough 
+should cause the cyclone to develop fronts and become extratropical 
+during the next 12 h, and the scatterometer data suggests this 
+process is already underway. However, intensification is expected 
+during this transition and Josephine will become a hurricane-force 
+extratropical low later tonight and on Friday. The dynamical models 
+are in good agreement that the cyclone should steadily weaken after 
+24 h, and they forecast Josephine to dissipate between 72 and 96 h 
+as it is absorbed by a new low pressure area developing to its 
+northeast. The new intensity forecast is based mainly on the global 
+physical models and it has only minor adjustments from the last 
+forecast.  The wind radii forecasts have also been revised based on 
+the global model forecasts.
+ 
+Since the coastal wind hazards associated with this system have been
+covered for the last several days through non-tropical products
+issued by local National Weather Service offices, those products
+will remain in effect until the threat diminishes and Josephine
+moves farther away from the U.S. coast over the next day or so.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  22/1500Z 39.2N  67.3W   55 KT  65 MPH
+ 12H  23/0000Z 40.5N  64.6W   65 KT  75 MPH...POST-TROP/EXTRATROP
+ 24H  23/1200Z 42.3N  60.2W   65 KT  75 MPH...POST-TROP/EXTRATROP
+ 36H  24/0000Z 43.4N  56.9W   60 KT  70 MPH...POST-TROP/EXTRATROP
+ 48H  24/1200Z 43.7N  54.3W   55 KT  65 MPH...POST-TROP/EXTRATROP
+ 60H  25/0000Z 43.9N  50.4W   50 KT  60 MPH...POST-TROP/EXTRATROP
+ 72H  25/1200Z 43.6N  45.2W   45 KT  50 MPH...POST-TROP/EXTRATROP
+ 96H  26/1200Z...DISSIPATED
+ 
+$$
+Forecaster Beven

@@ -1,6 +1,6 @@
 # Josephine (AL102026) — rapid-intensification record
 
-Generated 2026-10-22 12:09Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-22 17:22Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -32,6 +32,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-21 18Z | 55 | 10 | – | – | 40 | – | – | – | – | – | – | – | – | – |
 | 2026-10-22 00Z | 55 | 10 | 25.1 | 0 | 40 | 31 | 34 | 49 | 66 | 6 | 30 | 0.0% | 2.0% | 0.5% |
 | 2026-10-22 06Z | 55 | 10 | 24.3 | 0 | 40 | 32 | 37 | 45 | 77 | 10 | 35 | 0.0% | 1.0% | 0.3% |
+| 2026-10-22 12Z | 55 | 5 | 21.6 | 0 | 40 | 38 | 40 | 31 | 77 | 12 | 35 | 0.0% | 0.0% | 0.2% |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -42,6 +43,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 > Josephine is unlikely to remain subtropical for long since the storm will encounter much cooler waters and stronger shear over the next 12-24 hours. However, the global models favor some near-term strengthening driven mostly by baroclinic processes and positive interaction with the approaching trough. This forecast shows Josephine becoming a hurricane-force, extratropical cyclone in 24 h, though it could lose subtropical characteristics even sooner. Gradual weakening is predicted beginning on Friday, and the updated forecast shows Josephine becoming absorbed by 96 h within a larger, extratropical low over the North Atlantic. Given the subtropical nature of this storm, the NHC intensity forecast continues to favor a blend of the GFS and ECMWF models.
 
 **Discussion 003** (500 AM AST Thu Oct 22 2026)
+
+**Discussion 004** (1100 AM AST Thu Oct 22 2026)
+> The interaction between Josephine and the aforementioned trough should cause the cyclone to develop fronts and become extratropical during the next 12 h, and the scatterometer data suggests this process is already underway. However, intensification is expected during this transition and Josephine will become a hurricane-force extratropical low later tonight and on Friday. The dynamical models are in good agreement that the cyclone should steadily weaken after 24 h, and they forecast Josephine to dissipate between 72 and 96 h as it is absorbed by a new low pressure area developing to its northeast. The new intensity forecast is based mainly on the global physical models and it has only minor adjustments from the last forecast. The wind radii forecasts have also been revised based on the global model forecasts.
 
 ## 6. Sources in this folder
 
