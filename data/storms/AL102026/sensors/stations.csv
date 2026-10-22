@@ -1,51 +1,53 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-44402,"SOUTHEAST BLOCK CANYON - 130 NM SE of Fire Island, NY",39.314,-70.717,dart,NDBC,Tsunami,n,n,n,200,238,
-44008,NANTUCKET 54 NM Southeast of Nantucket,40.5,-69.254,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,232,345,txt spec
-44066,"Texas Tower #4 - 75 NM East of Long Beach, NJ",39.618,-72.644,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,357,368,
-41001,EAST HATTERAS - 150 NM East of Cape Hatteras,34.738,-72.503,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,155,401,
-44097,"Block Island, RI  (154)",40.966,-71.123,buoy,SCRIPPS,IOOS Partners,y,y,n,366,420,txt spec
-44017,"MONTAUK POINT - 23 NM SSW of Montauk Point, NY",40.693,-72.049,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,390,427,
-ntkm3,"8449130 - Nantucket Island, MA",41.285,-70.096,fixed,NOS,NOS/CO-OPS,y,n,n,345,435,txt
-44025,"LONG ISLAND - 30 NM South of Islip, NY",40.258,-73.175,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,433,450,txt spec
-44091,"Barnegat, NJ (209)",39.772,-73.769,buoy,U.S. Army Corps of Engineers,IOOS Partners,y,y,n,452,455,txt spec
-mtkn6,"8510560 - Montauk, NY",41.048,-71.959,fixed,NOS,NOS/CO-OPS,y,n,n,415,458,txt
-44020,NANTUCKET SOUND,41.497,-70.283,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,374,460,txt spec
-44085,"Buzzards Bay, MA (260)",41.387,-71.032,buoy,Woods Hole Group/NERACOOS,IOOS Partners,y,n,n,400,462,txt spec
-buzm3,"Buzzards Bay, MA",41.397,-71.033,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,401,464,txt cwind
-bzbm3,"8447930 - Woods Hole, MA",41.524,-70.671,fixed,NOS,NOS/CO-OPS,y,n,n,395,469,txt
-44009,"DELAWARE BAY 26 NM Southeast of Cape May, NJ",38.46,-74.692,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,470,470,txt
-waqm3,"Menauhant, Waquoit Bay Reserve, MA",41.552,-70.549,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,392,470,
-waxm3,"Carriage House, Waquoit Bay Reserve, MA",41.582,-70.525,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,393,473,txt
-chtm3,"8447435 - Chatham, MA",41.688,-69.95,fixed,NOS,NOS/CO-OPS,n,n,n,375,478,
-44069,Great South Bay,40.699,-73.087,buoy,Stony Brook University,IOOS Partners,y,n,y,456,480,txt ocean
-acyn4,"8534720 - Atlantic City, NJ",39.357,-74.418,fixed,NOS,NOS/CO-OPS,y,n,n,480,481,txt
-44014,"VIRGINIA BEACH 64 NM East of Virginia Beach, VA",36.603,-74.837,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,385,482,txt spec
-44088,"Virginia Beach Offshore, VA (171)",36.612,-74.839,buoy,SCRIPPS,IOOS Partners,y,y,n,385,482,txt spec
-jctn4,"Buoy 126, Jacques Cousteau Reserve, NJ",39.508,-74.338,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,481,482,ocean
-nwpr1,"8452660 - Newport, RI",41.504,-71.326,fixed,NOS,NOS/CO-OPS,y,n,n,425,482,txt
-44011,"GEORGES BANK 170 NM East of Hyannis, MA",41.088,-66.546,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,160,483,txt spec
-nbgm3,"8447627 - New Bedford, Barrier Gate, MA",41.624,-70.906,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,416,485,txt
-ldlc3,"New London Ledge Light, New London Harbor, CT",41.306,-72.077,fixed,MYSOUND,IOOS Partners,n,n,n,444,488,
-naqr1,"T-Wharf Bottom, Narragansett Bay Reserve, RI",41.578,-71.321,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,432,490,ocean
-44065,"New York Harbor Entrance - 15 NM SE of Breezy Point , NY",40.368,-73.701,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,478,491,txt spec
-prur1,"8452314 - Sandy Point, Prudence Island, RI",41.605,-71.304,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,433,492,txt
-44079,OOI Pioneer - Mid-Atlantic Bight Northern Surface Mooring,36.175,-74.827,buoy,NSF Ocean Observatories Initiative,IOOS Partners,y,n,y,369,493,txt spec ocean
-jcqn4,"Chestnut Neck, Jacques Cousteau Reserve, NJ",39.548,-74.461,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,493,493,ocean
-jcrn4,"Nacote Creek, Jacques Cousteau Reserve, NJ",39.535,-74.464,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,492,493,txt
-nlnc3,"8461490 - New London, CT",41.361,-72.09,fixed,NOS,NOS/CO-OPS,n,n,n,450,493,
-nlhc3,"8461490 - New London, CT",41.372,-72.096,fixed,NOS,NOS/CO-OPS,y,n,n,451,495,txt
-44039,Central Long Island Sound,41.138,-72.655,buoy,MYSOUND,IOOS Partners,n,n,n,462,496,
-pdvr1,"8454123 - Port of Davisville, RI",41.611,-71.41,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,439,496,txt
-naxr1,"Potters Cove, Narragansett Bay Reserve, RI",41.637,-71.339,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,438,497,txt
-ptcr1,"8452951 - Potter Cove, Prudence Island, RI",41.638,-71.34,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,438,497,txt
-44090,"Cape Cod Bay, MA (221)",41.84,-70.329,buoy,Woods Hole Group/NERACOOS,IOOS Partners,y,y,n,407,499,txt spec
-frvm3,"8447386 - Fall River, MA",41.704,-71.164,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,436,499,txt
-frxm3,"8447412 - Fall River Visibility, MA",41.696,-71.18,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,436,499,txt
-bltm3,"8447387 - Borden Flats Light at Fall River, MA",41.704,-71.174,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,436,500,txt
-ocsm2,"Ocean City, MD",38.338,-75.07,other,U.S. Army Corps of Engineers,IOOS Partners,n,n,n,500,500,
-41048,WEST BERMUDA - 240 NM West of Bermuda,31.878,-69.722,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,118,614,txt spec
-44024,Buoy N01 - Northeast Channel,42.325,-65.909,buoy,Northeastern Regional Association of Coastal Ocean Observing Systems,IOOS Partners,n,n,n,258,627,
-44150,La Have Bank,42.5,-64.02,buoy,Environment and Climate Change Canada,International Partners,y,n,n,202,734,txt
-44137,East Scotia Slope,42.26,-62.03,buoy,Environment and Climate Change Canada,International Partners,y,n,n,101,835,txt
-44403,"SABLE ISLAND BANK - 437 NM E of Boston, MA",41.928,-61.664,dart,NDBC,Tsunami,n,n,n,54,838,
-44139,Banqureau Banks,44.24,-57.1,buoy,Environment and Climate Change Canada,International Partners,y,n,n,104,1289,txt
+44402,"SOUTHEAST BLOCK CANYON - 130 NM SE of Fire Island, NY",39.314,-70.717,dart,NDBC,Tsunami,n,n,n,209,213,
+44008,NANTUCKET 54 NM Southeast of Nantucket,40.5,-69.254,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,221,312,txt spec
+44066,"Texas Tower #4 - 75 NM East of Long Beach, NJ",39.618,-72.644,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,354,353,
+44097,"Block Island, RI  (154)",40.966,-71.123,buoy,SCRIPPS,IOOS Partners,y,y,n,366,392,txt spec
+ntkm3,"8449130 - Nantucket Island, MA",41.285,-70.096,fixed,NOS,NOS/CO-OPS,y,n,n,334,403,txt
+44017,"MONTAUK POINT - 23 NM SSW of Montauk Point, NY",40.693,-72.049,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,400,404,
+44020,NANTUCKET SOUND,41.497,-70.283,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,362,429,txt spec
+41001,EAST HATTERAS - 150 NM East of Cape Hatteras,34.738,-72.503,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,155,431,
+mtkn6,"8510560 - Montauk, NY",41.048,-71.959,fixed,NOS,NOS/CO-OPS,y,n,n,424,432,txt
+44025,"LONG ISLAND - 30 NM South of Islip, NY",40.258,-73.175,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,435,433,txt spec
+44085,"Buzzards Bay, MA (260)",41.387,-71.032,buoy,Woods Hole Group/NERACOOS,IOOS Partners,y,n,n,393,433,txt spec
+buzm3,"Buzzards Bay, MA",41.397,-71.033,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,394,434,txt cwind
+bzbm3,"8447930 - Woods Hole, MA",41.524,-70.671,fixed,NOS,NOS/CO-OPS,y,n,n,384,439,txt
+waqm3,"Menauhant, Waquoit Bay Reserve, MA",41.552,-70.549,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,380,439,
+waxm3,"Carriage House, Waquoit Bay Reserve, MA",41.582,-70.525,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,382,442,txt
+44091,"Barnegat, NJ (209)",39.772,-73.769,buoy,U.S. Army Corps of Engineers,IOOS Partners,y,y,n,445,443,txt spec
+chtm3,"8447435 - Chatham, MA",41.688,-69.95,fixed,NOS,NOS/CO-OPS,n,n,n,365,446,
+44011,"GEORGES BANK 170 NM East of Hyannis, MA",41.088,-66.546,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,166,449,txt spec
+nwpr1,"8452660 - Newport, RI",41.504,-71.326,fixed,NOS,NOS/CO-OPS,y,n,n,420,454,txt
+nbgm3,"8447627 - New Bedford, Barrier Gate, MA",41.624,-70.906,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,406,455,txt
+44069,Great South Bay,40.699,-73.087,buoy,Stony Brook University,IOOS Partners,y,n,y,463,461,txt ocean
+naqr1,"T-Wharf Bottom, Narragansett Bay Reserve, RI",41.578,-71.321,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,425,461,ocean
+ldlc3,"New London Ledge Light, New London Harbor, CT",41.306,-72.077,fixed,MYSOUND,IOOS Partners,n,n,n,452,462,
+prur1,"8452314 - Sandy Point, Prudence Island, RI",41.605,-71.304,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,426,464,txt
+44090,"Cape Cod Bay, MA (221)",41.84,-70.329,buoy,Woods Hole Group/NERACOOS,IOOS Partners,y,y,n,396,467,txt spec
+naxr1,"Potters Cove, Narragansett Bay Reserve, RI",41.637,-71.339,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,431,468,txt
+nlnc3,"8461490 - New London, CT",41.361,-72.09,fixed,NOS,NOS/CO-OPS,n,n,n,457,468,
+pdvr1,"8454123 - Port of Davisville, RI",41.611,-71.41,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,433,468,txt
+ptcr1,"8452951 - Potter Cove, Prudence Island, RI",41.638,-71.34,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,431,468,txt
+nlhc3,"8461490 - New London, CT",41.372,-72.096,fixed,NOS,NOS/CO-OPS,y,n,n,458,469,txt
+bltm3,"8447387 - Borden Flats Light at Fall River, MA",41.704,-71.174,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,427,470,txt
+frvm3,"8447386 - Fall River, MA",41.704,-71.164,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,427,470,txt
+frxm3,"8447412 - Fall River Visibility, MA",41.696,-71.18,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,427,470,txt
+44009,"DELAWARE BAY 26 NM Southeast of Cape May, NJ",38.46,-74.692,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,469,471,txt
+44039,Central Long Island Sound,41.138,-72.655,buoy,MYSOUND,IOOS Partners,n,n,n,473,474,
+acyn4,"8534720 - Atlantic City, NJ",39.357,-74.418,fixed,NOS,NOS/CO-OPS,y,n,n,475,474,txt
+jctn4,"Buoy 126, Jacques Cousteau Reserve, NJ",39.508,-74.338,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,475,474,ocean
+44065,"New York Harbor Entrance - 15 NM SE of Breezy Point , NY",40.368,-73.701,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,478,475,txt spec
+cptr1,"8452944 - Conimicut Light, RI",41.717,-71.345,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,438,477,txt
+jcqn4,"Chestnut Neck, Jacques Cousteau Reserve, NJ",39.548,-74.461,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,487,485,ocean
+jcrn4,"Nacote Creek, Jacques Cousteau Reserve, NJ",39.535,-74.464,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,486,485,txt
+pvdr1,"8453662 - Providence Visibility, RI",41.786,-71.383,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,446,485,txt
+foxr1,"8454000 - Providence, RI",41.807,-71.401,fixed,NOS,NOS/CO-OPS,y,n,n,449,488,txt
+44014,"VIRGINIA BEACH 64 NM East of Virginia Beach, VA",36.603,-74.837,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,385,497,txt spec
+44088,"Virginia Beach Offshore, VA (171)",36.612,-74.839,buoy,SCRIPPS,IOOS Partners,y,y,n,385,497,txt spec
+nwhc3,"8465705 - New Haven, CT",41.283,-72.908,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,499,499,txt
+44024,Buoy N01 - Northeast Channel,42.325,-65.909,buoy,Northeastern Regional Association of Coastal Ocean Observing Systems,IOOS Partners,n,n,n,258,594,
+41048,WEST BERMUDA - 240 NM West of Bermuda,31.878,-69.722,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,118,648,txt spec
+44150,La Have Bank,42.5,-64.02,buoy,Environment and Climate Change Canada,International Partners,y,n,n,201,703,txt
+44137,East Scotia Slope,42.26,-62.03,buoy,Environment and Climate Change Canada,International Partners,y,n,n,100,807,txt
+44403,"SABLE ISLAND BANK - 437 NM E of Boston, MA",41.928,-61.664,dart,NDBC,Tsunami,n,n,n,54,810,
+44139,Banqureau Banks,44.24,-57.1,buoy,Environment and Climate Change Canada,International Partners,y,n,n,122,1261,txt

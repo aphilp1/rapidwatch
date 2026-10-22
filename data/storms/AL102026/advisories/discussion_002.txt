@@ -1,0 +1,63 @@
+000
+WTNT45 KNHC 220256
+TCDAT5
+ 
+Subtropical Storm Josephine Discussion Number   2
+NWS National Hurricane Center Miami FL       AL102026
+1100 PM AST Wed Oct 21 2026
+ 
+Convection associated with Josephine has waned this evening. The 
+latest satellite images show shallow to moderate convection in bands 
+over the northern and western portions of the circulation. Despite 
+its degraded satellite structure, partial scatterometer data show 
+Josephine is still a powerful storm with a large radius of maximum 
+wind and an asymmetric wind field. A band of 45-50 kt winds wraps 
+around the northwest side of the system. Since the entire wind field 
+was not sampled, the initial intensity is held at a possibly 
+generous 55 kt for this advisory.
+ 
+Recent satellite fixes indicate Josephine is now moving slowly
+north-northeastward (015/5 kt). The storm is expected to accelerate
+to the northeast and east-northeast tomorrow as an upper-level
+trough amplifies over the Canadian Maritimes and the northeastern
+United States. Then, the low should become caught in mid-latitude
+westerlies and move eastward on Friday and into the weekend, with
+the center passing to the south of Newfoundland late Friday and
+Friday night. The track model guidance remains tightly clustered,
+and the NHC forecast is very similar to the previous one, generally
+falling between the corrected consensus (HCCA) and a simple average
+of the GFS/ECMWF models (GFEX).
+ 
+Josephine is unlikely to remain subtropical for long since the storm
+will encounter much cooler waters and stronger shear over the next
+12-24 hours. However, the global models favor some near-term
+strengthening driven mostly by baroclinic processes and positive
+interaction with the approaching trough. This forecast shows
+Josephine becoming a hurricane-force, extratropical cyclone in 24 h,
+though it could lose subtropical characteristics even sooner.
+Gradual weakening is predicted beginning on Friday, and the updated
+forecast shows Josephine becoming absorbed by 96 h within a larger,
+extratropical low over the North Atlantic. Given the subtropical
+nature of this storm, the NHC intensity forecast continues to favor
+a blend of the GFS and ECMWF models.
+ 
+Since the coastal wind hazards with this system have been covered
+for the last several days through non-tropical products issued by
+local National Weather Service offices, these products will remain
+in effect until the threat diminishes and the system moves farther
+away from the U.S. coast.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  22/0300Z 37.7N  69.4W   55 KT  65 MPH...SUBTROPICAL
+ 12H  22/1200Z 38.8N  67.9W   60 KT  70 MPH...SUBTROPICAL
+ 24H  23/0000Z 40.3N  64.4W   65 KT  75 MPH...POST-TROP/EXTRATROP
+ 36H  23/1200Z 42.2N  59.6W   65 KT  75 MPH...POST-TROP/EXTRATROP
+ 48H  24/0000Z 43.5N  55.7W   55 KT  65 MPH...POST-TROP/EXTRATROP
+ 60H  24/1200Z 44.1N  52.8W   50 KT  60 MPH...POST-TROP/EXTRATROP
+ 72H  25/0000Z 44.1N  48.1W   45 KT  50 MPH...POST-TROP/EXTRATROP
+ 96H  26/0000Z...DISSIPATED
+ 
+$$
+Forecaster Reinhart

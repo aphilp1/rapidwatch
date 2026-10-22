@@ -1,6 +1,6 @@
 # Josephine (AL102026) — rapid-intensification record
 
-Generated 2026-10-22 01:02Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-22 06:16Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -36,6 +36,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 001** (500 PM AST Wed Oct 21 2026)
 > The subtropical storm will likely intensify during the next day or so through a favorable trough interaction while it remains near the north wall of the Gulf Stream. Global models are in good agreement on a band of hurricane-force winds developing tomorrow on the back side of the low as it undergoes extratropical transition. A slow weakening is anticipated by late Friday with the loss of forcing from the trough while the system moves over cold water. The NHC intensity forecast is similar to a blend of the GFS/ECMWF global model solutions. The cyclone should become absorbed in about 4 days within a much larger low over the North Atlantic.
+
+**Discussion 002** (1100 PM AST Wed Oct 21 2026)
+> Josephine is unlikely to remain subtropical for long since the storm will encounter much cooler waters and stronger shear over the next 12-24 hours. However, the global models favor some near-term strengthening driven mostly by baroclinic processes and positive interaction with the approaching trough. This forecast shows Josephine becoming a hurricane-force, extratropical cyclone in 24 h, though it could lose subtropical characteristics even sooner. Gradual weakening is predicted beginning on Friday, and the updated forecast shows Josephine becoming absorbed by 96 h within a larger, extratropical low over the North Atlantic. Given the subtropical nature of this storm, the NHC intensity forecast continues to favor a blend of the GFS and ECMWF models.
 
 ## 6. Sources in this folder
 
