@@ -38,3 +38,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - mtkn6 8510560 - Montauk, NY · 432 km from center · 2026-10-22T05:30Z · wind °  m/s gust  · pres 1014.9 hPa · air 11.9 °C · water 15.2 °C · wave  m
   - 44025 LONG ISLAND - 30 NM South of Islip, NY · 433 km from center · 2026-10-22T05:40Z · wind °  m/s gust  · pres  hPa · air  °C · water 16.4 °C · wave 3.7 m
 
+## 20261022T1207 UTC · center 38.7N 68.3W · STS 55 kt · forecast file adv003_points.geojson
+- Track points: 15 best-track + center + 7 forecast. Corridor stations: 52 (39 reporting standard met). New NDBC observation rows merged: 6670.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 23 track points; MUR satellite SST returned at 6 of 8 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - 44008 NANTUCKET 54 NM Southeast of Nantucket · 216 km from center · 2026-10-22T11:30Z · wind 20° 16.0 m/s gust 21.0 · pres 1003.1 hPa · air 14.2 °C · water 15.1 °C · wave  m
+  - 44011 GEORGES BANK 170 NM East of Hyannis, MA · 305 km from center · 2026-10-22T11:40Z · wind 320° 2.0 m/s gust 4.0 · pres 1002.7 hPa · air 16.3 °C · water  °C · wave  m
+  - ntkm3 8449130 - Nantucket Island, MA · 326 km from center · 2026-10-22T11:18Z · wind 10° 10.3 m/s gust 14.9 · pres 1009.3 hPa · air  °C · water 12.6 °C · wave  m
+  - 44097 Block Island, RI  (154) · 349 km from center · 2026-10-22T11:00Z · wind °  m/s gust  · pres  hPa · air 13.0 °C · water 16.2 °C · wave 3.2 m
+  - 44020 NANTUCKET SOUND · 354 km from center · 2026-10-22T11:40Z · wind 10° 14.0 m/s gust 17.0 · pres 1009.0 hPa · air 13.1 °C · water 13.8 °C · wave  m
+  - waxm3 Carriage House, Waquoit Bay Reserve, MA · 372 km from center · 2026-10-22T11:00Z · wind 320° 3.6 m/s gust  · pres 1011.0 hPa · air 12.2 °C · water  °C · wave  m
+

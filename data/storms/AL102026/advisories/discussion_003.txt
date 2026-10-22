@@ -1,0 +1,67 @@
+000
+WTNT45 KNHC 220848
+TCDAT5
+ 
+Subtropical Storm Josephine Discussion Number   3
+NWS National Hurricane Center Miami FL       AL102026
+500 AM AST Thu Oct 22 2026
+ 
+Satellite imagery indicates that some renewed convection has
+developed over the northern and western portions of Josephine's
+circulation during the past several hours. An earlier Metop-C
+scatterometer pass revealed a large and asymmetric wind field, with
+a band of 45-50 kt winds wrapping around the western side of the
+circulation and a radius of maximum winds near 60 n mi. Based on
+these data and steady trends in the objective and subjective
+satellite intensity estimates, the initial intensity is held at 55
+kt.
+ 
+Josephine has turned toward the northeast and accelerated since the 
+previous advisory, with the initial motion now estimated at 040/11 
+kt. The cyclone should continue accelerating northeastward and then 
+east-northeastward today as a potent upper-level trough digs 
+southeastward from Quebec toward the Canadian Maritimes and the 
+northeastern United States. This trough is forecast to amplify and 
+eventually close off over the northern Atlantic by early Friday. As 
+Josephine becomes embedded within the mid-latitude westerlies, the 
+system should turn eastward on Friday and continue moving eastward 
+through the weekend, passing well south of Newfoundland. The track 
+guidance remains tightly clustered, and the latest NHC forecast is 
+very similar to the previous prediction, with a slight leftward 
+adjustment, reflecting a blend of the GFS and ECMWF models.
+ 
+Josephine is expected to lose its subtropical characteristics later
+today or by tonight as it moves over cooler waters and interacts
+with the approaching upper-level trough. However, some additional
+strengthening is anticipated during the next 24 h due to baroclinic
+processes and a positive interaction with the advancing trough as
+the cyclone accelerates northeastward. The NHC forecast continues to
+show Josephine becoming a hurricane-force extratropical cyclone
+within 24 h. Gradual weakening is expected thereafter as the system
+moves eastward across the North Atlantic. Global model guidance
+indicates that Josephine should eventually open into a trough as it
+becomes absorbed into a larger mid-latitude system, with dissipation
+expected by day 4. Given Josephine's expected extratropical 
+transition, the NHC intensity forecast lies slightly above a blend 
+of the GFS and ECMWF models.
+ 
+Since the coastal wind hazards associated with this system have been
+covered for the last several days through non-tropical products
+issued by local National Weather Service offices, those products
+will remain in effect until the threat diminishes and Josephine
+moves farther away from the U.S. coast over the next day or two.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  22/0900Z 38.7N  68.3W   55 KT  65 MPH...SUBTROPICAL
+ 12H  22/1800Z 39.8N  66.4W   60 KT  70 MPH...SUBTROPICAL
+ 24H  23/0600Z 41.5N  62.2W   70 KT  80 MPH...POST-TROP/EXTRATROP
+ 36H  23/1800Z 43.2N  58.3W   60 KT  70 MPH...POST-TROP/EXTRATROP
+ 48H  24/0600Z 43.9N  55.9W   55 KT  65 MPH...POST-TROP/EXTRATROP
+ 60H  24/1800Z 44.1N  53.4W   50 KT  60 MPH...POST-TROP/EXTRATROP
+ 72H  25/0600Z 43.8N  48.3W   45 KT  50 MPH...POST-TROP/EXTRATROP
+ 96H  26/0600Z...DISSIPATED
+ 
+$$
+Forecaster Gibbs
