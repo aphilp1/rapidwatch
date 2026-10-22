@@ -13,15 +13,15 @@ mtkn6,"8510560 - Montauk, NY",41.048,-71.959,fixed,NOS,NOS/CO-OPS,y,n,n,415,458,
 44085,"Buzzards Bay, MA (260)",41.387,-71.032,buoy,Woods Hole Group/NERACOOS,IOOS Partners,y,n,n,400,462,txt spec
 buzm3,"Buzzards Bay, MA",41.397,-71.033,fixed,NDBC,NDBC Meteorological/Ocean,y,n,n,401,464,txt cwind
 bzbm3,"8447930 - Woods Hole, MA",41.524,-70.671,fixed,NOS,NOS/CO-OPS,y,n,n,395,469,txt
-44009,"DELAWARE BAY 26 NM Southeast of Cape May, NJ",38.46,-74.692,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,471,470,txt
+44009,"DELAWARE BAY 26 NM Southeast of Cape May, NJ",38.46,-74.692,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,470,470,txt
 waqm3,"Menauhant, Waquoit Bay Reserve, MA",41.552,-70.549,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,392,470,
 waxm3,"Carriage House, Waquoit Bay Reserve, MA",41.582,-70.525,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,393,473,txt
 chtm3,"8447435 - Chatham, MA",41.688,-69.95,fixed,NOS,NOS/CO-OPS,n,n,n,375,478,
 44069,Great South Bay,40.699,-73.087,buoy,Stony Brook University,IOOS Partners,y,n,y,456,480,txt ocean
-acyn4,"8534720 - Atlantic City, NJ",39.357,-74.418,fixed,NOS,NOS/CO-OPS,y,n,n,483,481,txt
+acyn4,"8534720 - Atlantic City, NJ",39.357,-74.418,fixed,NOS,NOS/CO-OPS,y,n,n,480,481,txt
 44014,"VIRGINIA BEACH 64 NM East of Virginia Beach, VA",36.603,-74.837,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,385,482,txt spec
 44088,"Virginia Beach Offshore, VA (171)",36.612,-74.839,buoy,SCRIPPS,IOOS Partners,y,y,n,385,482,txt spec
-jctn4,"Buoy 126, Jacques Cousteau Reserve, NJ",39.508,-74.338,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,485,482,ocean
+jctn4,"Buoy 126, Jacques Cousteau Reserve, NJ",39.508,-74.338,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,481,482,ocean
 nwpr1,"8452660 - Newport, RI",41.504,-71.326,fixed,NOS,NOS/CO-OPS,y,n,n,425,482,txt
 44011,"GEORGES BANK 170 NM East of Hyannis, MA",41.088,-66.546,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,160,483,txt spec
 nbgm3,"8447627 - New Bedford, Barrier Gate, MA",41.624,-70.906,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,416,485,txt
@@ -30,8 +30,8 @@ naqr1,"T-Wharf Bottom, Narragansett Bay Reserve, RI",41.578,-71.321,fixed,Nation
 44065,"New York Harbor Entrance - 15 NM SE of Breezy Point , NY",40.368,-73.701,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,478,491,txt spec
 prur1,"8452314 - Sandy Point, Prudence Island, RI",41.605,-71.304,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,433,492,txt
 44079,OOI Pioneer - Mid-Atlantic Bight Northern Surface Mooring,36.175,-74.827,buoy,NSF Ocean Observatories Initiative,IOOS Partners,y,n,y,369,493,txt spec ocean
-jcqn4,"Chestnut Neck, Jacques Cousteau Reserve, NJ",39.548,-74.461,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,496,493,ocean
-jcrn4,"Nacote Creek, Jacques Cousteau Reserve, NJ",39.535,-74.464,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,496,493,txt
+jcqn4,"Chestnut Neck, Jacques Cousteau Reserve, NJ",39.548,-74.461,fixed,National Estuarine Research Reserve System,NERRS,n,n,n,493,493,ocean
+jcrn4,"Nacote Creek, Jacques Cousteau Reserve, NJ",39.535,-74.464,fixed,National Estuarine Research Reserve System,NERRS,y,n,n,492,493,txt
 nlnc3,"8461490 - New London, CT",41.361,-72.09,fixed,NOS,NOS/CO-OPS,n,n,n,450,493,
 nlhc3,"8461490 - New London, CT",41.372,-72.096,fixed,NOS,NOS/CO-OPS,y,n,n,451,495,txt
 44039,Central Long Island Sound,41.138,-72.655,buoy,MYSOUND,IOOS Partners,n,n,n,462,496,

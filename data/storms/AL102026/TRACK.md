@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bal102026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-10-18T18:00Z at 31.0N 71.4W as a extratropical (40 kt).
-- **Latest fix:** 2026-10-21T18:00Z at 37.1N 69.6W, subtropical storm 55 kt 990 mb.
-- **Fixes:** 13 spanning 72 h; distance along the track 769 km (415 nmi).
+- **Latest fix:** 2026-10-22T00:00Z at 37.5N 69.5W, subtropical storm 55 kt 988 mb.
+- **Fixes:** 14 spanning 78 h; distance along the track 814 km (440 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -21,6 +21,7 @@ Source: NHC best track (ATCF b-deck atcf/bal102026.dat) as archived here; regene
 | 2026-10-21T06:00Z | 36.8N | 69.4W | EX | 45 | 997 | 22 | 2.0 |
 | 2026-10-21T12:00Z | 36.9N | 69.5W | EX | 50 | 992 | 14 | 1.3 |
 | 2026-10-21T18:00Z | 37.1N | 69.6W | SS | 55 | 990 | 24 | 2.2 |
+| 2026-10-22T00:00Z | 37.5N | 69.5W | SS | 55 | 988 | 45 | 4.1 |
 
 Latest NHC forecast points (adv001_points.geojson):
 
