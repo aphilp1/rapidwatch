@@ -1,0 +1,104 @@
+{
+ "id": "ep222026",
+ "binNumber": "EP2",
+ "name": "Vance",
+ "classification": "TS",
+ "intensity": "50",
+ "pressure": "997",
+ "latitude": "9.7N",
+ "longitude": "101.0W",
+ "latitudeNumeric": 9.7,
+ "longitudeNumeric": -101,
+ "movementDir": 305,
+ "movementSpeed": 3,
+ "lastUpdate": "2026-10-22T15:00:00.000Z",
+ "publicAdvisory": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:46:41.617Z",
+  "url": "https://www.nhc.noaa.gov/text/MIATCPEP2.shtml"
+ },
+ "forecastAdvisory": {
+  "advNum": "006",
+  "issuance": "2026-10-22T21:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T20:35:16.802Z",
+  "url": "https://www.nhc.noaa.gov/text/MIATCMEP2.shtml"
+ },
+ "windSpeedProbabilities": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:47:12.823Z",
+  "url": "https://www.nhc.noaa.gov/text/MIAPWSEP2.shtml"
+ },
+ "forecastDiscussion": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:48:40.487Z",
+  "url": "https://www.nhc.noaa.gov/text/MIATCDEP2.shtml"
+ },
+ "forecastGraphics": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:46:41.617Z",
+  "url": "https://www.nhc.noaa.gov/graphics_ep2.shtml"
+ },
+ "forecastTrack": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:50:00.428Z",
+  "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep222026_5day_005.zip",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_005adv_TRACK.kmz"
+ },
+ "windWatchesWarnings": null,
+ "trackCone": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:49:54.263Z",
+  "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep222026_5day_005.zip",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_005adv_CONE.kmz"
+ },
+ "initialWindExtent": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:50:35.303Z",
+  "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep222026_fcst_005.zip",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_initialradii_005adv.kmz"
+ },
+ "forecastWindRadiiGIS": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:50:30.765Z",
+  "zipFile": "https://www.nhc.noaa.gov/gis/forecast/archive/ep222026_fcst_005.zip",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_forecastradii_005adv.kmz"
+ },
+ "bestTrackGIS": {
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:50:11.484Z",
+  "zipFile": "https://www.nhc.noaa.gov/gis/best_track/ep222026_best_track.zip",
+  "kmzFile": "https://www.nhc.noaa.gov/gis/best_track/ep222026_best_track.kmz"
+ },
+ "earliestArrivalTimeTSWindsGIS": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:49:56.295Z",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_005adv_earliest_reasonable_toa_34.kmz"
+ },
+ "mostLikelyTimeTSWindsGIS": {
+  "advNum": "005",
+  "issuance": "2026-10-22T15:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T14:49:58.341Z",
+  "kmzFile": "https://www.nhc.noaa.gov/storm_graphics/api/EP222026_005adv_most_likely_toa_34.kmz"
+ },
+ "windSpeedProbabilitiesGIS": {
+  "issuance": "2026-10-22T12:00:00.000Z",
+  "fileUpdateTime": "2026-10-22T15:23:12.743Z",
+  "zipFile5km": "https://www.nhc.noaa.gov/gis/forecast/archive/2026102212_wsp_120hr5km.zip",
+  "zipFile0p5deg": "https://www.nhc.noaa.gov/gis/forecast/archive/2026102212_wsp_120hrhalfDeg.zip",
+  "kmzFile34kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026102212_wsp34knt120hr_5km.kmz",
+  "kmzFile50kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026102212_wsp50knt120hr_5km.kmz",
+  "kmzFile64kt": "https://www.nhc.noaa.gov/gis/forecast/archive/2026102212_wsp64knt120hr_5km.kmz"
+ },
+ "stormSurgeWatchWarningGIS": null,
+ "potentialStormSurgeFloodingGIS": null,
+ "peakSurgeKML": null
+}

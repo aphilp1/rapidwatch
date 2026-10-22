@@ -1,6 +1,6 @@
 # Josephine (AL102026) — rapid-intensification record
 
-Generated 2026-10-22 17:22Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-10-22 20:38Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -33,6 +33,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-10-22 00Z | 55 | 10 | 25.1 | 0 | 40 | 31 | 34 | 49 | 66 | 6 | 30 | 0.0% | 2.0% | 0.5% |
 | 2026-10-22 06Z | 55 | 10 | 24.3 | 0 | 40 | 32 | 37 | 45 | 77 | 10 | 35 | 0.0% | 1.0% | 0.3% |
 | 2026-10-22 12Z | 55 | 5 | 21.6 | 0 | 40 | 38 | 40 | 31 | 77 | 12 | 35 | 0.0% | 0.0% | 0.2% |
+| 2026-10-22 18Z | 55 | 0 | 22.6 | 0 | 40 | 49 | 44 | 36 | 52 | 15 | 27 | 0.0% | 0.0% | 0.1% |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
