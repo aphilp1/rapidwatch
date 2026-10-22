@@ -1,0 +1,60 @@
+000
+WTNT45 KNHC 222038
+TCDAT5
+ 
+Post-Tropical Cyclone Josephine Discussion Number   5
+NWS National Hurricane Center Miami FL       AL102026
+500 PM AST Thu Oct 22 2026
+
+The convective cloud pattern of Josephine now resembles that of a 
+warm frontal band, with little evidence of tropical-cyclone like 
+curvature. In addition, the circulation center is becoming 
+elongated and cold-air clouds are increasing in the southern 
+semicircle. Based on these developments and the earlier 
+scatterometer pass showing a developing frontal boundary, Josephine 
+has become an extratropical cyclone.  The initial intensity is set 
+at 55 kt, and this could be conservative.
+ 
+The initial motion is now faster toward the northeast or 055/15 kt. 
+Josephine should move generally northeastward with some increase 
+in forward speed tonight, followed by an eastward turn as it 
+becomes well embedded in the mid-latitude westerlies. On the 
+forecast track, the center of Josephine will move away from the New 
+England states this evening and pass south of Nova Scotia and 
+Newfoundland tonight and Saturday. The guidance is again tightly 
+clustered, and the new forecast track is similar to the previous 
+forecast.
+
+Josephine is expected to strengthen as an extratropical low tonight 
+due to the influence of an amplifying mid- to upper-level trough 
+over eastern Canada and the New England states, with winds reaching 
+hurricane force.  After tonight the global dynamical models are in 
+good agreement that the cyclone should steadily weaken, and they 
+forecast Josephine to dissipate by 72 h as it is absorbed by a new 
+low pressure area developing to its northeast. The new intensity 
+forecast is based mainly on the global models and again has only 
+minor adjustments from the last forecast.  The wind radii forecasts 
+have also been revised based on the global model forecasts.
+
+This will be the last advisory on Josephine issued by the National 
+Hurricane Center.  Additional information on this system can be 
+found in High Seas Forecasts issued by the National Weather 
+Service, under AWIPS header NFDHSFAT1, WMO header FZNT01 KWBC, and 
+online at ocean.weather.gov/shtml/NFDHSFAT1.php
+Please also see products from local National Weather Service 
+offices and Environment Canada for more information regarding the 
+effects of Josephine in coastal areas.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  22/2100Z 40.0N  65.8W   55 KT  65 MPH...POST-TROP/EXTRATROP
+ 12H  23/0600Z 41.3N  62.7W   65 KT  75 MPH...POST-TROP/EXTRATROP
+ 24H  23/1800Z 42.9N  58.6W   60 KT  70 MPH...POST-TROP/EXTRATROP
+ 36H  24/0600Z 43.5N  55.9W   55 KT  65 MPH...POST-TROP/EXTRATROP
+ 48H  24/1800Z 43.8N  52.6W   50 KT  60 MPH...POST-TROP/EXTRATROP
+ 60H  25/0600Z 43.6N  48.0W   45 KT  50 MPH...POST-TROP/EXTRATROP
+ 72H  25/1800Z...DISSIPATED
+ 
+$$
+Forecaster Beven
