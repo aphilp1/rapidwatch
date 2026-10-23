@@ -2,10 +2,10 @@ id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_cent
 44011,"GEORGES BANK 170 NM East of Hyannis, MA",41.088,-66.546,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,137,136,txt spec
 44024,Buoy N01 - Northeast Channel,42.325,-65.909,buoy,Northeastern Regional Association of Coastal Ocean Observing Systems,IOOS Partners,n,n,n,230,259,
 44008,NANTUCKET 54 NM Southeast of Nantucket,40.5,-69.254,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,208,298,txt spec
-44150,La Have Bank,42.5,-64.02,buoy,Environment and Climate Change Canada,International Partners,y,n,n,172,315,txt
+44150,La Have Bank,42.5,-64.02,buoy,Environment and Climate Change Canada,International Partners,n,n,n,172,315,txt
 ntkm3,"8449130 - Nantucket Island, MA",41.285,-70.096,fixed,NOS,NOS/CO-OPS,y,n,n,320,390,txt
 chtm3,"8447435 - Chatham, MA",41.688,-69.95,fixed,NOS,NOS/CO-OPS,n,n,n,351,396,
-44137,East Scotia Slope,42.26,-62.03,buoy,Environment and Climate Change Canada,International Partners,y,n,n,69,403,txt
+44137,East Scotia Slope,42.26,-62.03,buoy,Environment and Climate Change Canada,International Partners,n,n,n,69,403,txt
 44403,"SABLE ISLAND BANK - 437 NM E of Boston, MA",41.928,-61.664,dart,NDBC,Tsunami,n,n,n,22,408,
 44020,NANTUCKET SOUND,41.497,-70.283,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,349,413,txt spec
 44037,Buoy M01 - Jordan Basin,43.497,-67.876,buoy,Northeastern Regional Association of Coastal Ocean Observing Systems,IOOS Partners,y,n,y,427,425,txt ocean
@@ -34,5 +34,5 @@ nwpr1,"8452660 - Newport, RI",41.504,-71.326,fixed,NOS,NOS/CO-OPS,y,n,n,407,494,
 prur1,"8452314 - Sandy Point, Prudence Island, RI",41.605,-71.304,fixed,NOAA NOS PORTS,NOS/CO-OPS,y,n,n,413,496,txt
 naqr1,"T-Wharf Bottom, Narragansett Bay Reserve, RI",41.578,-71.321,fixed,National Estuarine Research Reserve System,NERRS,n,n,y,412,497,ocean
 41001,EAST HATTERAS - 150 NM East of Cape Hatteras,34.738,-72.503,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,155,832,
-44139,Banqureau Banks,44.24,-57.1,buoy,Environment and Climate Change Canada,International Partners,y,n,n,95,858,txt
+44139,Banqureau Banks,44.24,-57.1,buoy,Environment and Climate Change Canada,International Partners,n,n,n,95,858,txt
 41048,WEST BERMUDA - 240 NM West of Bermuda,31.878,-69.722,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,118,969,txt spec
