@@ -3,16 +3,16 @@
 Source: NHC best track (ATCF b-deck atcf/bep222026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 
-Latest NHC forecast points (adv008_points.geojson):
+Latest NHC forecast points (adv009_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 23/0600 | 10.9N | 102.1W | 75 |
-| +12 h | 23/1800 | 11.5N | 102.5W | 85 |
-| +24 h | 24/0600 | 12.4N | 103.0W | 100 |
-| +36 h | 24/1800 | 13.4N | 103.4W | 100 |
-| +48 h | 25/0600 | 14.5N | 103.8W | 90 |
-| +60 h | 25/1800 | 15.6N | 104.0W | 90 |
-| +72 h | 26/0600 | 16.4N | 104.4W | 90 |
-| +96 h | 27/0600 | 17.0N | 104.6W | 90 |
-| +120 h | 28/0600 | 17.8N | 104.7W | 75 |
+| +0 h | 23/1200 | 10.7N | 102.1W | 80 |
+| +12 h | 24/0000 | 11.3N | 102.5W | 95 |
+| +24 h | 24/1200 | 12.3N | 102.9W | 100 |
+| +36 h | 25/0000 | 13.3N | 103.3W | 95 |
+| +48 h | 25/1200 | 14.4N | 103.6W | 90 |
+| +60 h | 26/0000 | 15.3N | 103.9W | 85 |
+| +72 h | 26/1200 | 15.9N | 104.2W | 90 |
+| +96 h | 27/1200 | 16.6N | 104.4W | 90 |
+| +120 h | 28/1200 | 17.5N | 104.5W | 75 |
