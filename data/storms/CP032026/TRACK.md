@@ -1,4 +1,4 @@
-# Three-C (CP032026) - full track since NHC first tracked it
+# Olana (CP032026) - full track since NHC first tracked it
 
 Source: NHC best track (ATCF b-deck atcf/bcp032026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
