@@ -242,3 +242,9 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
 - HYCOM sampled at 7 track points; MUR satellite SST returned at 0 of 7 points.
 - Nearest reporting buoys/stations (latest standard-met row):
 
+## 20261028T0845 UTC · center 18.6N 108.6W · TS 35 kt · forecast file adv027_points.geojson
+- Track points: 0 best-track + center + 6 forecast. Corridor stations: 0 (0 reporting standard met). New NDBC observation rows merged: 0.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 7 track points; MUR satellite SST returned at 0 of 7 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+
