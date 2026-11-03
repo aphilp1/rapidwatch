@@ -795,10 +795,15 @@ function _ndbcObs(id){
          always false (NaN), which silently pinned "newest obs" to whichever buoy resolved first */
       return{wtmp:p.seaSurfaceTemperature?.value,atmp:p.temperature?.value,wspd:p.windSpeed?.value!=null?+(p.windSpeed.value/3.6).toFixed(1):null,wdir:p.windDirection?.value,pres:p.barometricPressure?.value!=null?+(p.barometricPressure.value/100).toFixed(1):null,t:_fmtUTC(p.timestamp),ts:Date.parse(p.timestamp)};}).catch(()=>null);
   const ndbc=fetch('data/ndbc/'+id+'.txt').then(async r=>{if(!r.ok)throw 0;
-      const obs=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#'))[0]?.trim().split(/\s+/)||[];if(obs.length<15)throw 0;
-      const v=x=>x==='MM'?null:+x;
-      const ts=Date.UTC(+obs[0],+obs[1]-1,+obs[2],+obs[3],+obs[4]);
-      return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC',ts};}).catch(()=>null);
+      const rows=(await r.text()).trim().split('\n').filter(l=>!l.startsWith('#')).map(l=>l.trim().split(/\s+/)).filter(o=>o.length>=15);if(!rows.length)throw 0;
+      const obs=rows[0];const v=x=>x==='MM'?null:+x;const rts=o=>Date.UTC(+o[0],+o[1]-1,+o[2],+o[3],+o[4]);
+      const ts=rts(obs);
+      /* 2026-11-03: a buoy posts each sensor on its own cadence (42002 carries air/sea temperature on only some
+         rows, so the newest row often reads MM). Take each temperature from the newest row that has it, within
+         3 h of the newest row, and keep that row's time so the popup can say when it was measured. */
+      const pick=i=>{for(const o of rows){const x=v(o[i]);if(x!=null)return ts-rts(o)<=3*3.6e6?{val:x,ts:rts(o)}:{val:null};}return{val:null};};
+      const W=pick(14),A=pick(13);
+      return{wtmp:W.val,wtmpTs:W.ts,atmp:A.val,atmpTs:A.ts,wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC',ts};}).catch(()=>null);
   return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');
     /* 2026-11-03: the NWS API can lag NDBC by hours (seen: NWS 14:10Z vs NDBC 21:10Z on every Gulf buoy), and
        preferring NWS whenever it answered marked all six buoys STALE. Use whichever source has the newer
@@ -806,7 +811,9 @@ function _ndbcObs(id){
     const [p,q]=(a?.ts||0)>=(b?.ts||0)?[a,b]:[b,a];
     const near=q&&p?.ts!=null&&q.ts!=null&&Math.abs(p.ts-q.ts)<=3.6e6;
     const f=(x,y)=>x!=null?x:(near?y:null);
-    return{wtmp:f(p?.wtmp,q?.wtmp),atmp:f(p?.atmp,q?.atmp),wspd:f(p?.wspd,q?.wspd),wdir:f(p?.wdir,q?.wdir),pres:f(p?.pres,q?.pres),t:p?.t||'--',ts:p?.ts};});
+    const g=k=>p?.[k]!=null?{v:p[k],ts:p[k+'Ts']||p.ts}:(near&&q?.[k]!=null?{v:q[k],ts:q[k+'Ts']||q.ts}:{v:null});   // value + the time it was measured
+    const W=g('wtmp'),A=g('atmp');
+    return{wtmp:W.v,wtmpTs:W.ts,atmp:A.v,atmpTs:A.ts,wspd:f(p?.wspd,q?.wspd),wdir:f(p?.wdir,q?.wdir),pres:f(p?.pres,q?.pres),t:p?.t||'--',ts:p?.ts};});
 }
 const buoyLayer=L.layerGroup();
 let _buoyNewest=null,_buoyOK=0;
@@ -824,7 +831,8 @@ let _buoyNewest=null,_buoyOK=0;
      setStatus('NDBC buoys',_buoyOK>=3?'ok':'warn',_buoyOK+'/6 fresh'+(_buoyNewest?' · '+agoH(_buoyNewest)+' ago':''));
      if(fresh&&o.wtmp!=null) mk.setStyle({fillColor:o.wtmp>=29?'#ff8a3d':o.wtmp>=27?'#ffb27a':'#0d1c29',fillOpacity:.95});
      if(!fresh) mk.setStyle({color:'#8ba0b0',fillColor:'#0d1c29'});
-     const lines=[o.wtmp!=null?'SST: <b>'+o.wtmp.toFixed(1)+'°C</b>':'SST: --',o.atmp!=null?'Air: <b>'+o.atmp.toFixed(1)+'°C</b>':'Air: --',o.wspd!=null?'Wind: <b>'+o.wspd+' m/s</b>'+(o.wdir!=null?' @ '+o.wdir+'°':''):'Wind: --',o.pres!=null?'Pressure: <b>'+o.pres+' hPa</b>':'Pres: --','<span style="opacity:.6;font-size:.9em">Obs: '+o.t+'</span>'].join('<br>');
+     const when=t=>t&&o.ts&&t<o.ts?' <span style="opacity:.6;font-size:.9em">at '+_fmtUTC(t)+'</span>':'';   // only when older than the headline obs
+     const lines=[o.wtmp!=null?'SST: <b>'+o.wtmp.toFixed(1)+'°C</b>'+when(o.wtmpTs):'SST: --',o.atmp!=null?'Air: <b>'+o.atmp.toFixed(1)+'°C</b>'+when(o.atmpTs):'Air: --',o.wspd!=null?'Wind: <b>'+o.wspd+' m/s</b>'+(o.wdir!=null?' @ '+o.wdir+'°':''):'Wind: --',o.pres!=null?'Pressure: <b>'+o.pres+' hPa</b>':'Pres: --','<span style="opacity:.6;font-size:.9em">Obs: '+o.t+'</span>'].join('<br>');
      const tags=fresh?['live obs','SST','wind']:['STALE — buoy not reporting'];if(fresh&&o.wtmp!=null&&o.wtmp>=29)tags.push('RI-favorable SST');
      mk.bindPopup(pop(fresh?'NDBC buoy — live':'NDBC buoy — last known obs','Station '+id,fmt(la,lo)+' · '+loc,lines,tags));
    }).catch(()=>{setStatus('NDBC buoys',_buoyOK>=3?'ok':_buoyOK?'warn':'fail',_buoyOK+'/6 fresh');});
