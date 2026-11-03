@@ -799,8 +799,14 @@ function _ndbcObs(id){
       const v=x=>x==='MM'?null:+x;
       const ts=Date.UTC(+obs[0],+obs[1]-1,+obs[2],+obs[3],+obs[4]);
       return{wtmp:v(obs[14]),atmp:v(obs[13]),wspd:v(obs[6]),wdir:v(obs[5]),pres:v(obs[12]),t:_MO[+obs[1]-1]+' '+obs[2]+' '+obs[3]+':'+obs[4]+' UTC',ts};}).catch(()=>null);
-  return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');const f=(x,y)=>x!=null?x:y;
-    return{wtmp:f(a?.wtmp,b?.wtmp),atmp:f(a?.atmp,b?.atmp),wspd:f(a?.wspd,b?.wspd),wdir:f(a?.wdir,b?.wdir),pres:f(a?.pres,b?.pres),t:a?.t||b?.t||'--',ts:a?.ts||b?.ts};});
+  return Promise.all([nws,ndbc]).then(([a,b])=>{if(!a&&!b)throw new Error('both failed');
+    /* 2026-11-03: the NWS API can lag NDBC by hours (seen: NWS 14:10Z vs NDBC 21:10Z on every Gulf buoy), and
+       preferring NWS whenever it answered marked all six buoys STALE. Use whichever source has the newer
+       observation as primary; fill a missing field from the other source only if its obs is within 1 h. */
+    const [p,q]=(a?.ts||0)>=(b?.ts||0)?[a,b]:[b,a];
+    const near=q&&p?.ts!=null&&q.ts!=null&&Math.abs(p.ts-q.ts)<=3.6e6;
+    const f=(x,y)=>x!=null?x:(near?y:null);
+    return{wtmp:f(p?.wtmp,q?.wtmp),atmp:f(p?.atmp,q?.atmp),wspd:f(p?.wspd,q?.wspd),wdir:f(p?.wdir,q?.wdir),pres:f(p?.pres,q?.pres),t:p?.t||'--',ts:p?.ts};});
 }
 const buoyLayer=L.layerGroup();
 let _buoyNewest=null,_buoyOK=0;
