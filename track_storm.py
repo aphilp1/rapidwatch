@@ -40,7 +40,9 @@ NHC_KINDS = {"Forecast Cone": "cone", "Forecast Track": "track", "Forecast Point
              "Watch-Warning": "ww", "Past Track": "past_track", "Past Points": "past_points"}
 TEXT_PRODUCTS = {"TCP": "public_advisory", "TCM": "forecast_advisory", "TCD": "discussion", "PWS": "wind_probabilities",
                  "TCU": "tropical_cyclone_update"}   # TCU = the between-advisory product NHC used to upgrade Isaias to a hurricane
-RECON_DIRS = ["AHONT1", "REPNT2", "REPNT3", "REPNT1"]   # HDOB, vortex data message, dropsonde (TEMP DROP), RECCO
+RECON_DIRS = {"AL": ["AHONT1", "REPNT2", "REPNT3", "REPNT1"],   # HDOB, vortex data message, dropsonde (TEMP DROP), RECCO
+              "EP": ["AHOPN1", "REPPN2", "REPPN3", "REPPN1"],   # same products, eastern Pacific directories
+              "CP": ["AHOPA1", "REPPA3"]}                        # central Pacific: only these exist in NHC's recon archive
 
 
 def get(url, timeout=40):
@@ -75,8 +77,15 @@ def strip_html(b):
     return t.strip() + "\n"
 
 
-def product_code(storm_num):
-    return f"AT{((int(storm_num) - 1) % 5) + 1}"
+def product_code(sid):
+    """Text-product slot + issuing office for a storm id (AL092026 / EP202026 / CP032026):
+    Atlantic = MIA + AT1-5, eastern Pacific = MIA + EP1-5, central Pacific = HFO (Honolulu) + CP1-5.
+    Until 2026-11-03 this was Atlantic-only, so Pacific storms never matched a text product, the
+    advisory number stayed '?' and the past-track files were named adv00?_... (unreadable on Windows)."""
+    basin = sid[:2].upper()
+    slot = ((int(sid[2:4]) - 1) % 5) + 1
+    office = "HFO" if basin == "CP" else "MIA"
+    return office, {"AL": "AT", "EP": "EP", "CP": "CP"}.get(basin, "AT") + str(slot)
 
 
 def sample(grid, key, la, lo):
@@ -114,6 +123,8 @@ def archive_storm(s, layers, run_ts):
     sid = str(s.get("id", "")).upper()               # AL092026
     name = s.get("name", "?")
     num = sid[2:4]; yy = sid[-2:]
+    basin = sid[:2]                                    # AL / EP / CP, drives every NHC path below
+    b = basin.lower()
     root = DATA / "storms" / sid
     root.mkdir(parents=True, exist_ok=True)
     added = []
@@ -128,18 +139,18 @@ def archive_storm(s, layers, run_ts):
             added.append("currentstorms")
 
     # 2. Text products, one file per advisory number
-    code = product_code(num)
+    office, code = product_code(sid)
     adv = "?"
     for prod, label in TEXT_PRODUCTS.items():
         try:
-            txt = strip_html(get(f"https://www.nhc.noaa.gov/text/refresh/MIA{prod}{code}+shtml/"))
+            txt = strip_html(get(f"https://www.nhc.noaa.gov/text/refresh/{office}{prod}{code}+shtml/"))
         except Exception as e:
             added.append(f"{label} (fetch failed: {type(e).__name__})"); continue
         if name.upper() not in txt.upper()[:600]:
             continue                                   # product slot belongs to another storm
         m = re.search(r"(?:Advisory|Discussion|Probabilities) Number\s+(\d+[A-Z]?)", txt, re.I)
         if prod == "TCU":                                  # updates carry no number: name by WMO issue time (ddhhmm)
-            m = re.search(r"^WTNT6\d KNHC (\d{6})", txt, re.M)
+            m = re.search(r"^WT(?:NT|PZ|PA)6\d (?:KNHC|PHFO) (\d{6})", txt, re.M)   # Atlantic / E Pac / C Pac headers
         n = m.group(1) if m else "x"
         if prod == "TCP":
             adv = n
@@ -151,6 +162,7 @@ def archive_storm(s, layers, run_ts):
 
     # 3. GIS layers per advisory
     bin_ = str(s.get("binNumber", "")).upper()
+    last_advn = adv if adv != "?" else "unk"
     for lname, suffix in NHC_KINDS.items():
         lid = layers.get(f"{bin_} {lname}")
         if lid is None:
@@ -160,7 +172,12 @@ def archive_storm(s, layers, run_ts):
             gj = json.loads(g)
             if not gj.get("features"):
                 continue
-            advn = str(gj["features"][0].get("properties", {}).get("advisnum", adv)).zfill(3)
+            advn = str(gj["features"][0].get("properties", {}).get("advisnum", adv))
+            if advn.isdigit() or advn[:-1].isdigit():
+                last_advn = advn                       # cone/track/points carry advisnum; past-track layers do not
+            else:
+                advn = last_advn                       # reuse this run's advisory number; "unk" only if none seen at all
+            advn = (re.sub(r"[^0-9A-Za-z]", "", advn) or "unk").zfill(3)   # never put '?' or other junk in a filename
             if write_new(root / "gis" / f"adv{advn}_{suffix}.geojson", g):
                 added.append(f"gis {suffix} adv {advn}")
         except Exception as e:
@@ -173,7 +190,7 @@ def archive_storm(s, layers, run_ts):
     try:
         idx = get(f"https://www.nhc.noaa.gov/archive/{year}/{name.upper()}.shtml").decode("utf-8", "replace")
         prodmap = {"public": "public_advisory", "fstadv": "forecast_advisory", "discus": "discussion", "wndprb": "wind_probabilities"}
-        for rel, prod, n in sorted(set(re.findall(rf'href="(/archive/{year}/al{num}/al{num}{year}\.(public|fstadv|discus|wndprb)\.(\d{{3}}[a-z]?)\.shtml)"', idx, re.I))):
+        for rel, prod, n in sorted(set(re.findall(rf'href="(/archive/{year}/{b}{num}/{b}{num}{year}\.(public|fstadv|discus|wndprb)\.(\d{{3}}[a-z]?)\.shtml)"', idx, re.I))):
             target = root / "advisories" / f"{prodmap[prod.lower()]}_{n.upper()}.txt"
             if target.exists():
                 continue
@@ -186,7 +203,7 @@ def archive_storm(s, layers, run_ts):
         added.append(f"archive index (failed: {type(e).__name__})")
     try:
         idx = get("https://www.nhc.noaa.gov/gis/forecast/archive/").decode("utf-8", "replace")
-        for fn in sorted(set(re.findall(rf'href="(al{num}{year}_(?:5day|fcst)_\d{{3}}[A-Za-z]?\.zip)"', idx, re.I))):
+        for fn in sorted(set(re.findall(rf'href="({b}{num}{year}_(?:5day|fcst)_\d{{3}}[A-Za-z]?\.zip)"', idx, re.I))):
             target = root / "gis" / fn
             if not target.exists():
                 try:
@@ -196,7 +213,7 @@ def archive_storm(s, layers, run_ts):
                     pass
     except Exception:
         pass
-    for sub, fn in (("btk", f"bal{num}{year}.dat"), ("aid_public", f"aal{num}{year}.dat.gz")):
+    for sub, fn in (("btk", f"b{b}{num}{year}.dat"), ("aid_public", f"a{b}{num}{year}.dat.gz")):
         try:
             if write_new(root / "atcf" / fn, get(f"https://ftp.nhc.noaa.gov/atcf/{sub}/{fn}", timeout=90)):
                 added.append(f"atcf {fn}")
@@ -206,7 +223,7 @@ def archive_storm(s, layers, run_ts):
     # 4. SHIPS text files
     try:
         idx = get("https://ftp.nhc.noaa.gov/atcf/stext/").decode("utf-8", "replace")
-        for fn in sorted(set(re.findall(rf'href="(\d{{8}}AL{num}{yy}_ships\.txt)"', idx))):
+        for fn in sorted(set(re.findall(rf'href="(\d{{8}}{basin}{num}{yy}_ships\.txt)"', idx))):
             if not (root / "ships" / fn).exists():
                 write_new(root / "ships" / fn, get(f"https://ftp.nhc.noaa.gov/atcf/stext/{fn}"))
                 added.append(f"ships {fn[:8]}")
@@ -216,7 +233,7 @@ def archive_storm(s, layers, run_ts):
     # 5. Recon products since the storm's first archived run
     first = sorted((root / "currentstorms").glob("*.json"))
     since = first[0].stem[:8] if first else run_ts[:8]          # YYYYMMDD
-    for d in RECON_DIRS:
+    for d in RECON_DIRS.get(basin, RECON_DIRS["AL"]):
         try:
             idx = get(f"https://www.nhc.noaa.gov/archive/recon/{utcnow().year}/{d}/").decode("utf-8", "replace")
         except Exception:
