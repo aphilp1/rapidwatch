@@ -283,14 +283,34 @@ function classOf(kt){
 
 /* ══ DATA STATUS (live diagnostics) ══ */
 const STATUS={};
-function setStatus(key,state,detail){
-  STATUS[key]={state,detail};
+function setStatus(key,state,detail,title){
+  STATUS[key]={state,detail,title:title||''};   // title = optional hover text, kept here so re-renders do not lose it
   const host=document.getElementById('strows');
-  host.innerHTML=Object.keys(STATUS).map(k=>{
+  host.innerHTML=Object.keys(STATUS).sort((a,b)=>(a==='Backend health')-(b==='Backend health')).map(k=>{   // backend row last
     const s=STATUS[k];
-    return '<div class="st-row"><span class="st-dot '+s.state+'"></span><span class="st-k">'+k+'</span><span class="st-v">'+s.detail+'</span></div>';
+    const tt=s.title?' title="'+s.title.replace(/"/g,'&quot;')+'"':'';
+    return '<div class="st-row"'+tt+'><span class="st-dot '+s.state+'"></span><span class="st-k">'+k+'</span><span class="st-v">'+s.detail+'</span></div>';
   }).join('');
 }
+/* Backend health: data/health.json is written by check_health.py in the 30-min Action after every
+   snapshot/archive run. It reports on the FILES the bots wrote (storm-archive names and completeness,
+   buoy/ocean/glider/Argo ages) — things the browser-side probes above cannot see. 2026-11-03. */
+function loadHealth(){
+  setStatus('Backend health','','checking…');
+  fetch('data/health.json?_='+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json();}).then(h=>{
+    const gen=Date.parse(h.generated_utc);const age=(Date.now()-gen)/3.6e6;
+    const bad=(h.checks||[]).filter(c=>c.state!=='ok');
+    let state=h.overall||'warn',detail;
+    const nf=bad.filter(c=>c.state==='fail').length,nw=bad.length-nf;
+    if(!bad.length){detail=(h.checks||[]).length+' checks ok';}
+    else if(bad.length===1){detail=bad[0].name+' '+bad[0].state;}
+    else{detail=(nf?nf+' fail':'')+(nf&&nw?', ':'')+(nw?nw+' warn':'')+' (hover for list)';}
+    if(age>3){state=state==='fail'?'fail':'warn';detail='bot last ran '+agoH(gen)+' ago · '+detail;}   // the Action itself has stopped
+    else detail+=' · '+agoH(gen)+' ago';
+    setStatus('Backend health',state,detail,(h.checks||[]).map(c=>c.state.toUpperCase()+'  '+c.name+': '+c.detail).join(String.fromCharCode(10)));   // full list on hover
+  }).catch(()=>setStatus('Backend health','fail','health.json missing'));
+}
+loadHealth();setInterval(loadHealth,6e5);
 /* image-probe: works cross-origin (load/error events need no CORS) */
 function probeImg(key,url,okDetail){
   setStatus(key,'','checking…');

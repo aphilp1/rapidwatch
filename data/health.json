@@ -1,0 +1,41 @@
+{
+ "generated_utc": "2026-11-03T22:56:18Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "filenames",
+   "state": "ok",
+   "detail": "all storm-archive paths portable"
+  },
+  {
+   "name": "storm-archive",
+   "state": "ok",
+   "detail": "no active storms"
+  },
+  {
+   "name": "ndbc-buoys",
+   "state": "warn",
+   "detail": "5/6 fresh \u00b7 newest 2.3 h ago \u00b7 42040 offline since 2026-06-17"
+  },
+  {
+   "name": "nws-lag",
+   "state": "warn",
+   "detail": "NWS trails NDBC by 6.5 h on 42001 (page uses the newer feed)"
+  },
+  {
+   "name": "ocean-state",
+   "state": "warn",
+   "detail": "newest HYCOM grid 25.9 h ago"
+  },
+  {
+   "name": "gliders",
+   "state": "warn",
+   "detail": "newest glider fix 28.1 h ago"
+  },
+  {
+   "name": "argo",
+   "state": "ok",
+   "detail": "newest Argo profile 38.1 h ago"
+  }
+ ]
+}

@@ -33,11 +33,17 @@ jobs:
       - name: Archive active storms
         run: python track_storm.py
 
+      # look at what the two steps above (and the 6-h ocean job) actually wrote: file-name sanity,
+      # archive completeness, buoy/ocean/glider/Argo ages -> data/health.json, shown on the Live Event
+      # page as the "Backend health" row. Never fails the job; it only reports.  (check_health.py)
+      - name: Health check
+        run: python check_health.py
+
       - name: Commit if changed
         run: |
           git config user.name  "rapidwatch-bot"
           git config user.email "aphilp1@users.noreply.github.com"
-          git add data/ndbc data/nhc_currentstorms.json
+          git add data/ndbc data/nhc_currentstorms.json data/health.json
           if [ -d data/nhc ]; then git add data/nhc; fi   # only exists when storms are active
           if [ -d data/storms ]; then git add data/storms; fi
           if git diff --cached --quiet; then
