@@ -1,0 +1,59 @@
+000
+WTPA44 PHFO 062055
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   1
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Fri Nov 06 2026
+
+Satellite imagery indicates that an area of low pressure (Invest 
+CP95) that we have been monitoring for several days has developed a 
+well-defined circulation, showing banded convection around its 
+center. While the most recent constrained subject Dvorak analysis 
+from HFO was CI number was 2.0/30 kt, the Data T was 3.0/45 kt, 
+which probably better reflects the system's organization. A 1546 UTC 
+SMOS microwave pass supports that assessment, showing winds above 
+tropical-storm-force east of the center. Based on this, advisories 
+have been initiated on Tropical Storm Pena, with an intensity of 40 
+kt.
+
+The initial motion is estimated to be westward, or 280/10 kt, and 
+the storm is expected to continue this motion for the next several 
+days due to a high pressure ridge centered over the Central Pacific. 
+Model guidance remains in good agreement through 72 h on Pena's 
+track, then cross-track spread increases among the model solutions, 
+resulting in lower-than-normal confidence. Additionally, the storm's 
+initial representation in much of the guidance is too weak, which 
+adds another layer of uncertainty. The NHC track forecast has been 
+set to follow the GDMI and HCCA aids.
+
+The intensity forecast is tricky because the overall environment 
+generally seems conducive to strengthening for at least the next day 
+or so. While there is an increase in shear in much of the models 
+this weekend, this shear could abate early next week, with no 
+obvious dry air or instability issues seen in the large-scale 
+guidance. It is a little puzzling why many of the models show little 
+change or even a weakening so quickly in seemingly conducive 
+conditions, though perhaps it is linked to the unrealistically weak 
+initial vortex representation of Pena.  The first forecast is on the 
+higher side of the guidance and reflects a blend of some aids that 
+get close to hurricane-strength, while others weaken to a 
+depression. It probably goes without saying that this too is an 
+uncertain prediction, similar to the track forecast.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  06/2100Z 11.3N 150.1W   40 KT  45 MPH
+ 12H  07/0600Z 11.5N 151.8W   45 KT  50 MPH
+ 24H  07/1800Z 11.4N 153.9W   50 KT  60 MPH
+ 36H  08/0600Z 11.3N 155.8W   50 KT  60 MPH
+ 48H  08/1800Z 11.3N 157.8W   50 KT  60 MPH
+ 60H  09/0600Z 11.2N 159.7W   50 KT  60 MPH
+ 72H  09/1800Z 11.0N 161.8W   50 KT  60 MPH
+ 96H  10/1800Z 11.3N 165.9W   50 KT  60 MPH
+120H  11/1800Z 11.9N 171.4W   50 KT  60 MPH
+ 
+$$
+Forecaster Pierce/Blake
