@@ -12,6 +12,15 @@ mixed-layer depth, so the Live Sensor Systems tab can show the data behind the
 marker. If a profile fetch fails for a float, that float keeps position only
 (the page then says "profile unavailable") — nothing is invented.
 
+Since 2026-11-05: if the float LIST itself cannot be fetched (all retries fail),
+the previous good file is KEPT and marked "stale" (first failure time, last
+attempt, error) instead of being replaced by an empty one. On 2026-11-05 20:05Z
+one timed-out fetch wiped 41 floats from the site for a full 6-h cycle. The
+kept floats are real ones from the last successful run, each still carrying its
+own fix time; data/health.json turns the "Backend health" row yellow while the
+file is stale. The file also carries "generated_utc" (time of the last
+successful fetch).
+
 Output: data/argo/argo_gulf.geojson  (one Point per float, at its latest fix)
 Source: https://erddap.ifremer.fr/erddap/tabledap/ArgoFloats
 Run:    python build_argo.py   (re-runnable / refreshable)
@@ -146,8 +155,35 @@ def fetch_profile(platform, cycle):
     }
 
 
+def now_iso():
+    return datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
+def keep_previous(err):
+    """The float list could not be fetched: keep the last good file, marked stale (see header)."""
+    try:
+        prev = json.loads(OUT.read_text(encoding='utf-8'))
+        feats = prev.get("features", [])
+    except Exception:
+        prev, feats = {}, []
+    if not feats:
+        # nothing real to keep -> honest empty output, still marked so the health check sees why
+        OUT.write_text(json.dumps({"type": "FeatureCollection", "features": [], "generated_utc": None,
+                                   "stale": {"since_utc": now_iso(), "last_attempt_utc": now_iso(),
+                                             "error": str(err)}}), encoding='utf-8')
+        print("  no previous floats to keep -> empty output")
+        return
+    stale = prev.get("stale") or {"since_utc": now_iso()}      # keep the FIRST failure time across repeats
+    stale["last_attempt_utc"] = now_iso()
+    stale["error"] = str(err)
+    prev["stale"] = stale
+    OUT.write_text(json.dumps(prev), encoding='utf-8')
+    print(f"  kept {len(feats)} floats from the last successful fetch "
+          f"({prev.get('generated_utc') or 'time unknown'}); file marked stale since {stale['since_utc']}")
+
+
 def main():
-    start = (datetime.datetime.utcnow() - datetime.timedelta(days=DAYS)).strftime('%Y-%m-%dT00:00:00Z')
+    start = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=DAYS)).strftime('%Y-%m-%dT00:00:00Z')
     q = ("?platform_number,latitude,longitude,time,cycle_number"
          f"&time%3E={start}"
          f"&latitude%3E={LAT0}&latitude%3C={LAT1}&longitude%3E={LON0}&longitude%3C={LON1}"
@@ -157,8 +193,7 @@ def main():
         rows = fetch_csv(BASE + q)
     except Exception as e:
         print("  ERDDAP fetch failed:", e)
-        # honest empty output — never fabricate
-        OUT.write_text(json.dumps({"type": "FeatureCollection", "features": []}), encoding='utf-8')
+        keep_previous(e)          # never fabricate, but never wipe a good file either
         return
 
     latest = {}
@@ -205,7 +240,8 @@ def main():
             "properties": props,
         })
 
-    OUT.write_text(json.dumps({"type": "FeatureCollection", "features": feats}), encoding='utf-8')
+    OUT.write_text(json.dumps({"type": "FeatureCollection", "generated_utc": now_iso(), "features": feats}),
+                   encoding='utf-8')
     print(f"{len(feats)} REAL Argo floats in the Gulf (last {DAYS} d); profiles for {got}, "
           f"position-only {missed}  ->  {OUT}")
     for f in feats[:10]:

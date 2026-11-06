@@ -30,7 +30,9 @@ Checks (state ok / warn / fail, each with a one-line detail):
   ocean-state    HYCOM SST grid time_utc age: ok < 9 h, warn < 30 h, else fail
                  (the 6-h HYCOM job fails on their server about half the time)
   gliders        newest glider fix: ok < 24 h, warn < 48 h, else fail
-  argo           newest Argo profile: ok < 15 d, warn < 30 d, else fail
+  argo           newest Argo profile: ok < 15 d, warn < 30 d, else fail; if the
+                 file carries a "stale" marker (build_argo.py kept the previous
+                 floats because the ERDDAP fetch failed) warn, fail after 48 h
 
 Exit code is always 0 — health is reported, never allowed to block the data
 commit. data/health.json is rewritten only when a check changes or the file is
@@ -227,6 +229,9 @@ def check_aged(name, newest, ok_h, warn_h, label):
         add(name, "fail", f"no {label} time found")
         return
     a = age_h(newest)
+    if a < 0:                      # HYCOM stamps its grid up to an hour ahead of the run -> "current", not "-16 min ago"
+        add(name, "ok", f"newest {label} stamped {fmt_age(-a)} ahead of now (current)")
+        return
     state = "ok" if a < ok_h else ("warn" if a < warn_h else "fail")
     add(name, state, f"newest {label} {fmt_age(a)} ago")
 
@@ -257,6 +262,18 @@ def check_argo():
         times = [parse_iso(f["properties"]["time"]) for f in g["features"] if f["properties"].get("time")]
     except Exception as e:
         add("argo", "fail", f"argo_gulf.geojson unreadable ({type(e).__name__})")
+        return
+    stale = g.get("stale")
+    if stale:
+        try:
+            since_h = age_h(parse_iso(stale["since_utc"]))
+        except Exception:
+            since_h = 0
+        n = len(g.get("features", []))
+        what = (f"showing {n} floats kept from the last good fetch ({g.get('generated_utc') or 'time unknown'})"
+                if n else "no floats to show")
+        add("argo", "fail" if since_h > 48 or not n else "warn",
+            f"Argo fetch failing for {fmt_age(since_h)} ({stale.get('error', '')[:60]}); {what}")
         return
     check_aged("argo", max(times) if times else None, 15 * 24, 30 * 24, "Argo profile")
 
