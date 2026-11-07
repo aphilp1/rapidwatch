@@ -1,0 +1,68 @@
+000
+FOPA14 PHFO 071436
+PWSCP4
+                                                                    
+TROPICAL STORM PENA WIND SPEED PROBABILITIES NUMBER   4             
+NWS CENTRAL PACIFIC HURRICANE CENTER HONOLULU HI   CP042026         
+ISSUED BY NWS NATIONAL HURRICANE CENTER MIAMI FL                    
+1500 UTC SAT NOV 07 2026                                            
+                                                                    
+AT 1500Z THE CENTER OF TROPICAL STORM PENA WAS LOCATED NEAR LATITUDE
+11.4 NORTH...LONGITUDE 153.3 WEST WITH MAXIMUM SUSTAINED WINDS NEAR 
+45 KTS...50 MPH...85 KM/H.                                          
+                                                                    
+Z INDICATES COORDINATED UNIVERSAL TIME (GREENWICH)                  
+   PACIFIC  STANDARD TIME (PST)...SUBTRACT 8 HOURS FROM Z TIME      
+   HAWAIIAN STANDARD TIME (HST)...SUBTRACT 10 HOURS FROM Z TIME     
+                                                                    
+WIND SPEED PROBABILITY TABLE FOR SPECIFIC LOCATIONS                 
+                                                                    
+CHANCES OF SUSTAINED (1-MINUTE AVERAGE) WIND SPEEDS OF AT LEAST     
+   ...34 KT (39 MPH... 63 KM/H)...                                  
+   ...50 KT (58 MPH... 93 KM/H)...                                  
+   ...64 KT (74 MPH...119 KM/H)...                                  
+FOR LOCATIONS AND TIME PERIODS DURING THE NEXT 5 DAYS               
+                                                                    
+PROBABILITIES FOR LOCATIONS ARE GIVEN AS OP(CP) WHERE               
+    OP  IS THE PROBABILITY OF THE EVENT BEGINNING DURING            
+        AN INDIVIDUAL TIME PERIOD (ONSET PROBABILITY)               
+   (CP) IS THE PROBABILITY OF THE EVENT OCCURRING BETWEEN           
+        12Z SAT AND THE FORECAST HOUR (CUMULATIVE PROBABILITY)      
+                                                                    
+PROBABILITIES ARE GIVEN IN PERCENT                                  
+X INDICATES PROBABILITIES LESS THAN 1 PERCENT                       
+PROBABILITIES FOR 34 KT AND 50 KT ARE SHOWN AT A GIVEN LOCATION WHEN
+THE 5-DAY CUMULATIVE PROBABILITY IS AT LEAST 3 PERCENT.             
+PROBABILITIES FOR 34...50...64 KT SHOWN WHEN THE 5-DAY              
+64-KT CUMULATIVE PROBABILITY IS AT LEAST 1 PERCENT.                 
+                                                                    
+                                                                    
+  - - - - WIND SPEED PROBABILITIES FOR SELECTED LOCATIONS - - - -   
+                                                                    
+               FROM    FROM    FROM    FROM    FROM    FROM    FROM 
+  TIME       12Z SAT 00Z SUN 12Z SUN 00Z MON 12Z MON 12Z TUE 12Z WED
+PERIODS         TO      TO      TO      TO      TO      TO      TO  
+             00Z SUN 12Z SUN 00Z MON 12Z MON 12Z TUE 12Z WED 12Z THU
+                                                                    
+FORECAST HOUR    (12)   (24)    (36)    (48)    (72)    (96)   (120)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+LOCATION       KT                                                   
+                                                                    
+10N 160W       34  X   X( X)   X( X)   2( 2)   3( 5)   X( 5)   X( 5)
+ 
+10N 165W       34  X   X( X)   X( X)   X( X)   1( 1)   7( 8)   1( 9)
+ 
+10N 170W       34  X   X( X)   X( X)   X( X)   X( X)   5( 5)   7(12)
+10N 170W       50  X   X( X)   X( X)   X( X)   X( X)   1( 1)   1( 2)
+10N 170W       64  X   X( X)   X( X)   X( X)   X( X)   1( 1)   X( 1)
+ 
+15N 170W       34  X   X( X)   X( X)   X( X)   X( X)   2( 2)   5( 7)
+ 
+10N 175W       34  X   X( X)   X( X)   X( X)   X( X)   X( X)   6( 6)
+ 
+15N 175W       34  X   X( X)   X( X)   X( X)   X( X)   X( X)  23(23)
+15N 175W       50  X   X( X)   X( X)   X( X)   X( X)   X( X)   6( 6)
+15N 175W       64  X   X( X)   X( X)   X( X)   X( X)   X( X)   2( 2)
+ 
+$$                                                                  
+FORECASTER MAHONEY
