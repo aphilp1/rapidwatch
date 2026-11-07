@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-07 18:54Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-07 22:23Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -58,6 +58,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 004** (500 AM HST Sat Nov 07 2026)
 > Tropical Storm Pena appears somewhat better organized on the latest infrared satellite imagery, with persistent convective banding and potentially an incipient central dense overcast feature located near the suspected low-level center. This improvement in structure appears to have not yet resulted in intensification, with the objective and subjective satellite intensity estimates tightly clustered around 45 kt.
 > The environment around and ahead of Pena is not horrible, but it is certainly not the best. In the short term, Pena is forecast to intensify somewhat as it moves across favorable sea surface temperatures and through a region of low vertical wind shear with sufficient mid-level moisture. Beyond 24 h, there are some indications that Pena could be contending with dry air intrusions and unfavorable upper-level winds, both of which would slow or limit intensification. There continues to be a large spread in the intensity guidance, with the ECMWF and SHIPS models insisting on slow intensification through the forecast period, Google DeepMind showing nearly no change in strength, and the GFS and regional hurricane models showing imminent weakening and even dissipation. In the absence of higher confidence, the new intensity forecast is largely unchanged from the previous one, except to show Pena intensifying to 55 kt at 12 h based on recent satellite trends and the aforementioned favorable short-term environment. The new forecast remains near the middle of the larger than normal guidance envelope, and is again of lower than normal confidence.
+
+**Discussion 005** (1100 AM HST Sat Nov 07 2026)
+> Pena's intensity forecast remains a bit of a conundrum. Statistical SHIPS guidance continues to insist on gradual intensification throughout the period, responding to warm SSTs, low vertical wind shear, and adequate mid-level moisture. However, there remains some indications that Pena is likely contending with mid-level dry air entrainment and marginal upper-level winds, which could suppress significant strengthening over the next 36 to 48 h. The dynamical and statistical guidance reflects this tension with larger-than-normal model spread, yielding lower-than-usual forecast confidence. Consequently, the new NHC intensity forecast remains very similar to the previous advisory, situated near the consensus aids while remaining slightly higher than HCCA and GDMI throughout the period.
 
 ## 6. Sources in this folder
 

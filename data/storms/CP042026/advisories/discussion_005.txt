@@ -1,0 +1,61 @@
+144 
+WTPA44 PHFO 072046
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   5
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Sat Nov 07 2026
+ 
+Visible and infrared satellite imagery show that Pena's convective 
+structure has degraded slightly since the previous advisory. The 
+previously well-defined center has become obscured by an expanding 
+central dense overcast (CDO), with embedded cloud-top temperatures 
+as cold as -80 degrees C. A 1938 UTC ASCAT-B scatterometer pass 
+showed an asymmetric system with peak winds of around 40 kt located 
+northeast of the center, which helped verify the initial wind radii. 
+The latest subjective Dvorak classification from HFO was T3.0/45 kt, 
+in good agreement with objective estimates from UW-CIMSS that range 
+between 42 and 47 kt. Based on these data, the initial intensity is 
+held at 45 kt.
+
+The initial motion is estimated to be west-northwestward, or 285/8 
+kt. Pena is expected to maintain a general westward motion over the 
+next couple of days while steered by a broad low- to mid-level ridge 
+anchored to its north. Track guidance remains tightly clustered on 
+this westward heading through 72 h. Thereafter, an approaching 
+upper-level shortwave trough should induce a gradual turn toward the 
+northwest with a slight increase in forward speed. The updated NHC 
+track forecast is largely unchanged from the previous package, 
+nudged only fractionally northward in the short term, and lies close 
+to the HCCA and GDMI aids.
+ 
+Pena's intensity forecast remains a bit of a conundrum. Statistical 
+SHIPS guidance continues to insist on gradual intensification 
+throughout the period, responding to warm SSTs, low vertical wind 
+shear, and adequate mid-level moisture. However, there remains some 
+indications that Pena is likely contending with mid-level dry air 
+entrainment and marginal upper-level winds, which could suppress 
+significant strengthening over the next 36 to 48 h. The dynamical 
+and statistical guidance reflects this tension with 
+larger-than-normal model spread, yielding lower-than-usual forecast 
+confidence. Consequently, the new NHC intensity forecast remains 
+very similar to the previous advisory, situated near the consensus 
+aids while remaining slightly higher than HCCA and GDMI throughout 
+the period.
+
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  07/2100Z 11.5N 153.9W   45 KT  50 MPH
+ 12H  08/0600Z 11.6N 155.1W   55 KT  65 MPH
+ 24H  08/1800Z 11.6N 156.8W   55 KT  65 MPH
+ 36H  09/0600Z 11.5N 158.7W   60 KT  70 MPH
+ 48H  09/1800Z 11.5N 160.8W   60 KT  70 MPH
+ 60H  10/0600Z 11.5N 162.9W   60 KT  70 MPH
+ 72H  10/1800Z 11.8N 165.0W   60 KT  70 MPH
+ 96H  11/1800Z 12.7N 170.5W   65 KT  75 MPH
+120H  12/1800Z 14.5N 177.7W   65 KT  75 MPH
+ 
+$$
+Forecaster Pierce/Cangialosi
