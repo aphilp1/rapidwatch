@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-11-02T12:00Z at 7.7N 129.8W as a disturbance (20 kt).
-- **Latest fix:** 2026-11-06T18:00Z at 11.2N 149.6W, tropical storm 40 kt 1002 mb.
-- **Fixes:** 18 spanning 102 h; distance along the track 2238 km (1208 nmi).
+- **Latest fix:** 2026-11-07T00:00Z at 11.2N 150.6W, tropical storm 40 kt 1002 mb.
+- **Fixes:** 19 spanning 108 h; distance along the track 2347 km (1267 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -26,6 +26,7 @@ Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regene
 | 2026-11-06T06:00Z | 10.6N | 147.9W | DB | 30 | 1007 | 132 | 11.8 |
 | 2026-11-06T12:00Z | 11.0N | 148.6W | DB | 30 | 1007 | 88 | 8.0 |
 | 2026-11-06T18:00Z | 11.2N | 149.6W | TS | 40 | 1002 | 111 | 10.0 |
+| 2026-11-07T00:00Z | 11.2N | 150.6W | TS | 40 | 1002 | 109 | 9.8 |
 
 Latest NHC forecast points (adv001_points.geojson):
 
