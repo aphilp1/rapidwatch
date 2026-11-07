@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-11-02T12:00Z at 7.7N 129.8W as a disturbance (20 kt).
-- **Latest fix:** 2026-11-07T06:00Z at 11.3N 151.8W, tropical storm 45 kt 1000 mb.
-- **Fixes:** 20 spanning 114 h; distance along the track 2478 km (1338 nmi).
+- **Latest fix:** 2026-11-07T12:00Z at 11.4N 152.8W, tropical storm 45 kt 998 mb.
+- **Fixes:** 21 spanning 120 h; distance along the track 2588 km (1397 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -28,17 +28,18 @@ Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regene
 | 2026-11-06T18:00Z | 11.2N | 149.6W | TS | 40 | 1002 | 111 | 10.0 |
 | 2026-11-07T00:00Z | 11.2N | 150.6W | TS | 40 | 1002 | 109 | 9.8 |
 | 2026-11-07T06:00Z | 11.3N | 151.8W | TS | 45 | 1000 | 131 | 11.8 |
+| 2026-11-07T12:00Z | 11.4N | 152.8W | TS | 45 | 998 | 110 | 9.9 |
 
-Latest NHC forecast points (adv002_points.geojson):
+Latest NHC forecast points (adv003_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 07/0000 | 11.2N | 151.1W | 40 |
-| +12 h | 07/1200 | 11.4N | 152.7W | 50 |
-| +24 h | 08/0000 | 11.3N | 154.7W | 55 |
-| +36 h | 08/1200 | 11.3N | 156.7W | 60 |
-| +48 h | 09/0000 | 11.3N | 158.3W | 60 |
-| +60 h | 09/1200 | 11.3N | 160.0W | 60 |
-| +72 h | 10/0000 | 11.4N | 161.8W | 60 |
-| +96 h | 11/0000 | 11.7N | 165.9W | 65 |
-| +120 h | 12/0000 | 12.8N | 171.9W | 65 |
+| +0 h | 07/0600 | 11.4N | 152.4W | 45 |
+| +12 h | 07/1800 | 11.4N | 153.9W | 50 |
+| +24 h | 08/0600 | 11.4N | 155.7W | 55 |
+| +36 h | 08/1800 | 11.2N | 157.5W | 60 |
+| +48 h | 09/0600 | 11.2N | 159.2W | 60 |
+| +60 h | 09/1800 | 11.2N | 160.9W | 60 |
+| +72 h | 10/0600 | 11.3N | 162.9W | 60 |
+| +96 h | 11/0600 | 11.6N | 167.3W | 65 |
+| +120 h | 12/0600 | 12.9N | 173.4W | 65 |

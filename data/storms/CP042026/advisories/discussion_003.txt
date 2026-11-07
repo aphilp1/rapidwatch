@@ -1,0 +1,62 @@
+000
+WTPA44 PHFO 070840
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   3
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 PM HST Fri Nov 06 2026
+
+The latest satellite imagery indicates that Pena has re-developed
+convective banding closer to the cyclone's center. In addition, a 
+just-received GMI overpass suggests that the low-level structure 
+has become better defined, with the possible formation of a small 
+inner core.  Satellite intensity estimates have generally nudged 
+upward a little since the last advisory, and based on this trend 
+the initial intensity is increased to 45 kt. The latest 
+scatterometer overpass missed the inner core, but did show an area 
+of 25-30 kt winds 60-150 n mi away from the center in the eastern 
+semicircle.
+ 
+The initial motion is westward or 275/10 kt. Pena should be steered 
+generally westward for the next several days by a large low- to 
+mid-level ridge to the north of the cyclone, with a west- 
+northwestward motion possible near the end of the forecast period. 
+The track forecast guidance is in generally good agreement with 
+this scenario, although some of the models show a south of west 
+motion during the 24-60 h period. The new track forecast is similar 
+to the previous forecast through 72 h and is a little south of the 
+previous forecast at 96 and 120 h.
+ 
+The intensity forecast still has some confidence issues.  The
+overall environment still seems to be favorable, with warm sea
+surface temperatures, a moist air mass, and light shear for at
+least the next four days. This results in the statistical-
+dynamical guidance showing steady strengthening. However, the
+dynamical model guidance is in poor agreement on how much
+strengthening will occur and if there will be any strengthening at
+all. To highlight the spread of just the global models, the ECMWF
+shows strengthening through the next five days, the GFS and the
+Canadian show little development through three days followed by
+some strengthening, and the UKMET shows essentially no
+strengthening at all during the forecast period.  Given the lack of
+model consensus even on trends in the forecast intensities, the 
+intensity forecast calls for gradual strengthening in best 
+agreement with the SHIPS model. The new forecast is an update of
+the previous forecast.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  07/0900Z 11.4N 152.4W   45 KT  50 MPH
+ 12H  07/1800Z 11.4N 153.9W   50 KT  60 MPH
+ 24H  08/0600Z 11.4N 155.7W   55 KT  65 MPH
+ 36H  08/1800Z 11.2N 157.5W   60 KT  70 MPH
+ 48H  09/0600Z 11.2N 159.2W   60 KT  70 MPH
+ 60H  09/1800Z 11.2N 160.9W   60 KT  70 MPH
+ 72H  10/0600Z 11.3N 162.9W   60 KT  70 MPH
+ 96H  11/0600Z 11.6N 167.3W   65 KT  75 MPH
+120H  12/0600Z 12.9N 173.4W   65 KT  75 MPH
+ 
+$$
+Forecaster Beven

@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-07 07:22Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-07 14:12Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -37,6 +37,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-06 18Z | 40 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 00Z | 40 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 06Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-07 12Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -47,6 +48,11 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 002** (500 PM HST Fri Nov 06 2026)
 > Tropical Storm Pena Discussion Number 2 NWS Central Pacific Hurricane Center Honolulu HI CP042026 Issued by NWS National Hurricane Center Miami FL 500 PM HST Fri Nov 06 2026
 > Gradual intensification is forecast for Pena as its surrounding environment is characterized by low vertical wind shear, anomalously warm SSTs, and ample mid-level moisture. In fact, SHIPS guidance from the GFS suggests a 48 percent chance of rapid intensification in 24 hours, reflecting the storm's favorable environment. Intensity guidance on average shows a upward trend compared to the previous advisory, so the latest NHC intensity forecast was adjusted higher to better depict this guidance over the forecast period. In a couple of days, the vertical wind shear forecasts are more uncertain, with some shear potentially undercutting the outflow layer. Thus the forecast is leveled off, with model solutions ranging from upper-end tropical storm to category 2 hurricane. Confidence is increasing that the cyclone will undergo, at the very least, gradual strengthening during the next few days.
+
+**Discussion 003** (1100 PM HST Fri Nov 06 2026)
+> Tropical Storm Pena Discussion Number 3 NWS Central Pacific Hurricane Center Honolulu HI CP042026 Issued by NWS National Hurricane Center Miami FL 1100 PM HST Fri Nov 06 2026
+> The latest satellite imagery indicates that Pena has re-developed convective banding closer to the cyclone's center. In addition, a just-received GMI overpass suggests that the low-level structure has become better defined, with the possible formation of a small inner core. Satellite intensity estimates have generally nudged upward a little since the last advisory, and based on this trend the initial intensity is increased to 45 kt. The latest scatterometer overpass missed the inner core, but did show an area of 25-30 kt winds 60-150 n mi away from the center in the eastern semicircle.
+> The intensity forecast still has some confidence issues. The overall environment still seems to be favorable, with warm sea surface temperatures, a moist air mass, and light shear for at least the next four days. This results in the statistical- dynamical guidance showing steady strengthening. However, the dynamical model guidance is in poor agreement on how much strengthening will occur and if there will be any strengthening at all. To highlight the spread of just the global models, the ECMWF shows strengthening through the next five days, the GFS and the Canadian show little development through three days followed by some strengthening, and the UKMET shows essentially no strengthening at all during the forecast period. Given the lack of model consensus even on trends in the forecast intensities, the intensity forecast calls for gradual strengthening in best agreement with the SHIPS model. The new forecast is an update of the previous forecast.
 
 ## 6. Sources in this folder
 
