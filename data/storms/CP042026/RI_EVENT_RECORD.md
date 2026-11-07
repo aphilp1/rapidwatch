@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-07 01:20Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-07 07:22Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -36,12 +36,17 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-06 12Z | 30 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-06 18Z | 40 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 00Z | 40 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-07 06Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
 **Discussion 001** (1100 AM HST Fri Nov 06 2026)
 > Tropical Storm Pena Discussion Number 1 NWS Central Pacific Hurricane Center Honolulu HI CP042026 Issued by NWS National Hurricane Center Miami FL 1100 AM HST Fri Nov 06 2026
 > The intensity forecast is tricky because the overall environment generally seems conducive to strengthening for at least the next day or so. While there is an increase in shear in much of the models this weekend, this shear could abate early next week, with no obvious dry air or instability issues seen in the large-scale guidance. It is a little puzzling why many of the models show little change or even a weakening so quickly in seemingly conducive conditions, though perhaps it is linked to the unrealistically weak initial vortex representation of Pena. The first forecast is on the higher side of the guidance and reflects a blend of some aids that get close to hurricane-strength, while others weaken to a depression. It probably goes without saying that this too is an uncertain prediction, similar to the track forecast.
+
+**Discussion 002** (500 PM HST Fri Nov 06 2026)
+> Tropical Storm Pena Discussion Number 2 NWS Central Pacific Hurricane Center Honolulu HI CP042026 Issued by NWS National Hurricane Center Miami FL 500 PM HST Fri Nov 06 2026
+> Gradual intensification is forecast for Pena as its surrounding environment is characterized by low vertical wind shear, anomalously warm SSTs, and ample mid-level moisture. In fact, SHIPS guidance from the GFS suggests a 48 percent chance of rapid intensification in 24 hours, reflecting the storm's favorable environment. Intensity guidance on average shows a upward trend compared to the previous advisory, so the latest NHC intensity forecast was adjusted higher to better depict this guidance over the forecast period. In a couple of days, the vertical wind shear forecasts are more uncertain, with some shear potentially undercutting the outflow layer. Thus the forecast is leveled off, with model solutions ranging from upper-end tropical storm to category 2 hurricane. Confidence is increasing that the cyclone will undergo, at the very least, gradual strengthening during the next few days.
 
 ## 6. Sources in this folder
 

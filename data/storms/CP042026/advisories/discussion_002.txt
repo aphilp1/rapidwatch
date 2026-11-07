@@ -1,0 +1,57 @@
+000
+WTPA44 PHFO 070241
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   2
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Fri Nov 06 2026
+
+Satellite imagery over the last several hours suggests that while 
+deep convection has weakened some around Pena's core, strong banding 
+persists well away from the cyclone's center. The latest subjective 
+Dvorak intensity estimate from HFO rated the storm at 2.5/35 kt, but 
+with a Data T of 3.0/45 kt. Objective estimates from UW-CIMSS also 
+range from 37-41 kt. Based on Pena's satellite presentation, the 
+initial intensity is held at 40 kt. 
+
+The initial motion is estimated to be westward, or 270/10 kt. Pena 
+is expected to keep moving westward over the next several days as it 
+is steered by a high pressure ridge centered over the central 
+Pacific. Track guidance generally exhibits good agreement on Pena's 
+motion through most of the forecast period, depicting a turn to the 
+west-northwest by the middle of next week as the ridge slightly 
+weakens. The latest NHC track forecast generally follows a blend of 
+HCCA and GDMI guidance, reflecting a slight poleward shift in the 
+long-range track compared to the previous advisory. 
+
+Gradual intensification is forecast for Pena as its surrounding 
+environment is characterized by low vertical wind shear, anomalously 
+warm SSTs, and ample mid-level moisture. In fact, SHIPS guidance 
+from the GFS suggests a 48 percent chance of rapid intensification 
+in 24 hours, reflecting the storm's favorable environment. Intensity 
+guidance on average shows a upward trend compared to the previous 
+advisory, so the latest NHC intensity forecast was adjusted higher 
+to better depict this guidance over the forecast period.  In a 
+couple of days, the vertical wind shear forecasts are more 
+uncertain, with some shear potentially undercutting the outflow 
+layer. Thus the forecast is leveled off, with model solutions 
+ranging from upper-end tropical storm to category 2 hurricane.  
+Confidence is increasing that the cyclone will undergo, at the very 
+least, gradual strengthening during the next few days.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  07/0300Z 11.2N 151.1W   40 KT  45 MPH
+ 12H  07/1200Z 11.4N 152.7W   50 KT  60 MPH
+ 24H  08/0000Z 11.3N 154.7W   55 KT  65 MPH
+ 36H  08/1200Z 11.3N 156.7W   60 KT  70 MPH
+ 48H  09/0000Z 11.3N 158.3W   60 KT  70 MPH
+ 60H  09/1200Z 11.3N 160.0W   60 KT  70 MPH
+ 72H  10/0000Z 11.4N 161.8W   60 KT  70 MPH
+ 96H  11/0000Z 11.7N 165.9W   65 KT  75 MPH
+120H  12/0000Z 12.8N 171.9W   65 KT  75 MPH
+ 
+$$
+Forecaster Evans/Blake
