@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-11-02T12:00Z at 7.7N 129.8W as a disturbance (20 kt).
-- **Latest fix:** 2026-11-08T00:00Z at 11.4N 154.1W, tropical storm 50 kt 993 mb.
-- **Fixes:** 23 spanning 132 h; distance along the track 2729 km (1474 nmi).
+- **Latest fix:** 2026-11-08T06:00Z at 11.5N 154.5W, tropical storm 45 kt 1000 mb.
+- **Fixes:** 24 spanning 138 h; distance along the track 2774 km (1498 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -26,22 +26,23 @@ Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regene
 | 2026-11-06T06:00Z | 10.6N | 147.9W | DB | 30 | 1007 | 132 | 11.8 |
 | 2026-11-06T12:00Z | 11.0N | 148.6W | DB | 30 | 1007 | 88 | 8.0 |
 | 2026-11-06T18:00Z | 11.2N | 149.6W | TS | 40 | 1002 | 111 | 10.0 |
-| 2026-11-07T00:00Z | 11.2N | 150.6W | TS | 40 | 1002 | 109 | 9.8 |
-| 2026-11-07T06:00Z | 11.3N | 151.8W | TS | 45 | 1000 | 131 | 11.8 |
-| 2026-11-07T12:00Z | 11.4N | 152.8W | TS | 45 | 998 | 110 | 9.9 |
-| 2026-11-07T18:00Z | 11.4N | 153.5W | TS | 45 | 998 | 76 | 6.9 |
-| 2026-11-08T00:00Z | 11.4N | 154.1W | TS | 50 | 993 | 65 | 5.9 |
+| 2026-11-07T00:00Z | 11.4N | 150.7W | TS | 40 | 1002 | 122 | 11.0 |
+| 2026-11-07T06:00Z | 11.5N | 151.8W | TS | 45 | 1000 | 120 | 10.8 |
+| 2026-11-07T12:00Z | 11.5N | 152.8W | TS | 45 | 1000 | 109 | 9.8 |
+| 2026-11-07T18:00Z | 11.5N | 153.5W | TS | 45 | 1000 | 76 | 6.9 |
+| 2026-11-08T00:00Z | 11.5N | 154.2W | TS | 50 | 996 | 76 | 6.9 |
+| 2026-11-08T06:00Z | 11.5N | 154.5W | TS | 45 | 1000 | 33 | 2.9 |
 
-Latest NHC forecast points (adv005_points.geojson):
+Latest NHC forecast points (adv006_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 07/1800 | 11.5N | 153.9W | 45 |
-| +12 h | 08/0600 | 11.6N | 155.1W | 55 |
-| +24 h | 08/1800 | 11.6N | 156.8W | 55 |
-| +36 h | 09/0600 | 11.5N | 158.7W | 60 |
-| +48 h | 09/1800 | 11.5N | 160.8W | 60 |
-| +60 h | 10/0600 | 11.5N | 162.9W | 60 |
-| +72 h | 10/1800 | 11.8N | 165.0W | 60 |
-| +96 h | 11/1800 | 12.7N | 170.5W | 65 |
-| +120 h | 12/1800 | 14.5N | 177.7W | 65 |
+| +0 h | 08/0000 | 11.4N | 154.5W | 50 |
+| +12 h | 08/1200 | 11.6N | 155.8W | 55 |
+| +24 h | 09/0000 | 11.6N | 157.6W | 55 |
+| +36 h | 09/1200 | 11.5N | 159.6W | 60 |
+| +48 h | 10/0000 | 11.5N | 161.7W | 60 |
+| +60 h | 10/1200 | 11.6N | 163.8W | 60 |
+| +72 h | 11/0000 | 11.8N | 166.2W | 60 |
+| +96 h | 12/0000 | 12.6N | 172.1W | 65 |
+| +120 h | 13/0000 | 14.0N | 178.9W | 65 |

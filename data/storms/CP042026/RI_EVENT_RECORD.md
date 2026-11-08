@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-08 01:34Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-08 08:08Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -40,6 +40,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-07 12Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 18Z | 45 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-08 00Z | 50 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-08 06Z | 45 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -62,6 +63,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 005** (1100 AM HST Sat Nov 07 2026)
 > Pena's intensity forecast remains a bit of a conundrum. Statistical SHIPS guidance continues to insist on gradual intensification throughout the period, responding to warm SSTs, low vertical wind shear, and adequate mid-level moisture. However, there remains some indications that Pena is likely contending with mid-level dry air entrainment and marginal upper-level winds, which could suppress significant strengthening over the next 36 to 48 h. The dynamical and statistical guidance reflects this tension with larger-than-normal model spread, yielding lower-than-usual forecast confidence. Consequently, the new NHC intensity forecast remains very similar to the previous advisory, situated near the consensus aids while remaining slightly higher than HCCA and GDMI throughout the period.
+
+**Discussion 006** (500 PM HST Sat Nov 07 2026)
+> Pena's convective structure has changed little during the past few hours. Satellite imagery reveals that the low-level center remains obscured beneath a central dense overcast (CDO), with deep convection displaced primarily to the northeast likely due to light-to-moderate southwesterly vertical wind shear. However, there are subtle signs of improved organization, as curved banding features have become more evident this cycle. A 2339 UTC AMSR3 microwave pass captured this banding well, and the latest D-MINT intensity estimate based on this data was 48 kt. The latest subjective Dvorak intensity estimate from HFO was T3.5/55 kt, whereas objective estimates from UW-CIMSS range from 42 to 48 kt. Based on a blend of these data, the initial intensity is increased to 50 kt.
+> The intensity forecast for Pena remains particularly challenging. Statistical SHIPS guidance suggests that Pena will steadily intensify throughout the forecast period, supported by warm SSTs and light vertical wind shear. However, mid-level dry air entrainment and marginal upper-level outflow appear to be affecting the cyclone, likely limiting significant intensification in the near term. This dilemma is reflected in the guidance, where large spread between the dynamical and statistical models results in lower-than-average forecast confidence. As a result, the new NHC intensity forecast closely mirrors the prior advisory, remaining near the consensus aids and along the upper edge of the multi-model envelope.
 
 ## 6. Sources in this folder
 
