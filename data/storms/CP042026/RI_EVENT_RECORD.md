@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-07 22:23Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-08 01:34Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -39,6 +39,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-07 06Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 12Z | 45 | 15 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-07 18Z | 45 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-08 00Z | 50 | 10 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
