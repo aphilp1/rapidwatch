@@ -1,0 +1,64 @@
+000
+WTPA44 PHFO 081434
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   8
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 AM HST Sun Nov 08 2026
+ 
+Pena is producing deep convection near the center, with a trailing, 
+broken rain band displaced to the east. The overall convection is 
+not very organized and is more pulsing in nature. The low-level 
+center remains elongated and is located on the western edge of the 
+convection. Subjective and objective satellite intensity estimates 
+have a large range, spanning between 33 and 55 kt. Given this large 
+spread, and because there is more convection than this morning, the 
+initial intensity is held at 40 kt. A scatterometer pass is expected 
+later this morning or early this afternoon, which will help provide 
+a better assessment of the system's intensity and wind radii, and 
+low-level structure.
+ 
+The storm is moving westward at an estimated 275/7 kt. A generally 
+westward motion is expected during the next several days as Pena is 
+steered by a low- to mid-level ridge anchored over the central 
+Pacific north of the system. This ridge will begin to slide 
+eastward, and a northwestward motion at a slightly faster forward 
+speed is anticipated through the end of the forecast period. The 
+latest NHC track forecast is very similar to the previous one and 
+lies near the HCCA and GDMI consensus aids.
+ 
+Environmental conditions remain favorable for strengthening, with 
+warm sea surface temperatures, low wind shear, and abundant 
+mid-level moisture. However, given the current lack of organization, 
+it remains to be seen if the system can consolidate an inner core 
+and intensify. There is some uncertainty as to whether the 
+circulation will survive or if the system will open up into a 
+trough. This is due to the increasing forward speed of the system 
+and potentially inhibiting upper-level winds caused by outflow from 
+monsoon trough convection to the south. NWP, AI, and regional 
+hurricane models are struggling with Pena and showing a wide variety 
+of solutions with some models, particularly the regional hurricane 
+models, show Pena dissipating before the end of the forecast period. 
+The latest NHC forecast maintains the system throughout the forecast 
+period for now, holding the intensity steady over the next day or 
+so, followed by gradual strengthening and minor fluctuations in 
+intensity throughout the remainder of the forecast period. As a 
+result of the model spread, there is lower than normal confidence in 
+the intensity forecast.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  08/1500Z 11.6N 156.1W   40 KT  45 MPH
+ 12H  09/0000Z 11.6N 157.4W   40 KT  45 MPH
+ 24H  09/1200Z 11.6N 159.4W   40 KT  45 MPH
+ 36H  10/0000Z 11.5N 161.5W   40 KT  45 MPH
+ 48H  10/1200Z 11.4N 163.4W   45 KT  50 MPH
+ 60H  11/0000Z 11.3N 165.4W   45 KT  50 MPH
+ 72H  11/1200Z 11.2N 167.7W   50 KT  60 MPH
+ 96H  12/1200Z 11.6N 174.0W   45 KT  50 MPH
+120H  13/1200Z 13.6N 179.7E   45 KT  50 MPH
+ 
+$$
+Forecaster Kelly

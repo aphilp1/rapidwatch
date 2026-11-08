@@ -1,0 +1,87 @@
+ZCZC HFOTCDCP4 ALL
+TTAA00 PHFO DDHHMM
+ 
+Tropical Storm Pena Discussion Number   7
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 PM HST Sat Nov 07 2026
+ 
+This evening, Pena's vertical coherence appears to be unraveling. On 
+GOES-18 satellite, its structure is looking increasingly fragile, 
+with the earlier deep convection weakening near the center, with a 
+more recent burst primarily east of the center. A 04 UTC WSFM 
+microwave pass suggested that Pena has become more vertically 
+tilted, with the low-level cloud features on the 37-GHz channel 
+indicating the surface circulation running out ahead of the 
+mid-level vortex seen on the 89-GHz channel. This was recently 
+confirmed by a 0644 UTC ASCAT-B pass, which showed an elongated 
+low-level circulation centered east of the deepest convection. The 
+peak wind retrieval from the instrument was only 31 kt, though an 
+ASCAT-C pass just received had some higher winds. The 06 UTC 
+subjective Dvorak estimates from PHFO and PGTW still supported  
+45-55 kt, but objective estimates from UW-CIMSS have decreased to 
+36-43 kt. Given the rather anemic scatterometer data, the initial 
+intensity is lowered to 40 kt this advisory.
+
+The tropical storm's westward motion has slowed a bit over the past 
+6 h, with an estimated motion of 270 degrees at 6 kt. A zonally 
+oriented low- to mid-level ridge stretches across the Central 
+Pacific to the north of Pena. This feature should result in the 
+tropical storm maintaining a general westward motion for the next 
+2-4 days. However, there is also a prominent low-level westerly-wind 
+burst occurring south of Pena resulting in an enhanced monsoonal 
+circulation. This feature, combined with a strengthening low-level 
+ridge could allow Pena to lose some latitude in 24-60 h. Towards 
+the end of the forecast period, the ridge begins to shift eastward, 
+which could provide an opportunity for Pena to gain more latitude by 
+the end of the forecast, assuming the tropical cyclone is still 
+around. The track guidance this cycle is quite similar to the prior 
+one for the first 24-36 h, though the better performing track aids 
+(HCCA, GDMI, WN3I) now show a more southward track in 36-72 h. Thus, 
+the updated NHC track forecast was nudged further south during this 
+period once again, blending these more reliable track aids with the 
+previous forecast. 
+ 
+Pena's structural degradation this evening makes its intensity 
+forecast rather tricky. Environmental conditions appear favorable at 
+first glance, with warm 29 C sea-surface temperatures expected along 
+the storm's track, and deep-layer shear remaining under 10 kt for 
+the bulk of the SHIPS guidance forecast. However, the increasing 
+vertical tilt of Pena's vortex appears to be preventing it from 
+taking advantage of these favorable environmental conditions, and 
+this evening's scatterometer data indicates Pena has weakened from 
+earlier today. Another factor worth considering is the monsoonal 
+circulation south of Pena, which is producing a lot of convective 
+outflow in the path of the tropical storm. Pena is also a rather 
+small tropical cyclone, and is likely more sensitive than usual to 
+less than pristine environmental conditions. The intensity guidance 
+this evening is lower than earlier, with all of the hurricane 
+regional models now showing Pena remaining either a weak tropical 
+storm or degenerating into a trough of low pressure. The updated NHC 
+intensity forecast now shows a little short-term weakening, followed 
+by gradual intensification beginning in 36 h. This assumes Pena 
+survives, and is able to eventually respond to the more favorable 
+environmental conditions. This forecast now leans more on a blend of 
+the hurricane-regional model guidance and AI-based guidance, with 
+less weight on the statistical-dynamical aids. It is also possible 
+Pena dissipates as a tropical cyclone sometime during this forecast 
+period, as suggested by the 00 UTC HAFS runs. Needless to say, this 
+is a low confidence intensity forecast. 
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  08/0900Z 11.5N 155.0W   40 KT  45 MPH
+ 12H  08/1800Z 11.5N 156.3W   35 KT  40 MPH
+ 24H  09/0600Z 11.5N 158.1W   35 KT  40 MPH
+ 36H  09/1800Z 11.4N 160.3W   40 KT  45 MPH
+ 48H  10/0600Z 11.3N 162.5W   45 KT  50 MPH
+ 60H  10/1800Z 11.1N 164.4W   45 KT  50 MPH
+ 72H  11/0600Z 10.9N 166.4W   50 KT  60 MPH
+ 96H  12/0600Z 11.0N 172.0W   50 KT  60 MPH
+120H  13/0600Z 12.5N 177.4W   50 KT  60 MPH
+ 
+$$
+Forecaster Papin
+ 
+NNNN

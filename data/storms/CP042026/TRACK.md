@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-11-02T12:00Z at 7.7N 129.8W as a disturbance (20 kt).
-- **Latest fix:** 2026-11-08T06:00Z at 11.5N 154.5W, tropical storm 45 kt 1000 mb.
-- **Fixes:** 24 spanning 138 h; distance along the track 2774 km (1498 nmi).
+- **Latest fix:** 2026-11-08T12:00Z at 11.6N 155.6W, tropical storm 40 kt 1002 mb.
+- **Fixes:** 25 spanning 144 h; distance along the track 2894 km (1563 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -31,18 +31,19 @@ Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regene
 | 2026-11-07T12:00Z | 11.5N | 152.8W | TS | 45 | 1000 | 109 | 9.8 |
 | 2026-11-07T18:00Z | 11.5N | 153.5W | TS | 45 | 1000 | 76 | 6.9 |
 | 2026-11-08T00:00Z | 11.5N | 154.2W | TS | 50 | 996 | 76 | 6.9 |
-| 2026-11-08T06:00Z | 11.5N | 154.5W | TS | 45 | 1000 | 33 | 2.9 |
+| 2026-11-08T06:00Z | 11.5N | 154.7W | TS | 40 | 1002 | 54 | 4.9 |
+| 2026-11-08T12:00Z | 11.6N | 155.6W | TS | 40 | 1002 | 99 | 8.9 |
 
-Latest NHC forecast points (adv006_points.geojson):
+Latest NHC forecast points (adv008_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 08/0000 | 11.4N | 154.5W | 50 |
-| +12 h | 08/1200 | 11.6N | 155.8W | 55 |
-| +24 h | 09/0000 | 11.6N | 157.6W | 55 |
-| +36 h | 09/1200 | 11.5N | 159.6W | 60 |
-| +48 h | 10/0000 | 11.5N | 161.7W | 60 |
-| +60 h | 10/1200 | 11.6N | 163.8W | 60 |
-| +72 h | 11/0000 | 11.8N | 166.2W | 60 |
-| +96 h | 12/0000 | 12.6N | 172.1W | 65 |
-| +120 h | 13/0000 | 14.0N | 178.9W | 65 |
+| +0 h | 08/1200 | 11.6N | 156.1W | 40 |
+| +12 h | 09/0000 | 11.6N | 157.4W | 40 |
+| +24 h | 09/1200 | 11.6N | 159.4W | 40 |
+| +36 h | 10/0000 | 11.5N | 161.5W | 40 |
+| +48 h | 10/1200 | 11.4N | 163.4W | 45 |
+| +60 h | 11/0000 | 11.3N | 165.4W | 45 |
+| +72 h | 11/1200 | 11.2N | 167.7W | 50 |
+| +96 h | 12/1200 | 11.6N | 174.0W | 45 |
+| +120 h | 13/1200 | 13.6N | 179.7W | 45 |

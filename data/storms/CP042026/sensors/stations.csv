@@ -1,3 +1,24 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,1609,
-51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,255,1700,
+51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,149,1528,
+51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,1785,
+43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,218,5033,
+43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.6422,-106.217,dart,NDBC,Tsunami,n,n,n,184,5408,
+52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,169,5438,
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.8065,-98.666,dart,NDBC,Tsunami,n,n,n,135,6254,
+52162,Backyard Buoys - Saipan Sugar Dock,15.15,145.694,other,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,193,6292,
+52211,"Tanapag, Saipan, NMI (197)",15.269,145.664,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,207,6294,
+52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,31,6400,
+pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,3,6404,txt
+52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,5,6406,
+aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,5,6419,txt
+52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,38,7761,
+42058,"Central Caribbean - 210 NM SSE of Kingston, Jamaica",14.114,-75.949,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,218,8650,txt spec
+41040,NORTH EQUATORIAL ONE- 470 NM East of Martinique,14.568,-53.037,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,254,11055,txt spec
+41041,NORTH EQUATORIAL TWO - 890 NM East of Martinique ,14.259,-46.052,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,215,11789,txt spec
+23009,,15.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,212,12159,
+23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,121,12261,
+23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,43,12315,
+13008,Reggae,15.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,292,12585,
+41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,41,12696,
+13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,50,14211,
+23011,,15.0,65.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,227,14608,
