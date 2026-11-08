@@ -1,0 +1,59 @@
+000
+WTPA44 PHFO 082056
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number   9
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Sun Nov 08 2026
+ 
+Satellite imagery shows bursts of deep convection near the center, 
+but they lack sustained curvature and organization, pulsing 
+intermittently rather than consolidating. A trailing, broken curved 
+band remains displaced to the east of the center, likely the result 
+of light-to-moderate south-southwesterly vertical wind shear and 
+upper-level outflow displacement. The latest subjective Dvorak 
+intensity estimates from both PHFO and PGTW were T3.0/45 kt, while 
+objective estimates from UW-CIMSS range from 31 to 43 kt. Given the 
+latest satellite presentation and the spread in available data, the 
+initial intensity is held at 40 kt for this advisory.
+
+The initial motion is estimated to be westward, or 270/10 kt. Pena 
+is forecast to maintain a generally westward motion over the next 
+several days while being steered by a low- to mid-level ridge 
+anchored north of the system across the central Pacific. As this 
+ridge shifts eastward, the cyclone is forecast to accelerate 
+slightly while turning northwestward toward the end of the forecast 
+period. The updated NHC track forecast closely mirrors the previous 
+track and aligns with the latest HCCA aid.
+
+Statistical SHIPS guidance suggests that Pena will remain in 
+environmental conditions favorable for strengthening, characterized 
+by warm sea surface temperatures (SSTs), light vertical wind shear, 
+and high mid-level moisture. However, given its current lack of 
+organization, the cyclone may struggle to consolidate an inner core 
+and take advantage of these conditions, raising uncertainty 
+regarding its long-term survival. The dynamical and statistical 
+guidance reflects this dilemma, showing a wide spread that ranges 
+from intensification into a hurricane to complete dissipation before 
+the end of the forecast period. Consequently, forecast confidence 
+remains lower than average. The updated NHC intensity forecast is 
+largely unchanged from the previous advisory, keeping the cyclone in 
+the middle of the multi-model envelope and below HCCA and GDMI 
+consensus aids.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  08/2100Z 11.6N 157.2W   40 KT  45 MPH
+ 12H  09/0600Z 11.6N 158.6W   40 KT  45 MPH
+ 24H  09/1800Z 11.5N 160.6W   40 KT  45 MPH
+ 36H  10/0600Z 11.4N 162.6W   40 KT  45 MPH
+ 48H  10/1800Z 11.4N 164.6W   45 KT  50 MPH
+ 60H  11/0600Z 11.3N 166.8W   45 KT  50 MPH
+ 72H  11/1800Z 11.3N 169.5W   50 KT  60 MPH
+ 96H  12/1800Z 12.1N 175.8W   45 KT  50 MPH
+120H  13/1800Z 14.2N 178.4E   45 KT  50 MPH
+ 
+$$
+Forecaster Pierce/Adams

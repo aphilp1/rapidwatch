@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-08 19:48Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-08 23:14Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -75,6 +75,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 008** (500 AM HST Sun Nov 08 2026)
 > Environmental conditions remain favorable for strengthening, with warm sea surface temperatures, low wind shear, and abundant mid-level moisture. However, given the current lack of organization, it remains to be seen if the system can consolidate an inner core and intensify. There is some uncertainty as to whether the circulation will survive or if the system will open up into a trough. This is due to the increasing forward speed of the system and potentially inhibiting upper-level winds caused by outflow from monsoon trough convection to the south. NWP, AI, and regional hurricane models are struggling with Pena and showing a wide variety of solutions with some models, particularly the regional hurricane models, show Pena dissipating before the end of the forecast period. The latest NHC forecast maintains the system throughout the forecast period for now, holding the intensity steady over the next day or so, followed by gradual strengthening and minor fluctuations in intensity throughout the remainder of the forecast period. As a result of the model spread, there is lower than normal confidence in the intensity forecast.
+
+**Discussion 009** (1100 AM HST Sun Nov 08 2026)
+> Satellite imagery shows bursts of deep convection near the center, but they lack sustained curvature and organization, pulsing intermittently rather than consolidating. A trailing, broken curved band remains displaced to the east of the center, likely the result of light-to-moderate south-southwesterly vertical wind shear and upper-level outflow displacement. The latest subjective Dvorak intensity estimates from both PHFO and PGTW were T3.0/45 kt, while objective estimates from UW-CIMSS range from 31 to 43 kt. Given the latest satellite presentation and the spread in available data, the initial intensity is held at 40 kt for this advisory.
+> Statistical SHIPS guidance suggests that Pena will remain in environmental conditions favorable for strengthening, characterized by warm sea surface temperatures (SSTs), light vertical wind shear, and high mid-level moisture. However, given its current lack of organization, the cyclone may struggle to consolidate an inner core and take advantage of these conditions, raising uncertainty regarding its long-term survival. The dynamical and statistical guidance reflects this dilemma, showing a wide spread that ranges from intensification into a hurricane to complete dissipation before the end of the forecast period. Consequently, forecast confidence remains lower than average. The updated NHC intensity forecast is largely unchanged from the previous advisory, keeping the cyclone in the middle of the multi-model envelope and below HCCA and GDMI consensus aids.
 
 ## 6. Sources in this folder
 
