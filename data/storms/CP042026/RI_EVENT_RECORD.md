@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-09 10:28Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-09 20:55Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -45,6 +45,8 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-08 18Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-09 00Z | 40 | -10 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-09 06Z | 40 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-09 12Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-09 18Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -89,6 +91,12 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 011** (1100 PM HST Sun Nov 08 2026)
 > Satellite imagery indicates that the convective structure associated with Pena has changed little over the past several hours. Deep convection has mostly remained confined to intermittent bursts near and north of the circulation, likely due to light to moderate southerly vertical wind shear affecting it. The latest subjective and objective intensities remain in the 35 to 45 kt range. Given these intensities and the steady satellite presentation, the initial intensity is held at 40 kt.
 > Light to moderate southerly vertical wind shear and potentially some drier mid-level air appear to be limiting Pena's ability to strengthen. Although guidance indicates that the shear should decrease during the next 12 to 24 h, only a few intensity models support modest strengthening over the next several days, possibly due to occasional intrusions of dry mid-level air. Toward the end of the forecast period, vertical wind shear is expected to increase out of the west-southwest, which, combined with increasingly dry mid-level air, should favor some weakening. The latest NHC intensity forecast is very similar to the previous prediction and lies near the middle to upper end of the guidance envelope.
+
+**Discussion 012** (500 AM HST Mon Nov 09 2026)
+> The intensity guidance is finally converging on a solution that is reflected in the new official forecast: Pena could intensify a little by 36 h, but it is not forecast to intensify at all thereafter. Some intensity guidance still shows weakening and dissipation during the next couple of days. It is unclear why, in a generally favorable environment, Pena has struggled to intensify, except for low-level and vertical structural challenges. Toward the end of the forecast period, vertical wind shear is expected to increase out of the west-southwest, which, combined with increasingly dry mid-level air, should allow Pena to weaken. The latest NHC intensity forecast is very similar to the last forecast and lies near the middle- to upper-end of the guidance envelope.
+
+**Discussion 013** (1100 AM HST Mon Nov 09 2026)
+> Pena is no longer forecast to intensify, despite somewhat favorable environmental conditions. This general philosophy agrees with the current broad structure of the system, which appears unlikely to improve based on the latest dynamical model fields. Toward the end of the forecast period, vertical wind shear is expected to increase out of the west-southwest, which, combined with increasingly dry mid-level air, could allow Pena to dissipate or become a remnant low. For continuity, however, Pena is shown as a tropical cyclone through the forecast period. The latest NHC intensity forecast lies near the middle of the guidance envelope.
 
 ## 6. Sources in this folder
 

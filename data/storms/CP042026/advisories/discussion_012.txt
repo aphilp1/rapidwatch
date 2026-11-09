@@ -1,0 +1,65 @@
+ZCZC HFOTCDCP4 ALL
+TTAA00 PHFO DDHHMM
+ 
+Tropical Storm Pena Discussion Number  12
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 AM HST Mon Nov 09 2026
+  
+Since the previous advisory, Pena appears to have become less 
+organized. An ASCAT-B scatterometer pass sampled the system around 
+0830 UTC, finding peak winds to around 35 kt, but indicating the 
+low-level circulation has opened up into a trough. A 1044 UTC 
+OSCAT-3 overpass, which often inflates surface wind speed 
+significantly in heavy rain, also reported peak winds to 35 kt. A 
+just-received AMSR3 microwave pass, which sampled Pena around 1204 
+UTC, appears to confirm the findings from ASCAT-B that Pena may have 
+opened into a trough and is losing convective organization. Based on 
+these data, and the possibility of Pena being poorly defined at the 
+surface, the initial intensity is lowered to 35 kt for this 
+advisory.
+ 
+The initial motion is analyzed as 265/8 kt, just south of due west. 
+Pena is forecast to continue generally westward over the next couple 
+of days as it is steered by a low- to mid-level ridge to the north. 
+Beyond 48 h, the cyclone should turn gradually toward the 
+west-northwest and accelerate as a weakness develops in the ridge 
+due to a shortwave trough moving across the northwestern Pacific. 
+The track guidance continues to remain in good agreement on this 
+scenario, and no significant changes were made to the track 
+forecast.
+ 
+The intensity guidance is finally converging on a solution that is 
+reflected in the new official forecast: Pena could intensify a 
+little by 36 h, but it is not forecast to intensify at all 
+thereafter. Some intensity guidance still shows weakening and 
+dissipation during the next couple of days. It is unclear why, in a 
+generally favorable environment, Pena has struggled to intensify, 
+except for low-level and vertical structural challenges. Toward the 
+end of the forecast period, vertical wind shear is expected to 
+increase out of the west-southwest, which, combined with 
+increasingly dry mid-level air, should allow Pena to weaken. The 
+latest NHC intensity forecast is very similar to the last forecast 
+and lies near the middle- to upper-end of the guidance envelope.
+ 
+Given multiple independent data sources suggest that Pena is no 
+longer well-organized at the surface, it is possible that Pena 
+dissipates as soon as later today.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  09/1500Z 11.4N 159.5W   35 KT  40 MPH
+ 12H  10/0000Z 11.4N 161.6W   35 KT  40 MPH
+ 24H  10/1200Z 11.3N 163.6W   35 KT  40 MPH
+ 36H  11/0000Z 11.1N 165.6W   40 KT  45 MPH
+ 48H  11/1200Z 11.1N 168.0W   40 KT  45 MPH
+ 60H  12/0000Z 11.4N 170.7W   40 KT  45 MPH
+ 72H  12/1200Z 12.0N 173.8W   40 KT  45 MPH
+ 96H  13/1200Z 13.4N 180.0E   35 KT  40 MPH
+120H  14/1200Z 14.7N 175.3E   35 KT  40 MPH
+ 
+$$
+Forecaster Mahoney
+ 
+NNNN

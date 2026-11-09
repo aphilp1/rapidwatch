@@ -3,8 +3,8 @@
 Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regenerated every run by build_track.py. Positions are NHC's 6-hourly best-track fixes, not interpolated. Aircraft fixes are listed in RI_EVENT_RECORD.md.
 
 - **First tracked:** 2026-11-02T12:00Z at 7.7N 129.8W as a disturbance (20 kt).
-- **Latest fix:** 2026-11-09T06:00Z at 11.3N 158.0W, tropical storm 40 kt 1002 mb.
-- **Fixes:** 28 spanning 162 h; distance along the track 3161 km (1707 nmi).
+- **Latest fix:** 2026-11-09T18:00Z at 11.5N 160.7W, tropical storm 35 kt 1004 mb.
+- **Fixes:** 30 spanning 174 h; distance along the track 3456 km (1866 nmi).
 
 | Time (UTC) | Lat | Lon | Type | Vmax kt | MSLP mb | Leg km | Speed kt |
 |---|---|---|---|---|---|---|---|
@@ -36,17 +36,19 @@ Source: NHC best track (ATCF b-deck atcf/bcp042026.dat) as archived here; regene
 | 2026-11-08T18:00Z | 11.6N | 156.7W | TS | 40 | 1002 | 120 | 10.8 |
 | 2026-11-09T00:00Z | 11.4N | 157.2W | TS | 40 | 1002 | 59 | 5.3 |
 | 2026-11-09T06:00Z | 11.3N | 158.0W | TS | 40 | 1002 | 88 | 7.9 |
+| 2026-11-09T12:00Z | 11.4N | 159.1W | TS | 35 | 1004 | 120 | 10.8 |
+| 2026-11-09T18:00Z | 11.5N | 160.7W | TS | 35 | 1004 | 175 | 15.7 |
 
-Latest NHC forecast points (adv011_points.geojson):
+Latest NHC forecast points (adv012_points.geojson):
 
 | Lead | Valid | Lat | Lon | Max wind kt |
 |---|---|---|---|---|
-| +0 h | 09/0600 | 11.3N | 158.4W | 40 |
-| +12 h | 09/1800 | 11.3N | 160.4W | 40 |
-| +24 h | 10/0600 | 11.2N | 162.6W | 40 |
-| +36 h | 10/1800 | 11.0N | 164.6W | 45 |
-| +48 h | 11/0600 | 11.0N | 166.6W | 45 |
-| +60 h | 11/1800 | 11.1N | 169.3W | 45 |
-| +72 h | 12/0600 | 11.4N | 171.8W | 45 |
-| +96 h | 13/0600 | 12.8N | 178.4W | 40 |
-| +120 h | 14/0600 | 14.3N | 177.1W | 40 |
+| +0 h | 09/1200 | 11.4N | 159.5W | 35 |
+| +12 h | 10/0000 | 11.4N | 161.6W | 35 |
+| +24 h | 10/1200 | 11.3N | 163.6W | 35 |
+| +36 h | 11/0000 | 11.1N | 165.6W | 40 |
+| +48 h | 11/1200 | 11.1N | 168.0W | 40 |
+| +60 h | 12/0000 | 11.4N | 170.7W | 40 |
+| +72 h | 12/1200 | 12.0N | 173.8W | 40 |
+| +96 h | 13/1200 | 13.4N | 180.0W | 35 |
+| +120 h | 14/1200 | 14.7N | 175.3W | 35 |

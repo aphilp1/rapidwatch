@@ -105,3 +105,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 41040 NORTH EQUATORIAL ONE- 470 NM East of Martinique · 11304 km from center · 2026-11-09T10:00Z · wind 110° 3.0 m/s gust 4.0 · pres 1016.1 hPa · air 28.5 °C · water 29.1 °C · wave  m
   - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12036 km from center · 2026-11-09T09:50Z · wind 90° 6.0 m/s gust 7.0 · pres 1016.8 hPa · air 28.2 °C · water 28.6 °C · wave 1.2 m
 
+## 20261109T2054 UTC · center 11.5N 161.4W · TS 35 kt · forecast file adv012_points.geojson
+- Track points: 30 best-track + center + 9 forecast. Corridor stations: 25 (6 reporting standard met). New NDBC observation rows merged: 1806.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 40 track points; MUR satellite SST returned at 9 of 10 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pgbp7 1631428 - Pago Bay, Guam · 5834 km from center · 2026-11-09T20:18Z · wind 10° 1.0 m/s gust 2.1 · pres 1011.1 hPa · air  °C · water  °C · wave  m
+  - aprp7 1630000 - Apra Harbor, Guam · 5849 km from center · 2026-11-09T20:18Z · wind 90° 0.5 m/s gust 2.1 · pres 1011.6 hPa · air  °C · water 29.5 °C · wave  m
+  - 42058 Central Caribbean - 210 NM SSE of Kingston, Jamaica · 9216 km from center · 2026-11-09T19:40Z · wind 70° 6.0 m/s gust 8.0 · pres 1010.1 hPa · air 29.4 °C · water 29.7 °C · wave 1.0 m
+  - 42060 Caribbean Valley - 63 NM WSW of Montserrat · 10502 km from center · 2026-11-09T19:40Z · wind °  m/s gust  · pres  hPa · air  °C · water  °C · wave 0.8 m
+  - 41040 NORTH EQUATORIAL ONE- 470 NM East of Martinique · 11608 km from center · 2026-11-09T19:40Z · wind 130° 3.0 m/s gust 4.0 · pres 1015.3 hPa · air 29.2 °C · water 29.7 °C · wave 1.2 m
+  - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12337 km from center · 2026-11-09T19:40Z · wind 120° 5.0 m/s gust 6.0 · pres 1016.9 hPa · air 28.5 °C · water 28.9 °C · wave 1.8 m
+

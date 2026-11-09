@@ -1,0 +1,62 @@
+478 
+WTPA44 PHFO 092044
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  13
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Mon Nov 09 2026
+ 
+ 
+There has been little change in Tropical Storm Pena's organization. 
+In fact, based on the first several visible satellite images of the 
+day, it appears the low-level circulation is poorly organized and 
+potentially open on the western side of the system. This would agree 
+with an analysis of scatterometer and microwave data discussed in 
+the previous advisory. Additionally, a new RCM2 Synthetic Aperture 
+Radar (SAR) overpass shows the low-level center well west of the 
+deep convection and the max wind band. The wind radii and center 
+position have been updated accordingly. Based on the SAR data and 
+satellite intensity estimates, Pena is maintained as a 35 kt 
+tropical storm for this advisory, though this could be generous.
+ 
+The initial motion is analyzed as 270/10 kt, with the forward motion 
+somewhat uncertain due to the new initial position. Pena is forecast 
+to continue generally westward over the next couple of days as it is 
+steered by a low- to mid-level ridge to the north. Beyond 48 h, the 
+cyclone should turn gradually toward the west-northwest and 
+accelerate as a weakness develops in the ridge due to a shortwave 
+trough moving across the northwestern Pacific. The track guidance 
+continues to remain in good agreement on this scenario, and no 
+significant changes were made to the track forecast.
+ 
+Pena is no longer forecast to intensify, despite somewhat favorable 
+environmental conditions. This general philosophy agrees with the 
+current broad structure of the system, which appears unlikely to 
+improve based on the latest dynamical model fields. Toward the end 
+of the forecast period, vertical wind shear is expected to increase 
+out of the west-southwest, which, combined with increasingly dry 
+mid-level air, could allow Pena to dissipate or become a remnant 
+low. For continuity, however, Pena is shown as a tropical cyclone 
+through the forecast period. The latest NHC intensity forecast lies
+near the middle of the guidance envelope.
+ 
+Given that multiple independent data sources continue to suggest
+that Pena is losing organization, it remains possible that Pena
+dissipates within the next couple of days.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  09/2100Z 11.5N 161.4W   35 KT  40 MPH
+ 12H  10/0600Z 11.5N 163.0W   35 KT  40 MPH
+ 24H  10/1800Z 11.2N 165.3W   35 KT  40 MPH
+ 36H  11/0600Z 11.1N 167.4W   35 KT  40 MPH
+ 48H  11/1800Z 11.2N 170.1W   35 KT  40 MPH
+ 60H  12/0600Z 11.6N 173.1W   35 KT  40 MPH
+ 72H  12/1800Z 12.3N 176.5W   35 KT  40 MPH
+ 96H  13/1800Z 13.7N 177.5E   35 KT  40 MPH
+120H  14/1800Z 14.6N 173.3E   35 KT  40 MPH
+ 
+$$
+Forecaster Mahoney
