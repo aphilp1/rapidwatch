@@ -1,26 +1,26 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,150,1409,
-51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,1903,
-43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,276,5153,
-52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,236,5319,
-43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.5883,-106.197,dart,NDBC,Tsunami,n,n,n,119,5530,
-52162,Backyard Buoys - Saipan Sugar Dock,15.15,145.694,other,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,127,6174,
-52211,"Tanapag, Saipan, NMI (197)",15.269,145.664,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,140,6176,
-52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,35,6281,
-pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,64,6286,txt
-52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,72,6287,
-aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,62,6300,txt
-43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.8719,-98.5484,dart,NDBC,Tsunami,n,n,n,187,6385,
-52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,104,7642,
-42058,"Central Caribbean - 210 NM SSE of Kingston, Jamaica",14.114,-75.949,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,158,8767,txt spec
-42407,"SOUTH PUERTO RICO - 230 NM Southwest of San Juan, PR",15.276,-68.191,dart,NDBC,Tsunami,n,n,n,282,9566,
-42059,"Eastern Caribbean Sea - 180 NM SSW of Ponce, PR",15.255,-67.621,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,279,9626,
-41040,NORTH EQUATORIAL ONE- 470 NM East of Martinique,14.568,-53.037,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,193,11170,txt spec
-41041,NORTH EQUATORIAL TWO - 890 NM East of Martinique ,14.259,-46.052,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,154,11902,txt spec
-23009,,15.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,147,12047,
-23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,186,12147,
-23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,22,12202,
-13008,Reggae,15.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,231,12696,
-41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,102,12809,
-13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,112,14319,
-23011,,15.0,65.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,163,14506,
+51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,150,1364,
+51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,1944,
+43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,276,5198,
+52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,236,5278,
+43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.5883,-106.197,dart,NDBC,Tsunami,n,n,n,119,5576,
+52162,Backyard Buoys - Saipan Sugar Dock,15.15,145.694,other,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,127,6135,
+52211,"Tanapag, Saipan, NMI (197)",15.269,145.664,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,140,6138,
+52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,35,6242,
+pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,64,6246,txt
+52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,72,6247,
+aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,62,6261,txt
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",10.8719,-98.5484,dart,NDBC,Tsunami,n,n,n,187,6431,
+52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,104,7603,
+42058,"Central Caribbean - 210 NM SSE of Kingston, Jamaica",14.114,-75.949,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,158,8814,txt spec
+42407,"SOUTH PUERTO RICO - 230 NM Southwest of San Juan, PR",15.276,-68.191,dart,NDBC,Tsunami,n,n,n,282,9613,
+42059,"Eastern Caribbean Sea - 180 NM SSW of Ponce, PR",15.255,-67.621,buoy,NDBC,NDBC Meteorological/Ocean,n,n,n,279,9674,
+41040,NORTH EQUATORIAL ONE- 470 NM East of Martinique,14.568,-53.037,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,193,11218,txt spec
+41041,NORTH EQUATORIAL TWO - 890 NM East of Martinique ,14.259,-46.052,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,154,11950,txt spec
+23009,,15.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,147,12013,
+23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,186,12112,
+23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,22,12168,
+13008,Reggae,15.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,231,12745,
+41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,102,12857,
+13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,112,14367,
+23011,,15.0,65.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,163,14481,

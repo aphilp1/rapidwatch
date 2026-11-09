@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-08 23:14Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-09 02:46Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -43,6 +43,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-08 06Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-08 12Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-08 18Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-09 00Z | 40 | -10 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -79,6 +80,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 009** (1100 AM HST Sun Nov 08 2026)
 > Satellite imagery shows bursts of deep convection near the center, but they lack sustained curvature and organization, pulsing intermittently rather than consolidating. A trailing, broken curved band remains displaced to the east of the center, likely the result of light-to-moderate south-southwesterly vertical wind shear and upper-level outflow displacement. The latest subjective Dvorak intensity estimates from both PHFO and PGTW were T3.0/45 kt, while objective estimates from UW-CIMSS range from 31 to 43 kt. Given the latest satellite presentation and the spread in available data, the initial intensity is held at 40 kt for this advisory.
 > Statistical SHIPS guidance suggests that Pena will remain in environmental conditions favorable for strengthening, characterized by warm sea surface temperatures (SSTs), light vertical wind shear, and high mid-level moisture. However, given its current lack of organization, the cyclone may struggle to consolidate an inner core and take advantage of these conditions, raising uncertainty regarding its long-term survival. The dynamical and statistical guidance reflects this dilemma, showing a wide spread that ranges from intensification into a hurricane to complete dissipation before the end of the forecast period. Consequently, forecast confidence remains lower than average. The updated NHC intensity forecast is largely unchanged from the previous advisory, keeping the cyclone in the middle of the multi-model envelope and below HCCA and GDMI consensus aids.
+
+**Discussion 010** (500 PM HST Sun Nov 08 2026)
+> A persistent burst of deep convection remains over the estimated center position of Pena this afternoon, with very cold cloud top temperatures of less than -80 C observed within the CDO. However, a separate area of convection persists to the east of the primary convective burst, suggesting that the tropical storm continues to struggle with consolidating its inner core. An earlier ASCAT-C pass and GPM microwave imagery indicated that Pena's center was located farther south than previously estimated, and the initial position has been adjusted accordingly. The latest subjective Dvorak intensity estimates range from T3.0/45 kt to T3.5/55 kt, while objective intensity estimates range from 32-47 kt. Based on the latest satellite imagery, the initial intensity is maintained at 40 kt for this advisory.
+> Despite moving over very warm sea surface temperatures near 29 C and within an environment with low vertical wind shear and relatively moist mid-level conditions, Pena has thus far been unable to establish a well-defined inner core. A considerable spread remains among the dynamical and statistical guidance, although recent model cycles have gradually trended toward lower peak intensities. Consequently, the potential for significant strengthening appears to be diminishing. The latest NHC intensity forecast has been lowered slightly around midweek and remains near the middle of the guidance envelope.
 
 ## 6. Sources in this folder
 

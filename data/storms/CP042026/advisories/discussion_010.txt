@@ -1,0 +1,60 @@
+000
+WTPA44 PHFO 090244
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  10
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Sun Nov 08 2026
+ 
+A persistent burst of deep convection remains over the estimated 
+center position of Pena this afternoon, with very cold cloud top 
+temperatures of less than -80 C observed within the CDO. However, a 
+separate area of convection persists to the east of the primary 
+convective burst, suggesting that the tropical storm continues to 
+struggle with consolidating its inner core. An earlier ASCAT-C pass 
+and GPM microwave imagery indicated that Pena's center was located 
+farther south than previously estimated, and the initial position 
+has been adjusted accordingly. The latest subjective Dvorak 
+intensity estimates range from T3.0/45 kt to T3.5/55 kt, while 
+objective intensity estimates range from 32-47 kt. Based on the 
+latest satellite imagery, the initial intensity is maintained at 40 
+kt for this advisory. 
+ 
+Pena is moving westward at 260/7 kt. Given the shallow nature of the 
+tropical storm, its motion is being governed by a low- to mid-level 
+ridge centered northwest of the Hawaiian Islands. This general 
+motion is forecast to persist through the middle of the week. 
+Thereafter, Pena is forecast to turn west-northwestward and increase 
+its forward speed as a new ridge builds to its north. The latest NHC 
+track forecast has been shifted slightly to the left of the previous 
+forecast to account for the southward adjustment of the initial 
+position, and is slightly faster, bringing it into closer alignment 
+with the latest HCCA guidance. 
+
+Despite moving over very warm sea surface temperatures near 29 C and 
+within an environment with low vertical wind shear and relatively 
+moist mid-level conditions, Pena has thus far been unable to 
+establish a well-defined inner core. A considerable spread remains 
+among the dynamical and statistical guidance, although recent model 
+cycles have gradually trended toward lower peak intensities. 
+Consequently, the potential for significant strengthening appears to 
+be diminishing. The latest NHC intensity forecast has been lowered 
+slightly around midweek and remains near the middle of the guidance 
+envelope. 
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  09/0300Z 11.4N 157.6W   40 KT  45 MPH
+ 12H  09/1200Z 11.4N 159.2W   40 KT  45 MPH
+ 24H  10/0000Z 11.3N 161.5W   40 KT  45 MPH
+ 36H  10/1200Z 11.3N 163.5W   40 KT  45 MPH
+ 48H  11/0000Z 11.2N 165.6W   45 KT  50 MPH
+ 60H  11/1200Z 11.1N 168.0W   45 KT  50 MPH
+ 72H  12/0000Z 11.3N 170.9W   45 KT  50 MPH
+ 96H  13/0000Z 12.6N 177.1W   40 KT  45 MPH
+120H  14/0000Z 14.4N 177.2E   40 KT  45 MPH
+ 
+$$
+Forecaster Adams

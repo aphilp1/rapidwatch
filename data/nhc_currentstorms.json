@@ -7,29 +7,29 @@
       "classification": "TS",
       "intensity": "40",
       "pressure": "1002",
-      "latitude": "11.6N",
-      "longitude": "157.2W",
-      "latitudeNumeric": 11.6,
-      "longitudeNumeric": -157.2,
-      "movementDir": 270,
-      "movementSpeed": 12,
-      "lastUpdate": "2026-11-08T21:00:00.000Z",
+      "latitude": "11.4N",
+      "longitude": "157.6W",
+      "latitudeNumeric": 11.4,
+      "longitudeNumeric": -157.6,
+      "movementDir": 260,
+      "movementSpeed": 8,
+      "lastUpdate": "2026-11-09T03:00:00.000Z",
       "publicAdvisory": {
-        "advNum": "009",
-        "issuance": "2026-11-08T21:00:00.000Z",
-        "fileUpdateTime": "2026-11-08T20:56:27.269Z",
+        "advNum": "010",
+        "issuance": "2026-11-09T03:00:00.000Z",
+        "fileUpdateTime": "2026-11-09T02:42:27.365Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCPCP4.shtml"
       },
       "forecastAdvisory": {
-        "advNum": "009",
-        "issuance": "2026-11-08T21:00:00.000Z",
-        "fileUpdateTime": "2026-11-08T20:55:56.739Z",
+        "advNum": "010",
+        "issuance": "2026-11-09T03:00:00.000Z",
+        "fileUpdateTime": "2026-11-09T02:41:57.106Z",
         "url": "https://www.nhc.noaa.gov/text/HFOTCMCP4.shtml"
       },
       "windSpeedProbabilities": {
-        "advNum": "009",
-        "issuance": "2026-11-08T21:00:00.000Z",
-        "fileUpdateTime": "2026-11-08T20:56:27.274Z",
+        "advNum": "010",
+        "issuance": "2026-11-09T03:00:00.000Z",
+        "fileUpdateTime": "2026-11-09T02:42:57.746Z",
         "url": "https://www.nhc.noaa.gov/text/HFOPWSCP4.shtml"
       },
       "forecastDiscussion": {
@@ -39,9 +39,9 @@
         "url": "https://www.nhc.noaa.gov/text/HFOTCDCP4.shtml"
       },
       "forecastGraphics": {
-        "advNum": "009",
-        "issuance": "2026-11-08T21:00:00.000Z",
-        "fileUpdateTime": "2026-11-08T20:56:27.269Z",
+        "advNum": "010",
+        "issuance": "2026-11-09T03:00:00.000Z",
+        "fileUpdateTime": "2026-11-09T02:42:27.365Z",
         "url": "https://www.nhc.noaa.gov/graphics_cp4.shtml"
       },
       "forecastTrack": {
