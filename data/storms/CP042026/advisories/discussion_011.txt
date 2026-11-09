@@ -1,0 +1,62 @@
+000
+WTPA44 PHFO 090839
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  11
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 PM HST Sun Nov 08 2026
+ 
+Satellite imagery indicates that the convective structure associated 
+with Pena has changed little over the past several hours. Deep 
+convection has mostly remained confined to intermittent bursts near 
+and north of the circulation, likely due to light to moderate 
+southerly vertical wind shear affecting it. The latest subjective 
+and objective intensities remain in the 35 to 45 kt range. Given 
+these intensities and the steady satellite presentation, the initial 
+intensity is held at 40 kt. 
+ 
+The initial motion is westward, or 270/8 kt. This general motion is 
+expected to continue during the next 48 to 60 h as a low- to 
+mid-level ridge builds to the north. Thereafter, a gradual turn 
+toward the west-northwest is forecast as a weakness develops in the 
+ridge in response to a shortwave trough moving across the 
+northwestern Pacific. An increase in forward speed is expected 
+around day 3 and should continue into day 4. Track guidance remains 
+in good agreement during the next couple of days, but the 
+cross-track spread increases thereafter, with some of the regional 
+hurricane models maintaining a more westward track. In contrast, the 
+GFS, ECMWF, and consensus aids support a gradual turn toward the 
+west-northwest. These differences could be partly related to how the 
+models handle the cyclone's intensity, with weaker solutions 
+becoming increasingly steered by the low-level flow. The NHC track 
+forecast is essentially unchanged from the previous prediction and 
+lies near the HFIP Corrected Consensus (HCCA). 
+ 
+Light to moderate southerly vertical wind shear and potentially some 
+drier mid-level air appear to be limiting Pena's ability to 
+strengthen. Although guidance indicates that the shear should 
+decrease during the next 12 to 24 h, only a few intensity models 
+support modest strengthening over the next several days, possibly 
+due to occasional intrusions of dry mid-level air. Toward the end of 
+the forecast period, vertical wind shear is expected to increase out 
+of the west-southwest, which, combined with increasingly dry 
+mid-level air, should favor some weakening. The latest NHC intensity 
+forecast is very similar to the previous prediction and lies near 
+the middle to upper end of the guidance envelope. 
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  09/0900Z 11.3N 158.4W   40 KT  45 MPH
+ 12H  09/1800Z 11.3N 160.4W   40 KT  45 MPH
+ 24H  10/0600Z 11.2N 162.6W   40 KT  45 MPH
+ 36H  10/1800Z 11.0N 164.6W   45 KT  50 MPH
+ 48H  11/0600Z 11.0N 166.6W   45 KT  50 MPH
+ 60H  11/1800Z 11.1N 169.3W   45 KT  50 MPH
+ 72H  12/0600Z 11.4N 171.8W   45 KT  50 MPH
+ 96H  13/0600Z 12.8N 178.4W   40 KT  45 MPH
+120H  14/0600Z 14.3N 177.1E   40 KT  45 MPH
+ 
+$$
+Forecaster Gibbs

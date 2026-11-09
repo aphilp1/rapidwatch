@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-09 02:46Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-09 10:28Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -44,6 +44,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-08 12Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-08 18Z | 40 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-09 00Z | 40 | -10 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-09 06Z | 40 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -84,6 +85,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 **Discussion 010** (500 PM HST Sun Nov 08 2026)
 > A persistent burst of deep convection remains over the estimated center position of Pena this afternoon, with very cold cloud top temperatures of less than -80 C observed within the CDO. However, a separate area of convection persists to the east of the primary convective burst, suggesting that the tropical storm continues to struggle with consolidating its inner core. An earlier ASCAT-C pass and GPM microwave imagery indicated that Pena's center was located farther south than previously estimated, and the initial position has been adjusted accordingly. The latest subjective Dvorak intensity estimates range from T3.0/45 kt to T3.5/55 kt, while objective intensity estimates range from 32-47 kt. Based on the latest satellite imagery, the initial intensity is maintained at 40 kt for this advisory.
 > Despite moving over very warm sea surface temperatures near 29 C and within an environment with low vertical wind shear and relatively moist mid-level conditions, Pena has thus far been unable to establish a well-defined inner core. A considerable spread remains among the dynamical and statistical guidance, although recent model cycles have gradually trended toward lower peak intensities. Consequently, the potential for significant strengthening appears to be diminishing. The latest NHC intensity forecast has been lowered slightly around midweek and remains near the middle of the guidance envelope.
+
+**Discussion 011** (1100 PM HST Sun Nov 08 2026)
+> Satellite imagery indicates that the convective structure associated with Pena has changed little over the past several hours. Deep convection has mostly remained confined to intermittent bursts near and north of the circulation, likely due to light to moderate southerly vertical wind shear affecting it. The latest subjective and objective intensities remain in the 35 to 45 kt range. Given these intensities and the steady satellite presentation, the initial intensity is held at 40 kt.
+> Light to moderate southerly vertical wind shear and potentially some drier mid-level air appear to be limiting Pena's ability to strengthen. Although guidance indicates that the shear should decrease during the next 12 to 24 h, only a few intensity models support modest strengthening over the next several days, possibly due to occasional intrusions of dry mid-level air. Toward the end of the forecast period, vertical wind shear is expected to increase out of the west-southwest, which, combined with increasingly dry mid-level air, should favor some weakening. The latest NHC intensity forecast is very similar to the previous prediction and lies near the middle to upper end of the guidance envelope.
 
 ## 6. Sources in this folder
 
