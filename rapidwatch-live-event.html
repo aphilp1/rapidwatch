@@ -199,7 +199,9 @@ body.leaflet-dragging #map.probe.leaflet-grab{cursor:grabbing}
 /* extent = the three NHC areas of responsibility (Atlantic incl. Gulf/Caribbean, Eastern Pacific,
    Central Pacific). Opens on the Gulf; the first storm load re-fits to every active system. */
 const map=L.map('map',{zoomControl:false,attributionControl:true,minZoom:3,maxZoom:11,worldCopyJump:false}).setView([25.4,-88.0],6);
-map.setMaxBounds([[-15,-190],[62,10]]);
+/* west limit -250 (was -190, 2026-11-08): a Central Pacific storm sat at the hard west edge, so the fit could not
+   move it clear of the left-hand panels */
+map.setMaxBounds([[-15,-250],[62,10]]);
 L.tileLayer.wms('https://wms.gebco.net/mapserv?',
   {layers:'GEBCO_LATEST',format:'image/png',version:'1.3.0',transparent:false,
    attribution:'Bathymetry: GEBCO · Storms: NOAA/NHC · Radar: NEXRAD/IEM · Satellite: NOAA GOES · NASA GIBS',maxZoom:11}).addTo(map);
@@ -233,6 +235,11 @@ map.createPane('radarPane').style.zIndex=256;
    hemispheric land ring (land fill floods the open ocean at some zooms) */
 fetch('data/geo/ne_50m_land.geojson').then(r=>r.json()).then(land=>{
   L.geoJSON(land,{pane:'landPane',interactive:false,noClip:true,
+    style:{color:'rgba(70,207,214,.38)',weight:.9,fillColor:'#16242f',fillOpacity:1,noClip:true}}).addTo(map);
+  /* land drawn again one world to the west, so the area past the dateline matches the rest of the map */
+  const far=c=>typeof c[0]==='number'?c[0]>60:c.some(far);
+  L.geoJSON({type:'FeatureCollection',features:land.features.filter(f=>far(f.geometry.coordinates))},
+    {pane:'landPane',interactive:false,noClip:true,coordsToLatLng:c=>L.latLng(c[1],c[0]-360),
     style:{color:'rgba(70,207,214,.38)',weight:.9,fillColor:'#16242f',fillOpacity:1,noClip:true}}).addTo(map);
 }).catch(()=>{});
 
@@ -615,6 +622,14 @@ function distCardHTML(d){
     +'<div class="sc-src">NHC Graphical Tropical Weather Outlook'+(d.issued?' · '+d.issued:'')+'</div>';
 }
 let _firstStormLoad=true,_selected=null,_details={};
+/* room the panels take up right now, read from where they really are (they can be dragged or collapsed) */
+function panelPad(){
+  const W=innerWidth;let l=0,r=0;
+  document.querySelectorAll('#ctl,#lyrs,#goesbox,#status').forEach(el=>{const b=el.getBoundingClientRect();if(!b.width)return;
+    if((b.left+b.right)/2<W/2)l=Math.max(l,b.right);else r=Math.max(r,W-b.left);});
+  l=Math.max(l+16,60);r=Math.max(r+16,60);
+  return W-l-r<240?{l:60,r:60}:{l,r};
+}
 /* queue row click: show that system's detail card and fly to it */
 function selectSystem(key,fly){
   const d=_details[key];const lab=document.getElementById('detail-lab'),host=document.getElementById('detail');
@@ -643,7 +658,7 @@ async function loadStorms(){
     document.getElementById('headline').classList.remove('on');
     setStatus('Forecast cone','ok','no active storm');
   }
-  let coneSrc=null;
+  let coneSrc=null;const coneBds=[];
   for(const s of storms){
     const sid=s.id.toUpperCase(),bin=(s.binNumber||'').toUpperCase();
     const cl=classOfStorm(s);
@@ -661,18 +676,22 @@ async function loadStorms(){
         ['live','NHC',cl.lab]))
       .addTo(stormLayer);
     /* forecast cone — soft translucent fill + dashed outline */
+    /* a Pacific forecast that crosses the dateline comes back partly in +180 longitudes: keep it continuous */
+    const dl=s.longitudeNumeric<-140?{coordsToLatLng:c=>L.latLng(c[1],c[0]>0?c[0]-360:c[0])}:{};
     const cone=await stormProduct(bin,sid,'Forecast Cone','5day_pgn');
     if(cone){coneSrc=coneSrc||cone.src;
-      L.geoJSON(cone.g,{pane:'overlayPane',
+      const cb=L.geoJSON(cone.g,dl).getBounds();       /* the fit includes the whole cone */
+      if(cb.isValid()&&cb.getWest()>=-250&&cb.getEast()<=10)coneBds.push(cb);
+      L.geoJSON(cone.g,{...dl,pane:'overlayPane',
         style:{color:'#c9a8ff',weight:2,dashArray:'8 6',fillColor:'#b18cff',fillOpacity:.16,opacity:.9}})
         .bindPopup(pop('NHC forecast cone','Cone of uncertainty',s.name+' · advisory #'+((s.publicAdvisory&&s.publicAdvisory.advNum)||'?'),
           'Probable track area of the storm centre (about 2/3 of historical track errors fall inside the cone). Hazards extend well outside it.',['NHC','120 h']))
         .addTo(stormLayer);}
     /* forecast track + points */
     const trk=await stormProduct(bin,sid,'Forecast Track','5day_lin');
-    if(trk) L.geoJSON(trk.g,{style:{color:'#ff8a3d',weight:2.5,opacity:.95}}).addTo(stormLayer);
+    if(trk) L.geoJSON(trk.g,{...dl,style:{color:'#ff8a3d',weight:2.5,opacity:.95}}).addTo(stormLayer);
     const pts=await stormProduct(bin,sid,'Forecast Points','5day_pts');
-    if(pts) L.geoJSON(pts.g,{pointToLayer:(f,ll)=>{
+    if(pts) L.geoJSON(pts.g,{...dl,pointToLayer:(f,ll)=>{
         const p=f.properties||{},pc=classOf(p.maxwind);
         /* NHC fills unforecast fields with the sentinel 9999 — only the current fix carries a
            real central pressure. Show nothing rather than printing the sentinel as data. */
@@ -680,7 +699,7 @@ async function loadStorms(){
         const mslp=num(p.mslp),wind=num(p.maxwind),gust=num(p.gust);
         const body='Max wind <b>'+(wind!=null?wind+' kt':'—')+'</b>'+(gust!=null?' (gust '+gust+' kt)':'')
           +(mslp!=null?' · central pressure <b>'+mslp+' mb</b>':'')
-          +'<br>'+fmt(ll.lat,ll.lng)
+          +'<br>'+fmt(ll.lat,ll.lng<-180?ll.lng+360:ll.lng)
           +(mslp==null?'<br><span style="opacity:.6;font-size:.9em">NHC does not forecast central pressure at this hour.</span>':'');
         return L.circleMarker(ll,{radius:5,color:pc.c,weight:1.8,fillColor:'#050b12',fillOpacity:.92})
           .bindPopup(pop('NHC forecast · +'+(p.tau||0)+' h',(p.tcdvlp||'Forecast position'),(p.fldatelbl||p.datelbl||''),
@@ -790,11 +809,12 @@ async function loadStorms(){
   if(storms.length) setStatus('Forecast cone',coneSrc?'ok':'warn',coneSrc||'none issued');
   /* fit every active system once, on the first load (later refreshes must not move the map) */
   const allPts=storms.map(s=>[s.latitudeNumeric,s.longitudeNumeric]).concat(dists.map(d=>[d.lat,d.lon]));
-  if(_firstStormLoad&&allPts.length){_firstStormLoad=false;
-    map.fitBounds(L.latLngBounds(allPts).pad(0.25),{maxZoom:6,animate:false,paddingTopLeft:[330,60],paddingBottomRight:[330,40]});}
+  const fitAll=()=>{if(!allPts.length)return;const b=L.latLngBounds(allPts).pad(0.25),p=panelPad();coneBds.forEach(c=>b.extend(c));
+    map.fitBounds(b,{maxZoom:6,animate:false,paddingTopLeft:[p.l,60],paddingBottomRight:[p.r,40]});};
+  if(_firstStormLoad&&allPts.length){_firstStormLoad=false;fitAll();}
   const fitBtn=document.getElementById('fitall');
   /* animate:false — a CSS-transition zoom never completes in a hidden tab (Chrome), so fits snap */
-  if(fitBtn)fitBtn.onclick=()=>{if(allPts.length)map.fitBounds(L.latLngBounds(allPts).pad(0.25),{maxZoom:6,animate:false,paddingTopLeft:[330,60],paddingBottomRight:[330,40]});};
+  if(fitBtn)fitBtn.onclick=fitAll;
   if(!storms.length)return;
   /* headline strip = strongest active storm in any area */
   const top=storms[0];
