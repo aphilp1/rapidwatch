@@ -1,0 +1,62 @@
+000
+WTPA44 PHFO 102045
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  17
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Tue Nov 10 2026
+
+Satellite imagery over the last couple of hours shows Pena's 
+convective shield expanding. With how large the system's deep 
+convection is, however, it is difficult to track Pena's inner vortex 
+and thus fully assess the cyclone's strength. SAR microwave imagery 
+from around 1630 UTC shows little organization under the convection, 
+and recent visible images suggest the low-level center lies near the 
+western edge of the convection. Subjective and objective Dvorak 
+estimates are also relatively steady since the last advisory, with 
+HFO at 2.5/35 kt and UW-CIMSS between 30-40 kt, respectively. As a 
+result of these data, the initial intensity is held steady at 35 kt.
+ 
+Pena's motion has turned west-southwest at around 8 kt. The 
+cyclone's motion continues to be steered by a high pressure ridge 
+anchored to storm's northwest. Track guidance has Pena continuing on 
+this motion for the rest of the day, before the skillful guidance 
+turns it back to the west tomorrow and then to the west-northwest 
+later in the week. The latest NHC track forecast is shifted to the 
+right slightly, as skilled guidance such as the HCCA and GDMI are 
+more aggressive in depicting Pena's turn to the northwest, but 
+overall reflects a middle ground solution between these two models 
+and the previous advisory.
+ 
+As it has been stated over the past few days, Pena's intensity 
+forecast remains challenging, as the overall environment suggests 
+favorable conditions for strengthening, yet Pena has held steady all 
+the while. What little data that's available in depicting Pena's 
+structure implies that the storm's central vortex lacks structure, 
+which has hindered opportunities for intensification. In fact, it is 
+entirely possible that Pena currently lacks a closed low-level 
+circulation, however this is hard to confirm without a complete 
+scatterometer pass. As a result of this uncertainty, Pena's 
+intensity forecast has been held flat over the next several days, 
+with the possibility that the system could be declared a remnant low 
+later today. Should scatterometer data confirm a closed circulation, 
+however, Pena could experience at least modest strengthening, given 
+its environment of warm SSTs, low vertical wind shear, and ample 
+mid-level moisture.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  10/2100Z 10.8N 165.2W   35 KT  40 MPH
+ 12H  11/0600Z 10.7N 166.7W   35 KT  40 MPH
+ 24H  11/1800Z 10.6N 169.1W   35 KT  40 MPH
+ 36H  12/0600Z 10.8N 172.4W   35 KT  40 MPH
+ 48H  12/1800Z 11.3N 175.7W   35 KT  40 MPH
+ 60H  13/0600Z 11.9N 179.0W   35 KT  40 MPH
+ 72H  13/1800Z 12.4N 178.2E   35 KT  40 MPH
+ 96H  14/1800Z 12.5N 174.0E   30 KT  35 MPH
+120H  15/1800Z...DISSIPATED
+ 
+$$
+Forecaster Evans/Reinhart

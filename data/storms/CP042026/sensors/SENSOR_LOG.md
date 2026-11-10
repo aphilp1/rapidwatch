@@ -150,3 +150,15 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 42058 Central Caribbean - 210 NM SSE of Kingston, Jamaica · 9576 km from center · 2026-11-10T17:40Z · wind 80° 8.0 m/s gust 10.0 · pres 1010.9 hPa · air 29.6 °C · water 29.7 °C · wave  m
   - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12689 km from center · 2026-11-10T17:30Z · wind 70° 4.0 m/s gust 6.0 · pres 1017.6 hPa · air 28.3 °C · water 29.1 °C · wave  m
 
+## 20261110T2335 UTC · center 10.8N 165.2W · TS 35 kt · forecast file adv017_points.geojson
+- Track points: 34 best-track + center + 8 forecast. Corridor stations: 22 (6 reporting standard met). New NDBC observation rows merged: 296.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 43 track points; MUR satellite SST returned at 8 of 9 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pgbp7 1631428 - Pago Bay, Guam · 5435 km from center · 2026-11-10T22:54Z · wind 90° 2.6 m/s gust 4.1 · pres 1013.9 hPa · air  °C · water  °C · wave  m
+  - aprp7 1630000 - Apra Harbor, Guam · 5450 km from center · 2026-11-10T22:54Z · wind 20° 4.1 m/s gust 5.1 · pres 1014.4 hPa · air 28.6 °C · water 29.6 °C · wave  m
+  - 52214 Rumung, Yap, Micronesia (272) · 6188 km from center · 2026-10-24T15:00Z · wind °  m/s gust  · pres  hPa · air 28.6 °C · water 29.3 °C · wave 2.0 m
+  - 42058 Central Caribbean - 210 NM SSE of Kingston, Jamaica · 9637 km from center · 2026-11-10T23:10Z · wind 60° 10.0 m/s gust 12.0 · pres 1010.1 hPa · air 29.5 °C · water 29.7 °C · wave  m
+  - 41040 NORTH EQUATORIAL ONE- 470 NM East of Martinique · 12026 km from center · 2026-11-10T23:10Z · wind 90° 6.0 m/s gust 7.0 · pres 1018.2 hPa · air 28.8 °C · water 29.5 °C · wave  m
+  - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12752 km from center · 2026-11-10T23:10Z · wind 70° 5.0 m/s gust 6.0 · pres 1019.9 hPa · air 28.2 °C · water 28.9 °C · wave  m
+
