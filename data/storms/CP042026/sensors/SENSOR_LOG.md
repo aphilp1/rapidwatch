@@ -117,3 +117,14 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - 41040 NORTH EQUATORIAL ONE- 470 NM East of Martinique · 11608 km from center · 2026-11-09T19:40Z · wind 130° 3.0 m/s gust 4.0 · pres 1015.3 hPa · air 29.2 °C · water 29.7 °C · wave 1.2 m
   - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12337 km from center · 2026-11-09T19:40Z · wind 120° 5.0 m/s gust 6.0 · pres 1016.9 hPa · air 28.5 °C · water 28.9 °C · wave 1.8 m
 
+## 20261110T0300 UTC · center 11.7N 162.7W · TS 35 kt · forecast file adv013_points.geojson
+- Track points: 31 best-track + center + 9 forecast. Corridor stations: 25 (5 reporting standard met). New NDBC observation rows merged: 275.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 41 track points; MUR satellite SST returned at 0 of 10 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - pgbp7 1631428 - Pago Bay, Guam · 5691 km from center · 2026-11-10T02:18Z · wind 160° 1.5 m/s gust 3.6 · pres 1010.8 hPa · air  °C · water  °C · wave  m
+  - aprp7 1630000 - Apra Harbor, Guam · 5706 km from center · 2026-11-10T02:18Z · wind 90° 2.1 m/s gust 4.1 · pres 1011.2 hPa · air  °C · water 29.8 °C · wave  m
+  - 42058 Central Caribbean - 210 NM SSE of Kingston, Jamaica · 9348 km from center · 2026-11-10T02:20Z · wind 60° 8.0 m/s gust 10.0 · pres 1012.2 hPa · air  °C · water  °C · wave 1.0 m
+  - 41040 NORTH EQUATORIAL ONE- 470 NM East of Martinique · 11735 km from center · 2026-11-10T02:20Z · wind 140° 5.0 m/s gust 6.0 · pres 1018.9 hPa · air 28.8 °C · water  °C · wave 1.2 m
+  - 41041 NORTH EQUATORIAL TWO - 890 NM East of Martinique  · 12461 km from center · 2026-11-10T02:10Z · wind 120° 3.0 m/s gust 4.0 · pres 1019.5 hPa · air 28.2 °C · water 28.8 °C · wave  m
+

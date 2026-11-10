@@ -1,0 +1,55 @@
+000
+WTPA34 PHFO 100231
+TCPCP4
+ 
+BULLETIN
+Tropical Storm Pena Advisory Number  14
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Mon Nov 09 2026
+ 
+...POORLY ORGANIZED PENA MOVING WESTWARD...
+ 
+ 
+SUMMARY OF 500 PM HST...0300 UTC...INFORMATION
+----------------------------------------------
+LOCATION...11.7N 162.7W
+ABOUT 570 MI...920 KM SE OF JOHNSTON ISLAND
+ABOUT 685 MI...1105 KM SW OF SOUTH POINT HAWAII
+MAXIMUM SUSTAINED WINDS...40 MPH...65 KM/H
+PRESENT MOVEMENT...W OR 275 DEGREES AT 14 MPH...22 KM/H
+MINIMUM CENTRAL PRESSURE...1004 MB...29.65 INCHES
+ 
+ 
+WATCHES AND WARNINGS
+--------------------
+There are no coastal watches or warnings in effect.
+ 
+ 
+DISCUSSION AND OUTLOOK
+----------------------
+At 500 PM HST (0300 UTC), the center of Tropical Storm Pena was
+located near latitude 11.7 North, longitude 162.7 West. Pena is
+moving toward the west near 14 mph (22 km/h) and this motion is
+expected to continue during the next couple of days.
+ 
+Maximum sustained winds are near 40 mph (65 km/h) with higher gusts.
+Little change in strength is forecast during the next few days.
+ 
+Tropical-storm-force winds extend outward up to 105 miles (165 km)
+from the center.
+ 
+The estimated minimum central pressure is 1004 mb (29.65 inches).
+ 
+ 
+HAZARDS AFFECTING LAND
+----------------------
+None.
+ 
+ 
+NEXT ADVISORY
+-------------
+Next complete advisory at 1100 PM HST.
+ 
+$$
+Forecaster Kelly

@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-09 20:55Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-10 03:00Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -47,6 +47,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-09 06Z | 40 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-09 12Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-09 18Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-10 00Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -97,6 +98,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 013** (1100 AM HST Mon Nov 09 2026)
 > Pena is no longer forecast to intensify, despite somewhat favorable environmental conditions. This general philosophy agrees with the current broad structure of the system, which appears unlikely to improve based on the latest dynamical model fields. Toward the end of the forecast period, vertical wind shear is expected to increase out of the west-southwest, which, combined with increasingly dry mid-level air, could allow Pena to dissipate or become a remnant low. For continuity, however, Pena is shown as a tropical cyclone through the forecast period. The latest NHC intensity forecast lies near the middle of the guidance envelope.
+
+**Discussion 014** (500 PM HST Mon Nov 09 2026)
+> Although environmental conditions appear somewhat favorable with warm sea surface temperatures and abundant mid-level moisture, Pena continues to struggle to organize due to persistent mid-level wind shear, and not being able to establish an inner core. Toward the end of the forecast period, dry air is anticipated to entrain into the circulation, which could cause the system to degenerate into a remnant low sooner than currently indicated. The NHC intensity forecast lies near the middle of the guidance envelope, and short-term fluctuations in strength are likely. While it is possible that Pena could open up into a surface trough due to its fast forward speed and the aforementioned shear, the official forecast maintains it as a tropical cyclone through the end of the period.
 
 ## 6. Sources in this folder
 

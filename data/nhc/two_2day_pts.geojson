@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[-90.61784823990422,10.039141343498329]},"properties":{"objectid":1,"basin":"Pacific","prob2day":"0%","risk2day":"nearZero","prob7day":"0%","risk7day":"nearZero","idp_source":"gtwo_points_202611091718","idp_filedate":1794245284000,"idp_ingestdate":1794245357000}}]}
+{"type":"FeatureCollection","features":[]}

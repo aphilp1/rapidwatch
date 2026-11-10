@@ -1,0 +1,53 @@
+000
+WTPA44 PHFO 100231
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  14
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Mon Nov 09 2026
+ 
+Pena continues to be poorly organized this afternoon, with a
+loosely defined low-level circulation located on the western edge of
+the deep convection. Unfortunately, recent scatterometer passes
+missed the system, leaving some uncertainty regarding the current
+surface wind field. Based on earlier SAR data and a relatively
+steady-state satellite appearance, the initial intensity is held at
+35 kt for this advisory.
+ 
+The initial motion is estimated to be 275/12 kt. Pena is forecast to
+continue moving generally westward, steered by a low- to mid-level
+ridge located to its north in the central Pacific. This ridge is
+expected to weaken in response to an approaching shortwave trough,
+which should result in a more northwestward motion. The updated NHC
+track forecast is very similar to the previous advisory and lies
+near the HCCA and the Google DeepMind aids.
+ 
+Although environmental conditions appear somewhat favorable with
+warm sea surface temperatures and abundant mid-level moisture, Pena
+continues to struggle to organize due to persistent mid-level wind
+shear, and not being able to establish an inner core. Toward the end
+of the forecast period, dry air is anticipated to entrain into the
+circulation, which could cause the system to degenerate into a
+remnant low sooner than currently indicated. The NHC intensity
+forecast lies near the middle of the guidance envelope, and
+short-term fluctuations in strength are likely. While it is possible
+that Pena could open up into a surface trough due to its fast
+forward speed and the aforementioned shear, the official forecast
+maintains it as a tropical cyclone through the end of the period.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  10/0300Z 11.7N 162.7W   35 KT  40 MPH
+ 12H  10/1200Z 11.7N 164.4W   35 KT  40 MPH
+ 24H  11/0000Z 11.4N 166.5W   35 KT  40 MPH
+ 36H  11/1200Z 11.3N 168.9W   35 KT  40 MPH
+ 48H  12/0000Z 11.6N 171.9W   35 KT  40 MPH
+ 60H  12/1200Z 12.0N 175.0W   35 KT  40 MPH
+ 72H  13/0000Z 12.8N 178.0W   35 KT  40 MPH
+ 96H  14/0000Z 14.0N 176.2E   35 KT  40 MPH
+120H  15/0000Z 14.6N 172.2E   35 KT  40 MPH
+ 
+$$
+Forecaster Kelly
