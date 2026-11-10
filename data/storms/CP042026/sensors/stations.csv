@@ -1,24 +1,23 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,123,692,
-51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,2631,
-52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,125,4591,
-52162,Backyard Buoys - Saipan Sugar Dock,15.15,145.694,other,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,235,5454,
-52211,"Tanapag, Saipan, NMI (197)",15.269,145.664,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,248,5457,
-52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,72,5558,
-pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,44,5562,txt
-52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,36,5563,
-aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,46,5577,txt
-43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,273,5881,
-43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.4741,-106.117,dart,NDBC,Tsunami,n,n,n,112,6260,
-52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,1,6920,
-43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",11.0529,-98.3574,dart,NDBC,Tsunami,n,n,n,159,7128,
-42058,"Central Caribbean - 210 NM SSE of Kingston, Jamaica",14.114,-75.949,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,175,9476,txt spec
-23009,,15.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,232,11354,
-23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,101,11443,
-23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,63,11504,
-41040,NORTH EQUATORIAL ONE- 470 NM East of Martinique,14.568,-53.037,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,220,11859,txt spec
-41041,NORTH EQUATORIAL TWO - 890 NM East of Martinique ,14.259,-46.052,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,184,12583,txt spec
-13008,Reggae,15.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,264,13359,
-41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,69,13488,
-23011,,15.0,65.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,238,13866,
-13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,72,14958,
+51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,67,592,
+51309,8N 170W,8.0,-170.0,tao,NDBC,TAO,,,,289,676,
+51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,2714,
+52013,10N 165E,10.0,165.0,tao,NDBC,TAO,,,,198,3313,
+52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,17,4510,
+52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,212,5482,
+pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,184,5485,txt
+52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,176,5486,
+aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,186,5500,txt
+43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,173,5972,
+52214,"Rumung, Yap, Micronesia (272)",9.678,138.176,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,232,6240,txt spec
+43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.4741,-106.117,dart,NDBC,Tsunami,n,n,n,212,6356,
+52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,137,6844,
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",11.0529,-98.3574,dart,NDBC,Tsunami,n,n,n,57,7222,
+42058,"Central Caribbean - 210 NM SSE of Kingston, Jamaica",14.114,-75.949,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,281,9576,txt spec
+23461,"ANDAMAN SEA - 180 NM NW of Phuket, Thailand",9.534,95.669,dart,"National Disaster Warning Center (NDWC), Department of Disaster Prevention and Mitigation, Ministry of the Interior, Thailand",Tsunami,n,n,n,244,10838,
+23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,31,11377,
+23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,194,11440,
+23218,Bay of Bengal IN4,10.165,88.5,dart,National Institute for Ocean Technology INDIA,Tsunami,n,n,n,173,11586,
+41041,NORTH EQUATORIAL TWO - 890 NM East of Martinique ,14.259,-46.052,buoy,NDBC,NDBC Meteorological/Ocean,y,n,n,294,12689,txt spec
+41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,43,13593,
+13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,41,15067,
