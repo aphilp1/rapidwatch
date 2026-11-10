@@ -1,0 +1,62 @@
+000
+WTPA44 PHFO 100836
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  15
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 PM HST Mon Nov 09 2026
+ 
+Satellite imagery indicates that the convective structure associated 
+with Pena has changed little over the past several hours. Deep 
+convection has remained mostly confined to the northeastern and 
+eastern portions of the circulation, due to moderate 
+south-southwesterly vertical wind shear. A recent scatterometer pass 
+showed a somewhat elongated low-level circulation and a highly 
+asymmetric wind field, with the strongest winds located in the 
+northeastern quadrant. The latest subjective and objective intensity 
+estimates remain in the 30 to 45 kt range. Given these estimates and 
+the relatively steady satellite presentation, the initial intensity 
+is held at 35 kt.
+
+The initial motion is westward, or 270/12 kt. This general motion is 
+expected to continue during the next 48 h as a low- to mid-level 
+ridge builds to the north, with the center of Pena forecast to pass 
+several hundred n mi south of Johnston Atoll. Thereafter, a gradual 
+turn toward the west-northwest is forecast as a weakness develops in 
+the ridge in response to a shortwave trough moving across the 
+northwestern Pacific. The latest NHC track forecast has been shifted 
+southward from the previous prediction toward the latest HCCA and 
+GDMI aids.
+
+Moderate south-southwesterly vertical wind shear and possibly some 
+drier mid-level air continue to limit Pena's ability to strengthen. 
+Although guidance indicates that the shear should decrease somewhat 
+during the next 12 to 24 h, only a few intensity models support 
+modest strengthening over the next few days. Sea surface 
+temperatures near 29 C are expected to persist along the forecast 
+track. However, increasingly dry mid-level air beginning around 60 h 
+and strengthening southwesterly vertical wind shear toward the end 
+of the period should inhibit intensification. Given these factors, 
+little overall change in intensity is forecast, although some 
+fluctuations in strength are certainly possible. Pena could still 
+degenerate into a remnant low or open into a trough, particularly 
+later in the forecast period. The latest NHC intensity forecast is 
+unchanged from the previous prediction and lies near the middle of 
+the guidance envelope.
+
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  10/0900Z 11.7N 163.9W   35 KT  40 MPH
+ 12H  10/1800Z 11.5N 165.6W   35 KT  40 MPH
+ 24H  11/0600Z 11.2N 167.7W   35 KT  40 MPH
+ 36H  11/1800Z 11.1N 170.2W   35 KT  40 MPH
+ 48H  12/0600Z 11.3N 173.3W   35 KT  40 MPH
+ 60H  12/1800Z 11.8N 176.3W   35 KT  40 MPH
+ 72H  13/0600Z 12.3N 179.4W   35 KT  40 MPH
+ 96H  14/0600Z 13.1N 175.2E   35 KT  40 MPH
+120H  15/0600Z 13.5N 171.1E   35 KT  40 MPH
+ 
+$$
+Forecaster Gibbs
