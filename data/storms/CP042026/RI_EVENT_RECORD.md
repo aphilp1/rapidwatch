@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-11 03:18Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-11 11:15Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -52,6 +52,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-10 12Z | 35 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-10 18Z | 35 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-11 00Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-11 06Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -119,6 +120,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 018** (500 PM HST Tue Nov 10 2026)
 > The ASCAT data confirmed that Pena has an intact circulation, and environmental conditions are conducive for marginal near term strengthening. However, Pena's dissipation time has been moved up 24 hours once again, in alignment with global models. As Pena gains latitude, it is expected to enter a more hostile environment, and global models generally depict the cyclone opening up into a trough during the day either Thursday or Friday. The latest NHC intensity forecast generally follows HCCA guidance in allowing for some slight strengthening for Pena over the next day, before showing a gradual weakening cycle through the end of the week as the system encounters drier air, increasing vertical wind shear, and cooler SSTs.
+
+**Discussion 019** (1100 PM HST Tue Nov 10 2026)
+> Despite the storm being over very warm waters with decent mid-level humidity values, there is some westerly shear noted below the outflow layer because of stronger low-level flow and weak mid- to upper-level flow. The environment is not expected to change much during the next few days, but a small increase in shear and decrease in moisture is noted by Thursday. This should be enough to cause weakening by then, and the system could dissipate in a few days while it is near the International Dateline due to a persistence of these unfavorable conditions, or an increase in forward speed that causes the weak cyclone to open up into a trough. The intensity forecast is reduced slightly from the last one, and the dissipation time has been brought forward, similar to the latest global model consensus solution.
 
 ## 6. Sources in this folder
 
