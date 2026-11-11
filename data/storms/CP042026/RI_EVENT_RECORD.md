@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-10 23:35Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-11 03:18Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -51,6 +51,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-10 06Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-10 12Z | 35 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-10 18Z | 35 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-11 00Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -115,6 +116,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 017** (1100 AM HST Tue Nov 10 2026)
 > As it has been stated over the past few days, Pena's intensity forecast remains challenging, as the overall environment suggests favorable conditions for strengthening, yet Pena has held steady all the while. What little data that's available in depicting Pena's structure implies that the storm's central vortex lacks structure, which has hindered opportunities for intensification. In fact, it is entirely possible that Pena currently lacks a closed low-level circulation, however this is hard to confirm without a complete scatterometer pass. As a result of this uncertainty, Pena's intensity forecast has been held flat over the next several days, with the possibility that the system could be declared a remnant low later today. Should scatterometer data confirm a closed circulation, however, Pena could experience at least modest strengthening, given its environment of warm SSTs, low vertical wind shear, and ample mid-level moisture.
+
+**Discussion 018** (500 PM HST Tue Nov 10 2026)
+> The ASCAT data confirmed that Pena has an intact circulation, and environmental conditions are conducive for marginal near term strengthening. However, Pena's dissipation time has been moved up 24 hours once again, in alignment with global models. As Pena gains latitude, it is expected to enter a more hostile environment, and global models generally depict the cyclone opening up into a trough during the day either Thursday or Friday. The latest NHC intensity forecast generally follows HCCA guidance in allowing for some slight strengthening for Pena over the next day, before showing a gradual weakening cycle through the end of the week as the system encounters drier air, increasing vertical wind shear, and cooler SSTs.
 
 ## 6. Sources in this folder
 

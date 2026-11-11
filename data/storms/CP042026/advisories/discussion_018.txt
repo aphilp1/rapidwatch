@@ -1,0 +1,53 @@
+000
+WTPA44 PHFO 110232
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  18
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Tue Nov 10 2026
+ 
+Deep convection near and over Pena's center has persisted most of 
+the day today. Previously, there was some doubt about whether Pena's 
+circulation was closed due to a lack of scatterometry or microwave 
+data. However, ASCAT data from around 2015 UTC confirmed the 
+presence of a closed (if not broad) circulation with peak winds of 
+35 to 40 kt, indicating Pena remains a tropical storm. Given the 
+ASCAT data and recent objective satellite estimates, the initial 
+intensity is raised slightly to 40 kt.
+
+Pena's motion is estimated to be 270/8 kt. The cyclone continues to 
+be steered by a high pressure ridge centered to the north of Pena. 
+Track guidance depicts the cyclone gradually turning to the 
+west-northwest over the next day or so, picking up forward speed as 
+it gains latitude as well. The latest NHC track guidance is 
+essentially unchanged from the previous advisory, with the main 
+adjustments being to the system's forward speed through the forecast 
+period. 
+ 
+The ASCAT data confirmed that Pena has an intact circulation, and 
+environmental conditions are conducive for marginal near term 
+strengthening. However, Pena's dissipation time has been moved up 24 
+hours once again, in alignment with global models. As Pena gains 
+latitude, it is expected to enter a more hostile environment, and 
+global models generally depict the cyclone opening up into a trough 
+during the day either Thursday or Friday. The latest NHC intensity 
+forecast generally follows HCCA guidance in allowing for some slight 
+strengthening for Pena over the next day, before showing a gradual 
+weakening cycle through the end of the week as the system encounters 
+drier air, increasing vertical wind shear, and cooler SSTs.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  11/0300Z 10.5N 166.0W   40 KT  45 MPH
+ 12H  11/1200Z 10.4N 167.3W   45 KT  50 MPH
+ 24H  12/0000Z 10.4N 169.7W   45 KT  50 MPH
+ 36H  12/1200Z 10.8N 172.9W   40 KT  45 MPH
+ 48H  13/0000Z 11.2N 176.2W   35 KT  40 MPH
+ 60H  13/1200Z 11.6N 179.0W   35 KT  40 MPH
+ 72H  14/0000Z 12.0N 178.1E   30 KT  35 MPH
+ 96H  15/0000Z...DISSIPATED
+ 
+$$
+Forecaster Evans/Reinhart
