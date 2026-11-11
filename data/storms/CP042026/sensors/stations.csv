@@ -1,23 +1,22 @@
 id,name,lat,lon,type,owner,pgm,met,currents,waterquality,dist_track_km,dist_center_km,files
-51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,13,361,
-51309,8N 170W,8.0,-170.0,tao,NDBC,TAO,,,,234,431,
-kwjp8,"1820000 - Kwajalein, Marshall Islands",8.732,167.734,fixed,NOS,NOS/CO-OPS,y,n,n,295,2808,txt
-51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,2930,
-52013,10N 165E,10.0,165.0,tao,NDBC,TAO,,,,154,3098,
-52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,62,4304,
-52202,"Ritidian Point, Guam (196)",13.682,144.811,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,258,5283,
-pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,229,5285,txt
-52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,221,5286,
-aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,231,5300,txt
-52214,"Rumung, Yap, Micronesia (272)",9.678,138.176,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,186,6031,txt spec
-43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,119,6200,
-43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.4348,-106.068,dart,NDBC,Tsunami,n,n,n,261,6595,
-52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,183,6646,
-43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",11.1767,-98.3086,dart,NDBC,Tsunami,n,n,n,10,7457,
-23461,"ANDAMAN SEA - 180 NM NW of Phuket, Thailand",9.534,95.669,dart,"National Disaster Warning Center (NDWC), Department of Disaster Prevention and Mitigation, Ministry of the Interior, Thailand",Tsunami,n,n,n,197,10645,
-23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,78,11193,
-23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,241,11262,
-23218,Bay of Bengal IN4,10.165,88.5,dart,National Institute for Ocean Technology INDIA,Tsunami,n,n,n,126,11398,
-23401,"BAY OF BENGAL - 600 NM WNW of Phuket, Thailand",8.86,88.55,dart,"National Disaster Warning Center (NDWC), Department of Disaster Prevention and Mitigation, Ministry of the Interior, Thailand",Tsunami,n,n,n,271,11425,
-41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,94,13838,
-13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,92,15312,
+51312,10N 170W,10.0,-170.0,tao,NDBC,TAO,,,,3,252,
+51309,8N 170W,8.0,-170.0,tao,NDBC,TAO,,,,224,329,
+kwjp8,"1820000 - Kwajalein, Marshall Islands",8.732,167.734,fixed,NOS,NOS/CO-OPS,y,n,n,240,2698,txt
+52013,10N 165E,10.0,165.0,tao,NDBC,TAO,,,,99,2989,
+51006,9N 140W,9.0,-140.0,tao,NDBC,TAO,,,,51,3039,
+52402,SOUTHEAST SAIPAN - 540NM ESE of Saipan,11.928,153.876,dart,NDBC,Tsunami,n,n,n,115,4198,
+pgbp7,"1631428 - Pago Bay, Guam",13.428,144.796,fixed,NOS,NOS/CO-OPS,y,n,n,282,5181,txt
+52200,"Ipan, Guam (121)",13.354,144.788,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,273,5182,
+aprp7,"1630000 - Apra Harbor, Guam",13.444,144.657,fixed,NOS,NOS/CO-OPS,y,n,n,283,5196,txt
+52214,"Rumung, Yap, Micronesia (272)",9.678,138.176,buoy,Pacific Islands Ocean Observing System,IOOS Partners,n,n,n,134,5924,txt spec
+43013,10N 110W,10.0,-110.0,tao,NDBC,TAO,,,,91,6311,
+52405,"SOUTH PHILIPPINE SEA -725 NM West of Agana, Guam",12.992,132.232,dart,NDBC,Tsunami,n,n,n,234,6541,
+43412,"SOUTHWEST MANZANILLO - 240 NM SW of Manzanillo, MX",13.4333,-106.035,dart,NDBC,Tsunami,n,n,n,290,6711,
+43413,"SOUTH ACAPULCO - 360NM South of Acapulco, MX",11.2074,-98.4208,dart,NDBC,Tsunami,n,n,n,43,7556,
+23461,"ANDAMAN SEA - 180 NM NW of Phuket, Thailand",9.534,95.669,dart,"National Disaster Warning Center (NDWC), Department of Disaster Prevention and Mitigation, Ministry of the Interior, Thailand",Tsunami,n,n,n,149,10541,
+23008,,12.0,90.0,buoy,Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction,International Partners,n,n,n,125,11093,
+23219,Bay of Bengal,13.472,88.998,dart,Indian National Center for Ocean Information Services INDIA,Tsunami,n,n,n,288,11163,
+23218,Bay of Bengal IN4,10.165,88.5,dart,National Institute for Ocean Technology INDIA,Tsunami,n,n,n,79,11297,
+23401,"BAY OF BENGAL - 600 NM WNW of Phuket, Thailand",8.86,88.55,dart,"National Disaster Warning Center (NDWC), Department of Disaster Prevention and Mitigation, Ministry of the Interior, Thailand",Tsunami,n,n,n,224,11322,
+41026,Forro,12.0,-38.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,129,13948,
+13001,NE Extension,12.0,-23.0,buoy,Prediction and Research Moored Array in the Atlantic,International Partners,n,n,n,128,15417,

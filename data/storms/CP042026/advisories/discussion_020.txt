@@ -1,0 +1,54 @@
+000
+WTPA44 PHFO 111436
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  20
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 AM HST Wed Nov 11 2026
+ 
+Pena continues to maintain a marginal amount of convection near the 
+center and to the north during the last several hours. The cyclone 
+continues to appear very disorganized with the most recent 
+subjective Dvorak fixes from both JTWC and HFO at T2.5/35 kt, while 
+the UW-CIMSS objective intensity estimates are in the range of 30-51 
+kt. Therefore, the initial intensity for Pena has been held at 40 kt 
+for this advisory.
+ 
+Pena's motion is estimated to be 250/8 kt. The storm is currently 
+being steered by a high pressure ridge centered over the subtropical 
+Central Pacific. This high should cause Pena to  accelerate westward 
+over the next couple of days. The current NHC track forecast is 
+similar to the previous one with some minor adjustments to nudge the 
+track southward. These adjustments are based on a blend of the GDMI 
+and the HCCA forecast aids.  
+ 
+While Pena is over very warm waters with a good amount of 
+environmental moisture, the cyclone is still being negatively 
+affected by some westerly shear that is undercutting it. The current 
+model guidance suggests that the environment will not change much 
+for the next day or so, thus the current NHC intensity forecast 
+keeps the storm at the same strength for the next 24 h. After which, 
+a small increase in shear and a decrease in moisture should take 
+hold by Thursday, which in turn should allow for weakening to occur. 
+With the unfavorable factors persisting over the system and its 
+increasing forward speed, it could dissipate within a few days. 
+Generally, the current NHC intensity forecast is mostly the same as 
+the previous forecast, except for a small adjustment to weaken the 
+storm sooner at 48 h. This forecast is in good agreement with the 
+majority of the current guidance, including the GDMI and HCCA 
+forecast aids. 
+
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  11/1500Z  9.9N 167.7W   40 KT  45 MPH
+ 12H  12/0000Z 10.0N 169.6W   40 KT  45 MPH
+ 24H  12/1200Z 10.2N 172.6W   40 KT  45 MPH
+ 36H  13/0000Z 10.5N 175.7W   35 KT  40 MPH
+ 48H  13/1200Z 10.8N 178.7W   30 KT  35 MPH
+ 60H  14/0000Z 10.9N 178.4E   30 KT  35 MPH
+ 72H  14/1200Z...DISSIPATED
+ 
+$$
+Forecaster Katz/Cangialosi
