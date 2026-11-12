@@ -1,0 +1,54 @@
+000
+WTPA44 PHFO 112033
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  21
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+1100 AM HST Wed Nov 11 2026
+ 
+Over the last several hours, the structure of Pena has degraded and 
+the most recent visible satellite imagery shows that the low-level 
+center is exposed and to the southwest of the bulk of the 
+convection. The low-level center is moving faster toward the west 
+than the mid-level circulation, which is why the bulk of the deep 
+convection is now located well to the east-northeast of the center. 
+The current subjective Dvorak fixes from both JTWC and HFO are 
+T2.5/35 kt, however the UW-CIMSS objective intensity estimates are 
+in the range of 27-42 kt. The initial intensity is being held at 40 
+kt for this advisory, which could be a little generous at this time.
+ 
+Pena's current motion is estimated to be 265/14 kt. High pressure 
+centered over the subtropical Central Pacific continues to be the 
+main steering mechanism, however the system is starting to 
+accelerate westward and should continue to accelerate over the next 
+couple of days. The current NHC track is similar to the previous 
+track, with a small adjustment to the left of the previous track 
+based on a blend of the GDMI and HCCA forecast aids. 
+ 
+The current environment for Pena still has very warm waters, a good 
+amount of moisture, and low vertical wind shear, but given the poor 
+initial structure, strengthening is not expected. Instead, the 
+cyclone is likely to maintain its intensity through tonight. By 
+Thursday, a general weakening trend is expected as shear increases 
+slightly and environmental moisture decreases slightly. These less 
+favorable conditions are expected to persist over the system and the 
+aforementioned increase in forward speed should result in the 
+dissipation within the next few days, as the storm degrades into an 
+open trough. Some model guidance indicates that dissipation could 
+occur sooner than the current forecast indicates. The current NHC 
+intensity forecast is similar to the previous forecast, with 
+dissipation moved up to 60 h, based on the model surface fields. 
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  11/2100Z  9.9N 169.4W   40 KT  45 MPH
+ 12H  12/0600Z 10.0N 171.5W   40 KT  45 MPH
+ 24H  12/1800Z 10.2N 174.5W   35 KT  40 MPH
+ 36H  13/0600Z 10.5N 177.5W   30 KT  35 MPH
+ 48H  13/1800Z 10.6N 179.6E   30 KT  35 MPH
+ 60H  14/0600Z...DISSIPATED
+ 
+$$
+Forecaster Katz/Hagen

@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-11 18:46Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-12 01:05Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -55,6 +55,7 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-11 06Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-11 12Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-11 18Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-12 00Z | 40 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -128,6 +129,9 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 020** (500 AM HST Wed Nov 11 2026)
 > While Pena is over very warm waters with a good amount of environmental moisture, the cyclone is still being negatively affected by some westerly shear that is undercutting it. The current model guidance suggests that the environment will not change much for the next day or so, thus the current NHC intensity forecast keeps the storm at the same strength for the next 24 h. After which, a small increase in shear and a decrease in moisture should take hold by Thursday, which in turn should allow for weakening to occur. With the unfavorable factors persisting over the system and its increasing forward speed, it could dissipate within a few days. Generally, the current NHC intensity forecast is mostly the same as the previous forecast, except for a small adjustment to weaken the storm sooner at 48 h. This forecast is in good agreement with the majority of the current guidance, including the GDMI and HCCA forecast aids.
+
+**Discussion 021** (1100 AM HST Wed Nov 11 2026)
+> The current environment for Pena still has very warm waters, a good amount of moisture, and low vertical wind shear, but given the poor initial structure, strengthening is not expected. Instead, the cyclone is likely to maintain its intensity through tonight. By Thursday, a general weakening trend is expected as shear increases slightly and environmental moisture decreases slightly. These less favorable conditions are expected to persist over the system and the aforementioned increase in forward speed should result in the dissipation within the next few days, as the storm degrades into an open trough. Some model guidance indicates that dissipation could occur sooner than the current forecast indicates. The current NHC intensity forecast is similar to the previous forecast, with dissipation moved up to 60 h, based on the model surface fields.
 
 ## 6. Sources in this folder
 

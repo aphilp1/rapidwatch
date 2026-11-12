@@ -193,3 +193,11 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - aprp7 1630000 - Apra Harbor, Guam · 5196 km from center · 2026-11-11T18:00Z · wind 60° 3.1 m/s gust 4.1 · pres 1013.5 hPa · air 27.2 °C · water 29.7 °C · wave  m
   - 52214 Rumung, Yap, Micronesia (272) · 5924 km from center · 2026-10-24T15:00Z · wind °  m/s gust  · pres  hPa · air 28.6 °C · water 29.3 °C · wave 2.0 m
 
+## 20261112T0105 UTC · center 9.9N 169.4W · TS 40 kt · forecast file adv021_points.geojson
+- Track points: 39 best-track + center + 5 forecast. Corridor stations: 22 (2 reporting standard met). New NDBC observation rows merged: 65.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 45 track points; MUR satellite SST returned at 0 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - kwjp8 1820000 - Kwajalein, Marshall Islands · 2512 km from center · 2026-11-12T00:30Z · wind °  m/s gust  · pres 1010.8 hPa · air  °C · water 29.2 °C · wave  m
+  - 52214 Rumung, Yap, Micronesia (272) · 5738 km from center · 2026-10-24T15:00Z · wind °  m/s gust  · pres  hPa · air 28.6 °C · water 29.3 °C · wave 2.0 m
+
