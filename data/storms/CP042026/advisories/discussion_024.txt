@@ -1,0 +1,30 @@
+000
+WTPA44 PHFO 121433
+TCDCP4
+ 
+Remnants Of Pena Discussion Number  24
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 AM HST Thu Nov 12 2026
+ 
+Deep convection associated with Pena has largely dissipated during 
+the past several hours. In addition, an ASCAT-B pass at 0842 UTC 
+showed that the system had degenerated into an open trough. 
+Therefore, Pena is no longer a tropical cyclone, and this is 
+the last NHC advisory on this system. The initial intensity is held 
+at 30 kt based on the ASCAT data that showed peak winds of 28 kt, 
+and the subjective and objective intensity estimates that range 
+from 25-32 kt.
+
+Given that the system is expected to accelerate westward into a 
+dry mid-level environment, on the south side of a strong 
+low- to mid-level subtropical ridge, re-development is not 
+anticipated.    
+
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  12/1500Z  9.8N 173.4W   30 KT  35 MPH...REMNANTS OF PENA
+ 12H  13/0000Z...DISSIPATED
+ 
+$$
+Forecaster Katz/Cangialosi

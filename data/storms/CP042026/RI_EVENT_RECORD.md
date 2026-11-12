@@ -1,6 +1,6 @@
 # Pena (CP042026) — rapid-intensification record
 
-Generated 2026-11-12 08:28Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
+Generated 2026-11-12 16:57Z from the archive in this folder by ri_event_record.py. Definition used: NHC rapid intensification = maximum sustained wind increase of at least 30 kt in 24 h (best track, 6-hourly). All numbers are read from archived sources; nothing is estimated.
 
 ## 1. The event by the definition
 
@@ -56,7 +56,8 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 | 2026-11-11 12Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-11 18Z | 40 | 5 | – | – | – | – | – | – | – | – | – | – | – | – |
 | 2026-11-12 00Z | 40 | 0 | – | – | – | – | – | – | – | – | – | – | – | – |
-| 2026-11-12 06Z | 35 | -5 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-12 06Z | 30 | -10 | – | – | – | – | – | – | – | – | – | – | – | – |
+| 2026-11-12 12Z | 30 | -10 | – | – | – | – | – | – | – | – | – | – | – | – |
 
 ## 5. NHC's own intensity reasoning, by discussion (verbatim excerpts)
 
@@ -136,6 +137,10 @@ SST, OHC, shear, RH, POT (MPI minus Vmax) and D200 (200 mb divergence, 1e-7 s⁻
 
 **Discussion 022** (500 PM HST Wed Nov 11 2026)
 > Despite warm sea surface temperatures and light vertical wind shear, increasingly dry mid-level air is expected to contribute to a steady weakening trend beginning late tonight or early Thursday. Global models generally support this scenario and indicate that Pena will struggle to maintain persistent or organized deep convection as it weakens and eventually opens into a trough shortly after crossing the International Date Line into the western Pacific by early Saturday. The latest NHC intensity forecast is very close to the previous prediction and remains near the middle of the guidance envelope.
+
+**Discussion 023** (1100 PM HST Wed Nov 11 2026)
+
+**Discussion 024** (500 AM HST Thu Nov 12 2026)
 
 ## 6. Sources in this folder
 
