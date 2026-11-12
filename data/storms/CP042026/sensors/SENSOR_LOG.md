@@ -201,3 +201,12 @@ One entry per run (UTC). Corridor: 300 km either side of the best track + curren
   - kwjp8 1820000 - Kwajalein, Marshall Islands · 2512 km from center · 2026-11-12T00:30Z · wind °  m/s gust  · pres 1010.8 hPa · air  °C · water 29.2 °C · wave  m
   - 52214 Rumung, Yap, Micronesia (272) · 5738 km from center · 2026-10-24T15:00Z · wind °  m/s gust  · pres  hPa · air 28.6 °C · water 29.3 °C · wave 2.0 m
 
+## 20261112T0827 UTC · center 9.8N 170.6W · TS 40 kt · forecast file adv022_points.geojson
+- Track points: 40 best-track + center + 5 forecast. Corridor stations: 22 (3 reporting standard met). New NDBC observation rows merged: 1062.
+- Argo floats in corridor: 0 (0 new profiles, 0 profile files written). Gliders in corridor: 0 (0 new reports, 0 profile files written).
+- HYCOM sampled at 46 track points; MUR satellite SST returned at 5 of 6 points.
+- Nearest reporting buoys/stations (latest standard-met row):
+  - kwjp8 1820000 - Kwajalein, Marshall Islands · 2380 km from center · 2026-11-12T07:30Z · wind °  m/s gust  · pres 1009.6 hPa · air  °C · water 29.0 °C · wave  m
+  - 52214 Rumung, Yap, Micronesia (272) · 5608 km from center · 2026-10-24T15:00Z · wind °  m/s gust  · pres  hPa · air 28.6 °C · water 29.3 °C · wave 2.0 m
+  - 52212 Ngaraard, Babeldaob, Palau (219) · 6014 km from center · 2026-11-12T07:30Z · wind °  m/s gust  · pres  hPa · air 29.5 °C · water 30.0 °C · wave 1.7 m
+

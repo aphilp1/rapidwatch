@@ -1,0 +1,51 @@
+000
+WTPA44 PHFO 120235
+TCDCP4
+ 
+Tropical Storm Pena Discussion Number  22
+NWS Central Pacific Hurricane Center Honolulu HI   CP042026
+Issued by NWS National Hurricane Center Miami FL
+500 PM HST Wed Nov 11 2026
+
+Satellite imagery indicates that Pena's convective structure has 
+changed little over the past several hours. Deep convection 
+continues to burst intermittently over and mostly east of the 
+circulation center, with cloud-top temperatures as cold as -80 C. A 
+1957 UTC Metop-B scatterometer pass revealed a highly asymmetric 
+wind field, with the strongest winds over the northern semicircle, 
+generally ranging from 30 to 35 kt. Given the steady satellite 
+presentation and similar subjective and objective intensity 
+estimates ranging from 30 to 40 kt, the initial intensity is held at 
+40 kt.
+ 
+The initial motion is westward, or 270/13 kt. Track guidance remains 
+in good agreement over the next several days and shows Pena 
+continuing westward as a strong low- to mid-level ridge remains to 
+the north. The steering layer is expected to become increasingly 
+shallow over the next few days as Pena gradually weakens. The latest 
+NHC track forecast is essentially unchanged from the previous 
+prediction.
+ 
+Despite warm sea surface temperatures and light vertical wind shear, 
+increasingly dry mid-level air is expected to contribute to a steady 
+weakening trend beginning late tonight or early Thursday. Global 
+models generally support this scenario and indicate that Pena will 
+struggle to maintain persistent or organized deep convection as it 
+weakens and eventually opens into a trough shortly after crossing 
+the International Date Line into the western Pacific by early 
+Saturday. The latest NHC intensity forecast is very close to the 
+previous prediction and remains near the middle of the guidance 
+envelope.
+ 
+ 
+FORECAST POSITIONS AND MAX WINDS
+ 
+INIT  12/0300Z  9.8N 170.6W   40 KT  45 MPH
+ 12H  12/1200Z  9.9N 172.7W   35 KT  40 MPH
+ 24H  13/0000Z 10.0N 175.6W   30 KT  35 MPH
+ 36H  13/1200Z 10.1N 178.5W   30 KT  35 MPH
+ 48H  14/0000Z 10.3N 179.1E   30 KT  35 MPH
+ 60H  14/1200Z...DISSIPATED
+ 
+$$
+Forecaster Gibbs
