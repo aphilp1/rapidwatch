@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-13T17:54:54Z",
+ "generated_utc": "2026-11-13T22:56:39Z",
  "overall": "warn",
  "checks": [
   {
@@ -15,27 +15,27 @@
   {
    "name": "ndbc-buoys",
    "state": "warn",
-   "detail": "5/6 fresh \u00b7 newest 45 min ago \u00b7 42040 offline since 2026-06-17"
+   "detail": "5/6 fresh \u00b7 newest 27 min ago \u00b7 42040 offline since 2026-06-17"
   },
   {
    "name": "nws-lag",
    "state": "ok",
-   "detail": "NWS within 0 min of NDBC on 42001"
+   "detail": "NWS within 20 min of NDBC on 42001"
   },
   {
    "name": "ocean-state",
-   "state": "warn",
-   "detail": "newest HYCOM grid 11.9 h ago"
+   "state": "ok",
+   "detail": "newest HYCOM grid 1.9 h ago"
   },
   {
    "name": "gliders",
    "state": "ok",
-   "detail": "newest glider fix 15.9 h ago"
+   "detail": "newest glider fix 8.4 h ago"
   },
   {
    "name": "argo",
    "state": "ok",
-   "detail": "newest Argo profile 29.4 h ago"
+   "detail": "newest Argo profile 10.1 h ago"
   }
  ]
 }
