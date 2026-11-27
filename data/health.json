@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-27T08:50:32Z",
+ "generated_utc": "2026-11-27T18:31:10Z",
  "overall": "warn",
  "checks": [
   {
@@ -24,18 +24,18 @@
   },
   {
    "name": "ocean-state",
-   "state": "ok",
-   "detail": "newest HYCOM grid stamped 9 min ahead of now (current)"
+   "state": "warn",
+   "detail": "newest HYCOM grid 9.5 h ago"
   },
   {
    "name": "gliders",
    "state": "ok",
-   "detail": "newest glider fix 4.3 h ago"
+   "detail": "newest glider fix 13.9 h ago"
   },
   {
    "name": "argo",
    "state": "ok",
-   "detail": "newest Argo profile 6.5 h ago"
+   "detail": "newest Argo profile 16.2 h ago"
   }
  ]
 }
